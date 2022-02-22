@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public Rigidbody2D m_rigidbody;
+    public float acceleration;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+
+    private void Update()
+    {
+        
+    }
+    void FixedUpdate()
+    {
+        if (Input.GetKey("w")) m_rigidbody.AddForce(Vector2.up * acceleration);
+        if (Input.GetKey("s")) m_rigidbody.AddForce(Vector2.down * acceleration);
+        if (Input.GetKey("a")) m_rigidbody.AddForce(Vector2.left * acceleration);
+        if (Input.GetKey("d")) m_rigidbody.AddForce(Vector2.right * acceleration);
+    }
+}
