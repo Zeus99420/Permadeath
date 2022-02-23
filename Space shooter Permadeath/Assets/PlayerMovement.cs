@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
 
         // set vector of transform directly
         transform.up = direction;
+
+        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
+        gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
     void FixedUpdate()
     {
@@ -32,4 +37,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a")) m_rigidbody.AddForce(Vector2.left * acceleration);
         if (Input.GetKey("d")) m_rigidbody.AddForce(Vector2.right * acceleration);
     }
+
+   
 }
