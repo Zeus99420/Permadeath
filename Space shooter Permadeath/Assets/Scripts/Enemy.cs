@@ -17,8 +17,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
-        m_rigidbody.AddForce(direction * acceleration);
+        if (player)
+        {
+            Vector2 direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
+            m_rigidbody.AddForce(direction * acceleration);
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 800
-  permadeathscreen: {fileID: 357047365}
+  permadeathscreen: {fileID: 856224838}
 --- !u!114 &1653898510
 MonoBehaviour:
   m_ObjectHideFlags: 0
