@@ -33,4 +33,8 @@ public class SpawnEnemies : MonoBehaviour
         }
         spawnRate += spawnRate*spawnRateIncrease*Time.deltaTime;
     }
+   public void StopSpawnEnemies()
+    {
+        CancelInvoke("Update");
+    }
 }

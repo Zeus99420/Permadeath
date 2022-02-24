@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject Mastermind;
     public Transform player;
     Rigidbody2D m_rigidbody;
     public float acceleration;
@@ -24,7 +25,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            Mastermind.GetComponent<Mastermind>().SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
         }
     }
 }

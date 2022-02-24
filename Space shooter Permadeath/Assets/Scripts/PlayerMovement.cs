@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D m_rigidbody;
     public float acceleration;
+    public GameObject permadeathscreen;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a")) m_rigidbody.AddForce(Vector2.left * acceleration);
         if (Input.GetKey("d")) m_rigidbody.AddForce(Vector2.right * acceleration);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            permadeathscreen.GetComponent<Mastermind>().SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
+        }
+    }
 
-   
 }
