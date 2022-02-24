@@ -29,5 +29,12 @@ public class Weapons : MonoBehaviour
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
             newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
         }
+
+        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        if (transform.position.y < min.y)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

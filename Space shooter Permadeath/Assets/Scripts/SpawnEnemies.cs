@@ -32,9 +32,14 @@ public class SpawnEnemies : MonoBehaviour
             newEnemy.GetComponent<Enemy>().player = GetComponent<Mastermind>().player.transform;
         }
         spawnRate += spawnRate*spawnRateIncrease*Time.deltaTime;
+
+        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        if (transform.position.y < min.y)
+        {
+            Destroy(gameObject);
+        }
+
+
     }
-   public void StopSpawnEnemies()
-    {
-        CancelInvoke("Update");
-    }
+ 
 }
