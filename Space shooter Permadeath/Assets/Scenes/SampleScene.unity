@@ -216,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856224840}
   - component: {fileID: 856224839}
+  - component: {fileID: 856224841}
   m_Layer: 0
   m_Name: Mastermind
   m_TagString: Untagged
@@ -235,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1653898505}
+  player: {fileID: 1653898505}
 --- !u!4 &856224840
 Transform:
   m_ObjectHideFlags: 0
@@ -250,6 +251,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &856224841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856224838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac0e0cefdc7ae1438677f3dc1fe28ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+  spawnRate: 1
+  spawnRateIncrease: 0.04
+  spawnPosition: {x: 0, y: 0}
 --- !u!1 &1653898505
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,9 +280,10 @@ GameObject:
   - component: {fileID: 1653898506}
   - component: {fileID: 1653898509}
   - component: {fileID: 1653898510}
+  - component: {fileID: 1653898511}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,7 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfeea0d71d9bdd4699701e8353d63ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rigidbody: {fileID: 1653898508}
   acceleration: 800
 --- !u!114 &1653898510
 MonoBehaviour:
@@ -385,3 +402,19 @@ MonoBehaviour:
   cooldown: 0.2
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 12
+--- !u!70 &1653898511
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653898505}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0

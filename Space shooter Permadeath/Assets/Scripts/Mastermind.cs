@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mastermind : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject player;
 
     public enum GameMastermindState
     {
