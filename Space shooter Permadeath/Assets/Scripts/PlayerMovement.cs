@@ -39,13 +39,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a")) m_rigidbody.AddForce(Vector2.left * acceleration);
         if (Input.GetKey("d")) m_rigidbody.AddForce(Vector2.right * acceleration);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnDestroy()
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
-            permadeathscreen.GetComponent<Mastermind>().SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
-        }
+        permadeathscreen.GetComponent<Mastermind>().SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
+
     }
 
 }

@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject enemyType;
+    public List<GameObject> enemyTypes;
+    public List<float> enemyFrequencies;
+
+    public float enemyFrequencySum = 0;
+
     public float spawnRate;
     public float spawnRateIncrease;
     public Vector2 spawnPosition;
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach (int frequency in enemyFrequencies)
+        {
+            enemyFrequencySum += frequency;
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +36,24 @@ public class SpawnEnemies : MonoBehaviour
             else if (randomNumber < 0.7) spawnPosition = new Vector2(Random.Range(-0.1f, 1.1f), 1.1f);
             else spawnPosition = new Vector2(Random.Range(-0.1f, 1.1f), -0.1f);
 
-            GameObject newEnemy = Instantiate(enemy, Camera.main.ViewportToWorldPoint(spawnPosition,0), Quaternion.identity);
+
+            // Väljer slumpmässigt en typ av fiende. Fienden har olika frekvenser som avgör hur stor chans de har att väljas
+            enemyType = null;
+            randomNumber = Random.Range(0, enemyFrequencySum);
+            int i = 0;
+            float chanceToPick = 0;
+            while (enemyType == null)
+            {
+                chanceToPick += enemyFrequencies[i];
+                if (randomNumber <= chanceToPick)
+                {
+                    enemyType = enemyTypes[i];
+                }
+                i++;
+            }
+
+
+            GameObject newEnemy = Instantiate(enemyType, Camera.main.ViewportToWorldPoint(spawnPosition,0), Quaternion.identity);
             newEnemy.GetComponent<Enemy>().player = GetComponent<Mastermind>().player.transform;
         }
         spawnRate += spawnRate*spawnRateIncrease*Time.deltaTime;

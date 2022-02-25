@@ -347,7 +347,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac0e0cefdc7ae1438677f3dc1fe28ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+  enemyType: {fileID: 0}
+  enemyTypes:
+  - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+  - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+  enemyFrequencies:
+  - 4
+  - 1
+  enemyFrequencySum: 0
   spawnRate: 1
   spawnRateIncrease: 0.04
   spawnPosition: {x: 0, y: 0}
@@ -565,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfeea0d71d9bdd4699701e8353d63ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 800
+  acceleration: 600
   permadeathscreen: {fileID: 856224838}
 --- !u!114 &1653898510
 MonoBehaviour:
