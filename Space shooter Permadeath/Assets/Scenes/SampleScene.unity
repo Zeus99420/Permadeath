@@ -352,11 +352,11 @@ MonoBehaviour:
   - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
   - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
   enemyFrequencies:
-  - 4
+  - 3
   - 1
   enemyFrequencySum: 0
-  spawnRate: 1
-  spawnRateIncrease: 0.04
+  spawnRate: 0.8
+  spawnRateIncrease: 0.03
   spawnPosition: {x: 0, y: 0}
 --- !u!1 &1584777150
 GameObject:

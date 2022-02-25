@@ -34,6 +34,7 @@ public class Shooter : Enemy
             transform.up = direction;
             if (distance < attackRange)
             {
+                direction = Vector2.Perpendicular(direction);
                 if (Time.time > nextShotTime)
                 {
                     nextShotTime = Time.time + cooldown;
