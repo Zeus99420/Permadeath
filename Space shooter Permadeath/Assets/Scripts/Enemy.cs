@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Transform player;
+    public float avoidRadius;
+    protected Vector2 direction;
 
     public bool IsInScreen()
     {
@@ -15,6 +17,20 @@ public class Enemy : MonoBehaviour
             return true;
         }
         else return false;
+
     }
+
+    public void AvoidCollision()
+    {
+        Collider2D avoidCollider = null;
+        avoidCollider = Physics2D.OverlapCircle(transform.position, avoidRadius, LayerMask.GetMask("Enemy"));
+
+        if (avoidCollider != null)
+        {
+            Debug.Log("Evasive maneuvers!");
+            direction = -((Vector2)avoidCollider.transform.position - (Vector2)transform.position).normalized;
+        }
+    }
+
 
 }

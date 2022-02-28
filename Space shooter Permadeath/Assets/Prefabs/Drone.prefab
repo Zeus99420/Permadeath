@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7082147934971064493}
   - component: {fileID: 7082147934971064492}
   - component: {fileID: 7641324710145256345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Drone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,5 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  avoidRadius: 3
   Mastermind: {fileID: 0}
   acceleration: 90

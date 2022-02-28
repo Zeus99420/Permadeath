@@ -11,7 +11,6 @@ public class Shooter : Enemy
     Rigidbody2D m_rigidbody;
     public float acceleration;
 
-    Vector2 direction = Vector2.up;
     float distanceToPlayer;
 
     public float attackRange;

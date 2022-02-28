@@ -10,8 +10,6 @@ public class Drone : Enemy
     Rigidbody2D m_rigidbody;
     public float acceleration;
 
-    Vector2 direction = Vector2.up;
-    // Start is called before the first frame update
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -25,6 +23,9 @@ public class Drone : Enemy
         {
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
         }
+
+        // AvoidCollision();
+
         m_rigidbody.AddForce(direction * acceleration);
 
     }
