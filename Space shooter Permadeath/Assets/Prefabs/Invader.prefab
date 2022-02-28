@@ -101,10 +101,10 @@ MonoBehaviour:
   avoidRadius: 1
   Mastermind: {fileID: 0}
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
-  attackRange: 2
-  acceleration: 170
-  cooldown: 2
-  projectileSpeed: 4
+  attackRange: 5
+  acceleration: 220
+  cooldown: 4
+  projectileSpeed: 12
 --- !u!50 &8848007241133588017
 Rigidbody2D:
   serializedVersion: 4

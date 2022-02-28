@@ -351,8 +351,10 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
   - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+  - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
   enemyFrequencies:
   - 3
+  - 1
   - 1
   enemyFrequencySum: 0
   spawnRate: 0.8

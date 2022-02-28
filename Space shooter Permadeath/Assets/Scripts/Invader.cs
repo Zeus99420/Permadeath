@@ -22,8 +22,9 @@ public class Invader : Enemy
     {
         if (player)
         {
+            distanceToPlayer = Vector2.Distance(player.position, transform.position);
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
-
+            transform.up = direction;
 
             if (IsInScreen() && distanceToPlayer < attackRange && Time.time > nextShotTime)
             {
