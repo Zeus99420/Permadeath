@@ -134,10 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fddf2df19d5670a4989dec13d722d9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mastermind: {fileID: 0}
   player: {fileID: 0}
+  Mastermind: {fileID: 0}
   acceleration: 110
   attackRange: 5
   cooldown: 1
+  strafeRange: 4
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
   projectileSpeed: 8

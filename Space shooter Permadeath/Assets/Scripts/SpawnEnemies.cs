@@ -52,11 +52,10 @@ public class SpawnEnemies : MonoBehaviour
                 i++;
             }
 
-
             GameObject newEnemy = Instantiate(enemyType, Camera.main.ViewportToWorldPoint(spawnPosition,0), Quaternion.identity);
             newEnemy.GetComponent<Enemy>().player = GetComponent<Mastermind>().player.transform;
         }
-        spawnRate += spawnRate*spawnRateIncrease*Time.deltaTime;
+        spawnRate += spawnRateIncrease*Time.deltaTime;
 
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         if (transform.position.y < min.y)

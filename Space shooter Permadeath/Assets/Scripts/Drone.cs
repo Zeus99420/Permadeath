@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Drone : Enemy
 {
+    //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
+
     public GameObject Mastermind;
-    // public Transform player;
     Rigidbody2D m_rigidbody;
     public float acceleration;
 
@@ -19,6 +20,7 @@ public class Drone : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Rör sig mot spelaren
         if (player)
         {
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
