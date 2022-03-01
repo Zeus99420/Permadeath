@@ -29,7 +29,7 @@ public class WaveSpawner : MonoBehaviour
 
 
     public Wave[] waves;
-    int currentWaveNumber = 0;
+    public int currentWaveNumber = 0;
     Wave currentWave;
     public List<GameObject> enemyPool;
     float enemyFrequencySum;

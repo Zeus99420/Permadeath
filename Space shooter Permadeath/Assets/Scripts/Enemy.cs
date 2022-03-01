@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject Explosion;
+
     public Transform player;
     public float avoidRadius;
     protected Vector2 direction;
@@ -31,6 +33,17 @@ public class Enemy : MonoBehaviour
             direction = -((Vector2)avoidCollider.transform.position - (Vector2)transform.position).normalized;
         }
     }
-   
+
+    private void OnDestroy()
+    {
+        PlayExplosion();
+    }
+
+    void PlayExplosion()
+    {
+        GameObject explosion = (GameObject)Instantiate(Explosion);
+        explosion.transform.position = transform.position;
+    }
+
 
 }

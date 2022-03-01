@@ -6,7 +6,6 @@ public class Invader : Enemy
 {
     public GameObject Mastermind;
     public GameObject projectile;
-    public GameObject Explosion;
     Rigidbody2D m_rigidbody;
     float distanceToPlayer;
     public float attackRange;
@@ -44,15 +43,9 @@ public class Invader : Enemy
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayExplosion();
             Destroy(collision.gameObject);
             
         }
     }
 
-    void PlayExplosion()
-    {
-        GameObject explosion = (GameObject)Instantiate(Explosion);
-        explosion.transform.position = transform.position;
-    }
 }

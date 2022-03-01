@@ -5,7 +5,6 @@ using UnityEngine;
 public class Drone : Enemy
 {
     //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
-    public GameObject Explosion;
     public GameObject Mastermind;
     Rigidbody2D m_rigidbody;
     public float acceleration;
@@ -34,14 +33,9 @@ public class Drone : Enemy
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayExplosion();
             Destroy(collision.gameObject);
         }
     }
 
-    void PlayExplosion()
-    {
-        GameObject explosion = (GameObject)Instantiate(Explosion);
-        explosion.transform.position = transform.position;
-    }
+
 }

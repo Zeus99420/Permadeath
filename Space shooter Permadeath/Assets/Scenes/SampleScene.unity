@@ -415,7 +415,7 @@ MonoBehaviour:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     enemyFrequencies:
-    - 2
+    - 3
     - 1
     spawnRate: 1
   - waveName: Wave 3
@@ -425,7 +425,7 @@ MonoBehaviour:
     - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
     enemyFrequencies:
-    - 2
+    - 3
     - 1
     - 1
     spawnRate: 1.2
@@ -435,7 +435,7 @@ MonoBehaviour:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     enemyFrequencies:
     - 1
-    spawnRate: 2.5
+    spawnRate: 3.5
   - waveName: Wave 5
     budget: 250
     enemyTypes:
@@ -445,6 +445,18 @@ MonoBehaviour:
     - 2
     - 1
     spawnRate: 1
+  - waveName: Infinite Wave
+    budget: 9999999
+    enemyTypes:
+    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+    enemyFrequencies:
+    - 2
+    - 1
+    - 1
+    spawnRate: 2
+  currentWaveNumber: 0
   enemyPool: []
   enemiesRemaining: 0
 --- !u!4 &1101592342
