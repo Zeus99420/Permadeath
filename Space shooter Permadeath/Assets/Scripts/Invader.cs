@@ -44,8 +44,9 @@ public class Invader : Enemy
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
             PlayExplosion();
+            Destroy(collision.gameObject);
+            
         }
     }
 
