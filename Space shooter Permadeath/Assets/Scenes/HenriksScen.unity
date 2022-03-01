@@ -288,36 +288,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &724033848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 724033849}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &724033849
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724033848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0858582, y: -0.36164835, z: -2.0276127}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856224838
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856224840}
   - component: {fileID: 856224839}
+  - component: {fileID: 856224841}
   m_Layer: 0
   m_Name: Mastermind
   m_TagString: Untagged
@@ -349,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1653898505}
   permadeathscreen: {fileID: 357047365}
-  SpawnEnemies: {fileID: 1101592340}
+  SpawnEnemies: {fileID: 0}
 --- !u!4 &856224840
 Transform:
   m_ObjectHideFlags: 0
@@ -364,6 +335,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &856224841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856224838}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac0e0cefdc7ae1438677f3dc1fe28ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: {fileID: 0}
+  enemyTypes:
+  - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+  - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+  - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+  enemyFrequencies:
+  - 3
+  - 1
+  - 1
+  enemyFrequencySum: 0
+  spawnRate: 0.8
+  spawnRateIncrease: 0.03
+  spawnPosition: {x: 0, y: 0}
 --- !u!1 &1101592340
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ddc10a96d10e9641aad0f9b954b1fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesContainer: {fileID: 0}
   allEnemyTypes:
   - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     value: 10
@@ -403,13 +398,6 @@ MonoBehaviour:
     value: 40
   waves:
   - waveName: Wave 1
-    budget: 50
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    enemyFrequencies:
-    - 1
-    spawnRate: 0.7
-  - waveName: Wave 2
     budget: 100
     enemyTypes:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
@@ -418,35 +406,12 @@ MonoBehaviour:
     - 2
     - 1
     spawnRate: 1
-  - waveName: Wave 3
-    budget: 150
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    enemyFrequencies:
-    - 2
-    - 1
-    - 1
-    spawnRate: 1.2
-  - waveName: Wave 4
-    budget: 200
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    enemyFrequencies:
-    - 1
-    spawnRate: 2.5
-  - waveName: Wave 5
-    budget: 250
-    enemyTypes:
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    enemyFrequencies:
-    - 2
-    - 1
-    spawnRate: 1
+  - waveName: Wave 2
+    budget: 0
+    enemyTypes: []
+    enemyFrequencies: []
+    spawnRate: 0
   enemyPool: []
-  enemiesRemaining: 0
 --- !u!4 &1101592342
 Transform:
   m_ObjectHideFlags: 0

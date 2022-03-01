@@ -30,10 +30,10 @@ public class Mastermind : MonoBehaviour
                 permadeathscreen.SetActive(false);
                 break;
             case GameMastermindState.Gameplay:
-                gameObject.GetComponent<SpawnEnemies>().enabled = true;
+                SpawnEnemies.SetActive(true);
                 break;
             case GameMastermindState.GameOver:
-                gameObject.GetComponent<SpawnEnemies>().enabled = false;
+                SpawnEnemies.SetActive(false);
                 permadeathscreen.SetActive(true);
                 Invoke("ChangeToOpeningState", 12f);
                 break;
