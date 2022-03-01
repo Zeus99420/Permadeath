@@ -16,7 +16,7 @@ public class SpawnEnemies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (int frequency in enemyFrequencies)
+        foreach (float   frequency in enemyFrequencies)
         {
             enemyFrequencySum += frequency;
         }

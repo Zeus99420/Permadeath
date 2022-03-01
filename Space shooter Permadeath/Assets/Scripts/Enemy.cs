@@ -32,5 +32,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //private void OnDestroy()
+    //{
+    //    GameObject.Find("WaveSpawner").GetComponent<WaveSpawner>().CountEnemies();
+    //}
+
 
 }
