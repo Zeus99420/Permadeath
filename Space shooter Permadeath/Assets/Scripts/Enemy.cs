@@ -31,6 +31,6 @@ public class Enemy : MonoBehaviour
             direction = -((Vector2)avoidCollider.transform.position - (Vector2)transform.position).normalized;
         }
     }
-
+   
 
 }
