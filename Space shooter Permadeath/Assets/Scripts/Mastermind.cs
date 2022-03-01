@@ -8,7 +8,7 @@ public class Mastermind : MonoBehaviour
     public GameObject player;
     public GameObject permadeathscreen;
     public GameObject SpawnEnemies;
-
+   // public Transform HealthBar;
     public enum GameMastermindState
     {
         Opening,
@@ -19,7 +19,14 @@ public class Mastermind : MonoBehaviour
     GameMastermindState GMState;
     void Start()
     {
+
+      // Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 10), Quaternion.identity);
+      //  HealthBar healthbar = healthBarTransform.GetComponent<HealthBar>();
+      //  Health health = new Health(100);
         GMState = GameMastermindState.Opening;
+     //   healthbar.Setup(health);
+       
+    
     }
 
     void UpdateGameMastermindState()

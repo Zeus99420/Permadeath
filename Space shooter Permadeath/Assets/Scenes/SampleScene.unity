@@ -594,6 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 600
   permadeathscreen: {fileID: 856224838}
+  HealthBar: {fileID: 4670263869130051521, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
 --- !u!114 &1653898510
 MonoBehaviour:
   m_ObjectHideFlags: 0

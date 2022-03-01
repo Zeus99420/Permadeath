@@ -17,7 +17,10 @@ public class Health
     {
         return health;
     }
-
+    public float GetHealthPercent()
+    {
+        return health / MAXhealth;
+    }
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
