@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Wave
@@ -21,25 +22,26 @@ public class EnemyTypes
 
 public class WaveSpawner : MonoBehaviour
 {
+    public Text waveText;
+    public Text enemiesRemainingText;
+
     Mastermind mastermind;
     public Transform enemiesContainer;
 
     public EnemyTypes[] allEnemyTypes;
-    Dictionary<GameObject, int> enemyValues = new Dictionary<GameObject, int>();
-
+    public Dictionary<GameObject, int> enemyValues = new Dictionary<GameObject, int>();
 
     public Wave[] waves;
-    public int currentWaveNumber = 0;
+    int currentWaveNumber = 0;
     Wave currentWave;
     public List<GameObject> enemyPool;
     float enemyFrequencySum;
 
-    public int enemiesRemaining;
+    int enemiesRemaining;
 
     public void Start()
     {
         mastermind = GameObject.Find("Mastermind").GetComponent<Mastermind>();
-        enemiesContainer = GameObject.Find("Enemies").GetComponent<Transform>();
 
 
         //Ett dictionary enemyValues innehåller alla fiendetyper och vad de kostar, vilket används när spelet "köper" fiender att skapa
@@ -54,6 +56,7 @@ public class WaveSpawner : MonoBehaviour
     public void InitializeWave()
     {
         currentWave = waves[currentWaveNumber];
+        waveText.text = currentWave.waveName;
 
         enemyFrequencySum = 0;
         foreach (float frequency in currentWave.enemyFrequencies)
@@ -102,6 +105,8 @@ public class WaveSpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(enemyPool[0], Camera.main.ViewportToWorldPoint(spawnPosition, 0), 
                 Quaternion.identity, enemiesContainer);
             newEnemy.GetComponent<Enemy>().player = mastermind.player.transform;
+            newEnemy.GetComponent<Enemy>().mastermind = mastermind;
+            newEnemy.GetComponent<Enemy>().value = enemyValues[enemyPool[0]];
             enemyPool.RemoveAt(0);
 
 
@@ -113,6 +118,7 @@ public class WaveSpawner : MonoBehaviour
     public void CountEnemies()
     {
         enemiesRemaining = enemyPool.Count + enemiesContainer.childCount;
+        enemiesRemainingText.text = ("Enemies Remaining: " + enemiesRemaining);
 
         //Startar en ny våg ifall alla fiender är förstörda
         if (enemiesRemaining == 0)

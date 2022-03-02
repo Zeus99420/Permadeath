@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 458770969}
   - component: {fileID: 458770968}
   m_Layer: 5
-  m_Name: Level Text
+  m_Name: Wave Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Level: 1'
+  m_Text: Wave 1
 --- !u!222 &458770969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -414,7 +414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &851678392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +494,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1653898505}
   permadeathscreen: {fileID: 357047365}
-  SpawnEnemies: {fileID: 1101592340}
+  waveSpawner: {fileID: 1101592341}
+  moneyText: {fileID: 1734324497}
+  scoreText: {fileID: 2089369574}
+  money: 0
+  score: 0
 --- !u!4 &856224840
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ddc10a96d10e9641aad0f9b954b1fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesContainer: {fileID: 0}
+  waveText: {fileID: 458770968}
+  enemiesRemainingText: {fileID: 2011237116}
+  enemiesContainer: {fileID: 724033849}
   allEnemyTypes:
   - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     value: 10
@@ -591,7 +597,7 @@ MonoBehaviour:
     - 1
     spawnRate: 1
   - waveName: Infinite Wave
-    budget: 9999999
+    budget: 999999
     enemyTypes:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
@@ -601,9 +607,7 @@ MonoBehaviour:
     - 1
     - 1
     spawnRate: 2
-  currentWaveNumber: 0
   enemyPool: []
-  enemiesRemaining: 0
 --- !u!4 &1101592342
 Transform:
   m_ObjectHideFlags: 0
@@ -756,6 +760,7 @@ MonoBehaviour:
   cooldown: 0.2
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 12
+  projectileDamage: 25
 --- !u!70 &1653898511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -966,7 +971,7 @@ GameObject:
   - component: {fileID: 2011237117}
   - component: {fileID: 2011237116}
   m_Layer: 5
-  m_Name: EnemiesRemainingText
+  m_Name: Enemies Remaining Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Mastermind : MonoBehaviour
 {
     public GameObject player;
     public GameObject permadeathscreen;
-    public GameObject SpawnEnemies;
+    public WaveSpawner waveSpawner;
+
+    public Text moneyText;
+    public Text scoreText;
+
+    [HideInInspector] public int money;
+    [HideInInspector] public int score;
 
     public enum GameMastermindState
     {
@@ -21,10 +28,12 @@ public class Mastermind : MonoBehaviour
     {
 
       
-        GMState = GameMastermindState.Opening;
-     
-       
-    
+        //GMState = GameMastermindState.Opening;
+        SetGameMastermindState(GameMastermindState.Opening);
+
+
+
+
     }
 
     void UpdateGameMastermindState()
@@ -33,12 +42,13 @@ public class Mastermind : MonoBehaviour
         {
             case GameMastermindState.Opening:
                 permadeathscreen.SetActive(false);
+                UpdateMoneyAndScore(0);
                 break;
             case GameMastermindState.Gameplay:
-                SpawnEnemies.SetActive(true);
+                waveSpawner.enabled = true;
                 break;
             case GameMastermindState.GameOver:
-                SpawnEnemies.SetActive(false);
+                waveSpawner.enabled = false;
                 permadeathscreen.SetActive(true);
                 Invoke("ChangeToOpeningState", 12f);
                 break;
@@ -64,8 +74,14 @@ public class Mastermind : MonoBehaviour
 
 
     
-    void Update()
+    public void UpdateMoneyAndScore(int enemyValue)
     {
-        
+        money += enemyValue;
+        score += enemyValue;
+        moneyText.text = "Money: " + money;
+        scoreText.text = "Score: " + score;
+
     }
+
+
 }

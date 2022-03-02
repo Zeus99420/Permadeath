@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    public int damage;
+    [HideInInspector] public int damage;
     private void OnBecameInvisible()
     {
         Destroy(gameObject);

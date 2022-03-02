@@ -6,7 +6,6 @@ public class Shooter : Enemy
 {
     //En fiende som försöker närma sig spelaren och skjuta den med projektiler
 
-    public GameObject Mastermind;
     public float acceleration;
 
     float distanceToPlayer;

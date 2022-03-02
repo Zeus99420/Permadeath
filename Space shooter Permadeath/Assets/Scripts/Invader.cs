@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Invader : Enemy
 {
-    public GameObject Mastermind;
     public GameObject projectile;
     float distanceToPlayer;
     public float attackRange;

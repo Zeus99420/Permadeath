@@ -6,14 +6,17 @@ public class Enemy : MonoBehaviour
 {
     public GameObject Explosion;
     public Transform player;
+    public Mastermind mastermind;
     protected Rigidbody2D m_rigidbody;
+
+    [HideInInspector] public int value;
 
     public float avoidRadius;
     protected Vector2 direction;
 
     public int collisionDamage;
     public int collisionSelfDamage;
-    public Health health;
+    [HideInInspector] public Health health;
     public int maxHealth;
 
 
@@ -48,6 +51,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        mastermind.UpdateMoneyAndScore(value);
         PlayExplosion();
     }
 
