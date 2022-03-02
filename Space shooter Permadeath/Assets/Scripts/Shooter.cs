@@ -20,6 +20,7 @@ public class Shooter : Enemy
 
     public GameObject projectile;
     public float projectileSpeed;
+    public int projectileDamage;
 
     void Start()
     {
@@ -46,19 +47,14 @@ public class Shooter : Enemy
                nextShotTime = Time.time + cooldown;
 
                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-               newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;               
+               newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
+               newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage; 
             }
         }
         m_rigidbody.AddForce(direction * acceleration);
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(collision.gameObject);
-        }
-    }
+
 
 }

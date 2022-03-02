@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShooterProjectile : MonoBehaviour
 {
+    public int damage;
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -14,7 +15,9 @@ public class ShooterProjectile : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            Destroy(other.gameObject);
+            other.GetComponent<PlayerMovement>().health.Damage(damage);
+
+            //Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }

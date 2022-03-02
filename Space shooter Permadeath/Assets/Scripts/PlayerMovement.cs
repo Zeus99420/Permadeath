@@ -5,17 +5,23 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D m_rigidbody;
-    public float acceleration;
     public GameObject permadeathscreen;
     public Transform HealthBar;
+
+    public Health health;
+
+    public float acceleration;
+    public int maxHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 10), Quaternion.identity);
+        Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 0), Quaternion.identity);
         HealthBar healthbar = healthBarTransform.GetComponent<HealthBar>();
-        Health health = new Health(100);
+        healthbar.player = transform;
+        health = new Health(maxHealth);
         healthbar.Setup(health);
+
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 

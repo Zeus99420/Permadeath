@@ -13,6 +13,9 @@ public class Invader : Enemy
     float nextShotTime;
     public float cooldown;
     public float projectileSpeed;
+
+    public int projectileDamage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,20 +35,14 @@ public class Invader : Enemy
 
                 GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
                 newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
+                newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
+
             }
         }
         m_rigidbody.AddForce(direction * acceleration);
     }
       
     
-    // Update is called once per frame
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(collision.gameObject);
-            
-        }
-    }
+
 
 }

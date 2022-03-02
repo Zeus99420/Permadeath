@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     public float avoidRadius;
     protected Vector2 direction;
 
+    public int collisionDamage;
+    public int collisionSelfDamage;
+
     public bool IsInScreen()
     {
         //Kollar om fienden är en bit inom skärmen, så att inte spelaren ska bli skjuten av en fiende som inte syns
@@ -43,6 +46,16 @@ public class Enemy : MonoBehaviour
     {
         GameObject explosion = (GameObject)Instantiate(Explosion);
         explosion.transform.position = transform.position;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().health.Damage(collisionDamage);
+
+            Destroy(collision.gameObject);
+        }
     }
 
 

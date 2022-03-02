@@ -97,15 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc429bff97023064b971cec45bca7b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   player: {fileID: 0}
   avoidRadius: 1
   Mastermind: {fileID: 0}
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
-  Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   attackRange: 5
   acceleration: 220
   cooldown: 4
   projectileSpeed: 12
+  damage: 25
 --- !u!50 &8848007241133588017
 Rigidbody2D:
   serializedVersion: 4

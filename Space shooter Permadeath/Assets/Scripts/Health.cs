@@ -19,12 +19,13 @@ public class Health
     }
     public float GetHealthPercent()
     {
-        return health / MAXhealth;
+        return ((float)health / (float)MAXhealth);
     }
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
         if (health < 0) health = 0;
+        Debug.Log("health: " + health);
     }
 
     public void Heal(int healAmount)
