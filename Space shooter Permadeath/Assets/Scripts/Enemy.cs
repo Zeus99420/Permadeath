@@ -5,14 +5,26 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject Explosion;
-
+    public GameObject Health;
     public Transform player;
     public float avoidRadius;
     protected Vector2 direction;
 
     public int collisionDamage;
     public int collisionSelfDamage;
+    public Health health;
+    public int maxHealth;
+    public Transform HealthBar;
 
+    void Start()
+    {
+        Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 0), Quaternion.identity);
+        HealthBar healthbar = healthBarTransform.GetComponent<HealthBar>();
+        healthbar.player = transform;
+        health = new Health(maxHealth);
+        healthbar.Setup(health);
+
+    }
     public bool IsInScreen()
     {
         //Kollar om fienden är en bit inom skärmen, så att inte spelaren ska bli skjuten av en fiende som inte syns
@@ -53,9 +65,14 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerMovement>().health.Damage(collisionDamage);
+            if (maxHealth == 0)
+        {
+                Destroy(collision.gameObject);
+            }
 
-            Destroy(collision.gameObject);
         }
+        
+
     }
 
 

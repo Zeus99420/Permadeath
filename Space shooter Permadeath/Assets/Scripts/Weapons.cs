@@ -11,6 +11,7 @@ public class Weapons : MonoBehaviour
 
     public GameObject projectile;
     public float projectileSpeed;
+    public int projectileDamage;
 
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class Weapons : MonoBehaviour
 
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
             newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
+           //newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
         }
 
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));

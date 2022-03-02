@@ -33,5 +33,11 @@ public class Health
         health += healAmount;
         if (health < MAXhealth) health = MAXhealth;
     }
+
+    public void CheckifDead()
+    {
+        if (health < 0) health = 0;
+              
+    }
 }
 

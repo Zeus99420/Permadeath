@@ -13,7 +13,6 @@ public class Invader : Enemy
     float nextShotTime;
     public float cooldown;
     public float projectileSpeed;
-
     public int projectileDamage;
 
     // Start is called before the first frame update

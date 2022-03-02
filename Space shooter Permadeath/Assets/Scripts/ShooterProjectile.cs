@@ -17,6 +17,7 @@ public class ShooterProjectile : MonoBehaviour
         {
             other.GetComponent<PlayerMovement>().health.Damage(damage);
 
+
             //Destroy(other.gameObject);
             Destroy(gameObject);
         }
