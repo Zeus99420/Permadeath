@@ -29,7 +29,7 @@ public class Weapons : MonoBehaviour
 
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
             newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
-           //newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
+           newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         }
 
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));

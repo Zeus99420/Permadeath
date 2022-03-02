@@ -5,8 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject Explosion;
-    public GameObject Health;
     public Transform player;
+    protected Rigidbody2D m_rigidbody;
+
     public float avoidRadius;
     protected Vector2 direction;
 
@@ -14,16 +15,12 @@ public class Enemy : MonoBehaviour
     public int collisionSelfDamage;
     public Health health;
     public int maxHealth;
-    public Transform HealthBar;
+
 
     void Start()
     {
-        Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 0), Quaternion.identity);
-        HealthBar healthbar = healthBarTransform.GetComponent<HealthBar>();
-        healthbar.player = transform;
-        health = new Health(maxHealth);
-        healthbar.Setup(health);
-
+        health = new Health(maxHealth, gameObject);
+        m_rigidbody = GetComponent<Rigidbody2D>();
     }
     public bool IsInScreen()
     {
@@ -56,7 +53,7 @@ public class Enemy : MonoBehaviour
 
     void PlayExplosion()
     {
-        GameObject explosion = (GameObject)Instantiate(Explosion);
+        GameObject explosion = Instantiate(Explosion);
         explosion.transform.position = transform.position;
     }
 
@@ -65,13 +62,9 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerMovement>().health.Damage(collisionDamage);
-            if (maxHealth == 0)
-        {
-                Destroy(collision.gameObject);
-            }
-
+            health.Damage(collisionSelfDamage);
         }
-        
+
 
     }
 

@@ -7,7 +7,6 @@ public class Shooter : Enemy
     //En fiende som försöker närma sig spelaren och skjuta den med projektiler
 
     public GameObject Mastermind;
-    Rigidbody2D m_rigidbody;
     public float acceleration;
 
     float distanceToPlayer;
@@ -22,10 +21,7 @@ public class Shooter : Enemy
     public float projectileSpeed;
     public int projectileDamage;
 
-    void Start()
-    {
-        m_rigidbody = GetComponent<Rigidbody2D>();
-    }
+
 
     // Update is called once per frame
     void FixedUpdate()

@@ -6,13 +6,9 @@ public class Drone : Enemy
 {
     //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
     public GameObject Mastermind;
-    Rigidbody2D m_rigidbody;
     public float acceleration;
 
-    void Start()
-    {
-        m_rigidbody = GetComponent<Rigidbody2D>();
-    }
+
 
     // Update is called once per frame
     void FixedUpdate()

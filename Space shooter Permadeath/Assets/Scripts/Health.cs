@@ -7,10 +7,13 @@ public class Health
     public int health;
     public int MAXhealth;
 
-    public Health(int MAXhealth)
+    GameObject gameObject;
+
+    public Health(int MAXhealth, GameObject gameObject)
     {
         this.MAXhealth = MAXhealth;
         health = MAXhealth;
+        this.gameObject = gameObject;
     }
 
     public int GetHealth()
@@ -24,8 +27,11 @@ public class Health
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
-        if (health < 0) health = 0;
-        Debug.Log("health: " + health);
+        if (health <= 0)
+        {
+            GameObject.Destroy(gameObject);
+            health = 0;
+        }
     }
 
     public void Heal(int healAmount)
@@ -34,10 +40,7 @@ public class Health
         if (health < MAXhealth) health = MAXhealth;
     }
 
-    public void CheckifDead()
-    {
-        if (health < 0) health = 0;
-              
-    }
+
+
 }
 

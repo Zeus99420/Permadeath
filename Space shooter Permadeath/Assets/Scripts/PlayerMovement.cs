@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D m_rigidbody;
     public GameObject permadeathscreen;
     public Transform HealthBar;
+    Transform healthBarTransform;
 
     public Health health;
 
@@ -16,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 0), Quaternion.identity);
+        healthBarTransform = Instantiate(HealthBar, new Vector3(0, 0), Quaternion.identity);
         HealthBar healthbar = healthBarTransform.GetComponent<HealthBar>();
         healthbar.player = transform;
-        health = new Health(maxHealth);
+        health = new Health(maxHealth, gameObject);
         healthbar.Setup(health);
 
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDestroy()
     {
         permadeathscreen.GetComponent<Mastermind>().SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
-
+        Destroy(healthBarTransform.gameObject);
     }
 
 }

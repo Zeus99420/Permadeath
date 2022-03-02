@@ -6,7 +6,6 @@ public class Invader : Enemy
 {
     public GameObject Mastermind;
     public GameObject projectile;
-    Rigidbody2D m_rigidbody;
     float distanceToPlayer;
     public float attackRange;
     public float acceleration;
@@ -15,11 +14,6 @@ public class Invader : Enemy
     public float projectileSpeed;
     public int projectileDamage;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-            m_rigidbody = GetComponent<Rigidbody2D>();
-    }
     private void FixedUpdate()
     {
         if (player)
