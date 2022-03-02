@@ -137,6 +137,8 @@ MonoBehaviour:
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   player: {fileID: 0}
   avoidRadius: 0
+  collisionDamage: 0
+  collisionSelfDamage: 0
   Mastermind: {fileID: 0}
   acceleration: 110
   attackRange: 5
@@ -144,4 +146,4 @@ MonoBehaviour:
   strafeRange: 4
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
   projectileSpeed: 8
-  damage: 25
+  projectileDamage: 25

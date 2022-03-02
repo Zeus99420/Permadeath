@@ -54,7 +54,8 @@ public class Enemy : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerMovement>().health.Damage(collisionDamage);
 
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 
