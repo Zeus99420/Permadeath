@@ -25,6 +25,8 @@ public class Shooter : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+        AvoidCollision();
+
         if (player)
         {
             distanceToPlayer = Vector2.Distance(player.position, transform.position); 

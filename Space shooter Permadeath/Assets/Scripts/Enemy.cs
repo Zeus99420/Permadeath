@@ -12,12 +12,15 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public int value;
 
     public float avoidRadius;
+    public float avoidForce;
+
     protected Vector2 direction;
 
     public int collisionDamage;
     public int collisionSelfDamage;
     [HideInInspector] public Health health;
     public int maxHealth;
+
 
 
     void Start()
@@ -39,14 +42,24 @@ public class Enemy : MonoBehaviour
 
     public void AvoidCollision()
     {
-        Collider2D avoidCollider = null;
-        avoidCollider = Physics2D.OverlapCircle(transform.position, avoidRadius, LayerMask.GetMask("Enemy"));
+        Collider2D[] avoidColliders;
+        avoidColliders = Physics2D.OverlapCircleAll(transform.position, avoidRadius, LayerMask.GetMask("Enemy"));
 
-        if (avoidCollider != null)
+        foreach (Collider2D collider in avoidColliders)
         {
-            Debug.Log("Evasive maneuvers!");
-            direction = -((Vector2)avoidCollider.transform.position - (Vector2)transform.position).normalized;
+            //if (collider.gameObject != gameObject)
+            //{
+                Vector2 avoidDirection = ((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
+                float distanceFactor = 1-Vector2.Distance((Vector2)collider.transform.position, (Vector2)transform.position)/avoidRadius;
+                //float avoidDistance = Vector2.Distance((Vector2)collider.transform.position, (Vector2)transform.position);
+                if (distanceFactor>0)
+                {
+                    collider.attachedRigidbody.AddForce(avoidDirection * avoidForce *distanceFactor);
+
+                }
+            //}
         }
+
     }
 
     private void OnDestroy()

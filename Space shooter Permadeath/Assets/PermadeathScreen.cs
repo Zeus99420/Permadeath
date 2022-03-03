@@ -21,7 +21,6 @@ public class PermadeathScreen : MonoBehaviour
         // loop over 1 second
         for (float i = 0; i <= 1; i += Time.deltaTime / fadeInTime)
         {
-            Debug.Log(i);
             // set color with i as alpha
             color.a = i;
             spriteRenderer.color = color;
@@ -32,7 +31,6 @@ public class PermadeathScreen : MonoBehaviour
     {
         for (float i = 1; i >= 0; i -= Time.deltaTime / fadeOutTime)
         {
-            Debug.Log(i);
             // set color with i as alpha
             color.a = i;
             spriteRenderer.color = color;

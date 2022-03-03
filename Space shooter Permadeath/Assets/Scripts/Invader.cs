@@ -15,6 +15,8 @@ public class Invader : Enemy
 
     private void FixedUpdate()
     {
+        AvoidCollision();
+
         if (player)
         {
             distanceToPlayer = Vector2.Distance(player.position, transform.position);

@@ -13,13 +13,14 @@ public class Drone : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+        AvoidCollision();
+
         //Rör sig mot spelaren
         if (player)
         {
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
         }
 
-        // AvoidCollision();
 
         m_rigidbody.AddForce(direction * acceleration);
 
