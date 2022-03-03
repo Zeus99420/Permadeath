@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Mastermind : MonoBehaviour
 {
     public GameObject player;
-    public GameObject permadeathscreen;
+    public PermadeathScreen permadeathscreen;
     public WaveSpawner waveSpawner;
 
     public Text moneyText;
@@ -41,7 +41,7 @@ public class Mastermind : MonoBehaviour
         switch (GMState)
         {
             case GameMastermindState.Opening:
-                permadeathscreen.SetActive(false);
+                StartCoroutine(permadeathscreen.FadeOut());
                 UpdateMoneyAndScore(0);
                 break;
             case GameMastermindState.Gameplay:
@@ -49,8 +49,8 @@ public class Mastermind : MonoBehaviour
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
-                permadeathscreen.SetActive(true);
-                Invoke("ChangeToOpeningState", 12f);
+                StartCoroutine(permadeathscreen.FadeIn());
+                Invoke("ChangeToOpeningState", 6f);
                 break;
         }
     }
