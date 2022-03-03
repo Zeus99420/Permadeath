@@ -39,14 +39,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 3968211533
     locked: 0
   - name: Gameplay
     uniqueID: 3758207133
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Healthbar
+    uniqueID: 1761791271
+    locked: 0
+  - name: Permadeath Screen
+    uniqueID: 2765878587
     locked: 0
   - name: UI
     uniqueID: 1475619555
