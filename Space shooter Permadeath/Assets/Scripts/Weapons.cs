@@ -6,7 +6,7 @@ using UnityEngine;
 public class Weapons : MonoBehaviour
 {
 
-    public float cooldown; //cooldownen innan spelaren kan skjuta igen (i sekunder)
+    public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
 
     public GameObject projectile;
@@ -25,7 +25,7 @@ public class Weapons : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Time.time > nextShotTime)
         {
-            nextShotTime = Time.time + cooldown;    // Tidpunkten när spelare kan skjuta nästa skott sätts till nuvarande tid + cooldown
+            nextShotTime = Time.time + 1/rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
 
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
             newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
