@@ -10,37 +10,52 @@ public class Shop : MonoBehaviour
     public Mastermind mastermind;
     public GameObject player;
     public List<Upgrades> upgrades;
-    public GameObject button;
+    public GameObject buttonPrefab;
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
-    public void Start()
-    {
-        Initialize();
-    }
+    //public void Start()
+    //{
+    //    Initialize();
+    //}
 
     public void Initialize()
     {
-        for (int t=0; t<3; t++)
+        for (int t=0; t<5; t++)
         {
             Upgrades randomUpgrade = upgrades[Random.Range(0, upgrades.Count)];
-            GameObject newButton = Instantiate(button,transform);
-            newButton.transform.Translate(Vector3.right * 2 * t);
+            GameObject buttonObject = Instantiate(buttonPrefab,transform);
+            buttonObject.transform.Translate(Vector3.right * 2 * t);
+            Button button = buttonObject.GetComponent<Button>();
 
-            buttons.Add(newButton.GetComponent<Button>());
+            buttons.Add(button);
             availableUpgrades.Add(randomUpgrade);
-            newButton.GetComponent<Button>().onClick.AddListener(delegate { BuyButton(randomUpgrade); });
+            button.onClick.AddListener(delegate { BuyButton(button,randomUpgrade); });
 
-            newButton.transform.Find("NameText").GetComponent<Text>().text = randomUpgrade.upgradeName;
-            newButton.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
+            button.transform.Find("NameText").GetComponent<Text>().text = randomUpgrade.upgradeName;
+            button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
 
 
 
 
         }
+
+        CheckAfford();
     }
 
-    public void Update ()
+    public void Exit()
+    {
+        foreach (Button button in buttons)
+        {
+            Destroy(button.gameObject);
+        }
+        buttons.Clear();
+        availableUpgrades.Clear();
+
+        gameObject.SetActive(false);
+    }
+
+    public void CheckAfford ()
     {
         for (int t=0; t<buttons.Count; t++)
         {
@@ -51,10 +66,15 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void BuyButton(Upgrades upgrade)
+    public void BuyButton(Button button,Upgrades upgrade)
     {
         upgrade.player = player;
-        mastermind.money -= upgrade.price;
+        mastermind.UpdateMoney(-upgrade.price);
+        CheckAfford();
         upgrade.Buy();
+
+        availableUpgrades.RemoveAt(buttons.IndexOf(button));
+        buttons.Remove(button);
+        Destroy(button.gameObject);
     }
 }

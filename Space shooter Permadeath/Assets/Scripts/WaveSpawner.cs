@@ -11,6 +11,7 @@ public class Wave
     public GameObject[] enemyTypes;
     public float[] enemyFrequencies;
     public float spawnRate;
+    public bool shopAfter;
 }
 
 [System.Serializable]
@@ -23,21 +24,18 @@ public class EnemyTypes
 public class WaveSpawner : MonoBehaviour
 {
     public Text waveText;
-    public Text enemiesRemainingText;
 
     Mastermind mastermind;
-    public Transform enemiesContainer;
 
     public EnemyTypes[] allEnemyTypes;
     public Dictionary<GameObject, int> enemyValues = new Dictionary<GameObject, int>();
 
     public Wave[] waves;
     int currentWaveNumber = 0;
-    Wave currentWave;
+    [HideInInspector] public Wave currentWave;
     public List<GameObject> enemyPool;
     float enemyFrequencySum;
 
-    int enemiesRemaining;
 
     public void Start()
     {
@@ -86,7 +84,7 @@ public class WaveSpawner : MonoBehaviour
             enemyPool.Add(enemyType);
             currentWave.budget -= enemyValues[enemyType];
         }
-        CountEnemies();
+        mastermind.CountEnemies();
     }
 
     private void Update()
@@ -103,7 +101,7 @@ public class WaveSpawner : MonoBehaviour
 
             //Den första fienden i enemyPool skapas och tas bort från listan
             GameObject newEnemy = Instantiate(enemyPool[0], Camera.main.ViewportToWorldPoint(spawnPosition, 0), 
-                Quaternion.identity, enemiesContainer);
+                Quaternion.identity, mastermind.enemiesContainer);
             newEnemy.GetComponent<Enemy>().player = mastermind.player.transform;
             newEnemy.GetComponent<Enemy>().mastermind = mastermind;
             newEnemy.GetComponent<Enemy>().value = enemyValues[enemyPool[0]];
@@ -112,20 +110,14 @@ public class WaveSpawner : MonoBehaviour
 
         }
 
-        CountEnemies();
     }
 
-    public void CountEnemies()
+    public void NewWave()
     {
-        enemiesRemaining = enemyPool.Count + enemiesContainer.childCount;
-        enemiesRemainingText.text = ("Enemies Remaining: " + enemiesRemaining);
-
-        //Startar en ny våg ifall alla fiender är förstörda
-        if (enemiesRemaining == 0)
-        {
-            currentWaveNumber++;
-            InitializeWave();
-        }
+        currentWaveNumber++;
+        InitializeWave();
     }
+
+
 
 }

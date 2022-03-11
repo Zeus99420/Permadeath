@@ -9,6 +9,10 @@ public class Mastermind : MonoBehaviour
     public GameObject player;
     public PermadeathScreen permadeathscreen;
     public WaveSpawner waveSpawner;
+    public Shop shop;
+    public Transform enemiesContainer;
+    public Text enemiesRemainingText;
+
 
     public Text moneyText;
     public Text scoreText;
@@ -20,6 +24,7 @@ public class Mastermind : MonoBehaviour
     {
         Opening,
         Gameplay,
+        Shop,
         GameOver,
     }
 
@@ -42,10 +47,15 @@ public class Mastermind : MonoBehaviour
         {
             case GameMastermindState.Opening:
                 StartCoroutine(permadeathscreen.FadeOut());
-                UpdateMoneyAndScore(0);
+                UpdateMoney(0);
+                UpdateScore(0);
                 break;
             case GameMastermindState.Gameplay:
                 waveSpawner.enabled = true;
+                break;
+            case GameMastermindState.Shop:
+                shop.gameObject.SetActive(true);
+                shop.Initialize();
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
@@ -67,18 +77,52 @@ public class Mastermind : MonoBehaviour
         UpdateGameMastermindState();
     }
 
+    public void EnterShop()
+    {
+        GMState = GameMastermindState.Shop;
+        UpdateGameMastermindState();
+    }
+
+    public void ExitShop()
+    {
+        shop.Exit();
+
+        GMState = GameMastermindState.Gameplay;
+        UpdateGameMastermindState();
+
+        waveSpawner.NewWave();
+    }
+
     public void ChangeToOpeningState()
     {
         SetGameMastermindState(GameMastermindState.Opening);
     }
 
-
-    
-    public void UpdateMoneyAndScore(int enemyValue)
+    public void CountEnemies()
     {
-        money += enemyValue;
-        score += enemyValue;
+        int enemiesRemaining = waveSpawner.enemyPool.Count + enemiesContainer.childCount;
+        enemiesRemainingText.text = ("Enemies Remaining: " + enemiesRemaining);
+
+        //Startar en ny våg ifall alla fiender är förstörda
+        if (enemiesRemaining == 0)
+        {
+            if (waveSpawner.currentWave.shopAfter) EnterShop();
+
+            else waveSpawner.NewWave();
+        }
+    }
+
+    public void UpdateMoney(int changeAmount)
+    {
+        money += changeAmount;
         moneyText.text = "Money: " + money;
+
+
+    }
+
+    public void UpdateScore(int changeAmount)
+    {
+        score += changeAmount;
         scoreText.text = "Score: " + score;
 
     }

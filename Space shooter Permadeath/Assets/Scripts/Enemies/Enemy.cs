@@ -64,7 +64,9 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        mastermind.UpdateMoneyAndScore(value);
+        mastermind.UpdateMoney(value);
+        mastermind.UpdateScore(value);
+        mastermind.Invoke("CountEnemies",0f);
         PlayExplosion();
     }
 
