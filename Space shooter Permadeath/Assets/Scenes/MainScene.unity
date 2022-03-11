@@ -741,6 +741,7 @@ GameObject:
   - component: {fileID: 1401891355}
   - component: {fileID: 1401891354}
   - component: {fileID: 1401891352}
+  - component: {fileID: 1401891358}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: Untagged
@@ -851,6 +852,23 @@ MonoBehaviour:
   bulletCountIncrease: 2
   maxSpread: 15
   damageMultiplier: 0.5
+--- !u!114 &1401891358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401891351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0f7937428386940940959f1fd37e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Rapid Fire
+  price: 150
+  fireRateMultiplierIncrease: 1
+  maxEnergyIncrease: 1
 --- !u!1 &1653898505
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1012,7 @@ MonoBehaviour:
   maxSpread: 0
   spreadDamageMultiplier: 0
   rapidFireEnergy: 1
+  rapidFireEnergyMax: 0
   rapidFireMultiplier: 1
 --- !u!70 &1653898511
 CapsuleCollider2D:
