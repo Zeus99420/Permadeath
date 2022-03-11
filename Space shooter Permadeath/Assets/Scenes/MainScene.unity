@@ -1329,12 +1329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mastermind: {fileID: 856224839}
   player: {fileID: 1653898505}
-  upgrades:
-  - {fileID: 1401891352}
-  - {fileID: 1401891354}
-  - {fileID: 1401891355}
-  - {fileID: 1401891356}
-  - {fileID: 1401891357}
+  upgrades: []
   buttonPrefab: {fileID: 7083952019581559464, guid: 6ac396f1e83b6f144add8824e860f3c4, type: 3}
   buttons: []
   availableUpgrades: []
