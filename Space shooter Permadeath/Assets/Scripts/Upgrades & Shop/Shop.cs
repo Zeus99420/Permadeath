@@ -14,12 +14,17 @@ public class Shop : MonoBehaviour
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
-    //public void Start()
-    //{
-    //    Initialize();
-    //}
-
     public void Initialize()
+    {
+        //upgrades = GetComponentsInChildren<Upgrades>();
+        upgrades.AddRange(GetComponentsInChildren<Upgrades>());
+        //foreach (Upgrades upgrade in GetComponentsInChildren<Upgrades>())
+        //{
+
+        //}
+    }
+
+    public void EnterShop()
     {
         for (int t=0; t<5; t++)
         {

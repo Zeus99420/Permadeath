@@ -32,6 +32,8 @@ public class Mastermind : MonoBehaviour
     void Start()
     {
 
+        shop.Initialize();
+
       
         //GMState = GameMastermindState.Opening;
         SetGameMastermindState(GameMastermindState.Opening);
@@ -55,7 +57,7 @@ public class Mastermind : MonoBehaviour
                 break;
             case GameMastermindState.Shop:
                 shop.gameObject.SetActive(true);
-                shop.Initialize();
+                shop.EnterShop();
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
