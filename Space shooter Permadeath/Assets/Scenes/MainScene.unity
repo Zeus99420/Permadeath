@@ -736,6 +736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401891353}
+  - component: {fileID: 1401891357}
   - component: {fileID: 1401891356}
   - component: {fileID: 1401891355}
   - component: {fileID: 1401891354}
@@ -761,8 +762,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Faster Gun
-  price: 200
-  increaseAmount: 4
+  price: 150
+  increaseAmount: 1
   BiggerGun: {fileID: 21300000, guid: eb060f991954d9148aae4bc01fd20278, type: 3}
 --- !u!224 &1401891353
 RectTransform:
@@ -797,7 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Armor Plates
-  price: 150
+  price: 100
   increaseAmount: 50
   Shield: {fileID: 21300000, guid: 5afdfcd76192b6a459dab76f3a88a6a0, type: 3}
 --- !u!114 &1401891355
@@ -814,7 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Projectile Speed
-  price: 100
+  price: 50
   increaseAmount: 8
 --- !u!114 &1401891356
 MonoBehaviour:
@@ -832,6 +833,24 @@ MonoBehaviour:
   upgradeName: Engine
   price: 100
   increaseAmount: 200
+--- !u!114 &1401891357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401891351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84350f433e22824eaa8201238e280af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Shotgun
+  price: 150
+  bulletCountIncrease: 2
+  maxSpread: 15
+  damageMultiplier: 0.5
 --- !u!1 &1653898505
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,8 +988,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rateOfFire: 2.5
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 8
   projectileDamage: 25
+  spreadBulletCount: 2
+  maxSpread: 0
+  spreadDamageMultiplier: 0
+  rapidFireEnergy: 1
+  rapidFireMultiplier: 1
 --- !u!70 &1653898511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1291,6 +1315,7 @@ MonoBehaviour:
   - {fileID: 1401891354}
   - {fileID: 1401891355}
   - {fileID: 1401891356}
+  - {fileID: 1401891357}
   buttonPrefab: {fileID: 7083952019581559464, guid: 6ac396f1e83b6f144add8824e860f3c4, type: 3}
   buttons: []
   availableUpgrades: []
