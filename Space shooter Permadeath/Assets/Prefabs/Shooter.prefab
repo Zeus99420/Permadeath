@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -536760163
-  m_SortingLayer: 2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: a9716c16a44a94eed9b5c90fbf4d9bdd, type: 3}
   m_Color: {r: 1, g: 0.35062516, b: 0, a: 1}
@@ -142,7 +142,7 @@ MonoBehaviour:
   avoidForce: 70
   collisionDamage: 50
   collisionSelfDamage: 50
-  maxHealth: 100
+  avgMaxHealth: 40
   acceleration: 110
   attackRange: 6
   cooldown: 1

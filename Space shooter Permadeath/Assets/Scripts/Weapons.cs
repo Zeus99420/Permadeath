@@ -11,12 +11,14 @@ public class Weapons : MonoBehaviour
 
     public GameObject projectile;
     public float projectileSpeed;
-    public int projectileDamage;
+    public int baseDamage;
+    int projectileDamage;
 
 
     public delegate void StoreFunction();
     [HideInInspector] public StoreFunction FireCheck;
     [HideInInspector] public StoreFunction Fire;
+    public List<StoreFunction> preFireEffects = new List<StoreFunction>();
 
 
     //VARIABLER ANVÄNDA AV UPPGRADERINGAR
@@ -27,6 +29,12 @@ public class Weapons : MonoBehaviour
     public float rapidFireEnergy = 0;
     public float rapidFireEnergyMax = 0;
     public float rapidFireMultiplier = 1;
+
+    float standYourGroundMultiplier;
+    public float standYourGroundMultiplierMax;
+    public float standYourGroundChargeTime;
+    public float standYourGroundUnchargeTime;
+
 
 
 
@@ -40,6 +48,12 @@ public class Weapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        projectileDamage = baseDamage;
+        //if (preFireEffects.IsEmpty
+        foreach (StoreFunction function in preFireEffects)
+        {
+            function();
+        }
         FireCheck();
     }
 
@@ -56,9 +70,20 @@ public class Weapons : MonoBehaviour
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
+        newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
     }
 
     // ALTERNATE MODES FROM UPGRADES
+
+    public void StandYourGround()
+    {
+        if (!GetComponent<PlayerMovement>().usingEngines)
+            standYourGroundMultiplier += ((standYourGroundMultiplierMax-1)/standYourGroundChargeTime) * Time.deltaTime;
+        else standYourGroundMultiplier -= ((standYourGroundMultiplierMax-1) / standYourGroundUnchargeTime) * Time.deltaTime;
+        standYourGroundMultiplier = Mathf.Clamp(standYourGroundMultiplier,1,standYourGroundMultiplierMax);
+        projectileDamage = (int)(projectileDamage * standYourGroundMultiplier);
+        Debug.Log(projectileDamage);
+    }
 
     public void RapidFireCheck()
     {
@@ -75,18 +100,18 @@ public class Weapons : MonoBehaviour
 
     public void ShotgunFire()
     {
-        Debug.Log("Shotgun Fired");
-        int angle = -maxSpread / 2;
-        int angleIncrement = maxSpread / (spreadBulletCount + 1);
-        Debug.Log(angleIncrement);
-        //int angle = 90;
+        float angle = -maxSpread / 2;
+        float angleIncrement = maxSpread / (spreadBulletCount + 1);
+        projectileDamage = (int)(projectileDamage * spreadDamageMultiplier);
         for (int t = 0; t < spreadBulletCount; t++)
         {
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-            newProjectile.transform.localScale *= 0.5f;
+            
             newProjectile.transform.Rotate(0,0, angle);
             newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * newProjectile.transform.up;
-            newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * spreadDamageMultiplier);
+            //newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * spreadDamageMultiplier);
+            newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
+            newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
 
             angle += angleIncrement;
 

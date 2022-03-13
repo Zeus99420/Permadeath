@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Mastermind : MonoBehaviour
 {
+    public bool testingShop;
+
     public GameObject player;
     public PermadeathScreen permadeathscreen;
     public WaveSpawner waveSpawner;
@@ -34,7 +36,10 @@ public class Mastermind : MonoBehaviour
 
         shop.Initialize();
 
-      
+        if (testingShop) { UpdateMoney(1000); EnterShop(); }
+        else waveSpawner.Invoke("NewWave",0f);
+
+
         //GMState = GameMastermindState.Opening;
         SetGameMastermindState(GameMastermindState.Opening);
 

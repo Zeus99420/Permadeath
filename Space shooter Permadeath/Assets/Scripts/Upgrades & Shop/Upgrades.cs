@@ -7,6 +7,20 @@ public class Upgrades : MonoBehaviour
     [HideInInspector] public GameObject player;
     public string upgradeName;
     public int price;
-    public virtual void Buy() { }
-   
+
+    bool firstTimeBuying = true;
+    public virtual void Buy()
+    {
+        Debug.Log(firstTimeBuying);
+
+        if (firstTimeBuying)
+        {
+            BuyFirst();
+            firstTimeBuying = false;
+        }
+        else BuyAnother();
+    }
+    public virtual void BuyFirst() {}
+    public virtual void BuyAnother() {}
+
 }

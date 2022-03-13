@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float acceleration;
     public int maxHealth;
+    [HideInInspector] public bool usingEngines;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +47,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Input.GetKey("w")) m_rigidbody.AddForce(Vector2.up * acceleration);
-        if (Input.GetKey("s")) m_rigidbody.AddForce(Vector2.down * acceleration);
-        if (Input.GetKey("a")) m_rigidbody.AddForce(Vector2.left * acceleration);
-        if (Input.GetKey("d")) m_rigidbody.AddForce(Vector2.right * acceleration);
+        usingEngines = false;
+        if (Input.GetKey("w")) { m_rigidbody.AddForce(Vector2.up * acceleration); usingEngines = true; }
+        if (Input.GetKey("s")) { m_rigidbody.AddForce(Vector2.down * acceleration); usingEngines = true; }        
+        if (Input.GetKey("a")) { m_rigidbody.AddForce(Vector2.left * acceleration); usingEngines = true; }
+        if (Input.GetKey("d")) { m_rigidbody.AddForce(Vector2.right * acceleration); usingEngines = true; }
     }
 
     private void OnDestroy()

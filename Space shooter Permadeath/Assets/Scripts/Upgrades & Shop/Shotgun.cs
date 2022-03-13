@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Shotgun : Upgrades
 {
+    public int baseBulletCount;
     public int bulletCountIncrease;
     public int maxSpread;
     public float damageMultiplier;
-    public override void Buy() 
+    public override void BuyFirst() 
     {
         Weapons weapons = player.GetComponent<Weapons>();
         weapons.Fire = weapons.ShotgunFire;
-        weapons.spreadBulletCount += bulletCountIncrease;
+        weapons.spreadBulletCount = baseBulletCount;
         weapons.maxSpread = maxSpread;
         weapons.spreadDamageMultiplier = damageMultiplier;
-        Debug.Log(weapons.spreadBulletCount);
+    }
+
+    public override void BuyAnother()
+    {
+        Weapons weapons = player.GetComponent<Weapons>();
+        weapons.spreadBulletCount += bulletCountIncrease;
+
     }
 
 
 
 
-   
-   
+
+
 }

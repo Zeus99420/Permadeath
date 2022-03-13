@@ -30,7 +30,7 @@ public class Shop : MonoBehaviour
         {
             Upgrades randomUpgrade = upgrades[Random.Range(0, upgrades.Count)];
             GameObject buttonObject = Instantiate(buttonPrefab,transform);
-            buttonObject.transform.Translate(Vector3.right * 2 * t);
+            buttonObject.transform.Translate(Vector3.right * 3 * t);
             Button button = buttonObject.GetComponent<Button>();
 
             buttons.Add(button);

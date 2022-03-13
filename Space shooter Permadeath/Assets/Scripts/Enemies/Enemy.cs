@@ -19,13 +19,13 @@ public class Enemy : MonoBehaviour
     public int collisionDamage;
     public int collisionSelfDamage;
     [HideInInspector] public Health health;
-    public int maxHealth;
+    public int avgMaxHealth;
 
 
 
     void Start()
     {
-        health = new Health(maxHealth, gameObject);
+        health = new Health((int)(avgMaxHealth*Random.Range(0.7f,1.3f)), gameObject);
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
     public bool IsInScreen()

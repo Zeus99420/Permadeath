@@ -31,7 +31,7 @@ public class WaveSpawner : MonoBehaviour
     public Dictionary<GameObject, int> enemyValues = new Dictionary<GameObject, int>();
 
     public Wave[] waves;
-    int currentWaveNumber = 0;
+    int nextWaveNumber = 0;
     [HideInInspector] public Wave currentWave;
     public List<GameObject> enemyPool;
     float enemyFrequencySum;
@@ -48,12 +48,12 @@ public class WaveSpawner : MonoBehaviour
             enemyValues.Add(enemyType.type, enemyType.value);
         }
 
-        InitializeWave();
     }
 
-    public void InitializeWave()
+    public void NewWave()
     {
-        currentWave = waves[currentWaveNumber];
+        currentWave = waves[nextWaveNumber];
+        nextWaveNumber++;
         waveText.text = currentWave.waveName;
 
         enemyFrequencySum = 0;
@@ -112,11 +112,7 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    public void NewWave()
-    {
-        currentWaveNumber++;
-        InitializeWave();
-    }
+
 
 
 

@@ -8,7 +8,5 @@ public class Engine : Upgrades
     public override void Buy()
     {
         player.GetComponent<PlayerMovement>().acceleration +=increaseAmount;
-
-
     }
 }
