@@ -57,7 +57,7 @@ public class Mastermind : MonoBehaviour
     {
         if(Input.GetKeyDown("t"))
         {
-            CheckpointLoad();
+            StartFromCheckpoint();
         }
     }
 
@@ -79,7 +79,6 @@ public class Mastermind : MonoBehaviour
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
-                waveSpawner.enemyPool.Clear();
                 StartCoroutine(permadeathscreen.FadeIn());
                 //Invoke("ChangeToOpeningState", 6f);
                 break;
@@ -162,8 +161,12 @@ public class Mastermind : MonoBehaviour
         savedNextWave = waveSpawner.nextWaveNumber;
     }
 
-    public void CheckpointLoad()
+    public void StartFromCheckpoint()
     {
+        foreach (Transform enemy in enemiesContainer)
+        {
+            Destroy(enemy.gameObject);
+        }
         player = savedPlayer;
         player.SetActive(true);
         money = savedMoney;
@@ -171,6 +174,7 @@ public class Mastermind : MonoBehaviour
         UpdateMoney(0);
         UpdateScore(0);
         waveSpawner.enabled = true;
+        waveSpawner.enemyPool.Clear();
         waveSpawner.nextWaveNumber = savedNextWave;
         waveSpawner.NewWave();
         StartCoroutine(permadeathscreen.FadeOut());
