@@ -11,7 +11,7 @@ public class Shotgun : Upgrades
     public override void BuyFirst() 
     {
         Weapons weapons = player.GetComponent<Weapons>();
-        weapons.Fire = weapons.ShotgunFire;
+        weapons.fireMode = "ShotgunFire";
         weapons.spreadBulletCount = baseBulletCount;
         weapons.maxSpread = maxSpread;
         weapons.spreadDamageMultiplier = damageMultiplier;

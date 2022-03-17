@@ -15,46 +15,40 @@ public class Weapons : MonoBehaviour
     int projectileDamage;
 
 
-    public delegate void StoreFunction();
-    [HideInInspector] public StoreFunction FireCheck;
-    [HideInInspector] public StoreFunction Fire;
-    public List<StoreFunction> preFireEffects = new List<StoreFunction>();
+    //[System.Serializable] public delegate void StoreFunction();
+    //[HideInInspector] public StoreFunction FireCheck;
+    //[HideInInspector] public StoreFunction Fire;
+    //public List<StoreFunction> preFireEffects = new List<StoreFunction>();
+
+    [HideInInspector] public string fireCheckMode = "StandardFireCheck";
+    [HideInInspector] public string fireMode = "StandardFire";
+    [HideInInspector] public List<string> updateEffects = new List<string>();
 
 
     //VARIABLER ANVÄNDA AV UPPGRADERINGAR
-    [Header("Upgrade Variables")]
-    public int spreadBulletCount = 2;
-    public int maxSpread = 0;
-    public float spreadDamageMultiplier = 0;
-    public float rapidFireEnergy = 0;
-    public float rapidFireEnergyMax = 0;
-    public float rapidFireMultiplier = 1;
+    [HideInInspector] public int spreadBulletCount = 2;
+    [HideInInspector] public int maxSpread = 0;
+    [HideInInspector] public float spreadDamageMultiplier = 0;
 
-    float standYourGroundMultiplier;
-    public float standYourGroundMultiplierMax;
-    public float standYourGroundChargeTime;
-    public float standYourGroundUnchargeTime;
+    [HideInInspector] public float rapidFireEnergy = 0;
+    [HideInInspector] public float rapidFireEnergyMax = 0;
+    [HideInInspector] public float rapidFireMultiplier = 1;
 
-
+    [HideInInspector] float standYourGroundMultiplier;
+    [HideInInspector] public float standYourGroundMultiplierMax;
+    [HideInInspector] public float standYourGroundChargeTime;
+    [HideInInspector] public float standYourGroundUnchargeTime;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Fire = StandardFire;
-        FireCheck = StandardFireCheck;
-    }
 
-    // Update is called once per frame
     void Update()
     {
         projectileDamage = baseDamage;
-        //if (preFireEffects.IsEmpty
-        foreach (StoreFunction function in preFireEffects)
+        foreach (string function in updateEffects)
         {
-            function();
+            SendMessage(function);
         }
-        FireCheck();
+        SendMessage(fireCheckMode);
     }
 
     public void StandardFireCheck()
@@ -62,7 +56,7 @@ public class Weapons : MonoBehaviour
         if (Input.GetMouseButton(0) && Time.time > nextShotTime)
         {
             nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
-            Fire();
+            SendMessage(fireMode);
         }
     }
     public void StandardFire()
@@ -72,6 +66,9 @@ public class Weapons : MonoBehaviour
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
     }
+
+
+
 
     // ALTERNATE MODES FROM UPGRADES
 
@@ -94,7 +91,8 @@ public class Weapons : MonoBehaviour
         {
             rapidFireEnergy -= 1 / rateOfFire;
             nextShotTime = Time.time + 1 / (rateOfFire*rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen
-            Fire();
+            //Fire();
+            SendMessage(fireMode);
         }
     }
 

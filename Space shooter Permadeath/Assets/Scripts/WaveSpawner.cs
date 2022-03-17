@@ -24,14 +24,15 @@ public class EnemyTypes
 public class WaveSpawner : MonoBehaviour
 {
     public Text waveText;
-
     Mastermind mastermind;
 
     public EnemyTypes[] allEnemyTypes;
     public Dictionary<GameObject, int> enemyValues = new Dictionary<GameObject, int>();
 
     public Wave[] waves;
-    int nextWaveNumber = 0;
+    [HideInInspector] public int nextWaveNumber = 0;
+    [HideInInspector] public float budget = 0;
+
     [HideInInspector] public Wave currentWave;
     public List<GameObject> enemyPool;
     float enemyFrequencySum;
@@ -55,6 +56,7 @@ public class WaveSpawner : MonoBehaviour
         currentWave = waves[nextWaveNumber];
         nextWaveNumber++;
         waveText.text = currentWave.waveName;
+        budget = currentWave.budget;
 
         enemyFrequencySum = 0;
         foreach (float frequency in currentWave.enemyFrequencies)
@@ -63,7 +65,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         // Varje våg har en "budget"; spelet köper fiender som ska spawnas tills budgeten är slut
-        while (currentWave.budget > 0)
+        while (budget > 0)
         {
             // Väljer slumpmässigt en typ av fiende. Fienderna har olika frekvenser som avgör hur stor chans de har att väljas
             GameObject enemyType = null;
@@ -82,7 +84,8 @@ public class WaveSpawner : MonoBehaviour
 
             // Fienderna som ska komma i varje wave läggs i en "pool" och skapas sedan i update.
             enemyPool.Add(enemyType);
-            currentWave.budget -= enemyValues[enemyType];
+            budget -= enemyValues[enemyType];
+
         }
         mastermind.CountEnemies();
     }

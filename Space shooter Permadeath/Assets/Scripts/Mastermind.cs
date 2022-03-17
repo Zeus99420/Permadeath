@@ -22,6 +22,11 @@ public class Mastermind : MonoBehaviour
     [HideInInspector] public int money;
     [HideInInspector] public int score;
 
+    GameObject savedPlayer;
+    int savedMoney;
+    int savedScore;
+    int savedNextWave;
+
     public enum GameMastermindState
     {
         Opening,
@@ -48,6 +53,14 @@ public class Mastermind : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown("t"))
+        {
+            CheckpointLoad();
+        }
+    }
+
     void UpdateGameMastermindState()
     {
         switch (GMState)
@@ -66,8 +79,9 @@ public class Mastermind : MonoBehaviour
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
+                waveSpawner.enemyPool.Clear();
                 StartCoroutine(permadeathscreen.FadeIn());
-                Invoke("ChangeToOpeningState", 6f);
+                //Invoke("ChangeToOpeningState", 6f);
                 break;
         }
     }
@@ -93,6 +107,8 @@ public class Mastermind : MonoBehaviour
     public void ExitShop()
     {
         shop.Exit();
+        CheckpointSave();
+
 
         GMState = GameMastermindState.Gameplay;
         UpdateGameMastermindState();
@@ -113,7 +129,10 @@ public class Mastermind : MonoBehaviour
         //Startar en ny våg ifall alla fiender är förstörda
         if (enemiesRemaining == 0)
         {
-            if (waveSpawner.currentWave.shopAfter) EnterShop();
+            if (waveSpawner.currentWave.shopAfter)
+            {
+                EnterShop();
+            }
 
             else waveSpawner.NewWave();
         }
@@ -132,6 +151,29 @@ public class Mastermind : MonoBehaviour
         score += changeAmount;
         scoreText.text = "Score: " + score;
 
+    }
+
+    public void CheckpointSave()
+    {
+        savedPlayer = Instantiate(player);
+        savedPlayer.SetActive(false);
+        savedMoney = money;
+        savedScore = score;
+        savedNextWave = waveSpawner.nextWaveNumber;
+    }
+
+    public void CheckpointLoad()
+    {
+        player = savedPlayer;
+        player.SetActive(true);
+        money = savedMoney;
+        score = savedScore;
+        UpdateMoney(0);
+        UpdateScore(0);
+        waveSpawner.enabled = true;
+        waveSpawner.nextWaveNumber = savedNextWave;
+        waveSpawner.NewWave();
+        StartCoroutine(permadeathscreen.FadeOut());
     }
 
 

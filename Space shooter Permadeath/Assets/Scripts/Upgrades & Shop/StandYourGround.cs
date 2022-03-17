@@ -12,7 +12,7 @@ public class StandYourGround : Upgrades
     public override void BuyFirst()
     {
         Weapons weapons = player.GetComponent<Weapons>();
-        weapons.preFireEffects.Add(weapons.StandYourGround);
+        weapons.updateEffects.Add("StandYourGround");
 
         weapons.standYourGroundMultiplierMax = multiplierMaxBase;
         weapons.standYourGroundChargeTime = ChargeTime;

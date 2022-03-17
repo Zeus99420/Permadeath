@@ -1,29 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PermadeathScreen : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    public Image image;
     public float fadeInTime;
     public float fadeOutTime;
     Color color;
  
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        color = spriteRenderer.color;
+        color = image.color;
     }
 
     public IEnumerator FadeIn()
     {
-        spriteRenderer.enabled = true;
+        image.enabled = true;
         // loop over 1 second
         for (float i = 0; i <= 1; i += Time.deltaTime / fadeInTime)
         {
             // set color with i as alpha
             color.a = i;
-            spriteRenderer.color = color;
+            image.color = color;
             yield return null;
         }
     }
@@ -33,11 +34,11 @@ public class PermadeathScreen : MonoBehaviour
         {
             // set color with i as alpha
             color.a = i;
-            spriteRenderer.color = color;
+            image.color = color;
             yield return null;
         }
 
-        spriteRenderer.enabled = true;
+        //image.enabled = false;
 
     }
 }

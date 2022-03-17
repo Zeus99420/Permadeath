@@ -8,7 +8,6 @@ public class Shop : MonoBehaviour
 {
 
     public Mastermind mastermind;
-    public GameObject player;
     public List<Upgrades> upgrades;
     public GameObject buttonPrefab;
     public List<Button> buttons;
@@ -16,12 +15,7 @@ public class Shop : MonoBehaviour
 
     public void Initialize()
     {
-        //upgrades = GetComponentsInChildren<Upgrades>();
-        upgrades.AddRange(GetComponentsInChildren<Upgrades>());
-        //foreach (Upgrades upgrade in GetComponentsInChildren<Upgrades>())
-        //{
-
-        //}
+       upgrades.AddRange(GetComponentsInChildren<Upgrades>());
     }
 
     public void EnterShop()
@@ -73,7 +67,7 @@ public class Shop : MonoBehaviour
 
     public void BuyButton(Button button,Upgrades upgrade)
     {
-        upgrade.player = player;
+        upgrade.player = mastermind.player;
         mastermind.UpdateMoney(-upgrade.price);
         CheckAfford();
         upgrade.Buy();

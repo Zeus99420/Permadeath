@@ -11,7 +11,7 @@ public class RapidFire : Upgrades
     public override void BuyFirst() 
     {
         Weapons weapons = player.GetComponent<Weapons>();
-        weapons.FireCheck = weapons.RapidFireCheck;
+        weapons.fireCheckMode = "RapidFireCheck";
         weapons.rapidFireMultiplier = baseFireRateMultiplier;
         weapons.rapidFireEnergyMax = baseMaxEnergy;
     }
