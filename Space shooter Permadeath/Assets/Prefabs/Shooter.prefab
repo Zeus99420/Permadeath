@@ -134,6 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fddf2df19d5670a4989dec13d722d9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 40
+  health: 0
+  healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   player: {fileID: 0}
   mastermind: {fileID: 0}
@@ -142,7 +145,6 @@ MonoBehaviour:
   avoidForce: 70
   collisionDamage: 50
   collisionSelfDamage: 50
-  avgMaxHealth: 40
   acceleration: 110
   attackRange: 6
   cooldown: 1

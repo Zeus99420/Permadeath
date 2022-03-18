@@ -15,7 +15,7 @@ public class PlayerProjectile : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().health.Damage(damage);
+            other.GetComponent<Enemy>().Damage(damage);
             //Destroy(other.gameObject);
             Destroy(gameObject);
         }

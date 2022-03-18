@@ -11,8 +11,6 @@ public class Upgrades : MonoBehaviour
     bool firstTimeBuying = true;
     public virtual void Buy()
     {
-        Debug.Log(firstTimeBuying);
-
         if (firstTimeBuying)
         {
             BuyFirst();

@@ -37,7 +37,7 @@ public class Health
     public void Heal(int healAmount)
     {
         health += healAmount;
-        if (health < MAXhealth) health = MAXhealth;
+        if (health > MAXhealth) health = MAXhealth;
     }
 
 

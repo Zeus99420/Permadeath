@@ -5,7 +5,6 @@ using UnityEngine;
 public class Drone : Enemy
 {
     //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
-    public GameObject Mastermind;
     public float acceleration;
 
 

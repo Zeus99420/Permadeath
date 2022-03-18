@@ -47,6 +47,7 @@ public class Mastermind : MonoBehaviour
 
         //GMState = GameMastermindState.Opening;
         SetGameMastermindState(GameMastermindState.Opening);
+        SetGameMastermindState(GameMastermindState.Gameplay);
 
 
 
@@ -55,7 +56,7 @@ public class Mastermind : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown("t"))
+        if(GMState == GameMastermindState.GameOver && Input.GetKeyDown("t"))
         {
             StartFromCheckpoint();
         }
@@ -71,7 +72,7 @@ public class Mastermind : MonoBehaviour
                 UpdateScore(0);
                 break;
             case GameMastermindState.Gameplay:
-                waveSpawner.enabled = true;
+                //waveSpawner.enabled = true;
                 break;
             case GameMastermindState.Shop:
                 shop.gameObject.SetActive(true);
@@ -128,7 +129,7 @@ public class Mastermind : MonoBehaviour
         //Startar en ny våg ifall alla fiender är förstörda
         if (enemiesRemaining == 0)
         {
-            if (waveSpawner.currentWave.shopAfter)
+            if (GMState == GameMastermindState.Gameplay && waveSpawner.currentWave.shopAfter)
             {
                 EnterShop();
             }
@@ -154,7 +155,9 @@ public class Mastermind : MonoBehaviour
 
     public void CheckpointSave()
     {
+        if(savedPlayer) { Destroy(savedPlayer); }
         savedPlayer = Instantiate(player);
+        //savedPlayer.GetComponent<PlayerMovement>().health = player.GetComponent<PlayerMovement>().health;
         savedPlayer.SetActive(false);
         savedMoney = money;
         savedScore = score;
@@ -163,11 +166,13 @@ public class Mastermind : MonoBehaviour
 
     public void StartFromCheckpoint()
     {
+        GMState = GameMastermindState.Gameplay;
         foreach (Transform enemy in enemiesContainer)
         {
             Destroy(enemy.gameObject);
         }
-        player = savedPlayer;
+        player = Instantiate(savedPlayer);
+        //player.GetComponent<PlayerMovement>().health = savedPlayer.GetComponent<PlayerMovement>().health;
         player.SetActive(true);
         money = savedMoney;
         score = savedScore;
@@ -177,7 +182,9 @@ public class Mastermind : MonoBehaviour
         waveSpawner.enemyPool.Clear();
         waveSpawner.nextWaveNumber = savedNextWave;
         waveSpawner.NewWave();
+        StopCoroutine(permadeathscreen.FadeIn());
         StartCoroutine(permadeathscreen.FadeOut());
+        Invoke("CountEnemies", 0f);
     }
 
 

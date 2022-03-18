@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
-    public GameObject Explosion;
-    public Transform player;
-    public Mastermind mastermind;
+    [HideInInspector] public Transform player;
+    [HideInInspector] public Mastermind mastermind;
     protected Rigidbody2D m_rigidbody;
 
     [HideInInspector] public int value;
@@ -18,14 +17,14 @@ public class Enemy : MonoBehaviour
 
     public int collisionDamage;
     public int collisionSelfDamage;
-    [HideInInspector] public Health health;
-    public int avgMaxHealth;
 
 
 
-    void Start()
+
+    public override void Start()
     {
-        health = new Health((int)(avgMaxHealth*Random.Range(0.7f,1.3f)), gameObject);
+        maxHealth = (int)(maxHealth*Random.Range(0.7f, 1.3f));
+        base.Start();
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
     public bool IsInScreen()
@@ -62,26 +61,24 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnDestroy()
+    public override void Die()
     {
         mastermind.UpdateMoney(value);
         mastermind.UpdateScore(value);
-        mastermind.Invoke("CountEnemies",0f);
         PlayExplosion();
+        Destroy(gameObject);
+        mastermind.Invoke("CountEnemies", 0f);
+
     }
 
-    void PlayExplosion()
-    {
-        GameObject explosion = Instantiate(Explosion);
-        explosion.transform.position = transform.position;
-    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerMovement>().health.Damage(collisionDamage);
-            health.Damage(collisionSelfDamage);
+            collision.gameObject.GetComponent<PlayerMovement>().Damage(collisionDamage);
+            Damage(collisionSelfDamage);
         }
 
 

@@ -15,7 +15,7 @@ public class ShooterProjectile : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().health.Damage(damage);
+            other.GetComponent<PlayerMovement>().Damage(damage);
 
 
             //Destroy(other.gameObject);

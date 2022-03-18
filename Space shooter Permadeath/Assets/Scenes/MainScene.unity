@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 0
+  testingShop: 1
   player: {fileID: 1653898505}
   permadeathscreen: {fileID: 1921628184}
   waveSpawner: {fileID: 1101592341}
@@ -1091,10 +1091,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfeea0d71d9bdd4699701e8353d63ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  permadeathscreen: {fileID: 856224838}
-  HealthBar: {fileID: 4670263869130051521, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
-  acceleration: 250
   maxHealth: 100
+  health: 0
+  healthBar: {fileID: 0}
+  Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
+  firstTime: 1
+  mastermind: {fileID: 856224839}
+  healthBarPrefab: {fileID: 4670263869130051520, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
+  acceleration: 250
   usingEngines: 0
 --- !u!114 &1653898510
 MonoBehaviour:

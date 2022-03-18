@@ -2,28 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Character
 {
     Rigidbody2D m_rigidbody;
-    public GameObject permadeathscreen;
-    public Transform HealthBar;
-    Transform healthBarTransform;
+    public Mastermind mastermind;
+    public GameObject healthBarPrefab;
+    //Transform healthBarTransform;
 
-    public Health health;
+    //public Health health;
 
     public float acceleration;
-    public int maxHealth;
+    //public int maxHealth;
     [HideInInspector] public bool usingEngines;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        healthBarTransform = Instantiate(HealthBar, new Vector3(0, 0), Quaternion.identity);
-        HealthBar healthbar = healthBarTransform.GetComponent<HealthBar>();
-        healthbar.player = transform;
-        health = new Health(maxHealth, gameObject);
-        healthbar.Setup(health);
 
+    public override void Start()
+    {
+        base.Start();
+
+        SetupHealthbar(healthBarPrefab);
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -54,10 +51,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("d")) { m_rigidbody.AddForce(Vector2.right * acceleration); usingEngines = true; }
     }
 
-    private void OnDestroy()
+    public override void Die()
     {
-        permadeathscreen.GetComponent<Mastermind>().SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
-        Destroy(healthBarTransform.gameObject);
+        mastermind.SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
+        PlayExplosion();
+        Destroy(healthBar.gameObject);
+        Destroy(gameObject);
     }
 
 }

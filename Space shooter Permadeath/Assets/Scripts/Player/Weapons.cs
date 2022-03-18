@@ -79,7 +79,6 @@ public class Weapons : MonoBehaviour
         else standYourGroundMultiplier -= ((standYourGroundMultiplierMax-1) / standYourGroundUnchargeTime) * Time.deltaTime;
         standYourGroundMultiplier = Mathf.Clamp(standYourGroundMultiplier,1,standYourGroundMultiplierMax);
         projectileDamage = (int)(projectileDamage * standYourGroundMultiplier);
-        Debug.Log(projectileDamage);
     }
 
     public void RapidFireCheck()
