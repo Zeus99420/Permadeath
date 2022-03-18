@@ -103,7 +103,6 @@ public class Weapons : MonoBehaviour
         for (int t = 0; t < spreadBulletCount; t++)
         {
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-            
             newProjectile.transform.Rotate(0,0, angle);
             newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * newProjectile.transform.up;
             //newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * spreadDamageMultiplier);
