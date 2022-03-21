@@ -93,7 +93,7 @@ public class WaveSpawner : MonoBehaviour
     private void Update()
     {
         Vector2 spawnPosition;
-        if (enemyPool.Count>0 && Random.value < Time.deltaTime * currentWave.spawnRate)
+        if (enemyPool.Count > 0 && (mastermind.enemiesContainer.childCount == 0 || Random.value < Time.deltaTime * currentWave.spawnRate))
         {
             float randomNumber = Random.value;
             // Väljer slumpmässigt en kant av skärmen, och sedan en slumpvald punkt strax utanför kanten där fienden ska spawna.

@@ -7,6 +7,7 @@ public class Upgrades : MonoBehaviour
     [HideInInspector] public GameObject player;
     public string upgradeName;
     public int price;
+    public string description;
 
     bool firstTimeBuying = true;
     public virtual void Buy()

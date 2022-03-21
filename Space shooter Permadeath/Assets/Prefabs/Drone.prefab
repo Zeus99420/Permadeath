@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 25
+  m_Mass: 15
   m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -142,8 +142,7 @@ MonoBehaviour:
   mastermind: {fileID: 0}
   value: 0
   avoidRadius: 1.2
-  avoidForce: 60
+  avoidForce: 50
   collisionDamage: 80
   collisionSelfDamage: 50
-  Mastermind: {fileID: 0}
-  acceleration: 130
+  acceleration: 60

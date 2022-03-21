@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 1
+  testingShop: 0
   player: {fileID: 1653898505}
   permadeathscreen: {fileID: 1921628184}
   waveSpawner: {fileID: 1101592341}
@@ -722,7 +722,23 @@ MonoBehaviour:
     value: 25
   - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
     value: 40
+  - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+    value: 100
   waves:
+  - waveName: Test Wave
+    budget: 500
+    enemyTypes:
+    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+    enemyFrequencies:
+    - 3
+    - 1
+    - 1
+    - 0.6
+    spawnRate: 0.6
+    shopAfter: 0
   - waveName: Level 1, Wave 1/2
     budget: 50
     enemyTypes:
@@ -845,6 +861,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Faster Gun
   price: 150
+  description: Increases your attack speed
   increaseAmount: 1
   BiggerGun: {fileID: 21300000, guid: eb060f991954d9148aae4bc01fd20278, type: 3}
 --- !u!224 &1401891353
@@ -881,6 +898,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Armor Plates
   price: 100
+  description: Increases your health
   increaseAmount: 50
   Shield: {fileID: 21300000, guid: 5afdfcd76192b6a459dab76f3a88a6a0, type: 3}
 --- !u!114 &1401891355
@@ -898,6 +916,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Projectile Speed
   price: 50
+  description: Your projectiles fly faster
   increaseAmount: 8
 --- !u!114 &1401891356
 MonoBehaviour:
@@ -914,6 +933,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Engine
   price: 80
+  description: Your ship flies faster
   increaseAmount: 125
 --- !u!114 &1401891357
 MonoBehaviour:
@@ -930,6 +950,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Shotgun
   price: 150
+  description: You fire several smaller projectiles in an arc
   baseBulletCount: 4
   bulletCountIncrease: 2
   maxSpread: 15
@@ -949,10 +970,11 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Rapid Fire
   price: 150
+  description: You can fire very quickly for a short time. Hold fire to recharge
   baseFireRateMultiplier: 2
   fireRateMultiplierIncrease: 0.5
-  baseMaxEnergy: 1
-  maxEnergyIncrease: 1
+  baseMaxEnergy: 2
+  maxEnergyIncrease: 2
 --- !u!114 &1401891359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +990,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Stand Your Ground
   price: 150
+  description: Your attack damage is increased when you don't use your engines
   multiplierMaxBase: 2.5
   multiplierMaxIncrease: 1.5
   ChargeTime: 1
@@ -1096,11 +1119,11 @@ MonoBehaviour:
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
-  firstTime: 1
   mastermind: {fileID: 856224839}
   healthBarPrefab: {fileID: 4670263869130051520, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
   acceleration: 250
   usingEngines: 0
+  startOfGame: 1
 --- !u!114 &1653898510
 MonoBehaviour:
   m_ObjectHideFlags: 0

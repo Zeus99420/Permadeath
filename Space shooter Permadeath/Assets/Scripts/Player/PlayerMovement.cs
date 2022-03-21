@@ -7,18 +7,20 @@ public class PlayerMovement : Character
     Rigidbody2D m_rigidbody;
     public Mastermind mastermind;
     public GameObject healthBarPrefab;
-    //Transform healthBarTransform;
-
-    //public Health health;
 
     public float acceleration;
-    //public int maxHealth;
     [HideInInspector] public bool usingEngines;
 
-
+    public bool startOfGame = true;
     public override void Start()
     {
-        base.Start();
+        //Characters start-metod, som gör att health = maxHealth, kallas när spelet börjar.
+        //När kopior av spelaren skapas för checkpoints så kallas den inte eftersom spelaren ska behålla sin dåvarande health
+        if (startOfGame)
+        {
+            base.Start();
+            startOfGame = false;
+        }
 
         SetupHealthbar(healthBarPrefab);
         m_rigidbody = GetComponent<Rigidbody2D>();

@@ -6,10 +6,6 @@ public class Drone : Enemy
 {
     //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
     public float acceleration;
-
-
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         AvoidCollision();
@@ -19,8 +15,6 @@ public class Drone : Enemy
         {
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
         }
-
-
         m_rigidbody.AddForce(direction * acceleration);
 
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class EnemyBomb : Character
 {
     [HideInInspector] public int damage;
     private void OnBecameInvisible()
@@ -13,11 +13,16 @@ public class PlayerProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<Character>().Damage(damage);
-            //Destroy(other.gameObject);
-            Destroy(gameObject);
+           other.GetComponent<PlayerMovement>().Damage(damage);
+           Die();
         }
+    }
+
+    public override void Die()
+    {
+        PlayExplosion();
+        Destroy(gameObject);
     }
 }

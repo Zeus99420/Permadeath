@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,6 +33,7 @@ public class Shop : MonoBehaviour
 
             button.transform.Find("NameText").GetComponent<Text>().text = randomUpgrade.upgradeName;
             button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
+            button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.description;
 
 
 

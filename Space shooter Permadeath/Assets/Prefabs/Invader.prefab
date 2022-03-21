@@ -105,12 +105,12 @@ MonoBehaviour:
   mastermind: {fileID: 0}
   value: 0
   avoidRadius: 2
-  avoidForce: 100
+  avoidForce: 180
   collisionDamage: 50
   collisionSelfDamage: 25
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
   attackRange: 5
-  acceleration: 220
+  acceleration: 300
   cooldown: 4
   projectileSpeed: 12
   projectileDamage: 25
@@ -126,7 +126,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 30
+  m_Mass: 50
   m_LinearDrag: 1.2
   m_AngularDrag: 0.05
   m_GravityScale: 1

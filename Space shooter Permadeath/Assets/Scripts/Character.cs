@@ -10,14 +10,9 @@ public class Character : MonoBehaviour
     [HideInInspector] public HealthBar healthBar;
     public GameObject Explosion;
 
-    public bool firstTime = true;
     public virtual void Start()
     {
-        if (firstTime)
-        {
-            health = maxHealth;
-            firstTime = false;
-        }
+            health = maxHealth;       
     }
 
     public float GetHealthPercent()

@@ -10,6 +10,7 @@ public class Mastermind : MonoBehaviour
 
     public GameObject player;
     public PermadeathScreen permadeathscreen;
+    Coroutine deathScreenCoroutine;
     public WaveSpawner waveSpawner;
     public Shop shop;
     public Transform enemiesContainer;
@@ -80,7 +81,7 @@ public class Mastermind : MonoBehaviour
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
-                StartCoroutine(permadeathscreen.FadeIn());
+                deathScreenCoroutine = StartCoroutine(permadeathscreen.FadeIn());
                 //Invoke("ChangeToOpeningState", 6f);
                 break;
         }
@@ -127,9 +128,9 @@ public class Mastermind : MonoBehaviour
         enemiesRemainingText.text = ("Enemies Remaining: " + enemiesRemaining);
 
         //Startar en ny våg ifall alla fiender är förstörda
-        if (enemiesRemaining == 0)
+        if (GMState == GameMastermindState.Gameplay && enemiesRemaining == 0)
         {
-            if (GMState == GameMastermindState.Gameplay && waveSpawner.currentWave.shopAfter)
+            if (waveSpawner.currentWave.shopAfter)
             {
                 EnterShop();
             }
@@ -182,7 +183,7 @@ public class Mastermind : MonoBehaviour
         waveSpawner.enemyPool.Clear();
         waveSpawner.nextWaveNumber = savedNextWave;
         waveSpawner.NewWave();
-        StopCoroutine(permadeathscreen.FadeIn());
+        StopCoroutine(deathScreenCoroutine);
         StartCoroutine(permadeathscreen.FadeOut());
         Invoke("CountEnemies", 0f);
     }
