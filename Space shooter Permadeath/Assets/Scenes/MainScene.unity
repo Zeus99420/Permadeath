@@ -724,28 +724,36 @@ MonoBehaviour:
     value: 40
   - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
     value: 100
+  - type: {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
+    value: 60
+  - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
+    value: 70
   waves:
-  - waveName: 'Test Wave: 1 Bomber'
-    budget: 100
+  - waveName: 'Test Wave: 1 Enemy'
+    budget: 200
     enemyTypes:
-    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+    - {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     enemyFrequencies:
     - 1
     spawnRate: 0.2
     shopAfter: 0
   - waveName: 'Test Wave: All Enemies'
-    budget: 500
+    budget: 300
     enemyTypes:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
     - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+    - {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
+    - {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     enemyFrequencies:
-    - 3
-    - 1
-    - 1
-    - 0.4
-    spawnRate: 0.7
+    - 6
+    - 2
+    - 2
+    - 0.7
+    - 1.5
+    - 1.5
+    spawnRate: 0.9
     shopAfter: 0
   - waveName: Level 1, Wave 1/2
     budget: 50
