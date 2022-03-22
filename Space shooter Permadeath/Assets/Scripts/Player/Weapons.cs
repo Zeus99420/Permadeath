@@ -117,8 +117,9 @@ public class Weapons : MonoBehaviour
     public void SlowBigBullet()
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-        newProjectile.transform.Rotate(0, 0, 0);
-        newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
+        newProjectile.GetComponent<Rigidbody2D>().velocity *= projectileSpeed / 4;
+        newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 2;
         newProjectile.transform.localScale *= 5.2f;
+        SendMessage(fireMode);
     }
 }
