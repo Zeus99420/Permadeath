@@ -6,13 +6,18 @@ public class SlowBigBullet : Upgrades
 {
     //Ska ändra sizen på playerprojectile när denna uppgradering köps och även se till att skotten blir betydligt långsammare men även
     //att det gör mer damage
-    public GameObject PlayerProjectile;
-
+    public GameObject projectile;
+    public float projectileSpeed;
+    
     public override void BuyFirst()
     {
         Weapons weapons = player.GetComponent<Weapons>();
         weapons.fireMode = "SlowBigBulletFire";
-        
+        weapons.projectileSpeed = 4 / projectileSpeed;
+        GameObject playerprojectile = Instantiate(projectile, transform.position, transform.rotation);
+        playerprojectile.GetComponent<PlayerProjectile>();
+        playerprojectile.transform.localScale *= 5.2f;
+
     }
 
     public override void BuyAnother()

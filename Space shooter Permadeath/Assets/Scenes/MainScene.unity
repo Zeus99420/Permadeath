@@ -730,13 +730,13 @@ MonoBehaviour:
     value: 70
   waves:
   - waveName: 'Test Wave: 1 Enemy'
-    budget: 200
+    budget: 50
     enemyTypes:
     - {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     enemyFrequencies:
     - 1
     spawnRate: 0.2
-    shopAfter: 0
+    shopAfter: 1
   - waveName: 'Test Wave: All Enemies'
     budget: 300
     enemyTypes:
