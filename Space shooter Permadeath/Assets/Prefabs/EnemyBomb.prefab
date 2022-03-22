@@ -122,7 +122,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 0.5
 --- !u!114 &3467880516931189731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
+  healthAlreadySet: 0
   damage: 0
 --- !u!1 &8522399911987900248
 GameObject:
@@ -150,8 +151,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8522399911987900249}
   - component: {fileID: 8522399911987900250}
+  - component: {fileID: 8865456843860062278}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Detonator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,3 +224,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!58 &8865456843860062278
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522399911987900248}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

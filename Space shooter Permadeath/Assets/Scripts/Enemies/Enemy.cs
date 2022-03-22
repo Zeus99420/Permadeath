@@ -27,11 +27,11 @@ public class Enemy : Character
         base.Start();
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
-    public bool IsInScreen()
+    public bool IsInScreen(float margin)
     {
         //Kollar om fienden är en bit inom skärmen, så att inte spelaren ska bli skjuten av en fiende som inte syns
         Vector2 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
-         if (0.05f < viewportPosition.x && viewportPosition.x < 0.95f && 0.05f < viewportPosition.y && viewportPosition.y < 0.95f)
+         if (0+margin < viewportPosition.x && viewportPosition.x < 1-margin && 0+margin < viewportPosition.y && viewportPosition.y < 1-margin)
         {
             return true;
         }
@@ -59,6 +59,12 @@ public class Enemy : Character
             //}
         }
 
+    }
+
+    public override void Damage(int damageAmount)
+    {
+        base.Damage(damageAmount);
+        StartCoroutine(Flicker(Color.white));
     }
 
     public override void Die()

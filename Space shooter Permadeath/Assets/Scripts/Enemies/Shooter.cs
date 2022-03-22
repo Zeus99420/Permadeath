@@ -39,7 +39,7 @@ public class Shooter : Enemy
 
 
             // Skjuter på spelaren om den är inom räckhåll. En viss tid måste passera innan fienden kan skjuta igen.
-            if (IsInScreen() && distanceToPlayer < attackRange && Time.time > nextShotTime)
+            if (IsInScreen(0.05f) && distanceToPlayer < attackRange && Time.time > nextShotTime)
             {
                nextShotTime = Time.time + cooldown;
 

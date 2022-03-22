@@ -725,7 +725,15 @@ MonoBehaviour:
   - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
     value: 100
   waves:
-  - waveName: Test Wave
+  - waveName: 'Test Wave: 1 Bomber'
+    budget: 100
+    enemyTypes:
+    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+    enemyFrequencies:
+    - 1
+    spawnRate: 0.2
+    shopAfter: 0
+  - waveName: 'Test Wave: All Enemies'
     budget: 500
     enemyTypes:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
@@ -736,8 +744,8 @@ MonoBehaviour:
     - 3
     - 1
     - 1
-    - 0.6
-    spawnRate: 0.6
+    - 0.4
+    spawnRate: 0.7
     shopAfter: 0
   - waveName: Level 1, Wave 1/2
     budget: 50
@@ -777,7 +785,21 @@ MonoBehaviour:
     - 1
     spawnRate: 3.5
     shopAfter: 1
-  - waveName: Level 3
+  - waveName: Level 3 Wave 1/2
+    budget: 250
+    enemyTypes:
+    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+    enemyFrequencies:
+    - 3
+    - 2
+    - 1
+    - 0.5
+    spawnRate: 1.4
+    shopAfter: 0
+  - waveName: Level 3 Wave 2/2
     budget: 250
     enemyTypes:
     - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
@@ -793,10 +815,12 @@ MonoBehaviour:
     - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
     enemyFrequencies:
     - 2
     - 1
     - 1
+    - 0.8
     spawnRate: 2
     shopAfter: 0
   nextWaveNumber: 0
@@ -1119,11 +1143,11 @@ MonoBehaviour:
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
+  healthAlreadySet: 0
   mastermind: {fileID: 856224839}
   healthBarPrefab: {fileID: 4670263869130051520, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
   acceleration: 250
   usingEngines: 0
-  startOfGame: 1
 --- !u!114 &1653898510
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,55 +10,73 @@ public class Bomber : Enemy
     public GameObject projectile;
     public int projectileDamage;
     public float projectileSpeed;
-    public float minProjectileSpeed;
-    public float maxProjectileSpeed;
     public float minCooldown;
     public float maxCooldown;
     public float projectileSpread;
 
-    public float nextShotTime;
+    float nextShotTime;
+
+    bool leftOrRight;
+    bool approaching;
 
 
     
     Vector2 bombDirection;
+    Vector2 targetPosition;
+
 
     public override void Start()
     {
         base.Start();
-        FlyBy();
+        Approach();
 
     }
-   void FlyBy()
+   void Approach()
     {
-        Vector2 playerDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
-        Vector2 targetPosition;
+        approaching = true;
         //En position, antingen till höger eller vänster om spelaren väljs
         //Fienden flyger genom punkten, dvs förbi spelaren, och släpper bomber
-        if (Random.value < 0.5)
-        {
-            targetPosition = (Vector2)player.position + Vector2.Perpendicular(playerDirection) * flyByDistance;
-            direction = (targetPosition - (Vector2)transform.position).normalized;
-            bombDirection = -Vector2.Perpendicular(direction);
-        }
-        else
-        {
-            targetPosition = (Vector2)player.position - Vector2.Perpendicular(playerDirection) * flyByDistance;
-            direction = (targetPosition - (Vector2)transform.position).normalized;
-            bombDirection = Vector2.Perpendicular(direction);
-        }
+        if (Random.value < 0.5) leftOrRight = true;
+        else  leftOrRight = false;
 
-        transform.up = direction;
     }
 
     void FixedUpdate()
     {
+        if (player)
+        {
+            if (approaching)
+            {
+                Vector2 playerDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
+                if (leftOrRight)
+                {
+                    targetPosition = (Vector2)player.position + Vector2.Perpendicular(playerDirection) * flyByDistance;
+                    direction = (targetPosition - (Vector2)transform.position).normalized;
+                    bombDirection = -Vector2.Perpendicular(direction);
+                    
+                }
+
+                else
+                {
+                    targetPosition = (Vector2)player.position - Vector2.Perpendicular(playerDirection) * flyByDistance;
+                    direction = (targetPosition - (Vector2)transform.position).normalized;
+                    bombDirection = Vector2.Perpendicular(direction);
+                }
+                transform.up = direction;
+                if (IsInScreen(0.2f)) approaching = false;
+            }
+
+            else if (!IsInScreen(-0.1f)) Approach();
+        }
+        
+
         AvoidCollision();
         m_rigidbody.AddForce(direction * acceleration);
     }
 
     private void Update()
     {
-        if (IsInScreen() && Time.time > nextShotTime)
+        if (IsInScreen(0) && Time.time > nextShotTime)
         {
             nextShotTime = Time.time + Random.Range(minCooldown, maxCooldown);
 
@@ -66,15 +84,17 @@ public class Bomber : Enemy
             Rigidbody2D projectileRigidbody = newProjectile.GetComponent<Rigidbody2D>();
             Vector2 randomVector = new Vector2(Random.Range(-projectileSpread, projectileSpread),
                 Random.Range(-projectileSpread, projectileSpread));
-            projectileRigidbody.velocity = projectileSpeed * bombDirection + randomVector;
-            newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
+            projectileRigidbody.velocity = m_rigidbody.velocity*0.5f + projectileSpeed * bombDirection + randomVector;
+            newProjectile.GetComponent<EnemyBomb>().damage = projectileDamage;
         }
     }
 
 
-    //När bombern lämnar skärmen så vänder den tillbaka och flyger förbi igen 
-    private void OnBecameInvisible()
+    //För Debugging
+    void OnDrawGizmos()
     {
-        FlyBy();
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(targetPosition, 0.2f);
     }
+
 }

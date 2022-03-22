@@ -9,10 +9,15 @@ public class Character : MonoBehaviour
 
     [HideInInspector] public HealthBar healthBar;
     public GameObject Explosion;
+    SpriteRenderer spriteRenderer;
+    Color originalColor;
+    [HideInInspector] public bool healthAlreadySet = false;
 
     public virtual void Start()
     {
-            health = maxHealth;       
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        if (!healthAlreadySet) health = maxHealth;       
     }
 
     public float GetHealthPercent()
@@ -49,6 +54,14 @@ public class Character : MonoBehaviour
     {
         GameObject explosion = Instantiate(Explosion);
         explosion.transform.position = transform.position;
+    }
+
+    //Karaktärer blinkar kort i en färg, t ex när de tar skada.
+    public IEnumerator Flicker(Color flickerColor)
+    {
+        spriteRenderer.color = flickerColor;
+        yield return new WaitForSeconds(0.08f);
+        spriteRenderer.color = originalColor;
     }
 
 }

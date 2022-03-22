@@ -11,16 +11,14 @@ public class PlayerMovement : Character
     public float acceleration;
     [HideInInspector] public bool usingEngines;
 
-    public bool startOfGame = true;
     public override void Start()
     {
-        //Characters start-metod, som gör att health = maxHealth, kallas när spelet börjar.
-        //När kopior av spelaren skapas för checkpoints så kallas den inte eftersom spelaren ska behålla sin dåvarande health
-        if (startOfGame)
-        {
+
             base.Start();
-            startOfGame = false;
-        }
+            //Character start-metod gör att spelarens health = maxHealth. 
+            healthAlreadySet = true;
+            //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.
+
 
         SetupHealthbar(healthBarPrefab);
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -53,6 +51,12 @@ public class PlayerMovement : Character
         if (Input.GetKey("d")) { m_rigidbody.AddForce(Vector2.right * acceleration); usingEngines = true; }
     }
 
+    public override void Damage(int damageAmount)
+    {
+        base.Damage(damageAmount);
+        StartCoroutine(Flicker(Color.red));
+    }
+
     public override void Die()
     {
         mastermind.SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
@@ -60,5 +64,7 @@ public class PlayerMovement : Character
         Destroy(healthBar.gameObject);
         Destroy(gameObject);
     }
+
+
 
 }

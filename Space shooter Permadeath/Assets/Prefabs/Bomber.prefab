@@ -183,7 +183,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 200
   m_LinearDrag: 1.2
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -222,24 +222,22 @@ MonoBehaviour:
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
+  healthAlreadySet: 0
   player: {fileID: 0}
   mastermind: {fileID: 0}
   value: 0
-  avoidRadius: 3
-  avoidForce: 250
+  avoidRadius: 4
+  avoidForce: 300
   collisionDamage: 100
   collisionSelfDamage: 35
-  flyByDistance: 5
-  acceleration: 500
+  flyByDistance: 15
+  acceleration: 600
   projectile: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
   projectileDamage: 60
   projectileSpeed: 2
-  minProjectileSpeed: 0
-  maxProjectileSpeed: 0
-  minCooldown: 0.6
-  maxCooldown: 1.2
-  projectileSpread: 0.5
-  nextShotTime: 0
+  minCooldown: 1
+  maxCooldown: 1.6
+  projectileSpread: 0.4
 --- !u!1 &9056215919784639542
 GameObject:
   m_ObjectHideFlags: 0
