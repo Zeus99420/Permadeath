@@ -64,7 +64,7 @@ public class Weapons : MonoBehaviour
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
-        newProjectile.transform.localScale *= 1f;
+        newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
     }
 
 
@@ -114,12 +114,12 @@ public class Weapons : MonoBehaviour
         }
     }
 
-    public void SlowBigBullet()
+    public void SlowBigBulletFire()
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-        newProjectile.GetComponent<Rigidbody2D>().velocity *= projectileSpeed / 4;
+        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed/4*transform.up;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 2;
         newProjectile.transform.localScale *= 5.2f;
-        SendMessage(fireMode);
+        //SendMessage(fireMode);
     }
 }

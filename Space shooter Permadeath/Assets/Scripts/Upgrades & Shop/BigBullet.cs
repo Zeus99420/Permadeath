@@ -11,10 +11,10 @@ public class BigBullet : Upgrades
     {
         Weapons weapons = player.GetComponent<Weapons>();
         weapons.fireMode = "SlowBigBulletFire";
-        weapons.projectileSpeed = projectileSpeed / 4;
-        GameObject playerprojectile = Instantiate(projectile, transform.position, transform.rotation);
-        playerprojectile.GetComponent<PlayerProjectile>();
-        playerprojectile.transform.localScale *= 5.2f;
+        //weapons.projectileSpeed = projectileSpeed / 4;
+        //GameObject playerprojectile = Instantiate(projectile, transform.position, transform.rotation);
+        //playerprojectile.GetComponent<PlayerProjectile>();
+        //playerprojectile.transform.localScale *= 5.2f;
 
     }
 
