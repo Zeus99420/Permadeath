@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Weapons : MonoBehaviour
+public class OLDWeapons : MonoBehaviour
 {
 
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
@@ -20,70 +20,35 @@ public class Weapons : MonoBehaviour
     //[HideInInspector] public StoreFunction Fire;
     //public List<StoreFunction> preFireEffects = new List<StoreFunction>();
 
-    [HideInInspector] public string fireMode;
+    [HideInInspector] public string fireCheckMode = "StandardFireCheck";
+    [HideInInspector] public string fireMode = "StandardFire";
+    [HideInInspector] public List<string> updateEffects = new List<string>();
 
-    public struct EnabledMethods
-    {
-        public EnabledMethods(string name, bool enabled)
-        {
-            this.name = name;
-            this.enabled = enabled;
-        }
-        public string name;
-        public bool enabled;
-    }
-
-    public List<EnabledMethods> weaponsSequence = new List<EnabledMethods>
-    {
-        new EnabledMethods("StandYourGround",false),
-        new EnabledMethods("StandardFireCheck",true),
-        new EnabledMethods("RapidFireCheck",false),
-        new EnabledMethods("ShotgunFire",false),
-        new EnabledMethods("StandardFire",true),
-    };
-
-    public List<string> methodSequence;
-    public List<bool> enabledSequence;
-    bool continueSequence;
-    int sequenceStep;
 
     //VARIABLER ANVÄNDA AV UPPGRADERINGAR
-    [HideInInspector] public int spreadBulletCount;
-    [HideInInspector] public float spread;
-    [HideInInspector] public float spreadDamageMultiplier;
+    [HideInInspector] public int spreadBulletCount = 2;
+    [HideInInspector] public int maxSpread = 0;
+    [HideInInspector] public float spreadDamageMultiplier = 0;
 
-    [HideInInspector] public float rapidFireEnergy;
-    [HideInInspector] public float rapidFireEnergyMax;
-    [HideInInspector] public float rapidFireMultiplier;
+    [HideInInspector] public float rapidFireEnergy = 0;
+    [HideInInspector] public float rapidFireEnergyMax = 0;
+    [HideInInspector] public float rapidFireMultiplier = 1;
 
     [HideInInspector] float standYourGroundMultiplier;
     [HideInInspector] public float standYourGroundMultiplierMax;
     [HideInInspector] public float standYourGroundChargeTime;
     [HideInInspector] public float standYourGroundUnchargeTime;
 
-    private void Start()
-    {
-        foreach (EnabledMethods method in weaponsSequence)
-        {
-            methodSequence.Add(method.name);
-            enabledSequence.Add(method.enabled);
-        }
-    }
+
 
     void Update()
     {
         projectileDamage = baseDamage;
-        continueSequence = true;
-        sequenceStep = 0;
-        while (continueSequence && sequenceStep < methodSequence.Count)
+        foreach (string function in updateEffects)
         {
-            if (enabledSequence[sequenceStep] == true)
-            {
-                SendMessage(methodSequence[sequenceStep]);
-            }
-            sequenceStep++;
+            SendMessage(function);
         }
-
+        SendMessage(fireCheckMode);
     }
 
     public void StandardFireCheck()
@@ -91,18 +56,13 @@ public class Weapons : MonoBehaviour
         if (Input.GetMouseButton(0) && Time.time > nextShotTime)
         {
             nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
+            SendMessage(fireMode);
         }
-        else continueSequence = false;
     }
     public void StandardFire()
     {
-        SendMessage(fireMode,(Vector2)transform.up);
-    }
-
-    public void FireStandardProjectile(Vector2 fireVector)
-    {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
+        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
     }
@@ -110,8 +70,7 @@ public class Weapons : MonoBehaviour
 
 
 
-    // UPPGRADERINGARS FUKTIONER
-    //Dessa funktioner används om spelaren köpt motsvarande uppgraderingar
+    // ALTERNATE MODES FROM UPGRADES
 
     public void StandYourGround()
     {
@@ -127,39 +86,40 @@ public class Weapons : MonoBehaviour
         rapidFireEnergy += Time.deltaTime;
         if (rapidFireEnergy > rapidFireEnergyMax) rapidFireEnergy = rapidFireEnergyMax;
 
-        if (Input.GetMouseButton(0) && Time.time > nextShotTime && rapidFireEnergy > 1 / rateOfFire)
+        if (Input.GetMouseButton(0) && Time.time > nextShotTime && rapidFireEnergy > 1/rateOfFire)
         {
             rapidFireEnergy -= 1 / rateOfFire;
-            nextShotTime = Time.time + 1 / (rateOfFire * rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen
+            nextShotTime = Time.time + 1 / (rateOfFire*rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen
+            //Fire();
+            SendMessage(fireMode);
         }
-        else continueSequence = false;
     }
 
     public void ShotgunFire()
     {
-        float angle = -spread / 2;
-        float angleIncrement = spread / (spreadBulletCount - 1);
-
-        Vector2 fireVector = transform.up;
-        fireVector = Quaternion.Euler(0, 0, angle) * fireVector;
-
+        float angle = -maxSpread / 2;
+        float angleIncrement = maxSpread / (spreadBulletCount + 1);
         projectileDamage = (int)(projectileDamage * spreadDamageMultiplier);
         for (int t = 0; t < spreadBulletCount; t++)
         {
-            fireVector = Quaternion.Euler(0, 0, angleIncrement) * fireVector;
-            SendMessage(fireMode, fireVector);
+            GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
+            newProjectile.transform.Rotate(0,0, angle);
+            newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * newProjectile.transform.up;
+            //newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * spreadDamageMultiplier);
+            newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
+            newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
+
+            angle += angleIncrement;
+
         }
     }
 
-    public void FireBigSlowBullet(Vector2 fireVector)
+    public void SlowBigBulletFire()
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed/4 * fireVector;
+        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed/4*transform.up;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 2;
         newProjectile.transform.localScale *= 5.2f;
         //SendMessage(fireMode);
     }
-
 }
-
-

@@ -66,7 +66,6 @@ public class ScoutInvader : Enemy
 
     void Dodge()
     {
-        Debug.Log("Dodge!");
         Vector2 dodgeDirection;
         if (Random.value < 0.5) dodgeDirection = Vector2.Perpendicular(direction);
         else dodgeDirection = -Vector2.Perpendicular(direction);

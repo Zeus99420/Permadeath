@@ -6,14 +6,19 @@ public class Shotgun : Upgrades
 {
     public int baseBulletCount;
     public int bulletCountIncrease;
-    public int maxSpread;
+    public float baseSpread;
+    public float spreadIncrease;
     public float damageMultiplier;
     public override void BuyFirst() 
     {
         Weapons weapons = player.GetComponent<Weapons>();
-        weapons.fireMode = "ShotgunFire";
+        //weapons.fireMode = "ShotgunFire";
+        int index = weapons.methodSequence.IndexOf("ShotgunFire");
+        weapons.enabledSequence[index] = true;
+        index = weapons.methodSequence.IndexOf("StandardFire");
+        weapons.enabledSequence[index] = false;
         weapons.spreadBulletCount = baseBulletCount;
-        weapons.maxSpread = maxSpread;
+        weapons.spread = baseSpread;
         weapons.spreadDamageMultiplier = damageMultiplier;
     }
 
@@ -21,6 +26,7 @@ public class Shotgun : Upgrades
     {
         Weapons weapons = player.GetComponent<Weapons>();
         weapons.spreadBulletCount += bulletCountIncrease;
+        weapons.spread += spreadIncrease;
 
     }
 

@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 0
+  testingShop: 1
   player: {fileID: 1653898505}
   permadeathscreen: {fileID: 1921628184}
   waveSpawner: {fileID: 1101592341}
@@ -986,7 +986,8 @@ MonoBehaviour:
   description: You fire several smaller projectiles in an arc
   baseBulletCount: 4
   bulletCountIncrease: 2
-  maxSpread: 15
+  baseSpread: 8
+  spreadIncrease: 2
   damageMultiplier: 0.5
 --- !u!114 &1401891358
 MonoBehaviour:
@@ -1058,7 +1059,7 @@ GameObject:
   - component: {fileID: 1653898508}
   - component: {fileID: 1653898506}
   - component: {fileID: 1653898509}
-  - component: {fileID: 1653898510}
+  - component: {fileID: 1653898513}
   - component: {fileID: 1653898511}
   - component: {fileID: 1653898512}
   m_Layer: 6
@@ -1175,34 +1176,6 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 4670263869130051520, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
   acceleration: 250
   usingEngines: 0
---- !u!114 &1653898510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653898505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd005492679e38b4084e373884f809c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rateOfFire: 3
-  projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
-  projectileSpeed: 8
-  baseDamage: 10
-  fireCheckMode: StandardFireCheck
-  fireMode: StandardFire
-  updateEffects: []
-  spreadBulletCount: 0
-  maxSpread: 0
-  spreadDamageMultiplier: 0
-  rapidFireEnergy: 0
-  rapidFireEnergyMax: 0
-  rapidFireMultiplier: 0
-  standYourGroundMultiplierMax: 0
-  standYourGroundChargeTime: 0
-  standYourGroundUnchargeTime: 0
 --- !u!70 &1653898511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1315,6 +1288,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1653898513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653898505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6b3f747766b61449645adf665832b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rateOfFire: 3
+  projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
+  projectileSpeed: 7
+  baseDamage: 10
+  fireMode: FireStandardProjectile
+  methodSequence: []
+  enabledSequence: 
+  spreadBulletCount: 2
+  spread: 0
+  spreadDamageMultiplier: 0
+  rapidFireEnergy: 0
+  rapidFireEnergyMax: 0
+  rapidFireMultiplier: 1
+  standYourGroundMultiplierMax: 0
+  standYourGroundChargeTime: 0
+  standYourGroundUnchargeTime: 0
 --- !u!1 &1723037604
 GameObject:
   m_ObjectHideFlags: 0
