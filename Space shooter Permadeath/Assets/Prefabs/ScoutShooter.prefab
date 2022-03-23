@@ -147,7 +147,7 @@ MonoBehaviour:
   collisionDamage: 75
   collisionSelfDamage: 40
   acceleration: 250
-  flyByDistance: 6
+  flyByDistance: 4
   attackRange: 8
   cooldown: 0.7
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}

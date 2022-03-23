@@ -146,8 +146,8 @@ public class Weapons : MonoBehaviour
         projectileDamage = (int)(projectileDamage * spreadDamageMultiplier);
         for (int t = 0; t < spreadBulletCount; t++)
         {
-            fireVector = Quaternion.Euler(0, 0, angleIncrement) * fireVector;
             SendMessage(fireMode, fireVector);
+            fireVector = Quaternion.Euler(0, 0, angleIncrement) * fireVector;
         }
     }
 

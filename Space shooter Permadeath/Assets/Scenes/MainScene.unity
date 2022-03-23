@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 1
+  testingShop: 0
   player: {fileID: 1653898505}
   permadeathscreen: {fileID: 1921628184}
   waveSpawner: {fileID: 1101592341}
@@ -729,115 +729,130 @@ MonoBehaviour:
   - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     value: 70
   waves:
-  - waveName: 'Test Wave: 1 Enemy'
-    budget: 50
-    enemyTypes:
-    - {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
-    enemyFrequencies:
-    - 1
-    spawnRate: 0.2
-    shopAfter: 1
-  - waveName: 'Test Wave: All Enemies'
-    budget: 300
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
-    - {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
-    - {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
-    enemyFrequencies:
-    - 6
-    - 2
-    - 2
-    - 0.7
-    - 1.5
-    - 1.5
-    spawnRate: 0.9
-    shopAfter: 0
   - waveName: Level 1, Wave 1/2
     budget: 50
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    enemyFrequencies:
-    - 1
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 1
     spawnRate: 0.7
     shopAfter: 0
   - waveName: Level 1, Wave 2/2
     budget: 100
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    enemyFrequencies:
-    - 3
-    - 1
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 3
+    - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+      frequency: 1
     spawnRate: 1
     shopAfter: 1
   - waveName: Level 2, Wave 1/2
     budget: 150
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    enemyFrequencies:
-    - 3
-    - 1
-    - 1
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 3
+    - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+      frequency: 1
+    - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+      frequency: 1
     spawnRate: 1.2
     shopAfter: 0
   - waveName: Level 2, Wave 2/2
     budget: 200
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    enemyFrequencies:
-    - 1
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 1
     spawnRate: 3.5
     shopAfter: 1
   - waveName: Level 3 Wave 1/2
     budget: 250
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
-    enemyFrequencies:
-    - 3
-    - 2
-    - 1
-    - 0.5
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 2
+    - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+      frequency: 1
+    - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+      frequency: 1
+    - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+      frequency: 0.3
     spawnRate: 1.4
     shopAfter: 0
   - waveName: Level 3 Wave 2/2
     budget: 250
-    enemyTypes:
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    enemyFrequencies:
-    - 2
-    - 1
+    enemies:
+    - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+      frequency: 2
+    - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+      frequency: 1
     spawnRate: 1
     shopAfter: 1
+  - waveName: Level 4 Wave 1/2
+    budget: 300
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 1
+    - type: {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
+      frequency: 1
+    - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
+      frequency: 1
+    - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+      frequency: 0.3
+    spawnRate: 1.5
+    shopAfter: 0
+  - waveName: Level 4 Wave 2/2
+    budget: 500
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 2
+    - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+      frequency: 1
+    - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+      frequency: 1
+    - type: {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
+      frequency: 1
+    - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
+      frequency: 1
+    - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+      frequency: 1
+    spawnRate: 2
+    shopAfter: 0
+  - waveName: Infinite Wave
+    budget: 99999
+    enemies:
+    - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
+      frequency: 2
+    - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
+      frequency: 1
+    - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
+      frequency: 1
+    - type: {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
+      frequency: 1
+    - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
+      frequency: 1
+    - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+      frequency: 1
+    spawnRate: 2
+    shopAfter: 0
   - waveName: Infinite Wave
     budget: 999999
-    enemyTypes:
-    - {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
-    - {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
-    - {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
-    - {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
-    enemyFrequencies:
-    - 2
-    - 1
-    - 1
-    - 0.8
+    enemies: []
     spawnRate: 2
+    shopAfter: 0
+  - waveName: 'Test Wave: 1 Enemy'
+    budget: 1
+    enemies: []
+    spawnRate: 0.2
+    shopAfter: 1
+  - waveName: 'Test Wave: All Enemies'
+    budget: 300
+    enemies: []
+    spawnRate: 0.9
     shopAfter: 0
   nextWaveNumber: 0
   budget: 0
   currentWave:
     waveName: 
     budget: 0
-    enemyTypes: []
-    enemyFrequencies: []
+    enemies: []
     spawnRate: 0
     shopAfter: 0
   enemyPool: []
@@ -950,7 +965,7 @@ MonoBehaviour:
   upgradeName: Projectile Speed
   price: 50
   description: Your projectiles fly faster
-  increaseAmount: 8
+  increaseAmount: 5
 --- !u!114 &1401891356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,7 +1162,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 100
-  m_LinearDrag: 0.47
+  m_LinearDrag: 0.6
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

@@ -8,8 +8,7 @@ public class Wave
 {
     public string waveName;
     public float budget;
-    public GameObject[] enemyTypes;
-    public float[] enemyFrequencies;
+    public Enemies[] enemies;
     public float spawnRate;
     public bool shopAfter;
 }
@@ -19,6 +18,12 @@ public class EnemyTypes
 {
     public GameObject type;
     public int value;
+}
+
+ [System.Serializable] public class Enemies
+{
+    public GameObject type;
+    public float frequency;
 }
 
 public class WaveSpawner : MonoBehaviour
@@ -59,9 +64,14 @@ public class WaveSpawner : MonoBehaviour
         budget = currentWave.budget;
 
         enemyFrequencySum = 0;
-        foreach (float frequency in currentWave.enemyFrequencies)
+        //foreach (float frequency in currentWave.enemyFrequencies)
+        //{
+        //    enemyFrequencySum += frequency;
+        //}
+
+        foreach (Enemies enemy in currentWave.enemies)
         {
-            enemyFrequencySum += frequency;
+            enemyFrequencySum += enemy.frequency;
         }
 
         // Varje våg har en "budget"; spelet köper fiender som ska spawnas tills budgeten är slut
@@ -74,10 +84,10 @@ public class WaveSpawner : MonoBehaviour
             float chanceToPick = 0;
             while (enemyType == null)
             {
-                chanceToPick += currentWave.enemyFrequencies[i];
+                chanceToPick += currentWave.enemies[i].frequency;
                 if (randomNumber <= chanceToPick)
                 {
-                    enemyType = currentWave.enemyTypes[i];
+                    enemyType = currentWave.enemies[i].type;
                 }
                 i++;
             }

@@ -230,7 +230,7 @@ MonoBehaviour:
   avoidForce: 300
   collisionDamage: 100
   collisionSelfDamage: 35
-  flyByDistance: 15
+  flyByDistance: 7
   acceleration: 600
   projectile: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
   projectileDamage: 60

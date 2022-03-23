@@ -51,6 +51,7 @@ public class Bomber : Enemy
                 if (leftOrRight)
                 {
                     targetPosition = (Vector2)player.position + Vector2.Perpendicular(playerDirection) * flyByDistance;
+                    targetPosition -= playerDirection * flyByDistance;
                     direction = (targetPosition - (Vector2)transform.position).normalized;
                     bombDirection = -Vector2.Perpendicular(direction);
                     
@@ -59,11 +60,12 @@ public class Bomber : Enemy
                 else
                 {
                     targetPosition = (Vector2)player.position - Vector2.Perpendicular(playerDirection) * flyByDistance;
+                    targetPosition -= playerDirection * flyByDistance;
                     direction = (targetPosition - (Vector2)transform.position).normalized;
                     bombDirection = Vector2.Perpendicular(direction);
                 }
                 transform.up = direction;
-                if (IsInScreen(0.2f)) approaching = false;
+                if (IsInScreen(0.1f)) approaching = false;
             }
 
             else if (!IsInScreen(-0.1f)) Approach();
@@ -84,7 +86,7 @@ public class Bomber : Enemy
             Rigidbody2D projectileRigidbody = newProjectile.GetComponent<Rigidbody2D>();
             Vector2 randomVector = new Vector2(Random.Range(-projectileSpread, projectileSpread),
                 Random.Range(-projectileSpread, projectileSpread));
-            projectileRigidbody.velocity = m_rigidbody.velocity*0.5f + projectileSpeed * bombDirection + randomVector;
+            projectileRigidbody.velocity = /*m_rigidbody.velocity*0.5f*/ + projectileSpeed * bombDirection + randomVector;
             newProjectile.GetComponent<EnemyBomb>().damage = projectileDamage;
         }
     }

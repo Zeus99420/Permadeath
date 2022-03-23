@@ -37,6 +37,7 @@ public class ScoutShooter : Enemy
 
             if (leftOrRight) targetPosition = (Vector2)player.position + Vector2.Perpendicular(playerDirection) * flyByDistance;
             else targetPosition = (Vector2)player.position - Vector2.Perpendicular(playerDirection) * flyByDistance;
+            targetPosition -= playerDirection * flyByDistance;
 
             direction = (targetPosition - (Vector2)transform.position).normalized;
 
