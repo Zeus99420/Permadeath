@@ -434,7 +434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf06e35532ca170429847cc34abac82b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 434e7abd77de71540a3f036f8bfb99bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -983,6 +983,7 @@ MonoBehaviour:
   price: 80
   description: Your ship flies faster
   increaseAmount: 125
+  BiggerEngine: {fileID: 21300000, guid: 4982f424193201d45b04113087aa9fdc, type: 3}
 --- !u!114 &1401891357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1063,7 @@ MonoBehaviour:
   description: Your bullets are slow and big but make more damage
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 1.5
+  CanonWeapon: {fileID: 21300000, guid: cbc23e9c7dff0664c8b52be92e04bdd1, type: 3}
 --- !u!1 &1653898505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,7 +1808,7 @@ SpriteRenderer:
   m_SortingLayerID: -326755763
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bf06e35532ca170429847cc34abac82b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bcd6bf0bf03544f4896d7743fec735eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1814,7 +1816,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1931217443

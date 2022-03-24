@@ -6,9 +6,11 @@ public class BigBullet : Upgrades
 {
     public GameObject projectile;
     public float projectileSpeed;
+    public Sprite CanonWeapon;
 
     public override void BuyFirst()
     {
+        player.GetComponent<SpriteRenderer>().sprite = CanonWeapon;
         Weapons weapons = player.GetComponent<Weapons>();
         weapons.fireMode = "FireBigSlowBullet";
         //weapons.projectileSpeed = projectileSpeed / 4;
@@ -16,11 +18,6 @@ public class BigBullet : Upgrades
         //playerprojectile.GetComponent<PlayerProjectile>();
         //playerprojectile.transform.localScale *= 5.2f;
 
-    }
-
-    public override void BuyAnother()
-    {
-        Weapons weapons = player.GetComponent<Weapons>();
     }
 
 }

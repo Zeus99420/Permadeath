@@ -5,8 +5,10 @@ using UnityEngine;
 public class Engine : Upgrades
 {
     public float increaseAmount;
+    public Sprite BiggerEngine;
     public override void Buy()
     {
+        player.GetComponent<SpriteRenderer>().sprite = BiggerEngine;
         player.GetComponent<PlayerMovement>().acceleration +=increaseAmount;
     }
 }
