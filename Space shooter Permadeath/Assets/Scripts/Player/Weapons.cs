@@ -154,7 +154,7 @@ public class Weapons : MonoBehaviour
     public void FireBigSlowBullet(Vector2 fireVector)
     {
         float fireElapsedTime = 0;
-        float fireDelay = 6f;
+        float fireDelay = 0.02f;
     GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 3;

@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: -536760163
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
-  m_Color: {r: 0.09531862, g: 0.09531862, b: 0.9622642, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3ae1d17d63f2a1b4d8ac10d66fd57c0c, type: 3}
+  m_Color: {r: 0.93961376, g: 0.93961376, b: 0.9716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
+  healthAlreadySet: 0
   player: {fileID: 0}
   mastermind: {fileID: 0}
   value: 0
@@ -148,6 +149,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008773565, y: 0}
-  m_Size: {x: 1.0175471, y: 1.9999999}
+  m_Offset: {x: 0.10008359, y: 0}
+  m_Size: {x: 1.4132257, y: 2.3807397}
   m_Direction: 0
