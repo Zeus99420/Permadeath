@@ -82,7 +82,7 @@ public class Bomber : Enemy
         {
             nextShotTime = Time.time + Random.Range(minCooldown, maxCooldown);
 
-            GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
+            GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.projectilesContainer);
             Rigidbody2D projectileRigidbody = newProjectile.GetComponent<Rigidbody2D>();
             Vector2 randomVector = new Vector2(Random.Range(-projectileSpread, projectileSpread),
                 Random.Range(-projectileSpread, projectileSpread));

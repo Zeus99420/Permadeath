@@ -8,6 +8,7 @@ public class Upgrades : MonoBehaviour
     public string upgradeName;
     public int price;
     public string description;
+    public bool unique;
 
     bool firstTimeBuying = true;
     public virtual void Buy()

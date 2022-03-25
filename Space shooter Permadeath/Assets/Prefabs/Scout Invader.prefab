@@ -115,8 +115,8 @@ MonoBehaviour:
   cooldown: 2
   projectileSpeed: 12
   projectileDamage: 25
-  dodgeForce: 15000
-  dodgeDuration: 5
+  dodgeCooldown: 0.6
+  dodgeForce: 18000
 --- !u!50 &8848007241133588017
 Rigidbody2D:
   serializedVersion: 4

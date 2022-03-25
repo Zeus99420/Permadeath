@@ -14,6 +14,7 @@ public class Mastermind : MonoBehaviour
     public WaveSpawner waveSpawner;
     public Shop shop;
     public Transform enemiesContainer;
+    public Transform projectilesContainer;
     public Text enemiesRemainingText;
 
 
@@ -168,10 +169,9 @@ public class Mastermind : MonoBehaviour
     public void StartFromCheckpoint()
     {
         GMState = GameMastermindState.Gameplay;
-        foreach (Transform enemy in enemiesContainer)
-        {
-            Destroy(enemy.gameObject);
-        }
+        foreach (Transform enemy in enemiesContainer) Destroy(enemy.gameObject);
+        foreach (Transform projectile in projectilesContainer)  Destroy(projectile.gameObject);
+
         player = Instantiate(savedPlayer);
         //player.GetComponent<PlayerMovement>().health = savedPlayer.GetComponent<PlayerMovement>().health;
         player.SetActive(true);

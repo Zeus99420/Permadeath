@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
+    public Mastermind mastermind;
 
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
@@ -101,7 +102,7 @@ public class Weapons : MonoBehaviour
 
     public void FireStandardProjectile(Vector2 fireVector)
     {
-        GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
+        GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.projectilesContainer);
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
@@ -155,7 +156,7 @@ public class Weapons : MonoBehaviour
     {
         float fireElapsedTime = 0;
         float fireDelay = 0.02f;
-    GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
+    GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.projectilesContainer);
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 3;
         newProjectile.transform.localScale *= 5f;

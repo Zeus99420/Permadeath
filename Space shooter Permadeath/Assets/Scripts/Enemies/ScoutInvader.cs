@@ -13,8 +13,10 @@ public class ScoutInvader : Enemy
     public float projectileSpeed;
     public int projectileDamage;
 
+    float dodgeReadyTime;
+    public float dodgeCooldown;
     public float dodgeForce;
-    public int dodgeDuration;
+    //public int dodgeDuration;
 
     private void FixedUpdate()
     {
@@ -30,7 +32,7 @@ public class ScoutInvader : Enemy
             {
                 nextShotTime = Time.time + cooldown;
 
-                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
+                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.projectilesContainer);
                 newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
                 newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
 
@@ -66,10 +68,15 @@ public class ScoutInvader : Enemy
 
     void Dodge()
     {
-        Vector2 dodgeDirection;
-        if (Random.value < 0.5) dodgeDirection = Vector2.Perpendicular(direction);
-        else dodgeDirection = -Vector2.Perpendicular(direction);
-        m_rigidbody.AddForce(dodgeDirection * dodgeForce);
+        if (Time.time > dodgeReadyTime)
+        {
+            dodgeReadyTime = Time.time + dodgeCooldown;
+            Vector2 dodgeDirection;
+            if (Random.value < 0.5) dodgeDirection = Vector2.Perpendicular(direction);
+            else dodgeDirection = -Vector2.Perpendicular(direction);
+            m_rigidbody.AddForce(dodgeDirection * dodgeForce);
+        }
+
     }
 
 

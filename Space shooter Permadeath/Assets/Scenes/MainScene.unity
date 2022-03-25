@@ -216,7 +216,7 @@ RectTransform:
   m_Children:
   - {fileID: 510502149}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -572,7 +572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724033848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0858582, y: -0.36164835, z: -2.0276127}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -642,7 +642,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856224838
 GameObject:
@@ -679,6 +679,7 @@ MonoBehaviour:
   waveSpawner: {fileID: 1101592341}
   shop: {fileID: 1748672121}
   enemiesContainer: {fileID: 724033849}
+  projectilesContainer: {fileID: 925620873}
   enemiesRemainingText: {fileID: 2011237116}
   moneyText: {fileID: 1734324497}
   scoreText: {fileID: 2089369574}
@@ -697,6 +698,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &925620872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925620873}
+  m_Layer: 0
+  m_Name: Projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925620873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925620872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101592340
 GameObject:
@@ -850,16 +881,18 @@ MonoBehaviour:
     enemies: []
     spawnRate: 2
     shopAfter: 0
-  - waveName: 'Test Wave: 1 Enemy'
-    budget: 1
-    enemies: []
-    spawnRate: 0.2
-    shopAfter: 1
   - waveName: 'Test Wave: All Enemies'
     budget: 300
     enemies: []
     spawnRate: 0.9
     shopAfter: 0
+  - waveName: 'Test Wave: 1 Enemy'
+    budget: 200
+    enemies:
+    - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
+      frequency: 1
+    spawnRate: 0.2
+    shopAfter: 1
   nextWaveNumber: 0
   budget: 0
   currentWave:
@@ -923,6 +956,7 @@ MonoBehaviour:
   upgradeName: Faster Gun
   price: 150
   description: Increases your attack speed
+  unique: 0
   increaseAmount: 1
   BiggerGun: {fileID: 21300000, guid: eb060f991954d9148aae4bc01fd20278, type: 3}
 --- !u!224 &1401891353
@@ -960,6 +994,7 @@ MonoBehaviour:
   upgradeName: Armor Plates
   price: 100
   description: Increases your health
+  unique: 0
   increaseAmount: 50
   Shield: {fileID: 21300000, guid: 5afdfcd76192b6a459dab76f3a88a6a0, type: 3}
 --- !u!114 &1401891355
@@ -978,6 +1013,7 @@ MonoBehaviour:
   upgradeName: Projectile Speed
   price: 50
   description: Your projectiles fly faster
+  unique: 0
   increaseAmount: 5
 --- !u!114 &1401891356
 MonoBehaviour:
@@ -995,6 +1031,7 @@ MonoBehaviour:
   upgradeName: Engine
   price: 80
   description: Your ship flies faster
+  unique: 0
   increaseAmount: 125
   BiggerEngine: {fileID: 21300000, guid: 4982f424193201d45b04113087aa9fdc, type: 3}
 --- !u!114 &1401891357
@@ -1013,6 +1050,7 @@ MonoBehaviour:
   upgradeName: Shotgun
   price: 150
   description: You fire several smaller projectiles in an arc
+  unique: 0
   baseBulletCount: 4
   bulletCountIncrease: 2
   baseSpread: 8
@@ -1034,6 +1072,7 @@ MonoBehaviour:
   upgradeName: Rapid Fire
   price: 150
   description: You can fire very quickly for a short time. Hold fire to recharge
+  unique: 1
   baseFireRateMultiplier: 2
   fireRateMultiplierIncrease: 0.5
   baseMaxEnergy: 2
@@ -1054,6 +1093,7 @@ MonoBehaviour:
   upgradeName: Stand Your Ground
   price: 150
   description: Your attack damage is increased when you don't use your engines
+  unique: 1
   multiplierMaxBase: 2.5
   multiplierMaxIncrease: 1.5
   ChargeTime: 1
@@ -1074,6 +1114,7 @@ MonoBehaviour:
   upgradeName: BigBullet
   price: 50
   description: Your bullets are slow and big but make more damage
+  unique: 1
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 1.5
   CanonWeapon: {fileID: 21300000, guid: cbc23e9c7dff0664c8b52be92e04bdd1, type: 3}
@@ -1330,6 +1371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6b3f747766b61449645adf665832b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mastermind: {fileID: 856224839}
   rateOfFire: 3
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 7
@@ -1442,7 +1484,7 @@ RectTransform:
   - {fileID: 2011237115}
   - {fileID: 1734324496}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1624,7 +1666,7 @@ RectTransform:
   - {fileID: 456961071}
   - {fileID: 9091034501602691128}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1757,7 +1799,7 @@ RectTransform:
   m_Children:
   - {fileID: 2014833293}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1844,7 +1886,7 @@ Transform:
   m_LocalScale: {x: 20.58837, y: 10.150473, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2011237114
 GameObject:
