@@ -32,6 +32,8 @@ public class WaveSpawner : MonoBehaviour
     Mastermind mastermind;
 
     public EnemyTypes[] allEnemyTypes;
+    public List<GameObject> pickupList;
+    public GameObject freighterPrefab;
     public Dictionary<GameObject, int> enemyValues = new Dictionary<GameObject, int>();
 
     public Wave[] waves;
@@ -74,6 +76,8 @@ public class WaveSpawner : MonoBehaviour
             enemyFrequencySum += enemy.frequency;
         }
 
+
+
         // Varje våg har en "budget"; spelet köper fiender som ska spawnas tills budgeten är slut
         while (budget > 0)
         {
@@ -96,6 +100,16 @@ public class WaveSpawner : MonoBehaviour
             enemyPool.Add(enemyType);
             budget -= enemyValues[enemyType];
 
+        }
+
+        //Lägger slumpmässigt till fraktskepp med pickups till enemypool. Högre budget -> Fler fraktskepp, men inte linjärt.
+        for (int t = 0; t < Mathf.Sqrt(currentWave.budget); t++)
+        {
+            int randomIndex = Random.Range(0, enemyPool.Count+1);
+            if (Random.value < (1f / 15f))
+            {
+                enemyPool.Insert(randomIndex, freighterPrefab);
+            }
         }
         mastermind.CountEnemies();
     }

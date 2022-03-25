@@ -48,7 +48,7 @@ public class ScoutShooter : Enemy
             {
                 nextShotTime = Time.time + cooldown;
 
-                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.projectilesContainer);
+                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
                 newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
                 newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
             }

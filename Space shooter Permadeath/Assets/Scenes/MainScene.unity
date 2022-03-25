@@ -679,7 +679,7 @@ MonoBehaviour:
   waveSpawner: {fileID: 1101592341}
   shop: {fileID: 1748672121}
   enemiesContainer: {fileID: 724033849}
-  projectilesContainer: {fileID: 925620873}
+  stuffContainer: {fileID: 925620873}
   enemiesRemainingText: {fileID: 2011237116}
   moneyText: {fileID: 1734324497}
   scoreText: {fileID: 2089369574}
@@ -709,7 +709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925620873}
   m_Layer: 0
-  m_Name: Projectiles
+  m_Name: Stuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -772,6 +772,11 @@ MonoBehaviour:
     value: 60
   - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     value: 70
+  - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
+    value: 0
+  pickupList:
+  - {fileID: 8629178398983394060, guid: 8998ef92c0aa7ab46bd91be96fb8a9dd, type: 3}
+  freighterPrefab: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
   waves:
   - waveName: Level 1, Wave 1/2
     budget: 50

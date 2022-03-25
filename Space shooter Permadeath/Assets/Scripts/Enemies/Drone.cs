@@ -14,6 +14,7 @@ public class Drone : Enemy
         if (player)
         {
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
+            transform.up = direction;
         }
         m_rigidbody.AddForce(direction * acceleration);
 
