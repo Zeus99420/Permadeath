@@ -57,10 +57,11 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float rapidFireEnergyMax;
     [HideInInspector] public float rapidFireMultiplier;
 
-    [HideInInspector] float standYourGroundMultiplier;
+    /*[HideInInspector]*/ public float standYourGroundMultiplier;
     [HideInInspector] public float standYourGroundMultiplierMax;
     [HideInInspector] public float standYourGroundChargeTime;
     [HideInInspector] public float standYourGroundUnchargeTime;
+    [HideInInspector] public bool standYourGroundTrail;
 
     private void Start()
     {
@@ -103,6 +104,7 @@ public class Weapons : MonoBehaviour
     public void FireStandardProjectile(Vector2 fireVector)
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
+        newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
@@ -118,7 +120,9 @@ public class Weapons : MonoBehaviour
     {
         if (!GetComponent<PlayerMovement>().usingEngines)
             standYourGroundMultiplier += ((standYourGroundMultiplierMax - 1) / standYourGroundChargeTime) * Time.deltaTime;
+
         else standYourGroundMultiplier -= ((standYourGroundMultiplierMax - 1) / standYourGroundUnchargeTime) * Time.deltaTime;
+
         standYourGroundMultiplier = Mathf.Clamp(standYourGroundMultiplier, 1, standYourGroundMultiplierMax);
         projectileDamage = (int)(projectileDamage * standYourGroundMultiplier);
     }

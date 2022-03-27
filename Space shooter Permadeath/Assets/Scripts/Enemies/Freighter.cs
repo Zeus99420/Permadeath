@@ -42,5 +42,6 @@ public class Freighter : Enemy
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+        mastermind.Invoke("CountEnemies", 0f);
     }
 }

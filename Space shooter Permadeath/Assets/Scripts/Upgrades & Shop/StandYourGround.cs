@@ -19,6 +19,7 @@ public class StandYourGround : Upgrades
         weapons.standYourGroundMultiplierMax = multiplierMaxBase;
         weapons.standYourGroundChargeTime = ChargeTime;
         weapons.standYourGroundUnchargeTime = UnchargeTime;
+        weapons.standYourGroundTrail = true;
 
     }
     public override void BuyAnother()

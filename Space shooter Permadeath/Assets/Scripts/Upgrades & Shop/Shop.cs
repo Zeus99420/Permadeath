@@ -25,7 +25,7 @@ public class Shop : MonoBehaviour
             int randomNumber = Random.Range(0, upgrades.Count);
             Upgrades randomUpgrade = upgrades[randomNumber];
             upgrades.RemoveAt(randomNumber);
-            GameObject buttonObject = Instantiate(buttonPrefab, transform);
+            GameObject buttonObject = Instantiate(buttonPrefab, transform.Find("ButtonLayout"));
             buttonObject.transform.Translate(Vector3.right * 3 * t);
             Button button = buttonObject.GetComponent<Button>();
 
@@ -37,7 +37,7 @@ public class Shop : MonoBehaviour
             button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
             button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.description;
 
-
+            transform.Find("PickAnUpgradeText").gameObject.SetActive(true);
 
 
         }
@@ -47,18 +47,11 @@ public class Shop : MonoBehaviour
 
     public void Exit()
     {
-        foreach (Button button in buttons)
-        {
-            Destroy(button.gameObject);
-        }
-        buttons.Clear();
-        upgrades.AddRange(availableUpgrades);
-        availableUpgrades.Clear();
-
+        ClearUpgrades();
         gameObject.SetActive(false);
     }
 
-    public void OnlyOneUppgrade()
+    public void ClearUpgrades()
     {
         foreach (Button button in buttons)
         {
@@ -67,6 +60,8 @@ public class Shop : MonoBehaviour
         buttons.Clear();
         upgrades.AddRange(availableUpgrades);
         availableUpgrades.Clear();
+
+        transform.Find("PickAnUpgradeText").gameObject.SetActive(false);
     }
 
     public void CheckAfford ()
@@ -92,6 +87,6 @@ public class Shop : MonoBehaviour
         buttons.Remove(button);
         Destroy(button.gameObject);
 
-        OnlyOneUppgrade();
+        ClearUpgrades();
     }
 }
