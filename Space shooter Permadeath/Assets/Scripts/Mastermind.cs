@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Mastermind : MonoBehaviour
@@ -10,6 +11,7 @@ public class Mastermind : MonoBehaviour
 
     public GameObject player;
     public PermadeathScreen permadeathscreen;
+    public Button startoverbutton;
     Coroutine deathScreenCoroutine;
     public WaveSpawner waveSpawner;
     public Shop shop;
@@ -72,6 +74,7 @@ public class Mastermind : MonoBehaviour
                 StartCoroutine(permadeathscreen.FadeOut());
                 UpdateMoney(0);
                 UpdateScore(0);
+                startoverbutton.gameObject.SetActive(false);
                 break;
             case GameMastermindState.Gameplay:
                 //waveSpawner.enabled = true;
@@ -83,6 +86,7 @@ public class Mastermind : MonoBehaviour
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
                 deathScreenCoroutine = StartCoroutine(permadeathscreen.FadeIn());
+                startoverbutton.gameObject.SetActive(true);
                 //Invoke("ChangeToOpeningState", 6f);
                 break;
         }
@@ -188,5 +192,11 @@ public class Mastermind : MonoBehaviour
         Invoke("CountEnemies", 0f);
     }
 
-
+    public void StartOver ()
+    {
+        
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StopCoroutine(deathScreenCoroutine);
+            StartCoroutine(permadeathscreen.FadeOut());
+    }
 }
