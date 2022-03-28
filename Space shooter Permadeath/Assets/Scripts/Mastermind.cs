@@ -8,9 +8,10 @@ using UnityEngine.SceneManagement;
 public class Mastermind : MonoBehaviour
 {
     public bool testingShop;
-
+    public bool permadeath;
     public GameObject player;
     public PermadeathScreen permadeathscreen;
+    public Sprite deathscreen;
     public Button startoverbutton;
     Coroutine deathScreenCoroutine;
     public WaveSpawner waveSpawner;
@@ -48,6 +49,10 @@ public class Mastermind : MonoBehaviour
         if (testingShop) { UpdateMoney(1000); EnterShop(); }
         else waveSpawner.Invoke("NewWave",0f);
 
+        if(permadeath )
+        {
+            permadeathscreen.transform.Find("Image").GetComponent<Image>().sprite = deathscreen;
+        }
 
         //GMState = GameMastermindState.Opening;
         SetGameMastermindState(GameMastermindState.Opening);
@@ -60,7 +65,7 @@ public class Mastermind : MonoBehaviour
 
     private void Update()
     {
-        if(GMState == GameMastermindState.GameOver && Input.GetKeyDown("t"))
+        if(GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath)
         {
             StartFromCheckpoint();
         }
