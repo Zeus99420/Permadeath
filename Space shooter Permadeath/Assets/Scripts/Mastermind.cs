@@ -194,9 +194,8 @@ public class Mastermind : MonoBehaviour
 
     public void StartOver ()
     {
-        
+        if (Input.GetKey("r")) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            StopCoroutine(deathScreenCoroutine);
-            StartCoroutine(permadeathscreen.FadeOut());
+        }      
     }
 }
