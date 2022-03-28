@@ -6,9 +6,11 @@ using UnityEngine;
 public class Weapons : MonoBehaviour
 {
     public Mastermind mastermind;
-
+    public float rateOfFireMultiplier;
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
+    public Transform weapon;
+    public AudioSource shotaudio;
 
     public GameObject projectile;
     public float projectileSpeed;
@@ -99,11 +101,12 @@ public class Weapons : MonoBehaviour
     public void StandardFire()
     {
         SendMessage(fireMode, (Vector2)transform.up);
+        shotaudio.Play();
     }
 
     public void FireStandardProjectile(Vector2 fireVector)
     {
-        GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
+        GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
@@ -142,6 +145,7 @@ public class Weapons : MonoBehaviour
 
     public void ShotgunFire()
     {
+        shotaudio.Play();
         float angle = -spread / 2;
         float angleIncrement = spread / (spreadBulletCount - 1);
 
@@ -160,7 +164,8 @@ public class Weapons : MonoBehaviour
     {
         float fireElapsedTime = 0;
         float fireDelay = 0.02f;
-    GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
+    GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
+        newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 3;
         newProjectile.transform.localScale *= 5f;

@@ -64,6 +64,11 @@ public class Mastermind : MonoBehaviour
         {
             StartFromCheckpoint();
         }
+
+        if(/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r"))
+        {
+            StartOver();
+        }
     }
 
     void UpdateGameMastermindState()
@@ -190,12 +195,14 @@ public class Mastermind : MonoBehaviour
         StopCoroutine(deathScreenCoroutine);
         StartCoroutine(permadeathscreen.FadeOut());
         Invoke("CountEnemies", 0f);
+        startoverbutton.gameObject.SetActive(false);
+
     }
 
     public void StartOver ()
     {
-        if (Input.GetKey("r")) {
+        
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }      
+            
     }
 }

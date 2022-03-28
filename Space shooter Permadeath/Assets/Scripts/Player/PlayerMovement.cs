@@ -38,6 +38,8 @@ public class PlayerMovement : Character
         transform.up = direction;
 
         Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        if (pos.x < 0 || pos.x > 1) m_rigidbody.velocity = m_rigidbody.velocity*new Vector2(0,1);
+        if(pos.y < 0 || pos.y > 1) m_rigidbody.velocity = m_rigidbody.velocity * new Vector2(1, 0);
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp01(pos.y);
         gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);

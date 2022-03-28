@@ -302,6 +302,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270539409}
   m_CullTransparentMesh: 1
+--- !u!1 &397213640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397213641}
+  m_Layer: 6
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &397213641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397213640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.74, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1653898507}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456961070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,6 +1366,8 @@ MonoBehaviour:
   baseSpread: 8
   spreadIncrease: 2
   damageMultiplier: 0.5
+  rateOfFireMultiplier: 0.6
+  shotgunaudio: {fileID: 8300000, guid: c4dfa070f85d35b4893e1c4b3368ac87, type: 3}
 --- !u!114 &1401891358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1392,12 +1424,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: BigBullet
-  price: 50
+  price: 200
   description: Your bullets are slow and big but make more damage
   unique: 1
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 1.5
   CanonWeapon: {fileID: 21300000, guid: cbc23e9c7dff0664c8b52be92e04bdd1, type: 3}
+  rateOfFireMultiplier: 0.4
 --- !u!1 &1653898505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,9 +1513,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653898505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.582, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 397213641}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1654,9 +1688,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 150b350288f71db4d93b9e2a06f088ee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.14
-  m_Pitch: 1
-  Loop: 1
+  m_Volume: 0.037
+  m_Pitch: 0.77
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1713,7 +1747,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.16944444
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1751,7 +1785,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mastermind: {fileID: 856224839}
+  rateOfFireMultiplier: 1
   rateOfFire: 3
+  weapon: {fileID: 397213641}
+  shotaudio: {fileID: 1653898512}
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 7
   baseDamage: 10

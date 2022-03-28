@@ -9,6 +9,8 @@ public class Shotgun : Upgrades
     public float baseSpread;
     public float spreadIncrease;
     public float damageMultiplier;
+    public float rateOfFireMultiplier;
+    public AudioClip shotgunaudio;
     public override void BuyFirst() 
     {
         Weapons weapons = player.GetComponent<Weapons>();
@@ -20,6 +22,9 @@ public class Shotgun : Upgrades
         weapons.spreadBulletCount = baseBulletCount;
         weapons.spread = baseSpread;
         weapons.spreadDamageMultiplier = damageMultiplier;
+        weapons.rateOfFire *= rateOfFireMultiplier;
+        weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
+        weapons.shotaudio.clip = shotgunaudio;
     }
 
     public override void BuyAnother()

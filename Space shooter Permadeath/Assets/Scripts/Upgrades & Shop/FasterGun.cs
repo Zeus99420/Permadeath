@@ -8,8 +8,9 @@ public class FasterGun : Upgrades
     public Sprite BiggerGun;
     public override void Buy() 
     {
-        player.GetComponent<SpriteRenderer>().sprite = BiggerGun;
-        player.GetComponent<Weapons>().rateOfFire += increaseAmount;
+        Weapons weapons = player.GetComponent<Weapons>();
+        weapons.weapon.GetComponent<SpriteRenderer>().sprite = BiggerGun;
+        weapons.rateOfFire += increaseAmount * weapons.rateOfFireMultiplier;
     }
 
    
