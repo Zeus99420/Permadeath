@@ -10,6 +10,7 @@ public class PlayerMovement : Character
 
     public float acceleration;
     [HideInInspector] public bool usingEngines;
+    public bool shieldActive;
 
     public override void Start()
     {
@@ -55,8 +56,17 @@ public class PlayerMovement : Character
 
     public override void Damage(int damageAmount)
     {
-        base.Damage(damageAmount);
-        StartCoroutine(Flicker(Color.red));
+        if (shieldActive)
+        {
+            shieldActive = false;
+            transform.Find("Shield").gameObject.SetActive(false);
+        }
+            else
+                {
+                    base.Damage(damageAmount);
+                    StartCoroutine(Flicker(Color.red));
+                }
+
     }
 
     public override void Die()
