@@ -10,7 +10,8 @@ public class Mastermind : MonoBehaviour
     public bool testingShop;
     public bool permadeath;
     public GameObject player;
-    public PermadeathScreen permadeathscreen;
+    public UIScreen permadeathscreen;
+    public UIScreen instructions;
     public Sprite deathscreen;
     public Button startoverbutton;
     Coroutine deathScreenCoroutine;
@@ -42,12 +43,12 @@ public class Mastermind : MonoBehaviour
 
     GameMastermindState GMState;
     void Start()
-    {
-
+    {  
         shop.Initialize();
 
         if (testingShop) { UpdateMoney(1000); EnterShop(); }
-        else waveSpawner.Invoke("NewWave",0f);
+        else instructions.StartCoroutine(instructions.FadeIn());
+        //else waveSpawner.Invoke("NewWave",0f);
 
         if(permadeath )
         {
@@ -56,7 +57,7 @@ public class Mastermind : MonoBehaviour
 
         //GMState = GameMastermindState.Opening;
         SetGameMastermindState(GameMastermindState.Opening);
-        SetGameMastermindState(GameMastermindState.Gameplay);
+        //SetGameMastermindState(GameMastermindState.Gameplay);
 
 
 
@@ -65,7 +66,9 @@ public class Mastermind : MonoBehaviour
 
     private void Update()
     {
-        if(GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath)
+        if (GMState == GameMastermindState.Opening && Input.GetKeyDown("space")) StartGameplay();
+
+        if (GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath)
         {
             StartFromCheckpoint();
         }
@@ -81,13 +84,14 @@ public class Mastermind : MonoBehaviour
         switch (GMState)
         {
             case GameMastermindState.Opening:
-                StartCoroutine(permadeathscreen.FadeOut());
                 UpdateMoney(0);
                 UpdateScore(0);
-                startoverbutton.gameObject.SetActive(false);
+                //startoverbutton.gameObject.SetActive(false);
                 break;
             case GameMastermindState.Gameplay:
-                //waveSpawner.enabled = true;
+                StartCoroutine(instructions.FadeOut());
+                waveSpawner.enabled = true;
+                waveSpawner.Invoke("NewWave", 0f);
                 break;
             case GameMastermindState.Shop:
                 shop.gameObject.SetActive(true);
@@ -96,7 +100,7 @@ public class Mastermind : MonoBehaviour
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
                 deathScreenCoroutine = StartCoroutine(permadeathscreen.FadeIn());
-                startoverbutton.gameObject.SetActive(true);
+                //startoverbutton.gameObject.SetActive(true);
                 //Invoke("ChangeToOpeningState", 6f);
                 break;
         }
