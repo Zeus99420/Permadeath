@@ -10,7 +10,9 @@ public class Mastermind : MonoBehaviour
     public bool testingShop;
     public bool permadeath;
     public GameObject player;
-    public UIScreen permadeathscreen;
+    UIScreen deathScreen;
+    public UIScreen permadeathScreen;
+    public UIScreen standardDeathScreen;
     public UIScreen instructions;
     public Sprite deathscreen;
     public Button startoverbutton;
@@ -43,21 +45,22 @@ public class Mastermind : MonoBehaviour
 
     GameMastermindState GMState;
     void Start()
-    {  
+    {
+        SetGameMastermindState(GameMastermindState.Opening);
+
         shop.Initialize();
+        CheckpointSave();
 
         if (testingShop) { UpdateMoney(1000); EnterShop(); }
-        else instructions.StartCoroutine(instructions.FadeIn());
-        //else waveSpawner.Invoke("NewWave",0f);
+        else StartCoroutine(instructions.FadeIn());
 
-        if(permadeath )
-        {
-            permadeathscreen.transform.Find("Image").GetComponent<Image>().sprite = deathscreen;
-        }
+        if (permadeath) deathScreen = permadeathScreen;
+        else deathScreen = standardDeathScreen;
+         
 
-        //GMState = GameMastermindState.Opening;
-        SetGameMastermindState(GameMastermindState.Opening);
-        //SetGameMastermindState(GameMastermindState.Gameplay);
+
+
+
 
 
 
@@ -68,15 +71,12 @@ public class Mastermind : MonoBehaviour
     {
         if (GMState == GameMastermindState.Opening && Input.GetKeyDown("space")) StartGameplay();
 
-        if (GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath)
-        {
-            StartFromCheckpoint();
-        }
+        if (GMState == GameMastermindState.Shop && Input.GetKeyDown("space")) ExitShop();
 
-        if(/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r"))
-        {
-            StartOver();
-        }
+        if (GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath) StartFromCheckpoint();
+
+        if(/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r")) StartOver();
+
     }
 
     void UpdateGameMastermindState()
@@ -99,9 +99,8 @@ public class Mastermind : MonoBehaviour
                 break;
             case GameMastermindState.GameOver:
                 waveSpawner.enabled = false;
-                deathScreenCoroutine = StartCoroutine(permadeathscreen.FadeIn());
-                //startoverbutton.gameObject.SetActive(true);
-                //Invoke("ChangeToOpeningState", 6f);
+                deathScreenCoroutine = StartCoroutine(deathScreen.FadeIn());
+
                 break;
         }
     }
@@ -133,7 +132,7 @@ public class Mastermind : MonoBehaviour
         GMState = GameMastermindState.Gameplay;
         UpdateGameMastermindState();
 
-        waveSpawner.NewWave();
+        //waveSpawner.NewWave();
     }
 
     public void ChangeToOpeningState()
@@ -177,7 +176,6 @@ public class Mastermind : MonoBehaviour
     {
         if(savedPlayer) { Destroy(savedPlayer); }
         savedPlayer = Instantiate(player);
-        //savedPlayer.GetComponent<PlayerMovement>().health = player.GetComponent<PlayerMovement>().health;
         savedPlayer.SetActive(false);
         savedMoney = money;
         savedScore = score;
@@ -191,7 +189,6 @@ public class Mastermind : MonoBehaviour
         foreach (Transform projectile in stuffContainer)  Destroy(projectile.gameObject);
 
         player = Instantiate(savedPlayer);
-        //player.GetComponent<PlayerMovement>().health = savedPlayer.GetComponent<PlayerMovement>().health;
         player.SetActive(true);
         money = savedMoney;
         score = savedScore;
@@ -202,10 +199,8 @@ public class Mastermind : MonoBehaviour
         waveSpawner.nextWaveNumber = savedNextWave;
         waveSpawner.NewWave();
         StopCoroutine(deathScreenCoroutine);
-        StartCoroutine(permadeathscreen.FadeOut());
+        StartCoroutine(deathScreen.FadeOut());
         Invoke("CountEnemies", 0f);
-        startoverbutton.gameObject.SetActive(false);
-
     }
 
     public void StartOver ()
