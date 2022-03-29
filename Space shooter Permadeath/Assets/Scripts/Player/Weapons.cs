@@ -11,7 +11,7 @@ public class Weapons : MonoBehaviour
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
     public Transform weapon;
     public AudioSource shotaudio;
-
+    //public Sprite Circle;
     public GameObject projectile;
     public float projectileSpeed;
     public int baseDamage;
@@ -167,9 +167,11 @@ public class Weapons : MonoBehaviour
         //float fireDelay = 0.02f;
     GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
+        //newProjectile.GetComponent<SpriteRenderer>().sprite = Circle;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 3;
         newProjectile.transform.localScale *= projectileSize;
+       
         //newProjectile.transform.localScale *= 5f;
         //SendMessage(fireMode);
         //Vill att den inte ska kunna firea konstant utan typ ett skott per sekund
