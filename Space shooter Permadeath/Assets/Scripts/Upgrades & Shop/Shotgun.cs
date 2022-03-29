@@ -10,6 +10,7 @@ public class Shotgun : Upgrades
     public float spreadIncrease;
     public float damageMultiplier;
     public float rateOfFireMultiplier;
+    public float projectileSize;
     public AudioClip shotgunaudio;
     public override void BuyFirst() 
     {
@@ -24,6 +25,7 @@ public class Shotgun : Upgrades
         weapons.spreadDamageMultiplier = damageMultiplier;
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
+        weapons.projectileSize *= projectileSize;
         weapons.shotaudio.clip = shotgunaudio;
     }
 

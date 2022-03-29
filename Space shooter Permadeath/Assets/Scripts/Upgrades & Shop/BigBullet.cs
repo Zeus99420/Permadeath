@@ -8,6 +8,7 @@ public class BigBullet : Upgrades
     public float projectileSpeed;
     public Sprite CanonWeapon;
     public float rateOfFireMultiplier;
+    public float projectileSize;
 
     public override void BuyFirst()
     {
@@ -16,10 +17,8 @@ public class BigBullet : Upgrades
         weapons.fireMode = "FireBigSlowBullet";
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
-        //weapons.projectileSpeed = projectileSpeed / 4;
-        //GameObject playerprojectile = Instantiate(projectile, transform.position, transform.rotation);
-        //playerprojectile.GetComponent<PlayerProjectile>();
-        //playerprojectile.transform.localScale *= 5.2f;
+        weapons.projectileSize *= projectileSize;
+
 
     }
 

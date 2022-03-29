@@ -2120,7 +2120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 0
+  testingShop: 1
   permadeath: 0
   player: {fileID: 1653898505}
   permadeathScreen: {fileID: 69773241}
@@ -3195,6 +3195,7 @@ MonoBehaviour:
   spreadIncrease: 2
   damageMultiplier: 0.5
   rateOfFireMultiplier: 0.6
+  projectileSize: 0.5
   shotgunaudio: {fileID: 8300000, guid: c4dfa070f85d35b4893e1c4b3368ac87, type: 3}
 --- !u!114 &1401891358
 MonoBehaviour:
@@ -3259,6 +3260,7 @@ MonoBehaviour:
   projectileSpeed: 1.5
   CanonWeapon: {fileID: 21300000, guid: 7728964d553d39f4cba2877dc6e50a98, type: 3}
   rateOfFireMultiplier: 0.4
+  projectileSize: 5
 --- !u!1 &1481422465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3491,7 +3493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653898505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 397213641}
@@ -3537,8 +3539,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
+  dead: 0
   mastermind: {fileID: 856224839}
-  healthBarPrefab: {fileID: 4670263869130051520, guid: dda054e3fb460854bb626f70da71f8dc, type: 3}
+  healthBarPrefab: {fileID: 6356634295293370515, guid: 5e13f88ce97b25140bec939ba961ca60, type: 3}
   acceleration: 220
   usingEngines: 0
   shieldActive: 0
@@ -3775,6 +3778,7 @@ MonoBehaviour:
   fireMode: FireStandardProjectile
   methodSequence: []
   enabledSequence: 
+  projectileSize: 1
   spreadBulletCount: 2
   spread: 0
   spreadDamageMultiplier: 0

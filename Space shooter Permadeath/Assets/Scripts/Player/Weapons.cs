@@ -51,6 +51,7 @@ public class Weapons : MonoBehaviour
     int sequenceStep;
 
     //VARIABLER ANVÄNDA AV UPPGRADERINGAR
+    [HideInInspector] public float projectileSize;
     [HideInInspector] public int spreadBulletCount;
     [HideInInspector] public float spread;
     [HideInInspector] public float spreadDamageMultiplier;
@@ -59,7 +60,7 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float rapidFireEnergyMax;
     [HideInInspector] public float rapidFireMultiplier;
 
-    /*[HideInInspector]*/ public float standYourGroundMultiplier;
+    [HideInInspector] public float standYourGroundMultiplier;
     [HideInInspector] public float standYourGroundMultiplierMax;
     [HideInInspector] public float standYourGroundChargeTime;
     [HideInInspector] public float standYourGroundUnchargeTime;
@@ -110,7 +111,7 @@ public class Weapons : MonoBehaviour
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
-        newProjectile.transform.localScale *= Mathf.Sqrt((float)projectileDamage / (float)baseDamage);
+        newProjectile.transform.localScale *= projectileSize;
     }
 
 
@@ -162,13 +163,14 @@ public class Weapons : MonoBehaviour
 
     public void FireBigSlowBullet(Vector2 fireVector)
     {
-        float fireElapsedTime = 0;
-        float fireDelay = 0.02f;
+        //float fireElapsedTime = 0;
+        //float fireDelay = 0.02f;
     GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 3;
-        newProjectile.transform.localScale *= 5f;
+        newProjectile.transform.localScale *= projectileSize;
+        //newProjectile.transform.localScale *= 5f;
         //SendMessage(fireMode);
         //Vill att den inte ska kunna firea konstant utan typ ett skott per sekund
         /*
@@ -179,12 +181,12 @@ public class Weapons : MonoBehaviour
             else continueSequence = false;
             */
 
-        fireElapsedTime += Time.deltaTime;
+        //fireElapsedTime += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && fireElapsedTime >= fireDelay)
-        {
-            fireElapsedTime = 0;
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse0) && fireElapsedTime >= fireDelay)
+        //{
+        //    fireElapsedTime = 0;
+        //}
 
     }
 }

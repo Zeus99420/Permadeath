@@ -5,13 +5,15 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public int maxHealth;
-    /*[HideInInspector]*/ public int health;
+    /*[HideInInspector]*/
+    public int health;
 
     [HideInInspector] public HealthBar healthBar;
     public GameObject Explosion;
     SpriteRenderer spriteRenderer;
     Color originalColor;
     [HideInInspector] public bool healthAlreadySet = false;
+    [HideInInspector] public bool dead;
 
     public virtual void Start()
     {
@@ -27,8 +29,9 @@ public class Character : MonoBehaviour
     public virtual void Damage(int damageAmount)
     {
         health -= damageAmount;
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
+            dead = true;
             Die();
             health = 0;
         }
