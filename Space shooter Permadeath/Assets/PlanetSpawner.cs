@@ -4,31 +4,57 @@ using UnityEngine;
 
 public class PlanetSpawner : MonoBehaviour
 {
+
+
     public GameObject Planet;
     public int maxPlanet;
-    Color[] planetColor =
+    public Vector2 spawnPosition;
+        public float spawnRate;
+
+
+
+
+    private Color32 GetRandomColour32()
     {
-        new Color(0.5f, 0.5f, 1f),
-        new Color(0, 1f, 1f),
-        new Color(1f, 0f, 0f)
-    };
-    void Start()
+        //using Color32
+        return new Color32(
+          (byte)UnityEngine.Random.Range(0, 255), //Red
+          (byte)UnityEngine.Random.Range(0, 255), //Green
+          (byte)UnityEngine.Random.Range(0, 255), //Blue
+          255 //Alpha (transparency)
+        );
+    }
+
+    void Update()
     {
-        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-        for (int i = 0; i < maxPlanet; i++)
+        float randomNumber = Random.value;
+        if (randomNumber < Time.deltaTime * spawnRate)
         {
-            GameObject planet = (GameObject)Instantiate(Planet);
-            planet.GetComponent<SpriteRenderer>().color = planetColor[i % planetColor.Length];
-            planet.transform.position = new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
-            planet.GetComponent<Planet>().speed = -(1f * Random.value + 0.05f);
-            planet.transform.parent = transform;
+            randomNumber = Random.value;
+            // Väljer slumpmässigt en kant av skärmen, och sedan en slumpvald punkt strax utanför kanten där fienden ska spawna.
+            if (randomNumber <= 0.2) spawnPosition = new Vector2(1.1f, Random.Range(-0.1f, 1.1f));
+            else if (randomNumber < 0.4) spawnPosition = new Vector2(-0.1f, Random.Range(-0.1f, 1.1f));
+            else if (randomNumber < 0.7) spawnPosition = new Vector2(Random.Range(-0.1f, 1.1f), 1.1f);
+            else spawnPosition = new Vector2(Random.Range(-0.1f, 1.1f), -0.1f);
+            for (int i = 0; i < maxPlanet; i++)
+            {
+                GameObject planet = (GameObject)Instantiate(Planet, Camera.main.ViewportToWorldPoint(spawnPosition, 0), Quaternion.identity);
+                //planet.GetComponent<SpriteRenderer>().color = Color[i % Color.Length];
+                planet.transform.position = new Vector2(Random.Range(-4, -8), Random.Range(-4, -8));
+                planet.transform.localScale = new Vector2( Random.Range(1, 3), Random.Range(1, 3));
+                planet.GetComponent<Planet>().speed = -(1f * Random.value + 0.05f);
+                planet.transform.parent = transform;
+
+            }
+            spawnRate += Time.deltaTime;
+
+            Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+            if (transform.position.y < min.y)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
 
-    void Update()
-    {
-
-    }
 }

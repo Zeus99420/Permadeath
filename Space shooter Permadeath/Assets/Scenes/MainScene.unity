@@ -2004,6 +2004,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Planet: {fileID: 5817429548389847520, guid: 086c7dc68bfa8464690cdf349f66f56d, type: 3}
   maxPlanet: 1
+  spawnPosition: {x: 10, y: 10}
+  spawnRate: 0.25
 --- !u!4 &811805514
 Transform:
   m_ObjectHideFlags: 0
