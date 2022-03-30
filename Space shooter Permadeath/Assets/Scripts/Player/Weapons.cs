@@ -66,6 +66,8 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float standYourGroundUnchargeTime;
     [HideInInspector] public bool standYourGroundTrail;
 
+    [HideInInspector] public Sprite bigBulletSprite;
+
     private void Start()
     {
         foreach (EnabledMethods method in weaponsSequence)
@@ -167,7 +169,7 @@ public class Weapons : MonoBehaviour
         //float fireDelay = 0.02f;
     GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
-        //newProjectile.GetComponent<SpriteRenderer>().sprite = Circle;
+        newProjectile.GetComponent<SpriteRenderer>().sprite = bigBulletSprite;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage * 3;
         newProjectile.transform.localScale *= projectileSize;
