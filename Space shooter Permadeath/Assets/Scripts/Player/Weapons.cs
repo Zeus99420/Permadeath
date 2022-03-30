@@ -138,7 +138,7 @@ public class Weapons : MonoBehaviour
         rapidFireEnergy += Time.deltaTime;
         if (rapidFireEnergy > rapidFireEnergyMax) rapidFireEnergy = rapidFireEnergyMax;
 
-        if (Input.GetMouseButton(0) && Time.time > nextShotTime && rapidFireEnergy > 1 / rateOfFire)
+        if (Input.GetMouseButton(0) && Time.time > nextShotTime && rapidFireEnergy > 0/*1 / rateOfFire*/)
         {
             rapidFireEnergy -= 1 / rateOfFire;
             nextShotTime = Time.time + 1 / (rateOfFire * rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen

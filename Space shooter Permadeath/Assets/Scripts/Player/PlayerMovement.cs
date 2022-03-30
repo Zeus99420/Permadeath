@@ -10,15 +10,41 @@ public class PlayerMovement : Character
 
     public float acceleration;
     [HideInInspector] public bool usingEngines;
-    public bool shieldActive;
+
+    //BARRIER
+    [HideInInspector] public int maxBarrierHealth;
+    [HideInInspector] public float barrierDuration;
+    [HideInInspector] public float barrierCooldown;
+    [HideInInspector] public Color barrierColorReady;
+    [HideInInspector] public Color barrierColorActive;
+    [HideInInspector] public Color barrierColorDamaged;
+    [HideInInspector] public bool barrierBought;
+    bool barrierReady;
+    bool barrierActive;
+    int barrierHealth;
+    Coroutine barrierCorutine;
+    [HideInInspector] public Vector2 barrierActiveSize;
+    [HideInInspector] public Vector2 barrierReadySize;
+    public SpriteRenderer barrierRenderer;
+
+    //Deflector
+    [HideInInspector] public bool haveDeflector;
+    float  deflectorHealth;
+    [HideInInspector] public int maxDeflectorHealth;
+    [HideInInspector] public float deflectorRechargeTime;
+    public SpriteRenderer deflectorRenderer;
+
+
 
     public override void Start()
     {
-
             base.Start();
             //Character start-metod gör att spelarens health = maxHealth. 
             healthAlreadySet = true;
-            //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.
+        //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.
+
+
+        if (barrierBought) ReadyBarrier();
 
 
         SetupHealthbar(healthBarPrefab);
@@ -44,6 +70,9 @@ public class PlayerMovement : Character
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp01(pos.y);
         gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);
+
+        if (haveDeflector) RechargeDeflector();
+
     }
     void FixedUpdate()
     {
@@ -56,16 +85,17 @@ public class PlayerMovement : Character
 
     public override void Damage(int damageAmount)
     {
-        if (shieldActive)
+        if (barrierActive) BarrierDamage(damageAmount);
+        else if (haveDeflector && deflectorHealth > 0) DeflectorDamage(damageAmount);
+        else if (barrierReady) ActivateBarrier(damageAmount);
+        else
         {
-            shieldActive = false;
-            transform.Find("Shield").gameObject.SetActive(false);
+            base.Damage(damageAmount);
+            StartCoroutine(Flicker(Color.red));
         }
-            else
-                {
-                    base.Damage(damageAmount);
-                    StartCoroutine(Flicker(Color.red));
-                }
+
+
+        //transform.Find("Shield").gameObject.SetActive(false);
 
     }
 
@@ -78,5 +108,113 @@ public class PlayerMovement : Character
     }
 
 
+    //UPPGRADERINGAR
+    //Dessa funktioner används ifall man köpt vissa uppgraderingar.
+    public void LevelComplete()
+    {
+        if (barrierBought) Invoke("ReadyBarrier",1.5f);
+    }
+    public void ReadyBarrier()
+    {
+        if (barrierCorutine != null) StopCoroutine(barrierCorutine);
+        barrierReady = true;
+        barrierActive = false;
+        barrierRenderer.enabled = true;
+        barrierRenderer.color = barrierColorReady;
+        barrierRenderer.transform.localScale = barrierReadySize;
+    }
 
+    public void ActivateBarrier(int damageAmount)
+    {
+        barrierActive = true;
+        barrierReady = false;
+        barrierHealth = maxBarrierHealth;
+        barrierHealth -= damageAmount;
+        StartCoroutine(BarrierFlicker(Color.white));
+        barrierCorutine = StartCoroutine(BarrierDuration());
+        StartCoroutine(Flicker(Color.yellow));
+
+        barrierRenderer.transform.localScale = barrierActiveSize;
+    }
+
+
+    public void BarrierDamage(int damageAmount)
+    {
+        //Ifall skadan överstiger Barriers health så inaktiveras barrier och Damage kallas igen med överskottet av skada.
+        if (damageAmount > barrierHealth)
+        {
+            StopCoroutine(barrierCorutine);
+            EndBarrier();
+            Damage(damageAmount - barrierHealth);
+        }
+        else
+        {
+            barrierHealth -= damageAmount;
+            StartCoroutine(BarrierFlicker(Color.red));
+        }
+    }
+
+    public IEnumerator BarrierDuration()
+    {
+        yield return new WaitForSeconds(barrierDuration - 1f);
+
+        //Barriären blinkar när den är på väg att ta slut
+        for (int t = 0; t < 5; t++)
+        {
+            barrierRenderer.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            barrierRenderer.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+        }
+        EndBarrier();
+    }
+
+    public IEnumerator BarrierCooldown()
+    {
+        yield return new WaitForSeconds(barrierCooldown);
+        ReadyBarrier();
+    }
+
+    public void EndBarrier()
+    {
+        barrierActive = false;
+        barrierRenderer.enabled = false;
+        barrierCorutine = StartCoroutine(BarrierCooldown());
+        //Invoke("ReadyBarrier", barrierCooldown);
+    }
+
+    public IEnumerator BarrierFlicker(Color color)
+    //Barriären blinkar när den tar skada
+    {
+        barrierRenderer.color = color;
+        yield return new WaitForSeconds(0.05f);
+        barrierRenderer.color = Color.Lerp(barrierColorDamaged, barrierColorActive, barrierHealth / (float)maxBarrierHealth);
+
+    }
+
+    public void DeflectorDamage(int damageAmount)
+    {
+        //Ifall skadan överstiger Barriers health så inaktiveras barrier och Damage kallas igen med överskottet av skada.
+        if (damageAmount > deflectorHealth)
+        {
+            damageAmount -= (int)deflectorHealth;
+            deflectorHealth = 0;
+            Damage(damageAmount);
+
+        }
+        else
+        {
+            deflectorHealth -= damageAmount;
+        }
+    }
+
+    public void RechargeDeflector()
+    {
+        deflectorHealth += Time.deltaTime * maxDeflectorHealth /deflectorRechargeTime;
+        if (deflectorHealth > maxDeflectorHealth) deflectorHealth = maxDeflectorHealth;
+        Color color = Color.white;
+        color.a = deflectorHealth / maxDeflectorHealth;
+        deflectorRenderer.color = color;
+        deflectorRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
+    }
 }

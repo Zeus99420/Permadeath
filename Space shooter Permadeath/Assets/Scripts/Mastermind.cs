@@ -150,6 +150,7 @@ public class Mastermind : MonoBehaviour
         {
             if (waveSpawner.currentWave.shopAfter)
             {
+                player.SendMessage("LevelComplete");
                 EnterShop();
             }
 

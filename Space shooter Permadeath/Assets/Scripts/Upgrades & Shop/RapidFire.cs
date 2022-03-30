@@ -17,6 +17,7 @@ public class RapidFire : Upgrades
         weapons.enabledSequence[index] = false;
         weapons.rapidFireMultiplier = baseFireRateMultiplier;
         weapons.rapidFireEnergyMax = baseMaxEnergy;
+        weapons.rapidFireEnergy = weapons.rapidFireEnergyMax;
     }
 
     public override void BuyAnother()

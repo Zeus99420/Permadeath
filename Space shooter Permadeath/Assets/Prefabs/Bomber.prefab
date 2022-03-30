@@ -223,6 +223,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
+  dead: 0
   player: {fileID: 0}
   mastermind: {fileID: 0}
   value: 0
@@ -230,7 +231,7 @@ MonoBehaviour:
   avoidForce: 300
   collisionDamage: 100
   collisionSelfDamage: 35
-  flyByDistance: 7
+  flyByDistance: 6
   acceleration: 700
   projectile: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
   projectileDamage: 60
