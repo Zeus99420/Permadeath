@@ -2343,9 +2343,9 @@ MonoBehaviour:
   money: 0
   score: 0
   exp: 0
-  expRequired: 0
-  expScaling: 0
-  expBar: {fileID: 0}
+  expRequired: 80
+  expScaling: 1.5
+  expBar: {fileID: 1473092159}
 --- !u!4 &856224840
 Transform:
   m_ObjectHideFlags: 0
