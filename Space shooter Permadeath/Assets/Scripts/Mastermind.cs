@@ -30,10 +30,16 @@ public class Mastermind : MonoBehaviour
     [HideInInspector] public int money;
     [HideInInspector] public int score;
 
+    /*[HideInInspector]*/ public int exp;
+    public int expRequired;
+    public float expScaling;
+    public Image expBar;
+
     GameObject savedPlayer;
     int savedMoney;
     int savedScore;
     int savedNextWave;
+    int savedExp;
 
     public enum GameMastermindState
     {
@@ -148,8 +154,9 @@ public class Mastermind : MonoBehaviour
         //Startar en ny våg ifall alla fiender är förstörda
         if (GMState == GameMastermindState.Gameplay && enemiesRemaining == 0)
         {
-            if (waveSpawner.currentWave.shopAfter)
+            if (exp > expRequired /*waveSpawner.currentWave.shopAfter*/)
             {
+                LevelUp();
                 player.SendMessage("LevelComplete");
                 EnterShop();
             }
@@ -161,16 +168,36 @@ public class Mastermind : MonoBehaviour
     public void UpdateMoney(int changeAmount)
     {
         money += changeAmount;
-        moneyText.text = "Money: " + money;
+        //moneyText.text = "Money: " + money;
 
+        UpdateExp(changeAmount);
+    }
 
+    public void UpdateExp(int changeAmount)
+    {
+        exp += changeAmount;
+        expBar.fillAmount = exp / (float)expRequired;
+        if (exp>expRequired)
+        {
+            moneyText.text = "Upgrade ready!";
+            moneyText.color = Color.yellow;
+            expBar.color = Color.yellow;
+        }
+    }
+
+    public void LevelUp()
+    {
+        expRequired = (int)(expRequired * expScaling);
+        UpdateExp(-expRequired);
+        moneyText.text = "Next Upgrade:";
+        moneyText.color = Color.green;
+        expBar.color = Color.cyan;
     }
 
     public void UpdateScore(int changeAmount)
     {
         score += changeAmount;
         scoreText.text = "Score: " + score;
-
     }
 
     public void CheckpointSave()
@@ -180,6 +207,7 @@ public class Mastermind : MonoBehaviour
         savedPlayer.SetActive(false);
         savedMoney = money;
         savedScore = score;
+        savedExp = exp;
         savedNextWave = waveSpawner.nextWaveNumber;
     }
 
@@ -193,6 +221,7 @@ public class Mastermind : MonoBehaviour
         player.SetActive(true);
         money = savedMoney;
         score = savedScore;
+        exp = savedExp;
         UpdateMoney(0);
         UpdateScore(0);
         waveSpawner.enabled = true;
