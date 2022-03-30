@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    public Mastermind mastermind;
     Vector2 direction;
     public float speed;
     // Start is called before the first frame update

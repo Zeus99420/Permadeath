@@ -33,13 +33,20 @@ public class Mastermind : MonoBehaviour
     /*[HideInInspector]*/ public int exp;
     public int expRequired;
     public float expScaling;
-    public Image expBar;
+    public Image expBarBackground;
+    public Image expBarFill;
+    public Color expBarBackgroundColor;
+    public Color expBarColor;
+    public Color LevelUpBackgroundColor;
+    public Color LevelUpColor;
+
 
     GameObject savedPlayer;
     int savedMoney;
     int savedScore;
     int savedNextWave;
     int savedExp;
+    int savedExpRequired;
 
     public enum GameMastermindState
     {
@@ -176,22 +183,27 @@ public class Mastermind : MonoBehaviour
     public void UpdateExp(int changeAmount)
     {
         exp += changeAmount;
-        expBar.fillAmount = exp / (float)expRequired;
-        if (exp>expRequired)
+        expBarFill.fillAmount = exp / (float)expRequired;
+        if (exp>=expRequired)
         {
+            expBarFill.fillAmount = (exp-expRequired) / (expRequired * expScaling);
+            Debug.Log(expBarFill.fillAmount);
             moneyText.text = "Upgrade ready!";
             moneyText.color = Color.yellow;
-            expBar.color = Color.yellow;
+            expBarBackground.color = LevelUpBackgroundColor;
+            expBarFill.color = LevelUpColor;
         }
     }
 
     public void LevelUp()
     {
+        exp -= expRequired;
         expRequired = (int)(expRequired * expScaling);
-        UpdateExp(-expRequired);
         moneyText.text = "Next Upgrade:";
         moneyText.color = Color.green;
-        expBar.color = Color.cyan;
+        expBarBackground.color = expBarBackgroundColor;
+        expBarFill.color = expBarColor;
+        UpdateExp(0);
     }
 
     public void UpdateScore(int changeAmount)
@@ -208,6 +220,7 @@ public class Mastermind : MonoBehaviour
         savedMoney = money;
         savedScore = score;
         savedExp = exp;
+        savedExpRequired = expRequired;
         savedNextWave = waveSpawner.nextWaveNumber;
     }
 
@@ -222,6 +235,7 @@ public class Mastermind : MonoBehaviour
         money = savedMoney;
         score = savedScore;
         exp = savedExp;
+        expRequired = savedExpRequired;
         UpdateMoney(0);
         UpdateScore(0);
         waveSpawner.enabled = true;

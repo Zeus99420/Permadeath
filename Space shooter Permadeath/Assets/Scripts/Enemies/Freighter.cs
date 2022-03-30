@@ -35,7 +35,8 @@ public class Freighter : Enemy
 
     public override void Die()
     {
-        Instantiate(pickup, transform.position, Quaternion.identity,mastermind.stuffContainer);
+        GameObject newPickup = Instantiate(pickup, transform.position, Quaternion.identity,mastermind.stuffContainer);
+        newPickup.GetComponent<Pickup>().mastermind = mastermind;
         base.Die();
     }
 

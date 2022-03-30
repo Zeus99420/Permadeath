@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 821289472}
   - component: {fileID: 821289471}
   m_Layer: 5
-  m_Name: ExpBar
+  m_Name: ExpBar(Background)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2343,9 +2343,14 @@ MonoBehaviour:
   money: 0
   score: 0
   exp: 0
-  expRequired: 80
-  expScaling: 1.5
-  expBar: {fileID: 1473092159}
+  expRequired: 120
+  expScaling: 1.65
+  expBarBackground: {fileID: 821289471}
+  expBarFill: {fileID: 1473092159}
+  expBarBackgroundColor: {r: 0.19607843, g: 0.50980395, b: 0.50980395, a: 1}
+  expBarColor: {r: 0, g: 1, b: 1, a: 1}
+  LevelUpBackgroundColor: {r: 1, g: 1, b: 0, a: 1}
+  LevelUpColor: {r: 0.8207547, g: 0.6855716, b: 0, a: 1}
 --- !u!4 &856224840
 Transform:
   m_ObjectHideFlags: 0
@@ -2553,9 +2558,10 @@ MonoBehaviour:
   - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     value: 70
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
-    value: 0
+    value: 30
   pickupList:
   - {fileID: 8629178398983394060, guid: 8998ef92c0aa7ab46bd91be96fb8a9dd, type: 3}
+  - {fileID: 8629178398983394060, guid: dd09eeec7950d8a46a7665cb5eae6fee, type: 3}
   freighterPrefab: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
   waves:
   - waveName: Level 1, Wave 1/2
@@ -3531,7 +3537,7 @@ GameObject:
   - component: {fileID: 1473092160}
   - component: {fileID: 1473092159}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: ExpBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

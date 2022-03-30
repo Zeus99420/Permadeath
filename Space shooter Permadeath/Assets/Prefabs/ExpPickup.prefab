@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 199555858396816906}
   - component: {fileID: 5750980411500336526}
   - component: {fileID: 8909916852541434981}
-  - component: {fileID: 8629178398983394051}
+  - component: {fileID: -2152331134032145119}
   m_Layer: 0
-  m_Name: HealthPickup
+  m_Name: ExpPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.15034914, a: 1}
+  m_Color: {r: 0, g: 0.979769, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
---- !u!114 &8629178398983394051
+--- !u!114 &-2152331134032145119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,9 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8629178398983394060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4e94969d6ba45439c17907534d0e4a, type: 3}
+  m_Script: {fileID: 11500000, guid: a18c994a468d36e4d81fb898b2027295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mastermind: {fileID: 0}
-  speed: 0.6
-  healAmount: 40
+  speed: 0.8
+  expAmount: 100
