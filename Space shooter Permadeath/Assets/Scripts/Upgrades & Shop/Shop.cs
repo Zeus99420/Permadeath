@@ -78,7 +78,7 @@ public class Shop : MonoBehaviour
     public void BuyButton(Button button,Upgrades upgrade)
     {
         upgrade.player = mastermind.player;
-        mastermind.UpdateMoney(-upgrade.price);
+        //mastermind.UpdateMoney(-upgrade.price);
         //CheckAfford();
         upgrade.Buy();
 
