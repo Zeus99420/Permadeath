@@ -45,18 +45,26 @@ public class Planet : MonoBehaviour
         transform.position = new Vector2(Random.Range(min.x, max.x), max.y);
     }
     */
-    
+
     public float speed;
-    private Color32 GetRandomColour32()
+    //public Color planetColor;
+     private Color32 GetRandomColour32()
     {
-        //using Color32
-        return new Color32(
-          (byte)UnityEngine.Random.Range(0, 255), //Red
-          (byte)UnityEngine.Random.Range(0, 255), //Green
-          (byte)UnityEngine.Random.Range(0, 255), //Blue
-          255 //Alpha (transparency)
-        );
-    }
+
+    //using Color32
+
+
+
+
+      return new Color32(
+      (byte)UnityEngine.Random.Range(0, 255), //Red
+     (byte)UnityEngine.Random.Range(0, 255), //Green
+     (byte)UnityEngine.Random.Range(0, 255), //Blue
+     255 //Alpha (transparency)
+     );
+     }
+
+
     void Start()
     {
 
@@ -71,16 +79,17 @@ public class Planet : MonoBehaviour
         transform.position = position;
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        //planetColor = Color.
 
         if (transform.position.y < min.y)
-       {
-            
-           transform.position = new Vector2(Random.Range(min.x, max.x), max.y);
+        {
+
+            transform.position = new Vector2(Random.Range(min.x, max.x), max.y);
         }
-         
-       
+
+
     }
-   
+
 
 }
 
