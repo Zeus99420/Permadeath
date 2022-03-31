@@ -6,7 +6,7 @@ public class Shooter : Enemy
 {
     //En fiende som försöker närma sig spelaren och skjuta den med projektiler
 
-    public float acceleration;
+
 
     float distanceToPlayer;
 
@@ -25,7 +25,7 @@ public class Shooter : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        AvoidCollision();
+
 
         if (player)
         {
@@ -48,6 +48,7 @@ public class Shooter : Enemy
                newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage; 
             }
         }
+        AvoidCollision();
         m_rigidbody.AddForce(direction * acceleration);
 
     }

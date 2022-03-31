@@ -30,9 +30,11 @@ public class PlayerMovement : Character
     //Deflector
     [HideInInspector] public bool haveDeflector;
     float  deflectorHealth;
+    float deflectorDamagedTime;
     [HideInInspector] public int maxDeflectorHealth;
     [HideInInspector] public float deflectorRechargeTime;
     public SpriteRenderer deflectorRenderer;
+    Color deflectorColor;
 
 
 
@@ -45,6 +47,7 @@ public class PlayerMovement : Character
 
 
         if (barrierBought) ReadyBarrier();
+        deflectorColor = deflectorRenderer.color;
 
 
         SetupHealthbar(healthBarPrefab);
@@ -71,7 +74,7 @@ public class PlayerMovement : Character
         pos.y = Mathf.Clamp01(pos.y);
         gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);
 
-        if (haveDeflector) RechargeDeflector();
+        if (haveDeflector) DeflectorUpdate();
 
     }
     void FixedUpdate()
@@ -194,27 +197,38 @@ public class PlayerMovement : Character
 
     public void DeflectorDamage(int damageAmount)
     {
-        //Ifall skadan överstiger Barriers health så inaktiveras barrier och Damage kallas igen med överskottet av skada.
+        //deflectorDamagedTime = Time.time;
         if (damageAmount > deflectorHealth)
         {
             damageAmount -= (int)deflectorHealth;
             deflectorHealth = 0;
             Damage(damageAmount);
 
+
         }
         else
         {
+
             deflectorHealth -= damageAmount;
         }
+
     }
 
-    public void RechargeDeflector()
+    public void DeflectorUpdate()
     {
         deflectorHealth += Time.deltaTime * maxDeflectorHealth /deflectorRechargeTime;
         if (deflectorHealth > maxDeflectorHealth) deflectorHealth = maxDeflectorHealth;
-        Color color = Color.white;
-        color.a = deflectorHealth / maxDeflectorHealth;
-        deflectorRenderer.color = color;
+
+        //Sköldens blir mindre genomskinlig när den får mer liv. När den absorberar skada blir den tillfälligt röd
+        //if (Time.time > deflectorDamagedTime + 0.08f)
+        //{
+            Color color = deflectorColor;
+            color.a = deflectorHealth / maxDeflectorHealth;
+            deflectorRenderer.color = color;
+        //}
+        //else deflectorRenderer.color = Color.red;
+
         deflectorRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
     }
+
 }

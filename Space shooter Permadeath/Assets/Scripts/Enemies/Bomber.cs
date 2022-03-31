@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bomber : Enemy
 {
     public float flyByDistance;
-    public float acceleration;
 
     public GameObject projectile;
     public int projectileDamage;
@@ -65,13 +64,13 @@ public class Bomber : Enemy
                     bombDirection = Vector2.Perpendicular(direction);
                 }
                 transform.up = direction;
-                if (IsInScreen(0.1f)) approaching = false;
+                if (IsInScreen(0.1f)) { approaching = false; }
             }
 
             else if (!IsInScreen(-0.1f)) Approach();
         }
-        
 
+        direction = transform.up;
         AvoidCollision();
         m_rigidbody.AddForce(direction * acceleration);
     }

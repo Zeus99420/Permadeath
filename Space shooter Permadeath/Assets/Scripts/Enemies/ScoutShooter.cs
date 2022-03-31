@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoutShooter : Enemy
 {
-    public float acceleration;
+
 
     bool leftOrRight;
     public float flyByDistance;
@@ -28,7 +28,7 @@ public class ScoutShooter : Enemy
 
     void FixedUpdate()
     {
-        AvoidCollision();
+
 
         if (player)
         {
@@ -54,6 +54,7 @@ public class ScoutShooter : Enemy
             }
 
         }
+        AvoidCollision();
         m_rigidbody.AddForce(direction * acceleration);
     }
 

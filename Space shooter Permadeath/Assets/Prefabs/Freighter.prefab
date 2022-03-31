@@ -373,11 +373,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 200
   m_LinearDrag: 1
   m_AngularDrag: 5
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fbf78a306718d2a43a43938d2b099c5c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -399,14 +399,15 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
+  dead: 0
   player: {fileID: 0}
   mastermind: {fileID: 0}
   value: 0
-  avoidRadius: 4
-  avoidForce: 200
+  avoidRadius: 3
+  avoidForce: 100
+  acceleration: 360
   collisionDamage: 60
   collisionSelfDamage: 30
-  acceleration: 190
   pickup: {fileID: 0}
 --- !u!1 &9058780368753529466
 GameObject:

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Freighter : Enemy
 {
-    public float acceleration;
+
     public GameObject pickup;
 
     public override void Start()
@@ -30,6 +30,7 @@ public class Freighter : Enemy
 
     public void FixedUpdate()
     {
+        AvoidCollision();
         m_rigidbody.AddForce(transform.up * acceleration);
     }
 

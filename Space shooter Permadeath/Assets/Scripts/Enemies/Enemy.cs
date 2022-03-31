@@ -14,6 +14,7 @@ public class Enemy : Character
     public float avoidForce;
 
     protected Vector2 direction;
+    public float acceleration;
 
     public int collisionDamage;
     public int collisionSelfDamage;
@@ -39,7 +40,7 @@ public class Enemy : Character
 
     }
 
-    public void AvoidCollision()
+    public void AvoidCollision1()
     {
         Collider2D[] avoidColliders;
         avoidColliders = Physics2D.OverlapCircleAll(transform.position, avoidRadius, LayerMask.GetMask("Enemy"));
@@ -58,7 +59,63 @@ public class Enemy : Character
                 }
             //}
         }
+    }
 
+    public void AvoidCollision2()
+    {
+        Collider2D[] avoidColliders;
+        avoidColliders = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider2D collider in avoidColliders)
+        {
+            if (collider != GetComponent<Collider2D>())
+            {
+                ColliderDistance2D colliderDistance = GetComponent<Collider2D>().Distance(collider);
+                float avoidDistance = colliderDistance.distance;
+                if (avoidDistance < 1.5)
+                {
+                    if (avoidDistance < 0) avoidDistance = 0;
+                    float distanceFactor = (1.5f-avoidDistance) /1.5f;
+                    float force = 0.7f * avoidForce * distanceFactor;
+                    if (force > acceleration) force = acceleration;
+                    //Vector2 avoidDirection = -colliderDistance.normal;
+                    Vector2 avoidDirection = ((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
+                    collider.attachedRigidbody.AddForce(avoidDirection * force);
+                }
+                //Vector2 avoidDirection = -colliderDistance.normal;
+                //float force = (0.15f * avoidForce) / avoidDistance;
+                //force = Mathf.Clamp(force, 0, avoidForce * 2);
+                //collider.attachedRigidbody.AddForce(avoidDirection*force);
+            }
+        }
+    }
+
+    public void AvoidCollision()
+    {
+        Collider2D[] avoidColliders;
+        avoidColliders = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider2D collider in avoidColliders)
+        {
+            if (collider != GetComponent<Collider2D>())
+            {
+                ColliderDistance2D colliderDistance = GetComponent<Collider2D>().Distance(collider);
+                float avoidDistance = colliderDistance.distance;
+
+                if (avoidDistance < 1.5)
+                {
+                    if (avoidDistance < 0.1f) avoidDistance = 0.1f;
+                    //float distanceFactor = (1.5f - avoidDistance) / 1.5f;
+                    float distanceFactor = 1 / avoidDistance;
+                    float force = 0.6f * collider.GetComponent<Enemy>().avoidForce * distanceFactor;
+                    //Vector2 avoidDirection = colliderDistance.normal;
+                    Vector2 avoidDirection = -((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
+                    Vector2 moveVector = (direction * acceleration + avoidDirection * force)/acceleration;
+                    if (moveVector.magnitude > 1) moveVector.Normalize();
+                    direction = moveVector;
+                }
+            }
+        }
     }
 
     public override void Damage(int damageAmount)

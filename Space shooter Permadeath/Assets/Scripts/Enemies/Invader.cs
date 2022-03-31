@@ -7,7 +7,7 @@ public class Invader : Enemy
     public GameObject projectile;
     float distanceToPlayer;
     public float attackRange;
-    public float acceleration;
+
     float nextShotTime;
     public float cooldown;
     public float projectileSpeed;
@@ -15,7 +15,7 @@ public class Invader : Enemy
 
     private void FixedUpdate()
     {
-        AvoidCollision();
+
 
         if (player)
         {
@@ -33,6 +33,7 @@ public class Invader : Enemy
 
             }
         }
+        AvoidCollision();
         m_rigidbody.AddForce(direction * acceleration);
     }
       

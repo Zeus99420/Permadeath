@@ -5,10 +5,10 @@ using UnityEngine;
 public class Drone : Enemy
 {
     //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
-    public float acceleration;
+
     void FixedUpdate()
     {
-        AvoidCollision();
+
 
         //Rör sig mot spelaren
         if (player)
@@ -16,6 +16,7 @@ public class Drone : Enemy
             direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
             transform.up = direction;
         }
+        AvoidCollision();
         m_rigidbody.AddForce(direction * acceleration);
 
     }

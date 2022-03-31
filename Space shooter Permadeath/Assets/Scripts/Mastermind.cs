@@ -64,7 +64,7 @@ public class Mastermind : MonoBehaviour
         shop.Initialize();
         CheckpointSave();
 
-        if (testingShop) { UpdateMoney(1000); EnterShop(); }
+        if (testingShop) { /*UpdateMoney(1000)*/; EnterShop(); }
         else StartCoroutine(instructions.FadeIn());
 
         if (permadeath) deathScreen = permadeathScreen;
@@ -187,11 +187,17 @@ public class Mastermind : MonoBehaviour
         if (exp>=expRequired)
         {
             expBarFill.fillAmount = (exp-expRequired) / (expRequired * expScaling);
-            Debug.Log(expBarFill.fillAmount);
             moneyText.text = "Upgrade ready!";
             moneyText.color = Color.yellow;
             expBarBackground.color = LevelUpBackgroundColor;
             expBarFill.color = LevelUpColor;
+        }
+        else
+        {
+            moneyText.text = "Next Upgrade:";
+            moneyText.color = Color.green;
+            expBarBackground.color = expBarBackgroundColor;
+            expBarFill.color = expBarColor;
         }
     }
 
@@ -199,10 +205,6 @@ public class Mastermind : MonoBehaviour
     {
         exp -= expRequired;
         expRequired = (int)(expRequired * expScaling);
-        moneyText.text = "Next Upgrade:";
-        moneyText.color = Color.green;
-        expBarBackground.color = expBarBackgroundColor;
-        expBarFill.color = expBarColor;
         UpdateExp(0);
     }
 

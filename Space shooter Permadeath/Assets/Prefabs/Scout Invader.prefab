@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: -536760163
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e729eb0cbe4a6ff4eba3e7ddf748261c, type: 3}
-  m_Color: {r: 0.9150943, g: 0.26330543, b: 0.4086385, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9321255596c3fb340a8d61560230bd05, type: 3}
+  m_Color: {r: 0.8773585, g: 0.185404, b: 0.33963498, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
+  dead: 0
   player: {fileID: 0}
   mastermind: {fileID: 0}
   value: 0
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_LinearDrag: 1.2
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fbf78a306718d2a43a43938d2b099c5c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
