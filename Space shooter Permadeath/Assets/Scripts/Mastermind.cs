@@ -10,6 +10,7 @@ public class Mastermind : MonoBehaviour
     public bool testingShop;
     public bool permadeath;
     public GameObject player;
+    public GameObject camera;
     UIScreen deathScreen;
     public UIScreen permadeathScreen;
     public UIScreen standardDeathScreen;
@@ -99,6 +100,7 @@ public class Mastermind : MonoBehaviour
             case GameMastermindState.Opening:
                 UpdateMoney(0);
                 UpdateScore(0);
+                camera.GetComponent<AudioSource>().Play();
                 //startoverbutton.gameObject.SetActive(false);
                 break;
             case GameMastermindState.Gameplay:
@@ -111,6 +113,7 @@ public class Mastermind : MonoBehaviour
                 shop.EnterShop();
                 break;
             case GameMastermindState.GameOver:
+                camera.GetComponent<AudioSource>().Stop();
                 waveSpawner.enabled = false;
                 deathScreenCoroutine = StartCoroutine(deathScreen.FadeIn());
 
