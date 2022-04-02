@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Weapons : MonoBehaviour
@@ -11,7 +12,7 @@ public class Weapons : MonoBehaviour
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
     public Transform weapon;
     public AudioSource shotaudio;
-    //public Sprite Circle;
+    public Image Crosshair;
     public GameObject projectile;
     public float projectileSpeed;
     public int baseDamage;
@@ -95,16 +96,31 @@ public class Weapons : MonoBehaviour
 
     public void StandardFireCheck()
     {
-        if (Input.GetMouseButton(0) && Time.time > nextShotTime)
+        continueSequence = false;
+        if (Time.time > nextShotTime)
         {
-            nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
+            Crosshair.color = Color.white;
+            Crosshair.fillAmount = 1;
+            if (Input.GetMouseButton(0) && Time.time > nextShotTime)
+            {
+                nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
+                continueSequence = true;
+            }
         }
-        else continueSequence = false;
+
+        else
+        {
+            Crosshair.color = new Color(0.7f, 0.7f, 0.7f);
+            Crosshair.fillAmount = 1 + (Time.time - nextShotTime) * rateOfFire;
+        }
+
+
+
     }
     public void StandardFire()
     {
         SendMessage(fireMode, (Vector2)transform.up);
-        shotaudio.Play();
+        shotaudio.PlayOneShot(shotaudio.clip);
     }
 
     public void FireStandardProjectile(Vector2 fireVector)
@@ -135,20 +151,36 @@ public class Weapons : MonoBehaviour
 
     public void RapidFireCheck()
     {
+        continueSequence = false;
         rapidFireEnergy += Time.deltaTime;
         if (rapidFireEnergy > rapidFireEnergyMax) rapidFireEnergy = rapidFireEnergyMax;
 
-        if (Input.GetMouseButton(0) && Time.time > nextShotTime && rapidFireEnergy > 0/*1 / rateOfFire*/)
+        if (Time.time > nextShotTime && rapidFireEnergy > 0)
         {
-            rapidFireEnergy -= 1 / rateOfFire;
-            nextShotTime = Time.time + 1 / (rateOfFire * rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen
+            Crosshair.color = Color.white;
+            Crosshair.fillAmount = 1;
+            if(Input.GetMouseButton(0))
+            {
+                continueSequence = true;
+                rapidFireEnergy -= 1 / rateOfFire;
+                nextShotTime = Time.time + 1 / (rateOfFire * rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen
+            }
         }
-        else continueSequence = false;
+
+        else
+        {
+            Crosshair.color = new Color(0.7f, 0.7f, 0.7f);
+            float timeAmount = 1 + (Time.time - nextShotTime) * rateOfFire;
+            float energyAmount = 1 + rapidFireEnergy * rateOfFire;
+
+            Crosshair.fillAmount = Mathf.Min(timeAmount,energyAmount);
+
+        }
     }
 
     public void ShotgunFire()
     {
-        shotaudio.Play();
+        shotaudio.PlayOneShot(shotaudio.clip,1f);
         float angle = -spread / 2;
         float angleIncrement = spread / (spreadBulletCount - 1);
 

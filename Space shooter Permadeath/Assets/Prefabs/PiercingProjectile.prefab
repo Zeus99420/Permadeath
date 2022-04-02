@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 7505790673031327342}
   - component: {fileID: 813560751951385353}
   - component: {fileID: -4160980836245495667}
-  - component: {fileID: 7093964896754956726}
   - component: {fileID: -997320934598928026}
   - component: {fileID: 1457714719}
+  - component: {fileID: -2622463098548552553}
   m_Layer: 0
-  m_Name: PlayerProjectile
+  m_Name: PiercingProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: -2
   m_Sprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
-  m_Color: {r: 1, g: 0.91594577, b: 0, a: 1}
+  m_Color: {r: 0.8207547, g: 0.7591572, b: 0.072783865, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,21 +107,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &7093964896754956726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101686643944138255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58aa5257fcd1c874b9bcd5a9478c130f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  weapons: {fileID: 0}
-  standYourGroundColor: {r: 0, g: 1, b: 0.9696622, a: 1}
 --- !u!58 &-997320934598928026
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -245,3 +230,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-2622463098548552553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101686643944138255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bff0f44804dec46baf1d8c552b8a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  weapons: {fileID: 0}
+  standYourGroundColor: {r: 0, g: 1, b: 0.96862745, a: 1}
+  piercingMultiplier: 0.5
+  alreadyHit: []
