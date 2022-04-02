@@ -16,5 +16,10 @@ public class Railgun : Upgrades
         weapons.projectile = projectile;
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
+        LineRenderer lineRenderer = player.GetComponent<LineRenderer>();
+        Vector3 newPosition = lineRenderer.GetPosition(1) + Vector3.up * 4;
+        lineRenderer.SetPosition(1, newPosition);
+        
+        
     }
 }
