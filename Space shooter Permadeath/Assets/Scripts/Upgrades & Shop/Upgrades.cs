@@ -7,7 +7,7 @@ public class Upgrades : MonoBehaviour
     [HideInInspector] public GameObject player;
     public string upgradeName;
     public int price;
-    public string description;
+    [TextArea] public string description;
     public bool unique;
 
     bool firstTimeBuying = true;

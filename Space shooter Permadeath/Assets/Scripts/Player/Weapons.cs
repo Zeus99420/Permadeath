@@ -57,7 +57,7 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float spread;
     [HideInInspector] public float spreadDamageMultiplier;
 
-    [HideInInspector] public float rapidFireEnergy;
+   /* [HideInInspector]*/ public float rapidFireEnergy;
     [HideInInspector] public float rapidFireEnergyMax;
     [HideInInspector] public float rapidFireMultiplier;
 
@@ -66,6 +66,10 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float standYourGroundChargeTime;
     [HideInInspector] public float standYourGroundUnchargeTime;
     [HideInInspector] public bool standYourGroundTrail;
+    /*[HideInInspector]*/ public float movementMultiplier;
+    [HideInInspector] public float movementMultiplierMax;
+    [HideInInspector] public float movementChargeTime;
+    [HideInInspector] public float movementUnchargeTime;
 
     [HideInInspector] public Sprite bigBulletSprite;
 
@@ -147,6 +151,20 @@ public class Weapons : MonoBehaviour
 
         standYourGroundMultiplier = Mathf.Clamp(standYourGroundMultiplier, 1, standYourGroundMultiplierMax);
         projectileDamage = (int)(projectileDamage * standYourGroundMultiplier);
+
+        if (Time.time > nextShotTime && rapidFireEnergy >= 0)
+            movementMultiplier += ((movementMultiplierMax - 1) / movementChargeTime) * Time.deltaTime;
+
+        else movementMultiplier -= ((movementMultiplierMax - 1) / movementUnchargeTime) * Time.deltaTime;
+
+        movementMultiplier = Mathf.Clamp(movementMultiplier, 1, movementMultiplierMax);
+        GetComponent<PlayerMovement>().accelerationMultiplier = movementMultiplier;
+
+        TrailRenderer trail = GetComponent<TrailRenderer>();
+        float power = (movementMultiplier - 1) / (movementMultiplierMax - 1)*0.5f;
+        Color color = trail.startColor;
+        color.a = power;
+        trail.startColor = color;
     }
 
     public void RapidFireCheck()

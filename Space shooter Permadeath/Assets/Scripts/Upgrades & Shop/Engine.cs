@@ -9,6 +9,6 @@ public class Engine : Upgrades
     public override void Buy()
     {
         player.GetComponent<SpriteRenderer>().sprite = BiggerEngine;
-        player.GetComponent<PlayerMovement>().acceleration +=increaseAmount;
+        player.GetComponent<PlayerMovement>().baseAcceleration +=increaseAmount;
     }
 }

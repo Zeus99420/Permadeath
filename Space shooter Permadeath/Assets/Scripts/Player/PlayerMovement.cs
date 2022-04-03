@@ -8,8 +8,10 @@ public class PlayerMovement : Character
     public Mastermind mastermind;
     public GameObject healthBarPrefab;
 
+    public float baseAcceleration;
     public float acceleration;
     [HideInInspector] public bool usingEngines;
+    public float accelerationMultiplier;
 
     //BARRIER
     [HideInInspector] public int maxBarrierHealth;
@@ -35,6 +37,8 @@ public class PlayerMovement : Character
     [HideInInspector] public float deflectorRechargeTime;
     public SpriteRenderer deflectorRenderer;
     Color deflectorColor;
+
+    public bool trailEnabled = false;
 
 
 
@@ -79,11 +83,16 @@ public class PlayerMovement : Character
     }
     void FixedUpdate()
     {
+        acceleration = baseAcceleration*accelerationMultiplier;
         usingEngines = false;
-        if (Input.GetKey("w")) { m_rigidbody.AddForce(Vector2.up * acceleration); usingEngines = true; }
-        if (Input.GetKey("s")) { m_rigidbody.AddForce(Vector2.down * acceleration); usingEngines = true; }        
-        if (Input.GetKey("a")) { m_rigidbody.AddForce(Vector2.left * acceleration); usingEngines = true; }
-        if (Input.GetKey("d")) { m_rigidbody.AddForce(Vector2.right * acceleration); usingEngines = true; }
+        Vector2 direction = Vector2.zero;
+        if (Input.GetKey("w")) { direction += Vector2.up; usingEngines = true; }
+        if (Input.GetKey("s")) { direction += Vector2.down; ; usingEngines = true; }        
+        if (Input.GetKey("a")) { direction += Vector2.left; ; usingEngines = true; }
+        if (Input.GetKey("d")) { direction += Vector2.right; ; usingEngines = true; }
+        direction.Normalize();
+        Debug.Log(direction);
+        m_rigidbody.AddForce(direction * acceleration);
     }
 
     public override void Damage(int damageAmount)

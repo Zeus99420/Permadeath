@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   weapons: {fileID: 0}
-  standYourGroundColor: {r: 0, g: 1, b: 0.9696622, a: 1}
+  standYourGroundColor: {r: 0.98366356, g: 0, b: 1, a: 1}
 --- !u!58 &-997320934598928026
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -209,8 +209,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 1, b: 0.96862745, a: 0.627451}
-      key1: {r: 0, g: 1, b: 0.96862745, a: 0}
+      key0: {r: 1, g: 0, b: 0.9390569, a: 0.627451}
+      key1: {r: 1, g: 0, b: 0.9529662, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

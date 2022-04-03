@@ -9,6 +9,10 @@ public class StandYourGround : Upgrades
     public float ChargeTime;
     public float UnchargeTime;
 
+    public float movementMultiplierMax;
+    public float movementChargeTime;
+    public float movementUnchargeTime;
+
     public override void BuyFirst()
     {
         Weapons weapons = player.GetComponent<Weapons>();
@@ -20,6 +24,14 @@ public class StandYourGround : Upgrades
         weapons.standYourGroundChargeTime = ChargeTime;
         weapons.standYourGroundUnchargeTime = UnchargeTime;
         weapons.standYourGroundTrail = true;
+
+        weapons.movementMultiplierMax = movementMultiplierMax;
+        weapons.movementChargeTime = movementChargeTime;
+        weapons.movementUnchargeTime = movementUnchargeTime;
+        weapons.GetComponent<TrailRenderer>().enabled = true;
+
+
+
 
     }
     public override void BuyAnother()

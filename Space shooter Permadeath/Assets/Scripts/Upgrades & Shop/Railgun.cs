@@ -8,6 +8,7 @@ public class Railgun : Upgrades
     public float rateOfFireMultiplier;
     public float damageMultiplier;
     public GameObject projectile;
+    public float projectileSize;
     public override void Buy()
     {
         Weapons weapons = player.GetComponent<Weapons>();
@@ -19,7 +20,8 @@ public class Railgun : Upgrades
         LineRenderer lineRenderer = player.GetComponent<LineRenderer>();
         Vector3 newPosition = lineRenderer.GetPosition(1) + Vector3.up * 4;
         lineRenderer.SetPosition(1, newPosition);
-        
-        
+        weapons.projectileSize *= projectileSize;
+
+
     }
 }

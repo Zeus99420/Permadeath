@@ -17,7 +17,7 @@ public class PlayerProjectile : MonoBehaviour
             float power = (weapons.standYourGroundMultiplier - 1) / (weapons.standYourGroundMultiplierMax - 1);
             Color color = trail.startColor;
             color.a *= power;
-            trail.startColor *= color;
+            trail.startColor = color;
             SpriteRenderer sprite = GetComponent<SpriteRenderer>();
             sprite.color = Color.Lerp(sprite.color, standYourGroundColor, power);
 

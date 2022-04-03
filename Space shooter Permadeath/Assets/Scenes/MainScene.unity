@@ -3528,7 +3528,6 @@ GameObject:
   - component: {fileID: 1401891357}
   - component: {fileID: 1401891356}
   - component: {fileID: 1401891355}
-  - component: {fileID: 1401891354}
   - component: {fileID: 1401891352}
   - component: {fileID: 1401891358}
   - component: {fileID: 1401891359}
@@ -3580,24 +3579,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1401891354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401891351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b60a9ba9c16b5a43948abd7a0f70dcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  upgradeName: Armor Plates
-  price: 100
-  description: Increases your health
-  unique: 0
-  increaseAmount: 100
 --- !u!114 &1401891355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3613,13 +3594,21 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Railgun
   price: 50
-  description: Fire powerful projectiles that fly faster, deal more damage and pierce
-    enemies. Reduces rate of fire.
+  description: 'Your projectiles can pierce and hit multiple enemies. Damage is halved
+    after each hit.
+
+    Projectiles fly faster.
+
+    Increases damage.
+
+    Reduces
+    attack speed.'
   unique: 1
   projectileSpeedIncrease: 13
   rateOfFireMultiplier: 0.6
   damageMultiplier: 1.5
   projectile: {fileID: 9101686643944138255, guid: 0bd15ce0d63f20044b0a6e98ff8a0bb2, type: 3}
+  projectileSize: 1.2
 --- !u!114 &1401891356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3654,11 +3643,14 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Shotgun
   price: 150
-  description: You fire several smaller projectiles in an arc
+  description: 'You fire multiple smaller projectiles in an arc.
+
+    Reduces rate
+    of fire.'
   unique: 0
   baseBulletCount: 6
   bulletCountIncrease: 3
-  baseSpread: 12
+  baseSpread: 10
   spreadIncrease: 3
   damageMultiplier: 0.5
   rateOfFireMultiplier: 0.6
@@ -3679,8 +3671,10 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Rapid Fire
   price: 150
-  description: You can fire a rapid burst of several shots. Reharges when you arent
-    shooting
+  description: 'You can fire a rapid burst of several shots.
+
+    Reharges when you
+    arent shooting'
   unique: 1
   baseFireRateMultiplier: 3
   fireRateMultiplierIncrease: 0.5
@@ -3699,14 +3693,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Stand Your Ground
+  upgradeName: Power Diverter
   price: 150
-  description: Your attack damage is increased when you don't use your engines
+  description: 'Increases damage by up to 50% when you aren''t using engines.
+
+
+    Increases
+    movement speed by up to 50% when you aren''t shooting'
   unique: 1
   multiplierMaxBase: 1.5
   multiplierMaxIncrease: 1.5
   ChargeTime: 1
-  UnchargeTime: 2.5
+  UnchargeTime: 1.5
+  movementMultiplierMax: 1.5
+  movementChargeTime: 1
+  movementUnchargeTime: 1
 --- !u!114 &1401891360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3722,7 +3723,10 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: BigBullet
   price: 200
-  description: Your bullets are slow and big but make more damage
+  description: 'Your bullets are slow and big but deal more damage.
+
+    Rate of
+    fire is reduced'
   unique: 1
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 1.5
@@ -3745,8 +3749,10 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Barrier
   price: 150
-  description: A powerful shield protects you for a short time when you get hit.
-    Long cooldown
+  description: 'A powerful shield activates when you get hit, protecting you for
+    a short time.
+
+    Long cooldown.'
   unique: 1
   maxHealth: 200
   duration: 4
@@ -3771,7 +3777,10 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Deflector Shield
   price: 100
-  description: Protects you from a small amount of damage. Recharges over a few seconds
+  description: 'Protects you from a small amount of damage.
+
+    Recharges over a
+    few seconds'
   unique: 0
   baseHealth: 30
   healthIncrease: 30
@@ -4017,6 +4026,7 @@ GameObject:
   - component: {fileID: 1653898511}
   - component: {fileID: 1653898512}
   - component: {fileID: 1653898510}
+  - component: {fileID: 1653898514}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4133,8 +4143,10 @@ MonoBehaviour:
   dead: 0
   mastermind: {fileID: 856224839}
   healthBarPrefab: {fileID: 6356634295293370515, guid: 5e13f88ce97b25140bec939ba961ca60, type: 3}
-  acceleration: 250
+  baseAcceleration: 300
+  acceleration: 0
   usingEngines: 0
+  accelerationMultiplier: 1
   maxBarrierHealth: 0
   barrierDuration: 0
   barrierCooldown: 0
@@ -4149,6 +4161,7 @@ MonoBehaviour:
   maxDeflectorHealth: 0
   deflectorRechargeTime: 0
   deflectorRenderer: {fileID: 517054607}
+  trailEnabled: 0
 --- !u!120 &1653898510
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -4395,7 +4408,118 @@ MonoBehaviour:
   standYourGroundChargeTime: 0
   standYourGroundUnchargeTime: 0
   standYourGroundTrail: 0
+  movementMultiplier: 0
+  movementMultiplierMax: 0
+  movementChargeTime: 0
+  movementUnchargeTime: 0
   bigBulletSprite: {fileID: 0}
+--- !u!96 &1653898514
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653898505}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -536760163
+  m_SortingLayer: -1
+  m_SortingOrder: -2
+  m_Time: 0.4
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.111127734
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.16666634
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9963379
+        value: 0.017089844
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.98748064, g: 0, b: 1, a: 0.627451}
+      key1: {r: 1, g: 0, b: 0.9955864, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &1712645214
 GameObject:
   m_ObjectHideFlags: 0
