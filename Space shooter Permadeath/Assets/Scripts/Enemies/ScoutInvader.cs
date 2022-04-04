@@ -16,6 +16,7 @@ public class ScoutInvader : Enemy
     float dodgeReadyTime;
     public float dodgeCooldown;
     public float dodgeForce;
+    public Transform weapon;
     //public int dodgeDuration;
 
     private void FixedUpdate()
@@ -32,7 +33,7 @@ public class ScoutInvader : Enemy
             {
                 nextShotTime = Time.time + cooldown;
 
-                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
+                GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
                 newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
                 newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
 

@@ -19,6 +19,7 @@ public class Shooter : Enemy
     public GameObject projectile;
     public float projectileSpeed;
     public int projectileDamage;
+    public Transform weapon;
 
 
 
@@ -43,7 +44,7 @@ public class Shooter : Enemy
             {
                nextShotTime = Time.time + cooldown;
 
-               GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
+               GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
                newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
                newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage; 
             }

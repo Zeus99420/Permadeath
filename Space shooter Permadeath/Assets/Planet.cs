@@ -67,13 +67,13 @@ public class Planet : MonoBehaviour
 
     void Start()
     {
-
+        GetComponent<SpriteRenderer>().color = GetRandomColour32();
     }
 
 
     void Update()
     {
-        transform.Translate(Vector2.right * Time.deltaTime);
+        transform.Translate((Vector2.left + Vector2.down) * Time.deltaTime/6);
         Vector2 position = transform.position;
         position = new Vector2(position.x, position.y + speed * Time.deltaTime);
         transform.position = position;
@@ -81,13 +81,14 @@ public class Planet : MonoBehaviour
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
         //planetColor = Color.
 
-        if (transform.position.y < min.y)
-        {
-
-            transform.position = new Vector2(Random.Range(min.x, max.x), max.y);
-        }
 
 
+
+
+    }
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
 

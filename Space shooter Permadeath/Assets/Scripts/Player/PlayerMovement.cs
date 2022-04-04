@@ -91,7 +91,6 @@ public class PlayerMovement : Character
         if (Input.GetKey("a")) { direction += Vector2.left; ; usingEngines = true; }
         if (Input.GetKey("d")) { direction += Vector2.right; ; usingEngines = true; }
         direction.Normalize();
-        Debug.Log(direction);
         m_rigidbody.AddForce(direction * acceleration);
     }
 

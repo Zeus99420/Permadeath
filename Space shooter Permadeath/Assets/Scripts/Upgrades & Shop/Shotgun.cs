@@ -11,7 +11,7 @@ public class Shotgun : Upgrades
     public float damageMultiplier;
     public float rateOfFireMultiplier;
     public float projectileSize;
-    public AudioClip shotgunaudio;
+    
     public override void BuyFirst() 
     {
         Weapons weapons = player.GetComponent<Weapons>();
@@ -26,7 +26,7 @@ public class Shotgun : Upgrades
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
         weapons.projectileSize *= projectileSize;
-        weapons.shotaudio.clip = shotgunaudio;
+        
     }
 
     public override void BuyAnother()
