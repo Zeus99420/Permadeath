@@ -10,6 +10,16 @@ public class AsteroidSpawner : MonoBehaviour
     public float maxCooldown;
     float nextAsteroidTime = 0;
 
+    private void Start()
+    {
+        Vector2 targetPosition;
+        targetPosition.x = Random.Range(0.2f, 0.8f);
+        targetPosition.y = Random.Range(0.2f, 0.8f);
+        targetPosition = Camera.main.ViewportToWorldPoint(targetPosition);
+        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+        transform.up = direction;
+    }
+
     void Update()
     {
 
@@ -17,13 +27,8 @@ public class AsteroidSpawner : MonoBehaviour
         {
 
             // Väljer slumpmässigt en kant av skärmen, och sedan en slumpvald punkt strax utanför kanten där fienden ska spawna.
-            //spawnPosition = new Vector2(0.4f, Random.Range(0.4f, 5f));
-            Vector2 targetPosition;
-            targetPosition.x = Random.Range(0.2f, 0.8f);
-            targetPosition.y = Random.Range(0.2f, 0.8f);
-            targetPosition = Camera.main.ViewportToWorldPoint(targetPosition);
-            Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-            transform.up = direction;
+            spawnPosition = new Vector2(0.4f, Random.Range(0.4f, 5f));
+            
 
 
             GameObject asteroid = (GameObject)Instantiate(Asteroid, Camera.main.ViewportToWorldPoint(spawnPosition, 0), Quaternion.identity);
