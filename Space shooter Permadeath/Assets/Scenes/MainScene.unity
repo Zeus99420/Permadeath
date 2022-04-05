@@ -1273,7 +1273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -162.79999}
+  m_AnchoredPosition: {x: 0, y: -162.29999}
   m_SizeDelta: {x: 694, y: -324.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &456961072
@@ -2496,7 +2496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 0
+  testingShop: 1
   permadeath: 1
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -5080,6 +5080,11 @@ MonoBehaviour:
   buttonPrefab: {fileID: 7083952019581559464, guid: 6ac396f1e83b6f144add8824e860f3c4, type: 3}
   buttons: []
   availableUpgrades: []
+  children:
+  - {fileID: 456961071}
+  - {fileID: 9091034501602691128}
+  - {fileID: 270539410}
+  - {fileID: 564467060}
 --- !u!1 &1764026081
 GameObject:
   m_ObjectHideFlags: 0

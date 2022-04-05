@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
+    public RectTransform[] children;
     public void Initialize()
     {
         upgrades.AddRange(GetComponentsInChildren<Upgrades>());
@@ -20,6 +21,8 @@ public class Shop : MonoBehaviour
 
     public void EnterShop()
     {
+        StartCoroutine(SlideIn());
+
         for (int t = 0; t < 3; t++)
         {
             int randomNumber = Random.Range(0, upgrades.Count);
@@ -38,9 +41,9 @@ public class Shop : MonoBehaviour
             button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.description;
 
             transform.Find("PickAnUpgradeText").gameObject.SetActive(true);
-
-
         }
+
+
 
         //CheckAfford();
     }
@@ -48,7 +51,8 @@ public class Shop : MonoBehaviour
     public void Exit()
     {
         ClearUpgrades();
-        gameObject.SetActive(false);
+        StartCoroutine(SlideOut());
+        //gameObject.SetActive(false);
     }
 
     public void ClearUpgrades()
@@ -88,5 +92,56 @@ public class Shop : MonoBehaviour
         Destroy(button.gameObject);
 
         ClearUpgrades();
+    }
+
+    public IEnumerator SlideIn()
+    {
+        float slideInTime = 1.5f;
+        float offset = 4;
+        //RectTransform[] childrensTransforms = GetComponentsInChildren<RectTransform>();
+
+        foreach (RectTransform childTransform in children)
+        {
+            childTransform.Translate(Vector2.down * offset);
+
+        }
+
+        float lastTime = 0;
+        for (float time = 0; time <= 1; time += Time.deltaTime / slideInTime)
+        {
+            if (time > 1) time = 1;
+            float deltaTime = time - lastTime;
+            foreach (RectTransform childTransform in children)
+            {
+                childTransform.Translate(Vector2.up * deltaTime*offset);
+            }
+            lastTime = time;
+            yield return null;
+        }
+    }
+
+    public IEnumerator SlideOut()
+    {
+        float slideOutTime = 1.5f;
+        float offset = 4;
+
+        float lastTime = 0;
+        for (float time = 0; time <= 1; time += Time.deltaTime / slideOutTime)
+        {
+            if (time > 1) time = 1;
+            float deltaTime = time - lastTime;
+            foreach (RectTransform childTransform in children)
+            {
+                childTransform.Translate(Vector2.down * deltaTime * offset);
+            }
+            lastTime = time;
+            yield return null;
+        }
+        foreach (RectTransform childTransform in children)
+        {
+            childTransform.Translate(Vector2.up * offset);
+
+        }
+        gameObject.SetActive(false);
     }
 }
