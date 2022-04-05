@@ -14,7 +14,9 @@ public class Mastermind : MonoBehaviour
     UIScreen deathScreen;
     public UIScreen permadeathScreen;
     public UIScreen standardDeathScreen;
+     UIScreen gamewonScreen;
     public UIScreen instructions;
+    public Sprite gamewonscreen;
     public Sprite deathscreen;
     public Button startoverbutton;
     Coroutine deathScreenCoroutine;
@@ -55,6 +57,7 @@ public class Mastermind : MonoBehaviour
         Gameplay,
         Shop,
         GameOver,
+        GameWon,
     }
 
     GameMastermindState GMState;
@@ -89,7 +92,9 @@ public class Mastermind : MonoBehaviour
 
         if (GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath) StartFromCheckpoint();
 
-        if(/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r")) StartOver();
+        if (GMState == GameMastermindState.GameWon && Input.GetKeyDown("space")) StartGameplay();
+
+        if (/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r")) StartOver();
 
     }
 
@@ -117,6 +122,11 @@ public class Mastermind : MonoBehaviour
                 waveSpawner.enabled = false;
                 deathScreenCoroutine = StartCoroutine(deathScreen.FadeIn());
 
+                break;
+            case GameMastermindState.GameWon:
+                gamewonScreen.gameObject.SetActive(true);
+                waveSpawner.enabled = false;
+                camera.GetComponent<AudioSource>().Stop();
                 break;
         }
     }
