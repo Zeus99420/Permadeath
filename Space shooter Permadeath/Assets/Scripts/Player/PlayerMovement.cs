@@ -46,7 +46,7 @@ public class PlayerMovement : Character
     {
             base.Start();
             //Character start-metod gör att spelarens health = maxHealth. 
-            healthAlreadySet = true;
+            //healthAlreadySet = true;
         //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.
 
 

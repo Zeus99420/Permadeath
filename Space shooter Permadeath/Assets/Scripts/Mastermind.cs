@@ -176,7 +176,13 @@ public class Mastermind : MonoBehaviour
                 EnterShop();
             }
 
-            else waveSpawner.NewWave();
+            else
+            {
+                if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length-1) CheckpointSave();
+                waveSpawner.NewWave();
+            }
+
+
         }
     }
 
