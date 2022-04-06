@@ -255,6 +255,7 @@ public class Mastermind : MonoBehaviour
         StopCoroutine(deathScreenCoroutine);
         StartCoroutine(deathScreen.FadeOut());
         Invoke("CountEnemies", 0f);
+        camera.GetComponent<AudioSource>().Play();
     }
 
     public void StartOver ()

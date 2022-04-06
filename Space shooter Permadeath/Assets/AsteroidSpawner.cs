@@ -12,12 +12,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     private void Start()
     {
-        Vector2 targetPosition;
-        targetPosition.x = Random.Range(0.2f, 0.8f);
-        targetPosition.y = Random.Range(0.2f, 0.8f);
-        targetPosition = Camera.main.ViewportToWorldPoint(targetPosition);
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-        transform.up = direction;
+        
     }
 
     void Update()
@@ -25,15 +20,22 @@ public class AsteroidSpawner : MonoBehaviour
 
         if (Time.time > nextAsteroidTime)
         {
+           float randomNumber = Random.value;
+            // Väljer slumpmässigt en kant av skärmen, och sedan en slumpvald punkt strax utanför kanten där fienden ska spawna.
+            if (randomNumber <= 0.2) spawnPosition = new Vector2(0.8f, Random.Range(1f, 0.8f));
+            else if (randomNumber < 0.4) spawnPosition = new Vector2(1f, Random.Range(1f, 0.8f));
+            else if (randomNumber < 0.7) spawnPosition = new Vector2(Random.Range(1f, 0.8f), 0.8f);
+            else spawnPosition = new Vector2(Random.Range(1f, 0.8f), 1f);
 
             // Väljer slumpmässigt en kant av skärmen, och sedan en slumpvald punkt strax utanför kanten där fienden ska spawna.
-            spawnPosition = new Vector2(0.4f, Random.Range(0.4f, 5f));
-            
+
+            //spawnPosition = new Vector2(0.4f, Random.Range(0.4f, 5f));
+
 
 
             GameObject asteroid = (GameObject)Instantiate(Asteroid, Camera.main.ViewportToWorldPoint(spawnPosition, 0), Quaternion.identity);
             asteroid.transform.localScale *= Random.Range(0.5f, 2f);
-            asteroid.GetComponent<Asteroid>().speed = -(3f * Random.value + 1f);
+           asteroid.GetComponent<Asteroid>().speed = -(3f * Random.value + 1f);
             asteroid.transform.parent = transform;
 
             nextAsteroidTime = Time.time + Random.Range(minCooldown, maxCooldown);
