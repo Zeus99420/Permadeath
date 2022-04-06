@@ -6,12 +6,12 @@ public class AsteroidSpawner : MonoBehaviour
 {
     public GameObject Asteroid;
     public GameObject Background;
-    public float spawn_circle_radius = 150f;
-    public int asteroid_count = 0;
-    public int asteroid_limit = 10;
-   public int asteroids_per_frame = 1;
-    public float fastest_speed = 10.0f;
-    public float slowest_speed = 5.0f;
+    public float spawn_circle_radius;
+    public int asteroid_count;
+    public int asteroid_limit;
+    public int asteroids_per_frame;
+    public float fastest_speed;
+    public float slowest_speed;
 
 
     private void Start()
@@ -31,7 +31,8 @@ public class AsteroidSpawner : MonoBehaviour
             for(int i=0; i <asteroids_per_frame; i++)
             {
                 Vector3 position = GetRandomPosition();
-                Asteroid new_asteroid = AddAsteroid(position);
+                Asteroid asteroid_script = AddAsteroid(position);
+                asteroid_script.transform.Rotate(Vector3.forward * Random.Range(-45.0f, 45.0f));
             }
         }
     }
@@ -53,6 +54,7 @@ public class AsteroidSpawner : MonoBehaviour
             Quaternion.FromToRotation(Vector3.up, (Background.transform.position - position)),
             gameObject.transform
             );
+        //gameObject.transform.localScale *=  Random.Range(0.85f, 1f);
         Asteroid asteroid_script = new_asteroid.GetComponent<Asteroid>();
         asteroid_script.asteroid_spawner = this;
         asteroid_script.Background = Background;
