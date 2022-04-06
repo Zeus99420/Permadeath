@@ -2207,8 +2207,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroid: {fileID: 5478670190823855102, guid: 9866fb028ff3885439e8ef652685c990, type: 3}
-  minCooldown: 1
-  maxCooldown: 5
+  Background: {fileID: 79831477}
+  spawn_circle_radius: 150
+  asteroid_count: 0
+  asteroid_limit: 10
+  asteroids_per_frame: 0
+  fastest_speed: 10
+  slowest_speed: 5
 --- !u!4 &727379189
 Transform:
   m_ObjectHideFlags: 0
@@ -3713,7 +3718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: BigBullet
+  upgradeName: Cannon
   price: 200
   description: 'Your bullets are slow and big but deal more damage.
 

@@ -2,10 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Asteroid : MonoBehaviour
 {
+    public AsteroidSpawner asteroid_spawner;
+    public GameObject Background;
+    public float speed;
+    private void Update()
+    {
+        Move();
+    }
 
+    private void Move()
+    {
+        transform.position += transform.up * (Time.deltaTime * speed);
+        float distance = Vector3.Distance(transform.position, Background.transform.position);
+        
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+        asteroid_spawner.asteroid_count -= 1;
+    }
+    /*
     public float speed;
     bool directionRight;
    // public float acceleration;
@@ -58,4 +77,5 @@ public class Asteroid : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    */
 }
