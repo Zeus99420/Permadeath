@@ -14,11 +14,9 @@ public class Mastermind : MonoBehaviour
     UIScreen deathScreen;
     public UIScreen permadeathScreen;
     public UIScreen standardDeathScreen;
-     UIScreen gamewonScreen;
+    public UIScreen gamewonScreen;
     public UIScreen instructions;
-    public Sprite gamewonscreen;
     public Sprite deathscreen;
-    public Button startoverbutton;
     Coroutine deathScreenCoroutine;
     public WaveSpawner waveSpawner;
     public Shop shop;
@@ -73,14 +71,6 @@ public class Mastermind : MonoBehaviour
 
         if (permadeath) deathScreen = permadeathScreen;
         else deathScreen = standardDeathScreen;
-         
-
-
-
-
-
-
-
 
     }
 
@@ -92,7 +82,7 @@ public class Mastermind : MonoBehaviour
 
         if (GMState == GameMastermindState.GameOver && Input.GetKeyDown("t") && !permadeath) StartFromCheckpoint();
 
-        if (GMState == GameMastermindState.GameWon && Input.GetKeyDown("space")) StartGameplay();
+        if (GMState == GameMastermindState.GameWon && Input.GetKeyDown("space")) StartOver();
 
         if (/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r")) StartOver();
 
@@ -106,7 +96,6 @@ public class Mastermind : MonoBehaviour
                 UpdateMoney(0);
                 UpdateScore(0);
                 camera.GetComponent<AudioSource>().Play();
-                //startoverbutton.gameObject.SetActive(false);
                 break;
             case GameMastermindState.Gameplay:
                 StartCoroutine(instructions.FadeOut());
@@ -124,7 +113,8 @@ public class Mastermind : MonoBehaviour
 
                 break;
             case GameMastermindState.GameWon:
-                gamewonScreen.gameObject.SetActive(true);
+                //gamewonScreen.gameObject.SetActive(true);
+                StartCoroutine(gamewonScreen.FadeIn());
                 waveSpawner.enabled = false;
                 camera.GetComponent<AudioSource>().Stop();
                 break;
@@ -174,7 +164,12 @@ public class Mastermind : MonoBehaviour
         //Startar en ny våg ifall alla fiender är förstörda
         if (GMState == GameMastermindState.Gameplay && enemiesRemaining == 0)
         {
-            if (exp > expRequired /*waveSpawner.currentWave.shopAfter*/)
+            if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length)
+            {
+                SetGameMastermindState(GameMastermindState.GameWon);
+            }
+
+            else if (exp > expRequired /*waveSpawner.currentWave.shopAfter*/)
             {
                 LevelUp();
                 player.SendMessage("LevelComplete");
