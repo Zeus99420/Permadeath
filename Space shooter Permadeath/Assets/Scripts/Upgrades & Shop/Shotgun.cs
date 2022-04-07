@@ -26,7 +26,8 @@ public class Shotgun : Upgrades
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
         weapons.projectileSize *= projectileSize;
-        
+
+        upgradeName = "Upgrade Shotgun";
     }
 
     public override void BuyAnother()

@@ -132,6 +132,7 @@ public class Weapons : MonoBehaviour
     {
         GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
+        newProjectile.transform.up = fireVector;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         newProjectile.transform.localScale *= projectileSize;
@@ -221,6 +222,7 @@ public class Weapons : MonoBehaviour
     GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<SpriteRenderer>().sprite = bigBulletSprite;
+        newProjectile.transform.up = fireVector;
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * canonDamageMultiplier);
         newProjectile.transform.localScale *= projectileSize;

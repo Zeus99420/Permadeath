@@ -2601,7 +2601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 1
+  testingShop: 0
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -2963,6 +2963,13 @@ MonoBehaviour:
   - {fileID: 8629178398983394060, guid: dd09eeec7950d8a46a7665cb5eae6fee, type: 3}
   freighterPrefab: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
   waves:
+  - waveName: Test
+    budget: 1
+    enemies:
+    - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
+      frequency: 1
+    spawnRate: 1.8
+    shopAfter: 0
   - waveName: Wave 1
     budget: 50
     enemies:

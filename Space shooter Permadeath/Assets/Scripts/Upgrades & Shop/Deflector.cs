@@ -17,6 +17,8 @@ public class Deflector : Upgrades
         playerMovement.deflectorRechargeTime = rechargeTime;
 
         playerMovement.deflectorRenderer.enabled = true;
+
+        upgradeName = "Upgrade Deflector Shield";
     }
 
     public override void BuyAnother()
