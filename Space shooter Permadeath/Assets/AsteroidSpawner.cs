@@ -54,7 +54,7 @@ public class AsteroidSpawner : MonoBehaviour
             Quaternion.FromToRotation(Vector3.up, (Background.transform.position - position)),
             gameObject.transform
             );
-        //gameObject.transform.localScale *=  Random.Range(0.85f, 1f);
+        //gameObject.transform.localScale *= Random.Range(1f, 0.5f);
         Asteroid asteroid_script = new_asteroid.GetComponent<Asteroid>();
         asteroid_script.asteroid_spawner = this;
         asteroid_script.Background = Background;
