@@ -2212,8 +2212,8 @@ MonoBehaviour:
   asteroid_count: 0
   asteroid_limit: 4
   asteroids_per_frame: 2
-  fastest_speed: 1
-  slowest_speed: 0.5
+  fastest_speed: 2
+  slowest_speed: 1
 --- !u!4 &727379189
 Transform:
   m_ObjectHideFlags: 0
