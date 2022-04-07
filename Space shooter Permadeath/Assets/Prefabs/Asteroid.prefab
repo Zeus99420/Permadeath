@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcbf5edfcbc8724f948d66f2b3b3dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroid_spawner: {fileID: 0}
+  Background: {fileID: 0}
   speed: 0
-  acceleration: 100
 --- !u!50 &5376059299187933514
 Rigidbody2D:
   serializedVersion: 4

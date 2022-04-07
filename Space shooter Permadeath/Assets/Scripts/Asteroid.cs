@@ -7,14 +7,28 @@ public class Asteroid : MonoBehaviour
     public AsteroidSpawner asteroid_spawner;
     public GameObject Background;
     public float speed;
+    Vector3 direction;
+    Vector3 rotation;
+
+    private void Start()
+    {
+        Vector2 targetPosition;
+        targetPosition.x = Random.Range(0f, 1f);
+        targetPosition.y = Random.Range(0f, 1f);
+        targetPosition = Camera.main.ViewportToWorldPoint(targetPosition);
+        direction = (targetPosition - (Vector2)transform.position).normalized;
+
+        rotation = new Vector3(0f,0f,Random.Range(-30f, 30f));
+    }
     private void Update()
     {
         Move();
+        transform.Rotate(rotation*Time.deltaTime);
     }
 
     private void Move()
     {
-        transform.position += transform.up * (Time.deltaTime * speed);
+        transform.position += direction * (Time.deltaTime * speed);
         float distance = Vector3.Distance(transform.position, Background.transform.position);
         
     }

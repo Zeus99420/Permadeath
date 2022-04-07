@@ -2210,10 +2210,10 @@ MonoBehaviour:
   Background: {fileID: 79831477}
   spawn_circle_radius: 20
   asteroid_count: 0
-  asteroid_limit: 200
-  asteroids_per_frame: 1
-  fastest_speed: 3
-  slowest_speed: 1
+  asteroid_limit: 2
+  asteroids_per_frame: 2
+  fastest_speed: 1
+  slowest_speed: 3
 --- !u!4 &727379189
 Transform:
   m_ObjectHideFlags: 0

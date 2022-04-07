@@ -132,6 +132,14 @@ public class Enemy : Character
         Destroy(gameObject);
         mastermind.Invoke("CountEnemies", 0f);
 
+        //Andra fiendetyper än freighter har en chans att droppa en pickup beroende på sin value.
+        if (!GetComponent<Freighter>() && Random.Range(0, 300) < value)
+        {
+            GameObject pickup = mastermind.waveSpawner.pickupList[0];
+            GameObject newPickup = Instantiate(pickup, transform.position, Quaternion.identity, mastermind.stuffContainer);
+            newPickup.GetComponent<Pickup>().mastermind = mastermind;
+        }
+
     }
 
 
