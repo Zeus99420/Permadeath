@@ -11,4 +11,12 @@ public class Engine : Upgrades
         player.GetComponent<SpriteRenderer>().sprite = BiggerEngine;
         player.GetComponent<PlayerMovement>().baseAcceleration +=increaseAmount;
     }
+
+    public override string GetDescription()
+    {
+        float currentAcceleration = player.GetComponent<PlayerMovement>().baseAcceleration;
+        return ("Your ship flies faster." +
+            "\n\nacceleration: " + currentAcceleration + " -> " + (currentAcceleration+increaseAmount)
+            );
+    }
 }

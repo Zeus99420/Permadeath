@@ -2601,7 +2601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b8901bb6debf429a6c44059bf88a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingShop: 0
+  testingShop: 1
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -3554,7 +3554,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Faster Gun
   price: 150
-  description: Increases your attack speed
+  description: Increases your attack speed.
   unique: 0
   increaseAmount: 1
   BiggerGun: {fileID: 21300000, guid: dc4843fa9a50a304a8c70da8926c35fd, type: 3}
@@ -3604,7 +3604,7 @@ MonoBehaviour:
   unique: 1
   projectileSpeedIncrease: 13
   rateOfFireMultiplier: 0.6
-  damageMultiplier: 1.5
+  damageMultiplier: 2.2
   projectile: {fileID: 9101686643944138255, guid: 0bd15ce0d63f20044b0a6e98ff8a0bb2, type: 3}
   projectileSize: 1.2
 --- !u!114 &1401891356
@@ -3622,7 +3622,7 @@ MonoBehaviour:
   player: {fileID: 0}
   upgradeName: Engine
   price: 80
-  description: Your ship flies faster
+  description: Your ship flies faster.
   unique: 0
   increaseAmount: 400
   BiggerEngine: {fileID: 21300000, guid: d7704cce7e330a14bac53cb0aaf163a7, type: 3}
@@ -3671,7 +3671,7 @@ MonoBehaviour:
   description: 'You can fire a rapid burst of several shots.
 
     Reharges when you
-    arent shooting'
+    arent shooting.'
   unique: 1
   baseFireRateMultiplier: 3
   fireRateMultiplierIncrease: 0.5
@@ -3696,7 +3696,7 @@ MonoBehaviour:
 
 
     Increases
-    movement speed by up to 50% when you aren''t shooting'
+    movement speed by up to 50% when you aren''t shooting.'
   unique: 1
   multiplierMaxBase: 1.5
   multiplierMaxIncrease: 1.5
@@ -3723,11 +3723,12 @@ MonoBehaviour:
   description: 'Your bullets are slow and big but deal more damage.
 
     Rate of
-    fire is reduced'
+    fire is reduced.'
   unique: 1
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 1.5
   CanonWeapon: {fileID: 21300000, guid: 7728964d553d39f4cba2877dc6e50a98, type: 3}
+  damageMultiplier: 3.5
   rateOfFireMultiplier: 0.4
   projectileSize: 5
   projectileSprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
@@ -3781,7 +3782,7 @@ MonoBehaviour:
   unique: 0
   baseHealth: 30
   healthIncrease: 30
-  rechargeTime: 4
+  rechargeTime: 6
 --- !u!1 &1473092157
 GameObject:
   m_ObjectHideFlags: 0
@@ -4544,6 +4545,7 @@ MonoBehaviour:
   movementChargeTime: 0
   movementUnchargeTime: 0
   bigBulletSprite: {fileID: 0}
+  canonDamageMultiplier: 0
 --- !u!96 &1653898514
 TrailRenderer:
   serializedVersion: 2

@@ -25,4 +25,25 @@ public class Deflector : Upgrades
         playerMovement.maxDeflectorHealth += healthIncrease;
     }
 
+    public override string GetDescription()
+    {
+        if (firstTimeBuying) return ("A shield protects you from a small amount of damage." +
+            "\nRecharges over time." +
+            "\n\nDurability: " + baseHealth + " damage" +
+            "\nRecharge time: " + rechargeTime + " seconds"
+            
+            );
+
+        else
+        {
+            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+            int currentDurability = player.GetComponent<PlayerMovement>().maxDeflectorHealth;
+            return ("Increase the durability of your deflector shield." +
+            "\n\ndurability: " + currentDurability + " -> " + (currentDurability + healthIncrease)
+        );
+        }
+
+
+    }
+
 }

@@ -10,7 +10,7 @@ public class Upgrades : MonoBehaviour
     [TextArea] public string description;
     public bool unique;
 
-    bool firstTimeBuying = true;
+    protected bool firstTimeBuying = true;
     public virtual void Buy()
     {
         if (firstTimeBuying)
@@ -22,5 +22,7 @@ public class Upgrades : MonoBehaviour
     }
     public virtual void BuyFirst() {}
     public virtual void BuyAnother() {}
+
+    public virtual string GetDescription() { return description; }
 
 }

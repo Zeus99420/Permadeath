@@ -28,7 +28,14 @@ public class Barrier : Upgrades
 
         playerMovement.ReadyBarrier();
         playerMovement.barrierBought = true;
+    }
 
-
+    public override string GetDescription()
+    {
+        return ("A powerful shield activates when you get hit, protecting you from damage for a short time." +
+            "\n\nDurability: " + maxHealth + " damage" +
+            "\nDuration: " + duration + " seconds" +
+            "\nCooldown: " + cooldown + " seconds"
+            );
     }
 }

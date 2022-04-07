@@ -27,6 +27,7 @@ public class Shop : MonoBehaviour
         {
             int randomNumber = Random.Range(0, upgrades.Count);
             Upgrades randomUpgrade = upgrades[randomNumber];
+            randomUpgrade.player = mastermind.player;
             upgrades.RemoveAt(randomNumber);
             GameObject buttonObject = Instantiate(buttonPrefab, transform.Find("ButtonLayout"));
             buttonObject.transform.Translate(Vector3.right * 3 * t);
@@ -38,7 +39,7 @@ public class Shop : MonoBehaviour
 
             button.transform.Find("NameText").GetComponent<Text>().text = randomUpgrade.upgradeName;
             button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
-            button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.description;
+            button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.GetDescription();
 
             transform.Find("PickAnUpgradeText").gameObject.SetActive(true);
         }
@@ -81,7 +82,7 @@ public class Shop : MonoBehaviour
 
     public void BuyButton(Button button,Upgrades upgrade)
     {
-        upgrade.player = mastermind.player;
+        //upgrade.player = mastermind.player;
         //mastermind.UpdateMoney(-upgrade.price);
         //CheckAfford();
         upgrade.Buy();

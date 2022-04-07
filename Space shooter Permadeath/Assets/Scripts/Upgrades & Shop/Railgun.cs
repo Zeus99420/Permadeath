@@ -9,6 +9,8 @@ public class Railgun : Upgrades
     public float damageMultiplier;
     public GameObject projectile;
     public float projectileSize;
+
+
     public override void Buy()
     {
         Weapons weapons = player.GetComponent<Weapons>();
@@ -21,7 +23,13 @@ public class Railgun : Upgrades
         Vector3 newPosition = lineRenderer.GetPosition(1) + Vector3.up * 4;
         lineRenderer.SetPosition(1, newPosition);
         weapons.projectileSize *= projectileSize;
+    }
 
-
+    public override string GetDescription()
+    {
+        return ("Your projectiles fly faster and can pierce and hit multiple enemies. Damage is halved after each hit." +
+            "\n\ndamage: x" + damageMultiplier +
+            "\nrate of fire: x" + rateOfFireMultiplier
+            );
     }
 }

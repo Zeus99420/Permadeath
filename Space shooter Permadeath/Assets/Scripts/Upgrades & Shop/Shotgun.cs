@@ -38,6 +38,26 @@ public class Shotgun : Upgrades
     }
 
 
+    public override string GetDescription()
+    {
+        if (firstTimeBuying) return
+                    ("You fire multiple smaller projectiles in an arc." +
+                    "\n\nnumber of projectiles: " + baseBulletCount +
+                    "\ndamage per projectile: x" + damageMultiplier +
+                    "\nrate of fire: x" + rateOfFireMultiplier
+                    );
+
+        else
+        {
+            int currentBulletCount = player.GetComponent<Weapons>().spreadBulletCount;
+            return ("Increase the number of projectiles fired." +
+        "\n\nnumber of projectiles: " + currentBulletCount + " -> " + (currentBulletCount+bulletCountIncrease) );
+        }
+
+
+    }
+
+
 
 
 

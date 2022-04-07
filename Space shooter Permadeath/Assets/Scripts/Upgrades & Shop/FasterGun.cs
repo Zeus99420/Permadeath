@@ -13,6 +13,13 @@ public class FasterGun : Upgrades
         weapons.rateOfFire += increaseAmount * weapons.rateOfFireMultiplier;
     }
 
-   
-   
+
+    public override string GetDescription()
+    {
+        float currentRateofFire = player.GetComponent<Weapons>().rateOfFire;
+        float increase = increaseAmount * player.GetComponent<Weapons>().rateOfFireMultiplier;
+        return ("Increases your attack speed." +
+            "\n\nRate of Fire : " + currentRateofFire + " -> " + (currentRateofFire + increase + " shots per second")
+            );
+    }
 }
