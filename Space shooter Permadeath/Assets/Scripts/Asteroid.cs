@@ -9,9 +9,11 @@ public class Asteroid : MonoBehaviour
     public float speed;
     Vector3 direction;
     Vector3 rotation;
+    
 
     private void Start()
     {
+        GetComponent<Rigidbody2D>().velocity = direction * speed;
         Vector2 targetPosition;
         targetPosition.x = Random.Range(0f, 1f);
         targetPosition.y = Random.Range(0f, 1f);

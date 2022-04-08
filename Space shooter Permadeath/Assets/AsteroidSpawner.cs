@@ -12,11 +12,11 @@ public class AsteroidSpawner : MonoBehaviour
     public int asteroids_per_frame;
     public float fastest_speed;
     public float slowest_speed;
-
+ 
 
     private void Start()
     {
-        
+       
     }
 
     private void Update()
