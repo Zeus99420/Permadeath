@@ -2208,12 +2208,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Asteroid: {fileID: 5478670190823855102, guid: 9866fb028ff3885439e8ef652685c990, type: 3}
   Background: {fileID: 79831477}
-  spawn_circle_radius: 20
+  spawn_circle_radius: 16
   asteroid_count: 0
-  asteroid_limit: 10
-  asteroids_per_frame: 2
-  fastest_speed: 2
-  slowest_speed: 1
+  asteroid_limit: 2
+  asteroids_per_frame: 1
+  fastest_speed: 0.9
+  slowest_speed: 0.6
 --- !u!4 &727379189
 Transform:
   m_ObjectHideFlags: 0
@@ -2602,7 +2602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testingShop: 0
-  permadeath: 0
+  permadeath: 1
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
   permadeathScreen: {fileID: 69773241}
@@ -2963,13 +2963,6 @@ MonoBehaviour:
   - {fileID: 8629178398983394060, guid: dd09eeec7950d8a46a7665cb5eae6fee, type: 3}
   freighterPrefab: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
   waves:
-  - waveName: Test
-    budget: 1
-    enemies:
-    - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
-      frequency: 1
-    spawnRate: 1.8
-    shopAfter: 0
   - waveName: Wave 1
     budget: 50
     enemies:

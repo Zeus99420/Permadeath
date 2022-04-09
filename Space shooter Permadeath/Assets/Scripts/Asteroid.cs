@@ -13,19 +13,21 @@ public class Asteroid : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
+
         Vector2 targetPosition;
         targetPosition.x = Random.Range(0f, 1f);
         targetPosition.y = Random.Range(0f, 1f);
         targetPosition = Camera.main.ViewportToWorldPoint(targetPosition);
         direction = (targetPosition - (Vector2)transform.position).normalized;
 
-        rotation = new Vector3(0f,0f,Random.Range(-30f, 30f));
+        Rigidbody2D myRigidbody = GetComponent<Rigidbody2D>();
+        myRigidbody.velocity = direction * speed;
+        myRigidbody.angularVelocity = Random.Range(-30f, 30f);
     }
     private void Update()
     {
-        Move();
-        transform.Rotate(rotation*Time.deltaTime);
+        //Move();
+        //transform.Rotate(rotation*Time.deltaTime);
     }
 
     private void Move()

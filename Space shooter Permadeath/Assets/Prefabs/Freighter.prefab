@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 4492953111135749986}
   - component: {fileID: -1661861178847060762}
   - component: {fileID: -1969351744893304653}
+  - component: {fileID: 1383150009123442707}
   m_Layer: 7
   m_Name: Freighter
   m_TagString: Enemy
@@ -342,7 +343,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9058780368718266020}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -409,6 +410,22 @@ MonoBehaviour:
   collisionDamage: 60
   collisionSelfDamage: 30
   pickup: {fileID: 0}
+--- !u!70 &1383150009123442707
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058780368718266020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.02}
+  m_Size: {x: 1, y: 1.1}
+  m_Direction: 0
 --- !u!1 &9058780368753529466
 GameObject:
   m_ObjectHideFlags: 0
