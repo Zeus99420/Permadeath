@@ -62,23 +62,27 @@ public class PlayerMovement : Character
 
     private void Update()
     {
-        // convert mouse position into world coordinates
-        Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!mastermind.gamePaused)
+        {
+            // convert mouse position into world coordinates
+            Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // get direction you want to point at
-        Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
+            // get direction you want to point at
+            Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
 
-        // set vector of transform directly
-        transform.up = direction;
+            // set vector of transform directly
+            transform.up = direction;
 
-        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
-        if (pos.x < 0 || pos.x > 1) m_rigidbody.velocity = m_rigidbody.velocity*new Vector2(0,1);
-        if(pos.y < 0 || pos.y > 1) m_rigidbody.velocity = m_rigidbody.velocity * new Vector2(1, 0);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);
+            Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+            if (pos.x < 0 || pos.x > 1) m_rigidbody.velocity = m_rigidbody.velocity * new Vector2(0, 1);
+            if (pos.y < 0 || pos.y > 1) m_rigidbody.velocity = m_rigidbody.velocity * new Vector2(1, 0);
+            pos.x = Mathf.Clamp01(pos.x);
+            pos.y = Mathf.Clamp01(pos.y);
+            gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);
 
-        if (haveDeflector) DeflectorUpdate();
+            if (haveDeflector) DeflectorUpdate();
+        }
+
 
     }
     void FixedUpdate()

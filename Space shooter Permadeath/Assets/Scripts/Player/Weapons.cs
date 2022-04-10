@@ -85,17 +85,21 @@ public class Weapons : MonoBehaviour
 
     void Update()
     {
-        projectileDamage = baseDamage;
-        continueSequence = true;
-        sequenceStep = 0;
-        while (continueSequence && sequenceStep < methodSequence.Count)
+        if(!mastermind.gamePaused)
         {
-            if (enabledSequence[sequenceStep] == true)
+            projectileDamage = baseDamage;
+            continueSequence = true;
+            sequenceStep = 0;
+            while (continueSequence && sequenceStep < methodSequence.Count)
             {
-                SendMessage(methodSequence[sequenceStep]);
+                if (enabledSequence[sequenceStep] == true)
+                {
+                    SendMessage(methodSequence[sequenceStep]);
+                }
+                sequenceStep++;
             }
-            sequenceStep++;
         }
+
 
     }
 

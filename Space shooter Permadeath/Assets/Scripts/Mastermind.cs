@@ -16,6 +16,7 @@ public class Mastermind : MonoBehaviour
     public UIScreen standardDeathScreen;
     public UIScreen gamewonScreen;
     public UIScreen instructions;
+    public GameObject pauseScreen;
     public Sprite deathscreen;
     Coroutine deathScreenCoroutine;
     public WaveSpawner waveSpawner;
@@ -23,6 +24,8 @@ public class Mastermind : MonoBehaviour
     public Transform enemiesContainer;
     public Transform stuffContainer;
     public Text enemiesRemainingText;
+
+    public bool gamePaused;
 
 
     public Text moneyText;
@@ -85,6 +88,12 @@ public class Mastermind : MonoBehaviour
         if (GMState == GameMastermindState.GameWon && Input.GetKeyDown("space")) StartOver();
 
         if (/*GMState == GameMastermindState.GameOver &&*/ Input.GetKeyDown("r")) StartOver();
+
+        if (Input.GetKeyDown("escape"))
+        {
+            if (!gamePaused) Pause();
+            else UnPause();
+        }
 
     }
 
@@ -266,8 +275,38 @@ public class Mastermind : MonoBehaviour
 
     public void StartOver ()
     {
-        
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            
+           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);           
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        gamePaused = true;
+        Cursor.visible = true;
+        pauseScreen.SetActive(true);
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        gamePaused = false;
+        pauseScreen.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game is exiting");
+    }
+
+    public void changeVolume(float volume)
+    {
+        AudioListener.volume = volume;
+    }
+
+    public AudioSource musicSource;
+    public void changeMusicVolume(float volume)
+    {
+        musicSource.volume = volume * 0.4f;
     }
 }
