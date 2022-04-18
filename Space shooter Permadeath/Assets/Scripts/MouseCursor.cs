@@ -23,8 +23,10 @@ public class MouseCursor : MonoBehaviour
             if (pos.x < 0 || pos.x > 1 || pos.y < 0 || pos.y > 1) Cursor.visible = true;
             else Cursor.visible = false;
         }
+    }
 
-
-
+    private void OnDestroy()
+    {
+        Cursor.visible = true;
     }
 }

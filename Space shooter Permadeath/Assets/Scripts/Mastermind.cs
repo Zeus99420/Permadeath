@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Mastermind : MonoBehaviour
 {
+    public MastermindsMaster master;    
+
     public bool testingShop;
     public bool permadeath;
     public GameObject player;
@@ -64,6 +66,11 @@ public class Mastermind : MonoBehaviour
     GameMastermindState GMState;
     void Start()
     {
+        //master = GameObject.Find("MastermindsMaster").GetComponent<MastermindsMaster>();
+        //permadeath = master.permadeath;
+
+        permadeath = MastermindsMaster.permadeath;
+
         SetGameMastermindState(GameMastermindState.Opening);
 
         shop.Initialize();
@@ -291,6 +298,12 @@ public class Mastermind : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         pauseScreen.SetActive(false);
+    }
+
+    public void GoToMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
 
     public void ExitGame()
