@@ -38,6 +38,8 @@ public class PlayerMovement : Character
     public SpriteRenderer deflectorRenderer;
     Color deflectorColor;
 
+
+
     public bool trailEnabled = false;
 
 
@@ -70,8 +72,10 @@ public class PlayerMovement : Character
             // get direction you want to point at
             Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
 
-            // set vector of transform directly
-            transform.up = direction;
+            if (focusFireEnabled) FocusFire(direction);
+            else transform.up = direction;
+
+
 
             Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
             if (pos.x < 0 || pos.x > 1) m_rigidbody.velocity = m_rigidbody.velocity * new Vector2(0, 1);
@@ -241,6 +245,24 @@ public class PlayerMovement : Character
         //else deflectorRenderer.color = Color.red;
 
         deflectorRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
+    }
+
+
+    //Focus Fire
+    /*[HideInInspector]*/ public bool focusFireEnabled;
+    [HideInInspector]     public float rotationRate;
+    /*[HideInInspector]*/ public float freeRotationRate;
+    /*[HideInInspector]*/ public float lockedRotationRate;
+    /*[HideInInspector]*/ public float focusFireRecoveryTime;
+    public void FocusFire(Vector2 direction)
+    {
+        if (!GetComponent<Weapons>().readyToFire) rotationRate = lockedRotationRate;
+        else
+        {
+            rotationRate += (freeRotationRate-lockedRotationRate)*Time.deltaTime/focusFireRecoveryTime;
+            if (rotationRate > freeRotationRate) rotationRate = freeRotationRate;
+        }
+        transform.up = Vector3.RotateTowards(transform.up, direction,rotationRate*Time.deltaTime,1f);
     }
 
 }

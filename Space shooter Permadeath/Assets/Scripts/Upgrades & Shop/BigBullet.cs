@@ -28,9 +28,9 @@ public class BigBullet : Upgrades
 
     public override string GetDescription()
     {
-        return ("Your projectiles are slow and big but deal more damage." +
-            "\n\ndamage: x" + damageMultiplier +
-            "\nrate of fire: x" + rateOfFireMultiplier
+        return ("Your projectiles are big and slow and deal more damage." +
+            "\n\nDamage: x" + damageMultiplier +
+            "\nRate of Fire: x" + rateOfFireMultiplier
             );
     }
 

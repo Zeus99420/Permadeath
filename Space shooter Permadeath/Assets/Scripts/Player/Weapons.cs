@@ -10,6 +10,7 @@ public class Weapons : MonoBehaviour
     public float rateOfFireMultiplier;
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
+    [HideInInspector] public bool readyToFire;
     public Transform weapon;
     public AudioSource shotaudio;
     public Image Crosshair;
@@ -108,10 +109,12 @@ public class Weapons : MonoBehaviour
         continueSequence = false;
         if (Time.time > nextShotTime)
         {
+            readyToFire = true;
             Crosshair.color = Color.white;
             Crosshair.fillAmount = 1;
             if (Input.GetMouseButton(0) && Time.time > nextShotTime)
             {
+                readyToFire = false;
                 nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
                 continueSequence = true;
             }
@@ -181,10 +184,12 @@ public class Weapons : MonoBehaviour
 
         if (Time.time > nextShotTime && rapidFireEnergy > 0)
         {
+            readyToFire = true;
             Crosshair.color = Color.white;
             Crosshair.fillAmount = 1;
             if(Input.GetMouseButton(0))
             {
+                readyToFire = false;
                 continueSequence = true;
                 rapidFireEnergy -= 1 / rateOfFire;
                 nextShotTime = Time.time + 1 / (rateOfFire * rapidFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen

@@ -4564,7 +4564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 0}
-  testingShop: 0
+  testingShop: 1
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -6176,6 +6176,7 @@ GameObject:
   - component: {fileID: 1401891360}
   - component: {fileID: 1401891361}
   - component: {fileID: 1401891362}
+  - component: {fileID: 1401891354}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: Untagged
@@ -6221,6 +6222,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1401891354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401891351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910326c16f3828c418e4fc04b4c94f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Focus Fire
+  price: 150
+  description: 
+  unique: 1
+  rateOfFireMultiplier: 1.8
+  freeRotationRate: 20
+  lockedRotationRate: 0.2
+  recoveryTime: 1.5
 --- !u!114 &1401891355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7222,7 +7244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1653898509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7262,6 +7284,11 @@ MonoBehaviour:
   deflectorRechargeTime: 0
   deflectorRenderer: {fileID: 517054607}
   trailEnabled: 0
+  focusFireEnabled: 0
+  rotationRate: 0
+  freeRotationRate: 0
+  lockedRotationRate: 0
+  focusFireRecoveryTime: 0
 --- !u!120 &1653898510
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -7487,6 +7514,7 @@ MonoBehaviour:
   mastermind: {fileID: 856224839}
   rateOfFireMultiplier: 1
   rateOfFire: 3
+  readyToFire: 0
   weapon: {fileID: 397213641}
   shotaudio: {fileID: 1653898512}
   Crosshair: {fileID: 1356923712}

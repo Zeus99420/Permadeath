@@ -28,8 +28,8 @@ public class Railgun : Upgrades
     public override string GetDescription()
     {
         return ("Your projectiles fly faster and can pierce and hit multiple enemies. Damage is halved after each hit." +
-            "\n\ndamage: x" + damageMultiplier +
-            "\nrate of fire: x" + rateOfFireMultiplier
+            "\n\nDamage: x" + damageMultiplier +
+            "\nRate of Fire: x" + rateOfFireMultiplier
             );
     }
 }
