@@ -18,6 +18,7 @@ public class EnemyTypes
 {
     public GameObject type;
     public int value;
+    public int appears;
 }
 
  [System.Serializable] public class Enemies
@@ -58,7 +59,7 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    public void NewWave()
+    public void OLDNewWave()
     {
         currentWave = waves[nextWaveNumber];
         nextWaveNumber++;
@@ -66,10 +67,7 @@ public class WaveSpawner : MonoBehaviour
         budget = currentWave.budget;
 
         enemyFrequencySum = 0;
-        //foreach (float frequency in currentWave.enemyFrequencies)
-        //{
-        //    enemyFrequencySum += frequency;
-        //}
+
 
         foreach (Enemies enemy in currentWave.enemies)
         {
@@ -114,10 +112,64 @@ public class WaveSpawner : MonoBehaviour
         mastermind.CountEnemies();
     }
 
+
+    public int baseBudget;
+    public int budgetIncrease;
+    public float budgetExponent;
+    public float baseSpawnRate;
+    public void NewWave()
+    {
+        int waveBudget = baseBudget;
+        for (int i = 0; i < nextWaveNumber; i++) waveBudget += (int)(budgetIncrease * Mathf.Pow(budgetExponent, i));
+
+        spawnRate = baseSpawnRate * Mathf.Pow(spawnRateExponent, nextWaveNumber);
+        budget = waveBudget;
+        nextWaveNumber++;
+        waveText.text = "Wave " + nextWaveNumber;
+        Debug.Log("budget: " + budget);
+
+
+
+        // Varje våg har en "budget"; spelet köper fiender som ska spawnas tills budgeten är slut
+        while (budget > 0)
+        {
+            int randomIndex = Random.Range(0, allEnemyTypes.Length);   // Välj slumpmässigt en fiendetyp
+            EnemyTypes batchType = allEnemyTypes[randomIndex];
+
+            if (batchType.appears <= nextWaveNumber)    // Kollar om typen finns i denna wave
+            {
+                float batchBudget = 30 + Random.Range(0, waveBudget / 2);     //Köp fiender av typen för en budget av slumpad storlek
+                if (batchBudget > budget) batchBudget = budget;
+
+                while (batchBudget > 0)
+                {
+                    //enemyPool.Add(batchType.type);
+                    randomIndex = Random.Range(0, enemyPool.Count);
+                    enemyPool.Insert(randomIndex, batchType.type);
+                    budget -= batchType.value;
+                    batchBudget -= batchType.value;
+                }
+            }
+        }
+
+        //Lägger slumpmässigt till fraktskepp med pickups till enemypool. Högre budget -> Fler fraktskepp, men inte linjärt.
+        for (int t = 0; t < Mathf.Sqrt(currentWave.budget); t++)
+        {
+            if (Random.value < (1f / 15f))
+            {
+                int randomIndex = Random.Range(0, enemyPool.Count);
+                enemyPool.Insert(randomIndex, freighterPrefab);
+            }
+        }
+        mastermind.CountEnemies();
+    }
+
+    public float spawnRate;
+    public float spawnRateExponent;
     private void Update()
     {
         Vector2 spawnPosition;
-        if (enemyPool.Count > 0 && (mastermind.enemiesContainer.childCount == 0 || Random.value < Time.deltaTime * currentWave.spawnRate))
+        if (enemyPool.Count > 0 && (mastermind.enemiesContainer.childCount == 0 || Random.value*enemyValues[enemyPool[0]] < Time.deltaTime * spawnRate))
         {
             float randomNumber = Random.value;
             // Väljer slumpmässigt en kant av skärmen, och sedan en slumpvald punkt strax utanför kanten där fienden ska spawna.

@@ -22,6 +22,7 @@ public class Mastermind : MonoBehaviour
     public Sprite deathscreen;
     Coroutine deathScreenCoroutine;
     public WaveSpawner waveSpawner;
+    public NewSpawner newSpawner;
     public Shop shop;
     public Transform enemiesContainer;
     public Transform stuffContainer;
@@ -180,12 +181,12 @@ public class Mastermind : MonoBehaviour
         //Startar en ny våg ifall alla fiender är förstörda
         if (GMState == GameMastermindState.Gameplay && enemiesRemaining == 0)
         {
-            if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length)
-            {
-                SetGameMastermindState(GameMastermindState.GameWon);
-            }
+            //if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length)
+            //{
+            //    SetGameMastermindState(GameMastermindState.GameWon);
+            //}
 
-            else if (exp > expRequired /*waveSpawner.currentWave.shopAfter*/)
+            /*else*/ if (exp > expRequired /*waveSpawner.currentWave.shopAfter*/)
             {
                 LevelUp();
                 player.SendMessage("LevelComplete");
