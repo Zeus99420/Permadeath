@@ -24,11 +24,13 @@ public class BigBullet : Upgrades
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
         weapons.projectileSize *= projectileSize;
         weapons.canonDamageMultiplier = damageMultiplier;
+        weapons.piercing = true;
     }
 
     public override string GetDescription()
     {
-        return ("Your projectiles are big and slow and deal more damage." +
+        return ("Your projectiles are bigger, slower and deal more damage." +
+            " If an enemy is killed the projectile keeps flying with any leftover damage " +
             "\n\nDamage: x" + damageMultiplier +
             "\nRate of Fire: x" + rateOfFireMultiplier
             );

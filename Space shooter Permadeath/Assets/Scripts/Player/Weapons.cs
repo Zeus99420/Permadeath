@@ -58,7 +58,7 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float spread;
     [HideInInspector] public float spreadDamageMultiplier;
 
-   /* [HideInInspector]*/ public float rapidFireEnergy;
+    [HideInInspector] public float rapidFireEnergy;
     [HideInInspector] public float rapidFireEnergyMax;
     [HideInInspector] public float rapidFireMultiplier;
 
@@ -67,13 +67,16 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float standYourGroundChargeTime;
     [HideInInspector] public float standYourGroundUnchargeTime;
     [HideInInspector] public bool standYourGroundTrail;
-    /*[HideInInspector]*/ public float movementMultiplier;
+    [HideInInspector] public float movementMultiplier;
     [HideInInspector] public float movementMultiplierMax;
     [HideInInspector] public float movementChargeTime;
     [HideInInspector] public float movementUnchargeTime;
 
     [HideInInspector] public Sprite bigBulletSprite;
     [HideInInspector] public float canonDamageMultiplier;
+
+    [HideInInspector] public bool piercing;
+    [HideInInspector] public float piercingMultiplier;
 
     private void Start()
     {
@@ -232,27 +235,9 @@ public class Weapons : MonoBehaviour
         newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<SpriteRenderer>().sprite = bigBulletSprite;
         newProjectile.transform.up = fireVector;
-        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed / 2 * fireVector;
+        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * 0.7f * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * canonDamageMultiplier);
         newProjectile.transform.localScale *= projectileSize;
-       
-        //newProjectile.transform.localScale *= 5f;
-        //SendMessage(fireMode);
-        //Vill att den inte ska kunna firea konstant utan typ ett skott per sekund
-        /*
-            if (Input.GetMouseButton(0) && Time.time > nextShotTime)
-            {
-                nextShotTime = Time.time - 2 / rateOfFire;    
-            }
-            else continueSequence = false;
-            */
-
-        //fireElapsedTime += Time.deltaTime;
-
-        //if (Input.GetKeyDown(KeyCode.Mouse0) && fireElapsedTime >= fireDelay)
-        //{
-        //    fireElapsedTime = 0;
-        //}
 
     }
 }

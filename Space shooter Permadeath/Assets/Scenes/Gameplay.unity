@@ -4564,7 +4564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 0}
-  testingShop: 0
+  testingShop: 1
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -5414,13 +5414,13 @@ MonoBehaviour:
     appears: 3
   - type: {fileID: 7646681543141425891, guid: 18e5b5fee5f10ca44a72d2db92388c15, type: 3}
     value: 100
-    appears: 4
+    appears: 5
   - type: {fileID: 8678987557085508623, guid: 32a3cb561a1fdd1448e5d333da6a7697, type: 3}
     value: 60
-    appears: 5
+    appears: 7
   - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     value: 70
-    appears: 6
+    appears: 7
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
     value: 30
     appears: 999999
@@ -5541,12 +5541,11 @@ MonoBehaviour:
     spawnRate: 0
     shopAfter: 0
   enemyPool: []
-  baseBudget: 50
-  budgetIncrease: 50
-  budgetExponent: 1.2
-  baseSpawnRate: 10
+  baseBudget: 45
+  budgetExponent: 1.1
+  baseSpawnRate: 6
+  spawnRateIncrease: 4
   spawnRate: 0
-  spawnRateExponent: 1.3
 --- !u!4 &1101592342
 Transform:
   m_ObjectHideFlags: 0
@@ -6320,8 +6319,8 @@ MonoBehaviour:
   projectileSpeedIncrease: 13
   rateOfFireMultiplier: 0.6
   damageMultiplier: 2.2
-  projectile: {fileID: 9101686643944138255, guid: 0bd15ce0d63f20044b0a6e98ff8a0bb2, type: 3}
   projectileSize: 1.2
+  piercingMultiplier: 0.8
 --- !u!114 &1401891356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7333,6 +7332,8 @@ MonoBehaviour:
   deflectorRechargeTime: 0
   deflectorRenderer: {fileID: 517054607}
   trailEnabled: 0
+  windShieldChargeRate: 0
+  windShieldHealth: 0
   focusFireEnabled: 0
   rotationRate: 0
   freeRotationRate: 0
@@ -7591,6 +7592,8 @@ MonoBehaviour:
   movementUnchargeTime: 0
   bigBulletSprite: {fileID: 0}
   canonDamageMultiplier: 0
+  piercing: 0
+  piercingMultiplier: 0
 --- !u!96 &1653898514
 TrailRenderer:
   serializedVersion: 2

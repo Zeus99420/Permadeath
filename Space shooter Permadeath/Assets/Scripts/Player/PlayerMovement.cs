@@ -213,21 +213,17 @@ public class PlayerMovement : Character
 
     public void DeflectorDamage(int damageAmount)
     {
-        //deflectorDamagedTime = Time.time;
         if (damageAmount > deflectorHealth)
         {
             damageAmount -= (int)deflectorHealth;
             deflectorHealth = 0;
             Damage(damageAmount);
-
-
         }
+
         else
         {
-
             deflectorHealth -= damageAmount;
         }
-
     }
 
     public void DeflectorUpdate()
@@ -247,8 +243,15 @@ public class PlayerMovement : Character
         deflectorRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
     }
 
+    public float windShieldChargeRate;
+    public float windShieldHealth;
+    public void WindShieldUpdate()
+    {
+        windShieldHealth += Time.deltaTime * m_rigidbody.velocity.sqrMagnitude * windShieldChargeRate;
+    }
 
-    //Focus Fire
+
+    //FOCUS FIRE
     /*[HideInInspector]*/ public bool focusFireEnabled;
     [HideInInspector]     public float rotationRate;
     /*[HideInInspector]*/ public float freeRotationRate;

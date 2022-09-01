@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    [HideInInspector] public int damage;
+    /*[HideInInspector]*/ public int damage;
     [HideInInspector] public Weapons weapons;
+
+    // ANVÄNDS AV UPPGRADERINGAR
     public Color standYourGroundColor;
+    public bool piercing;
+    public float piercingMultiplier;
+    List<GameObject> alreadyHit = new List<GameObject>();
 
     private void Start()
     {
@@ -22,7 +27,10 @@ public class PlayerProjectile : MonoBehaviour
             sprite.color = Color.Lerp(sprite.color, standYourGroundColor, power);
 
         }
-    }
+        piercing = weapons.piercing;
+        piercingMultiplier = weapons.piercingMultiplier;
+        
+}
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -30,7 +38,12 @@ public class PlayerProjectile : MonoBehaviour
 
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (piercing) PiercingHit(other);
+        else StandardHit(other);
+    }
 
+    public void StandardHit(Collider2D other)
+    {
         if (other.gameObject.tag == "Enemy")
         {
             if (!other.GetComponent<Character>().dead)
@@ -38,6 +51,25 @@ public class PlayerProjectile : MonoBehaviour
                 other.GetComponent<Character>().Damage(damage);
                 //Destroy(other.gameObject);
                 Destroy(gameObject);
+            }
+        }
+    }
+
+    public void PiercingHit(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
+        {
+            alreadyHit.Add(other.gameObject);
+            Character enemy = other.GetComponent<Character>();
+            if (!enemy.dead)
+            {
+                float newDamage;
+                if (damage < enemy.health) newDamage = damage * piercingMultiplier;
+                else newDamage = damage - enemy.health * (1f-piercingMultiplier);
+                enemy.Damage(damage);
+
+                if (newDamage < 1) Destroy(gameObject);
+                else damage = (int)newDamage;
             }
         }
     }

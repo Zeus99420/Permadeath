@@ -114,19 +114,22 @@ public class WaveSpawner : MonoBehaviour
 
 
     public int baseBudget;
-    public int budgetIncrease;
+    //public int budgetIncrease;
     public float budgetExponent;
     public float baseSpawnRate;
+    public float spawnRateIncrease;
     public void NewWave()
     {
-        int waveBudget = baseBudget;
-        for (int i = 0; i < nextWaveNumber; i++) waveBudget += (int)(budgetIncrease * Mathf.Pow(budgetExponent, i));
-
-        spawnRate = baseSpawnRate * Mathf.Pow(spawnRateExponent, nextWaveNumber);
-        budget = waveBudget;
         nextWaveNumber++;
+        int waveBudget = (int)(baseBudget * nextWaveNumber * Mathf.Pow(budgetExponent, nextWaveNumber));
+        //int waveBudget = baseBudget;
+        //for (int i = 0; i < nextWaveNumber; i++) waveBudget += (int)(budgetIncrease * Mathf.Pow(budgetExponent, i));
+
+        //spawnRate = baseSpawnRate * Mathf.Pow(spawnRateExponent, nextWaveNumber);
+        spawnRate = baseSpawnRate + spawnRateIncrease * nextWaveNumber;
+        budget = waveBudget;
         waveText.text = "Wave " + nextWaveNumber;
-        Debug.Log("budget: " + budget);
+        Debug.Log("WAVE " + nextWaveNumber + ", Budget: " + budget + ", Spawn Rate: " + spawnRate);
 
 
 
@@ -161,11 +164,12 @@ public class WaveSpawner : MonoBehaviour
                 enemyPool.Insert(randomIndex, freighterPrefab);
             }
         }
+
         mastermind.CountEnemies();
     }
 
     public float spawnRate;
-    public float spawnRateExponent;
+    //public float spawnRateExponent;
     private void Update()
     {
         Vector2 spawnPosition;
