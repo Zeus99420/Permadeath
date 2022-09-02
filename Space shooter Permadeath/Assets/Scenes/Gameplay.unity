@@ -7197,6 +7197,7 @@ GameObject:
   - component: {fileID: 1653898512}
   - component: {fileID: 1653898510}
   - component: {fileID: 1653898514}
+  - component: {fileID: 1653898515}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -7332,6 +7333,10 @@ MonoBehaviour:
   deflectorRechargeTime: 0
   deflectorRenderer: {fileID: 517054607}
   trailEnabled: 0
+  sharperMovement: 1
+  sharpMoveSpeed: 1.8
+  sharpMoveDrag: 1.8
+  glideDrag: 0.7
   windShieldChargeRate: 0
   windShieldHealth: 0
   focusFireEnabled: 0
@@ -7701,6 +7706,26 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1653898515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653898505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a71c45bde8ea14da37b5430e061f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mastermind: {fileID: 856224839}
+  projectile: {fileID: 9101686643944138255, guid: 7725c5846c25a0a42b814882e23e1d92, type: 3}
+  rechargeTime: 3
+  charges: 3
+  maxCharges: 4
+  rateOfFire: 3
+  projectileAcceleration: 50
+  damageMultiplier: 4
 --- !u!1 &1684739163
 GameObject:
   m_ObjectHideFlags: 0

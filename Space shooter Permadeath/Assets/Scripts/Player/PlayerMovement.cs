@@ -47,8 +47,8 @@ public class PlayerMovement : Character
     public override void Start()
     {
             base.Start();
-            //Character start-metod gör att spelarens health = maxHealth. 
-            //healthAlreadySet = true;
+        //Character start-metod gör att spelarens health = maxHealth. 
+        //healthAlreadySet = true;
         //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.
 
 
@@ -58,6 +58,8 @@ public class PlayerMovement : Character
 
         SetupHealthbar(healthBarPrefab);
         m_rigidbody = GetComponent<Rigidbody2D>();
+
+        if (sharperMovement) baseDrag = m_rigidbody.drag;
     }
 
     // Update is called once per frame
@@ -89,6 +91,13 @@ public class PlayerMovement : Character
 
 
     }
+
+    [Header("Sharper Movement")]
+    public bool sharperMovement;
+    public float sharpMoveSpeed;
+    float baseDrag;
+    public float sharpMoveDrag;
+    public float glideDrag;
     void FixedUpdate()
     {
         acceleration = baseAcceleration*accelerationMultiplier;
@@ -99,6 +108,22 @@ public class PlayerMovement : Character
         if (Input.GetKey("a")) { direction += Vector2.left; ; usingEngines = true; }
         if (Input.GetKey("d")) { direction += Vector2.right; ; usingEngines = true; }
         direction.Normalize();
+
+        if (sharperMovement)
+        {
+            if (usingEngines)
+            {
+                acceleration *= sharpMoveSpeed;
+                m_rigidbody.drag = baseDrag * sharpMoveDrag;
+            }
+            else
+            {
+                m_rigidbody.drag = baseDrag * glideDrag;
+            }
+        }
+
+
+
         m_rigidbody.AddForce(direction * acceleration);
     }
 
@@ -243,6 +268,7 @@ public class PlayerMovement : Character
         deflectorRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
     }
 
+    [Header("Wind Shield (inte klar)")]
     public float windShieldChargeRate;
     public float windShieldHealth;
     public void WindShieldUpdate()
@@ -252,11 +278,11 @@ public class PlayerMovement : Character
 
 
     //FOCUS FIRE
-    /*[HideInInspector]*/ public bool focusFireEnabled;
-    [HideInInspector]     public float rotationRate;
-    /*[HideInInspector]*/ public float freeRotationRate;
-    /*[HideInInspector]*/ public float lockedRotationRate;
-    /*[HideInInspector]*/ public float focusFireRecoveryTime;
+    [HideInInspector] public bool focusFireEnabled;
+    [HideInInspector] public float rotationRate;
+    [HideInInspector] public float freeRotationRate;
+    [HideInInspector] public float lockedRotationRate;
+    [HideInInspector] public float focusFireRecoveryTime;
     public void FocusFire(Vector2 direction)
     {
         if (!GetComponent<Weapons>().readyToFire) rotationRate = lockedRotationRate;
