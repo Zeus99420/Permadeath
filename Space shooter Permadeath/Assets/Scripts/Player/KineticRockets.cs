@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KineticRockets : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class KineticRockets : MonoBehaviour
 
     void Start()
     {
-        
+        InitializeAmmoIndicator();
     }
 
     void Update()
@@ -36,6 +37,8 @@ public class KineticRockets : MonoBehaviour
                 charges -= 1;
                 FireRocket();
             }
+
+            UpdateAmmoIndicator();
         }
     }
 
@@ -46,6 +49,48 @@ public class KineticRockets : MonoBehaviour
         //newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<KineticRocketProjectile>().acceleration = projectileAcceleration;
         newProjectile.GetComponent<KineticRocketProjectile>().damageMultiplier = damageMultiplier;
+    }
+
+
+    [Header("Ammo Indicator")]
+    public GameObject AmmoIndicator;
+    public GameObject AmmoImagePrefab;
+    public Color readyColor;
+    public Color chargingColor;
+    public List<Image> AmmoImages;
+    void InitializeAmmoIndicator ()
+    {
+        //Creates a number of game objects with an images to display the current number of charges
+        float ammoImageSpace = 0.12f;
+        float offset = -ammoImageSpace * (maxCharges-1) / 2f;
+        for (int i=0; i<maxCharges; i++)
+        {
+            GameObject newAmmoImage = Instantiate(AmmoImagePrefab,AmmoIndicator.transform);
+            newAmmoImage.transform.position += new Vector3(offset, 0f, 0f);
+            offset += ammoImageSpace;
+
+            Image image = newAmmoImage.transform.Find("Image").GetComponent<Image>();
+            AmmoImages.Add(image);
+        }
+    }
+
+    void UpdateAmmoIndicator()
+    {
+        int i = 0;
+        foreach (Image image in AmmoImages)
+        {
+            if (charges >=i+1)
+            {
+                image.color = readyColor;
+                image.fillAmount = 1;
+            }
+            else
+            {
+                image.color = chargingColor;
+                image.fillAmount = charges - i;
+            }           
+            i++;
+        }
     }
 
 

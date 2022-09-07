@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   weapons: {fileID: 0}
-  standYourGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  standYourGroundColor: {r: 1, g: 0, b: 0.80374193, a: 1}
   piercing: 0
   piercingMultiplier: 0
 --- !u!58 &-997320934598928026
