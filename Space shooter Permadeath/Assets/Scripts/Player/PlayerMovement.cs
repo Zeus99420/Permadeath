@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : Character
 {
     Rigidbody2D m_rigidbody;
-    public Mastermind mastermind;
-    public GameObject healthBarPrefab;
+    //public Mastermind mastermind;
+    //public GameObject healthBarPrefab;
 
     public float baseAcceleration;
     public float acceleration;
@@ -46,17 +46,16 @@ public class PlayerMovement : Character
 
     public override void Start()
     {
-            base.Start();
+        base.Start();
         //Character start-metod gör att spelarens health = maxHealth. 
         //healthAlreadySet = true;
         //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.
 
 
+
         if (barrierBought) ReadyBarrier();
         deflectorColor = deflectorRenderer.color;
 
-
-        SetupHealthbar(healthBarPrefab);
         m_rigidbody = GetComponent<Rigidbody2D>();
 
         if (sharperMovement) baseDrag = m_rigidbody.drag;

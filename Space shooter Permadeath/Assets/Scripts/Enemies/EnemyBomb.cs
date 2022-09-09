@@ -5,6 +5,14 @@ using UnityEngine;
 public class EnemyBomb : Character
 {
     [HideInInspector] public int damage;
+    
+    
+    public override void Start ()
+    {
+        base.Start();
+
+        healthBar.gameObject.SetActive(false);
+    }
     private void OnBecameInvisible()
     {
         Destroy(gameObject);

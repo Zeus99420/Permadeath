@@ -7306,14 +7306,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfeea0d71d9bdd4699701e8353d63ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mastermind: {fileID: 856224839}
+  healthBarPrefab: {fileID: 4561686646443037966, guid: d0e3a590169cab144ba79f9349a11d4a, type: 3}
   maxHealth: 100
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
   dead: 0
-  mastermind: {fileID: 856224839}
-  healthBarPrefab: {fileID: 6356634295293370515, guid: 5e13f88ce97b25140bec939ba961ca60, type: 3}
   baseAcceleration: 450
   acceleration: 0
   usingEngines: 0
@@ -7724,8 +7724,8 @@ MonoBehaviour:
   charges: 3
   maxCharges: 4
   rateOfFire: 3
-  projectileAcceleration: 50
-  damageMultiplier: 4
+  projectileAcceleration: 65
+  damageMultiplier: 3
   AmmoIndicator: {fileID: 1666883344}
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}

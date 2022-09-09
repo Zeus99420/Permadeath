@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056d42817de27d046807eab1748f7270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mastermind: {fileID: 0}
+  healthBarPrefab: {fileID: 4561686646443037966, guid: d8549251dabd82b40870a5f500e73319, type: 3}
   maxHealth: 90
   health: 0
   healthBar: {fileID: 0}
@@ -225,14 +227,13 @@ MonoBehaviour:
   healthAlreadySet: 0
   dead: 0
   player: {fileID: 0}
-  mastermind: {fileID: 0}
   value: 0
   avoidRadius: 4
   avoidForce: 300
+  acceleration: 630
   collisionDamage: 100
   collisionSelfDamage: 35
   flyByDistance: 6
-  acceleration: 630
   projectile: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
   projectileDamage: 60
   projectileSpeed: 2.5

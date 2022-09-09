@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
+  bar: {fileID: 0}
   offset: {x: 0, y: -0.6, z: 0}
 --- !u!212 &7052409667828739622
 SpriteRenderer:

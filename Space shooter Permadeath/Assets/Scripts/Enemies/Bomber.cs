@@ -87,6 +87,7 @@ public class Bomber : Enemy
                 Random.Range(-projectileSpread, projectileSpread));
             projectileRigidbody.velocity = /*m_rigidbody.velocity*0.5f*/ + projectileSpeed * bombDirection + randomVector;
             newProjectile.GetComponent<EnemyBomb>().damage = projectileDamage;
+            newProjectile.GetComponent<EnemyBomb>().mastermind = mastermind;
         }
     }
 

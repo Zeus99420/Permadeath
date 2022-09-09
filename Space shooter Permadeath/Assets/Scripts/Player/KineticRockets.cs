@@ -16,7 +16,7 @@ public class KineticRockets : MonoBehaviour
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
 
     public float projectileAcceleration;
-    public int damageMultiplier;
+    public float damageMultiplier;
 
 
     void Start()
@@ -46,7 +46,6 @@ public class KineticRockets : MonoBehaviour
     void FireRocket()
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
-        //newProjectile.GetComponent<PlayerProjectile>().weapons = this;
         newProjectile.GetComponent<KineticRocketProjectile>().acceleration = projectileAcceleration;
         newProjectile.GetComponent<KineticRocketProjectile>().damageMultiplier = damageMultiplier;
     }

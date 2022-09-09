@@ -134,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c842cbee1c43ed488394b057cfad9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mastermind: {fileID: 0}
+  healthBarPrefab: {fileID: 4561686646443037966, guid: d8549251dabd82b40870a5f500e73319, type: 3}
   maxHealth: 20
   health: 0
   healthBar: {fileID: 0}
@@ -141,7 +143,6 @@ MonoBehaviour:
   healthAlreadySet: 0
   dead: 0
   player: {fileID: 0}
-  mastermind: {fileID: 0}
   value: 0
   avoidRadius: 1.2
   avoidForce: 30

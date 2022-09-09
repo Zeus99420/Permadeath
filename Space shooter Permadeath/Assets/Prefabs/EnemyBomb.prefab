@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16f776a4025f844e81fce72740f4fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mastermind: {fileID: 0}
+  healthBarPrefab: {fileID: 4561686646443037966, guid: d8549251dabd82b40870a5f500e73319, type: 3}
   maxHealth: 1
   health: 0
   healthBar: {fileID: 0}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : Character
 {
     [HideInInspector] public Transform player;
-    [HideInInspector] public Mastermind mastermind;
+    //[HideInInspector] public Mastermind mastermind;
     protected Rigidbody2D m_rigidbody;
 
     [HideInInspector] public int value;
@@ -26,6 +26,9 @@ public class Enemy : Character
     {
         maxHealth = (int)(maxHealth*Random.Range(0.7f, 1.3f));
         base.Start();
+
+        healthBar.gameObject.SetActive(false);
+
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
     public bool IsInScreen(float margin)
@@ -120,6 +123,7 @@ public class Enemy : Character
 
     public override void Damage(int damageAmount)
     {
+        healthBar.gameObject.SetActive(true);
         base.Damage(damageAmount);
         StartCoroutine(Flicker(Color.white));
     }
@@ -129,6 +133,7 @@ public class Enemy : Character
         mastermind.UpdateMoney(value);
         mastermind.UpdateScore(value);
         PlayExplosion();
+        Destroy(healthBar.gameObject);
         Destroy(gameObject);
         mastermind.Invoke("CountEnemies", 0f);
 
