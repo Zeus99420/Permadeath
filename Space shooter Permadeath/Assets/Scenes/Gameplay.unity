@@ -7198,6 +7198,7 @@ GameObject:
   - component: {fileID: 1653898510}
   - component: {fileID: 1653898514}
   - component: {fileID: 1653898515}
+  - component: {fileID: 1653898516}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -7713,24 +7714,50 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653898505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4a71c45bde8ea14da37b5430e061f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mastermind: {fileID: 856224839}
-  projectile: {fileID: 9101686643944138255, guid: 7725c5846c25a0a42b814882e23e1d92, type: 3}
   rechargeTime: 3
   charges: 3
   maxCharges: 4
   rateOfFire: 3
-  projectileAcceleration: 65
-  damageMultiplier: 3
   AmmoIndicator: {fileID: 1666883344}
-  AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
   chargingColor: {r: 0.6037736, g: 0.60035604, b: 0.60035604, a: 0.627451}
   AmmoImages: []
+  projectile: {fileID: 9101686643944138255, guid: 7725c5846c25a0a42b814882e23e1d92, type: 3}
+  projectileAcceleration: 65
+  damageMultiplier: 3
+--- !u!114 &1653898516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653898505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabbe67fe247d604f8b3e2dbb34e3a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mastermind: {fileID: 856224839}
+  rechargeTime: 8
+  charges: 1
+  maxCharges: 1
+  rateOfFire: 1
+  AmmoIndicator: {fileID: 1666883344}
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
+  readyColor: {r: 0.50980395, g: 0.77254903, b: 0.11372549, a: 1}
+  chargingColor: {r: 0.3415336, g: 0.509434, b: 0.08843004, a: 1}
+  AmmoImages: []
+  projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
+  damage: 50
+  delay: 1.5
+  radius: 3
 --- !u!1 &1666883344
 GameObject:
   m_ObjectHideFlags: 0

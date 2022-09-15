@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KineticRockets : MonoBehaviour
+public class SecondaryWeapons : MonoBehaviour
 {
     public Mastermind mastermind;
-    public GameObject projectile;
 
     public float rechargeTime;
     public float charges;
@@ -14,10 +13,6 @@ public class KineticRockets : MonoBehaviour
 
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
-
-    public float projectileAcceleration;
-    public float damageMultiplier;
-
 
     void Start()
     {
@@ -31,40 +26,41 @@ public class KineticRockets : MonoBehaviour
             charges += Time.deltaTime * 1 / rechargeTime;
             charges = Mathf.Clamp(charges, 0, maxCharges);
 
-            if (Input.GetMouseButton(1) && Time.time > nextShotTime && charges > 1)
+            if (Input.GetMouseButton(1) && Time.time > nextShotTime && charges >= 1)
             {
                 nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
                 charges -= 1;
-                FireRocket();
+                UseWeapon();
             }
 
             UpdateAmmoIndicator();
         }
     }
 
-
-    void FireRocket()
+    public virtual void UseWeapon()
     {
-        GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
-        newProjectile.GetComponent<KineticRocketProjectile>().acceleration = projectileAcceleration;
-        newProjectile.GetComponent<KineticRocketProjectile>().damageMultiplier = damageMultiplier;
+
     }
 
 
-    [Header("Ammo Indicator")]
+
+
+
+    [Header("CHARGE INDICATOR")]
+    //The indicator displays the when the weapon is recharging or ready to use
     public GameObject AmmoIndicator;
     public GameObject AmmoImagePrefab;
     public Color readyColor;
     public Color chargingColor;
     public List<Image> AmmoImages;
-    void InitializeAmmoIndicator ()
+    public void InitializeAmmoIndicator()
     {
         //Creates a number of game objects with an images to display the current number of charges
         float ammoImageSpace = 0.12f;
-        float offset = -ammoImageSpace * (maxCharges-1) / 2f;
-        for (int i=0; i<maxCharges; i++)
+        float offset = -ammoImageSpace * (maxCharges - 1) / 2f;
+        for (int i = 0; i < maxCharges; i++)
         {
-            GameObject newAmmoImage = Instantiate(AmmoImagePrefab,AmmoIndicator.transform);
+            GameObject newAmmoImage = Instantiate(AmmoImagePrefab, AmmoIndicator.transform);
             newAmmoImage.transform.position += new Vector3(offset, 0f, 0f);
             offset += ammoImageSpace;
 
@@ -73,12 +69,12 @@ public class KineticRockets : MonoBehaviour
         }
     }
 
-    void UpdateAmmoIndicator()
+    public void UpdateAmmoIndicator()
     {
         int i = 0;
         foreach (Image image in AmmoImages)
         {
-            if (charges >=i+1)
+            if (charges >= i + 1)
             {
                 image.color = readyColor;
                 image.fillAmount = 1;
@@ -87,12 +83,8 @@ public class KineticRockets : MonoBehaviour
             {
                 image.color = chargingColor;
                 image.fillAmount = charges - i;
-            }           
+            }
             i++;
         }
     }
-
-
-
-
 }
