@@ -14,7 +14,6 @@ public class PlayerProjectile : MonoBehaviour
             if (!other.GetComponent<Character>().dead)
             {
                 other.GetComponent<Character>().Damage(damage);
-                //Destroy(other.gameObject);
                 Destroy(gameObject);
             }
         }
