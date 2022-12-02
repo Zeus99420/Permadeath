@@ -28,12 +28,8 @@ public class StandardProjectile : PlayerProjectile
         piercingMultiplier = weapons.piercingMultiplier;
 
     }
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 
-    public virtual void OnTriggerEnter2D(Collider2D other)
+    public override void OnTriggerEnter2D(Collider2D other)
     {
         if (piercing) PiercingHit(other);
         else StandardHit(other);

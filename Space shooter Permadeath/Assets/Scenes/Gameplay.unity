@@ -7199,6 +7199,7 @@ GameObject:
   - component: {fileID: 1653898514}
   - component: {fileID: 1653898515}
   - component: {fileID: 1653898516}
+  - component: {fileID: 1653898517}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -7739,7 +7740,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653898505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dabbe67fe247d604f8b3e2dbb34e3a18, type: 3}
   m_Name: 
@@ -7751,14 +7752,41 @@ MonoBehaviour:
   rateOfFire: 1
   AmmoIndicator: {fileID: 1666883344}
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
-  readyColor: {r: 0.50980395, g: 0.77254903, b: 0.11372549, a: 1}
-  chargingColor: {r: 0.3415336, g: 0.509434, b: 0.08843004, a: 1}
+  readyColor: {r: 0.38766575, g: 1, b: 0, a: 1}
+  chargingColor: {r: 0.28205767, g: 0.5377358, b: 0.26075113, a: 1}
   AmmoImages: []
   projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
   maxDamage: 120
   delay: 1.5
-  radius: 9
+  radius: 3.6
   explosionDuration: 0.3
+--- !u!114 &1653898517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653898505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712582e8243cd244d8c63c4654fac060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mastermind: {fileID: 856224839}
+  rechargeTime: 5
+  charges: 0
+  maxCharges: 2
+  rateOfFire: 1
+  AmmoIndicator: {fileID: 1666883344}
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
+  readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
+  AmmoImages: []
+  projectile: {fileID: 9101686643944138255, guid: 9f546bd436b2c0e41bd3fac67ac1f8b7, type: 3}
+  acceleration: 10
+  maxDamage: 80
+  radius: 2.6
+  explosionDuration: 0.2
 --- !u!1 &1666883344
 GameObject:
   m_ObjectHideFlags: 0

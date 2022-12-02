@@ -15,9 +15,11 @@ public class NuclearBomb : SecondaryWeapons
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
-        newProjectile.GetComponent<NuclearBombProjectile>().delay = delay;
-        newProjectile.GetComponent<NuclearBombProjectile>().explosionDuration = explosionDuration;
-        newProjectile.GetComponent<NuclearBombProjectile>().maxDamage = maxDamage;
-        newProjectile.GetComponent<NuclearBombProjectile>().radius = radius;
+        Explosive explosive = newProjectile.GetComponent<Explosive>();
+        explosive.explosionDuration = explosionDuration;
+        explosive.maxDamage = maxDamage;
+        explosive.radius = radius;
+
+        StartCoroutine(explosive.Countdown(delay));
     }
 }

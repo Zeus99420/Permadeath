@@ -7,6 +7,13 @@ public class PlayerProjectile : MonoBehaviour
     /*[HideInInspector]*/
     public int damage;
     [HideInInspector] public Weapons weapons;
+
+    public virtual void OnTriggerEnter2D(Collider2D other)
+    {
+       StandardHit(other);
+    }
+
+
     public void StandardHit(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -17,5 +24,10 @@ public class PlayerProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

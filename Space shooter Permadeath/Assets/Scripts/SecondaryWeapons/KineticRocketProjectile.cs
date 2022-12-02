@@ -20,15 +20,11 @@ public class KineticRocketProjectile : PlayerProjectile
     }
 
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 
-    public virtual void OnTriggerEnter2D(Collider2D other)
+
+    public override void OnTriggerEnter2D(Collider2D other)
     {
         damage = (int)(m_rigidbody.velocity.magnitude * damageMultiplier);
-        Debug.Log("Damage: " + damage);
         StandardHit(other);
     }
 }
