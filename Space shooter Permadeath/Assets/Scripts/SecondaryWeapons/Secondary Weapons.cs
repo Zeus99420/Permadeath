@@ -14,8 +14,21 @@ public class SecondaryWeapons : MonoBehaviour
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
 
+
+    [Header("CHARGE INDICATOR")]
+    //The indicator displays the when the weapon is recharging or ready to use
+    public GameObject AmmoIndicator;
+    public GameObject AmmoImagePrefab;
+    public Color readyColor;
+    public Color chargingColor;
+    public List<Image> AmmoImages = new List<Image>();
+
+
     void Start()
     {
+        Weapons weapons = GetComponent<Weapons>();
+        AmmoIndicator = weapons.ammoIndicator;
+        mastermind = weapons.mastermind;
         InitializeAmmoIndicator();
     }
 
@@ -46,16 +59,10 @@ public class SecondaryWeapons : MonoBehaviour
 
 
 
-    [Header("CHARGE INDICATOR")]
-    //The indicator displays the when the weapon is recharging or ready to use
-    public GameObject AmmoIndicator;
-    public GameObject AmmoImagePrefab;
-    public Color readyColor;
-    public Color chargingColor;
-    public List<Image> AmmoImages;
+
     public void InitializeAmmoIndicator()
     {
-        //Creates a number of game objects with an images to display the current number of charges
+        //Creates a number of game objects with images to display the current number of charges
         float ammoImageSpace = 0.12f;
         float offset = -ammoImageSpace * (maxCharges - 1) / 2f;
         for (int i = 0; i < maxCharges; i++)
@@ -63,7 +70,6 @@ public class SecondaryWeapons : MonoBehaviour
             GameObject newAmmoImage = Instantiate(AmmoImagePrefab, AmmoIndicator.transform);
             newAmmoImage.transform.position += new Vector3(offset, 0f, 0f);
             offset += ammoImageSpace;
-
             Image image = newAmmoImage.transform.Find("Image").GetComponent<Image>();
             AmmoImages.Add(image);
         }

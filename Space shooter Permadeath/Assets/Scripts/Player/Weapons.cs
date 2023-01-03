@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Weapons : MonoBehaviour
 {
     public Mastermind mastermind;
+    public GameObject ammoIndicator;
     public float rateOfFireMultiplier;
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott

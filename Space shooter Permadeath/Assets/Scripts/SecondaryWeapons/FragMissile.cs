@@ -7,7 +7,7 @@ public class FragMissile : SecondaryWeapons
 {
 
     public GameObject projectile;
-    [HideInInspector] public float acceleration;
+    /*[HideInInspector]*/ public float acceleration;
 
     //public int shrapnelCount;
     //public int shrapnelDamage;

@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
-  explosionDuration: 0.2
+  explosionDuration: 0
   maxDamage: 0
   radius: 0
   ringColor1: {r: 1, g: 0.53926593, b: 0.050943315, a: 0.58431375}

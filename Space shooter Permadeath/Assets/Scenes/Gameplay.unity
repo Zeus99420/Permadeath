@@ -2182,7 +2182,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2657,7 +2657,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3468,7 +3468,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4765,6 +4765,129 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895575353}
   m_CullTransparentMesh: 1
+--- !u!1 &902765021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 902765022}
+  - component: {fileID: 902765023}
+  - component: {fileID: 902765024}
+  - component: {fileID: 902765025}
+  m_Layer: 5
+  m_Name: Secondary Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &902765022
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902765021}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1748672120}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &902765023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902765021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d96662277af5e4091bf7e8ba6c9603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Missile
+  price: 0
+  description: Fire a missile which flies to the targeted location and explodes,
+    dealing damage in an area. Enemies take more damage the closer they are to the
+    center of the explosion.
+  unique: 0
+  rechargeTime: 7
+  maxCharges: 2
+  rateOfFire: 0.7
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
+  readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
+  projectile: {fileID: 9101686643944138255, guid: 9f546bd436b2c0e41bd3fac67ac1f8b7, type: 3}
+  acceleration: 10
+  maxDamage: 60
+  radius: 2
+  explosionDuration: 0.2
+--- !u!114 &902765024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902765021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fa9705b80315e4c8d8034364d88005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Kinetic Rockets
+  price: 0
+  description: Fire a rocket which accelerates as it flies. It deals more damage
+    the faster it is moving.
+  unique: 1
+  rechargeTime: 3
+  maxCharges: 4
+  rateOfFire: 3
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
+  readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
+  chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
+  projectile: {fileID: 9101686643944138255, guid: 7725c5846c25a0a42b814882e23e1d92, type: 3}
+  projectileAcceleration: 65
+  damageMultiplier: 3
+--- !u!114 &902765025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902765021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4345a6132da751948842f60431a3a838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Nuclear Bomb
+  price: 0
+  description: Big Nuke!
+  unique: 0
+  rechargeTime: 12
+  maxCharges: 1
+  rateOfFire: 1
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
+  readyColor: {r: 0.3882353, g: 1, b: 0, a: 1}
+  chargingColor: {r: 0.28235295, g: 0.5372549, b: 0.25882354, a: 1}
+  projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
+  maxDamage: 120
+  delay: 1.5
+  radius: 3.6
+  explosionDuration: 0.3
 --- !u!1 &902840332
 GameObject:
   m_ObjectHideFlags: 0
@@ -7569,6 +7692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mastermind: {fileID: 856224839}
+  ammoIndicator: {fileID: 1666883344}
   rateOfFireMultiplier: 1
   rateOfFire: 3
   readyToFire: 0
@@ -7767,7 +7891,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653898505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 712582e8243cd244d8c63c4654fac060, type: 3}
   m_Name: 
@@ -8368,6 +8492,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1401891353}
+  - {fileID: 902765022}
   - {fileID: 456961071}
   - {fileID: 9091034501602691128}
   - {fileID: 270539410}
@@ -8393,7 +8518,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mastermind: {fileID: 856224839}
-  upgrades: []
+  standardUpgrades: []
+  secondaryWeapons: []
   buttonPrefab: {fileID: 7083952019581559464, guid: 6ac396f1e83b6f144add8824e860f3c4, type: 3}
   buttons: []
   availableUpgrades: []
@@ -9996,7 +10122,7 @@ RectTransform:
   - {fileID: 9091034499522964063}
   - {fileID: 1493508966}
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}

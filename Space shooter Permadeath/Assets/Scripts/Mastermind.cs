@@ -261,7 +261,7 @@ public class Mastermind : MonoBehaviour
     {
         GMState = GameMastermindState.Gameplay;
         foreach (Transform enemy in enemiesContainer) Destroy(enemy.gameObject);
-        foreach (Transform projectile in stuffContainer)  Destroy(projectile.gameObject);
+        foreach (Transform stuff in stuffContainer)  Destroy(stuff.gameObject);
 
         player = Instantiate(savedPlayer);
         player.SetActive(true);

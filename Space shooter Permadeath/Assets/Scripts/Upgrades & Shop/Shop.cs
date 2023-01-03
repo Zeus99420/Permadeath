@@ -8,23 +8,38 @@ public class Shop : MonoBehaviour
 {
 
     public Mastermind mastermind;
-    public List<Upgrades> upgrades;
+    public List<Upgrades> standardUpgrades;
+    public List<Upgrades> secondaryWeapons;
     public GameObject buttonPrefab;
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
+    bool secWeaponPicked = false;
+    List<Upgrades> upgrades;
+
     public RectTransform[] children;
     public void Initialize()
     {
-        upgrades.AddRange(GetComponentsInChildren<Upgrades>());
+        //upgrades.AddRange(GetComponentsInChildren<Upgrades>());
+        standardUpgrades.AddRange(transform.Find("Upgrades").GetComponents<Upgrades>());
+        secondaryWeapons.AddRange(transform.Find("Secondary Weapons").GetComponents<Upgrades>());
     }
 
     public void EnterShop()
     {
         StartCoroutine(SlideIn());
 
+        //Determine whether the player should get to pick between a secondary weapon or a standard upgrade.
+        if (!secWeaponPicked && Random.value < 0.5) upgrades = secondaryWeapons;
+
+        else upgrades = standardUpgrades;
+        
+
         for (int t = 0; t < 3; t++)
         {
+
+
+
             int randomNumber = Random.Range(0, upgrades.Count);
             Upgrades randomUpgrade = upgrades[randomNumber];
             randomUpgrade.player = mastermind.player;
@@ -88,6 +103,8 @@ public class Shop : MonoBehaviour
         upgrade.Buy();
 
         if (!upgrade.unique) upgrades.Add(upgrade);
+        if (upgrades == secondaryWeapons) secWeaponPicked = true;
+        Debug.Log(secWeaponPicked);
         availableUpgrades.RemoveAt(buttons.IndexOf(button));
         buttons.Remove(button);
         Destroy(button.gameObject);
