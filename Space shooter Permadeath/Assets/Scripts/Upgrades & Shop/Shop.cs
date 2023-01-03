@@ -8,9 +8,10 @@ public class Shop : MonoBehaviour
 {
 
     public Mastermind mastermind;
+    public GameObject buttonPrefab;
+    public UIScreen RMBInstructions;
     public List<Upgrades> standardUpgrades;
     public List<Upgrades> secondaryWeapons;
-    public GameObject buttonPrefab;
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
@@ -30,9 +31,18 @@ public class Shop : MonoBehaviour
         StartCoroutine(SlideIn());
 
         //Determine whether the player should get to pick between a secondary weapon or a standard upgrade.
-        if (!secWeaponPicked && Random.value < 0.5) upgrades = secondaryWeapons;
-
-        else upgrades = standardUpgrades;
+        if (!secWeaponPicked && Random.value < 0.5)
+        {
+            upgrades = secondaryWeapons;
+            transform.Find("PickText").GetComponent<Text>().text = "Pick a Secondary Weapon:";
+            StartCoroutine(RMBInstructions.FadeIn());
+            
+        }
+        else
+        {
+            upgrades = standardUpgrades;
+            transform.Find("PickText").GetComponent<Text>().text = "Pick an Upgrade:";
+        }
         
 
         for (int t = 0; t < 3; t++)
@@ -56,8 +66,9 @@ public class Shop : MonoBehaviour
             button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
             button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.GetDescription();
 
-            transform.Find("PickAnUpgradeText").gameObject.SetActive(true);
         }
+        transform.Find("PickText").gameObject.SetActive(true);
+
 
 
 
@@ -69,6 +80,8 @@ public class Shop : MonoBehaviour
         ClearUpgrades();
         StartCoroutine(SlideOut());
         //gameObject.SetActive(false);
+
+        if (upgrades==secondaryWeapons) StartCoroutine(RMBInstructions.FadeOut());
     }
 
     public void ClearUpgrades()
@@ -81,7 +94,7 @@ public class Shop : MonoBehaviour
         upgrades.AddRange(availableUpgrades);
         availableUpgrades.Clear();
 
-        transform.Find("PickAnUpgradeText").gameObject.SetActive(false);
+        transform.Find("PickText").gameObject.SetActive(false);
     }
 
     public void CheckAfford ()
@@ -103,8 +116,7 @@ public class Shop : MonoBehaviour
         upgrade.Buy();
 
         if (!upgrade.unique) upgrades.Add(upgrade);
-        if (upgrades == secondaryWeapons) secWeaponPicked = true;
-        Debug.Log(secWeaponPicked);
+        if (upgrades == secondaryWeapons) secWeaponPicked = true;               
         availableUpgrades.RemoveAt(buttons.IndexOf(button));
         buttons.Remove(button);
         Destroy(button.gameObject);
