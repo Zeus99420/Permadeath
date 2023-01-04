@@ -22,6 +22,7 @@ public class FragMissileProjectile : Explosive
     public override IEnumerator Countdown(float delay)
     {
         yield return new WaitForSeconds(delay);
+        transform.position = targetPosition;
         acceleration = 0;
         StartCoroutine(Explode());
     }
@@ -38,6 +39,9 @@ public class FragMissileProjectile : Explosive
     //    //Explode();
     //    StartCoroutine(Explode());
     //}
+
+
+    //NOT USED
     IEnumerator ShrapnelExplosion()
     {
         transform.position = targetPosition;

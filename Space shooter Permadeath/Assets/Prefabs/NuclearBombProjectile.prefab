@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &605892422740656027
 Transform:
   m_ObjectHideFlags: 0
@@ -283,5 +283,6 @@ MonoBehaviour:
   explosionDuration: 0.3
   maxDamage: 0
   radius: 0
+  friendlyDamageMultiplier: 0
   ringColor1: {r: 1, g: 0.41058755, b: 0, a: 0.70980394}
   ringColor2: {r: 1, g: 0.9359112, b: 0, a: 0}

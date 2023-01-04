@@ -3216,7 +3216,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ae33bc6e8a0869b45a905c0a9e676499, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4928,8 +4928,8 @@ MonoBehaviour:
   description: Fire a rocket which accelerates as it flies. It deals more damage
     the faster it is moving.
   unique: 1
-  rechargeTime: 3
-  maxCharges: 4
+  rechargeTime: 2.3
+  maxCharges: 5
   rateOfFire: 3
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
@@ -4954,7 +4954,7 @@ MonoBehaviour:
   price: 0
   description: Big Nuke!
   unique: 0
-  rechargeTime: 12
+  rechargeTime: 10
   maxCharges: 1
   rateOfFire: 1
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
@@ -4962,9 +4962,11 @@ MonoBehaviour:
   chargingColor: {r: 0.28235295, g: 0.5372549, b: 0.25882354, a: 1}
   projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
   maxDamage: 120
+  friendlyDamageMultiplier: 0.4
   delay: 1.5
   radius: 3.6
   explosionDuration: 0.3
+  launchVelocity: 1.5
 --- !u!1 &902840332
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,9 +8079,11 @@ MonoBehaviour:
   AmmoImages: []
   projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
   maxDamage: 120
+  friendlyDamageMultiplier: 0
   delay: 1.5
   radius: 3.6
   explosionDuration: 0.3
+  launchVelocity: 0
 --- !u!114 &1653898517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8717,6 +8721,9 @@ MonoBehaviour:
   buttonPrefab: {fileID: 7083952019581559464, guid: 6ac396f1e83b6f144add8824e860f3c4, type: 3}
   RMBInstructions: {fileID: 1208896793}
   standardUpgrades: []
+  secondaryWeapons: []
+  buttons: []
+  availableUpgrades: []
   children:
   - {fileID: 456961071}
   - {fileID: 9091034501602691128}

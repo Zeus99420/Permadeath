@@ -9,6 +9,7 @@ public class Explosive : MonoBehaviour
     public int maxDamage;
     int damage;
     public float radius;
+    public float friendlyDamageMultiplier;
 
 
     // Update is called once per frame
@@ -49,12 +50,22 @@ public class Explosive : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
         {
-            alreadyHit.Add(other.gameObject);
+            Hit(other.GetComponent<Character>(), damage);
+        }
 
-            if (!other.GetComponent<Character>().dead)
-            {
-                other.GetComponent<Character>().Damage(damage);
-            }
+        else if (other.gameObject.tag == "Player" && friendlyDamageMultiplier != 0 && !alreadyHit.Contains(other.gameObject))
+        {
+            Hit(other.GetComponent<Character>(), (int)(damage * friendlyDamageMultiplier));
+        }
+    }
+
+    void Hit(Character target, int damage)
+    {
+        alreadyHit.Add(target.gameObject);
+
+        if (!target.dead)
+        {
+            target.Damage(damage);
         }
     }
 
