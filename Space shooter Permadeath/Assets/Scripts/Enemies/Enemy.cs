@@ -33,7 +33,7 @@ public class Enemy : Character
     }
     public bool IsInScreen(float margin)
     {
-        //Kollar om fienden är en bit inom skärmen, så att inte spelaren ska bli skjuten av en fiende som inte syns
+        //Kollar om fienden är en bit inom skärmen. Används t ex så att spelaren inte ska bli skjuten av en fiende som inte syns.
         Vector2 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
          if (0+margin < viewportPosition.x && viewportPosition.x < 1-margin && 0+margin < viewportPosition.y && viewportPosition.y < 1-margin)
         {

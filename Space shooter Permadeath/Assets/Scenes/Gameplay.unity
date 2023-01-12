@@ -1000,6 +1000,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &113710872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113710873}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &113710873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113710872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8060951, y: -0.22631578, z: -0.1724883}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &142461143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4854,6 +4884,7 @@ GameObject:
   - component: {fileID: 902765023}
   - component: {fileID: 902765024}
   - component: {fileID: 902765025}
+  - component: {fileID: 902765026}
   m_Layer: 5
   m_Name: Secondary Weapons
   m_TagString: Untagged
@@ -4902,7 +4933,7 @@ MonoBehaviour:
   rechargeTime: 7
   maxCharges: 2
   rateOfFire: 0.7
-  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: a4202cadee0a1614b898470817e1895b, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
   chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
   projectile: {fileID: 9101686643944138255, guid: 9f546bd436b2c0e41bd3fac67ac1f8b7, type: 3}
@@ -4928,9 +4959,9 @@ MonoBehaviour:
   description: Fire a rocket which accelerates as it flies. It deals more damage
     the faster it is moving.
   unique: 1
-  rechargeTime: 2.3
+  rechargeTime: 2.7
   maxCharges: 5
-  rateOfFire: 3
+  rateOfFire: 5
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
   chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
@@ -4967,6 +4998,38 @@ MonoBehaviour:
   radius: 3.6
   explosionDuration: 0.3
   launchVelocity: 1.5
+--- !u!114 &902765026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902765021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e124f47dbf4424749bf1d69fd39de444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Rocket Swarm
+  price: 0
+  description: Launch several smaller rockets. The rockets spread around you, then
+    converge on the targeted position
+  unique: 0
+  rechargeTime: 6
+  maxCharges: 2
+  rateOfFire: 1
+  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
+  readyColor: {r: 0.99215686, g: 1, b: 0, a: 1}
+  chargingColor: {r: 0.54901963, g: 0.5568628, b: 0.34509805, a: 1}
+  projectile: {fileID: 9101686643944138255, guid: e6772cd3db3a4d541839837d33c49461, type: 3}
+  damage: 14
+  rocketCount: 8
+  acceleration: 12
+  engineDelay: 0.3
+  launchVelocity: 0.8
+  launchTime: 0.1
+  spread: 20
 --- !u!1 &902840332
 GameObject:
   m_ObjectHideFlags: 0
@@ -7518,9 +7581,6 @@ GameObject:
   - component: {fileID: 1653898512}
   - component: {fileID: 1653898510}
   - component: {fileID: 1653898514}
-  - component: {fileID: 1653898515}
-  - component: {fileID: 1653898516}
-  - component: {fileID: 1653898517}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -8030,87 +8090,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &1653898515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653898505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a71c45bde8ea14da37b5430e061f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mastermind: {fileID: 856224839}
-  rechargeTime: 3
-  charges: 3
-  maxCharges: 4
-  rateOfFire: 3
-  AmmoIndicator: {fileID: 1666883344}
-  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
-  readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
-  chargingColor: {r: 0.6037736, g: 0.60035604, b: 0.60035604, a: 0.627451}
-  AmmoImages: []
-  projectile: {fileID: 9101686643944138255, guid: 7725c5846c25a0a42b814882e23e1d92, type: 3}
-  projectileAcceleration: 65
-  damageMultiplier: 3
---- !u!114 &1653898516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653898505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabbe67fe247d604f8b3e2dbb34e3a18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mastermind: {fileID: 856224839}
-  rechargeTime: 8
-  charges: 1
-  maxCharges: 1
-  rateOfFire: 1
-  AmmoIndicator: {fileID: 1666883344}
-  AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
-  readyColor: {r: 0.38766575, g: 1, b: 0, a: 1}
-  chargingColor: {r: 0.28205767, g: 0.5377358, b: 0.26075113, a: 1}
-  AmmoImages: []
-  projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
-  maxDamage: 120
-  friendlyDamageMultiplier: 0
-  delay: 1.5
-  radius: 3.6
-  explosionDuration: 0.3
-  launchVelocity: 0
---- !u!114 &1653898517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653898505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712582e8243cd244d8c63c4654fac060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mastermind: {fileID: 856224839}
-  rechargeTime: 5
-  charges: 0
-  maxCharges: 2
-  rateOfFire: 1
-  AmmoIndicator: {fileID: 1666883344}
-  AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
-  readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
-  chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
-  AmmoImages: []
-  projectile: {fileID: 9101686643944138255, guid: 9f546bd436b2c0e41bd3fac67ac1f8b7, type: 3}
-  acceleration: 10
-  maxDamage: 80
-  radius: 2.6
-  explosionDuration: 0.2
 --- !u!1 &1666883344
 GameObject:
   m_ObjectHideFlags: 0

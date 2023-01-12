@@ -51,9 +51,7 @@ public class SecondaryWeapons : MonoBehaviour
     }
 
     public virtual void UseWeapon()
-    {
-
-    }
+    { }
 
 
 
