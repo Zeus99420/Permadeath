@@ -5674,6 +5674,9 @@ MonoBehaviour:
   - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     value: 25
     appears: 2
+  - type: {fileID: 8678987557085508623, guid: de60a83d1cb46e24f8e5e5323ebbbb46, type: 3}
+    value: 40
+    appears: 1
   - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
     value: 40
     appears: 3
