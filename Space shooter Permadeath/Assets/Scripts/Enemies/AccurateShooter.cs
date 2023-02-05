@@ -29,12 +29,16 @@ public class AccurateShooter : Enemy
     float weaponCharge;
     public float chargeTime;
 
+    float randomLead;
+    public float maxRandomLead;
+
     public override void Start()
     {
         base.Start();
 
         chargingProjectile = weapon.Find("chargingProjectile").GetComponent<SpriteRenderer>();
         rotationSpeed = pursuitRotationSpeed;
+        randomLead = Random.Range(0, maxRandomLead);
     }
 
     public enum modes
@@ -51,10 +55,10 @@ public class AccurateShooter : Enemy
         if (player)
         {
             Vector2 targetPos = player.position;
-            Vector2 interceptPos = targetPos;
-            distance = ((Vector2)transform.position - interceptPos).magnitude;
-            float timeToReach = distance / projectileSpeed;
-            interceptPos = targetPos + player.GetComponent<Rigidbody2D>().velocity * timeToReach;
+            distance = Vector2.Distance(transform.position, targetPos);         //((Vector2)transform.position - targetPos).magnitude;
+            if (distance > attackRange) distance = attackRange;
+            float timeToReach = distance / projectileSpeed + randomLead;
+            Vector2 interceptPos = targetPos + player.GetComponent<Rigidbody2D>().velocity * timeToReach;
 
 
             distance = Vector2.Distance(interceptPos, transform.position);
@@ -92,8 +96,12 @@ public class AccurateShooter : Enemy
             if (IsInScreen(0.05f) && distance < attackRange && Time.time > nextShotTime)
             {
                 mode = modes.chargingWeapon;
-                chargingProjectile.enabled = true;
                 rotationSpeed = chargingRotationSpeed;
+
+                chargingProjectile.enabled = true;
+                Color color = chargingProjectile.color;
+                color.a = 0;
+                chargingProjectile.color = color;
             }
         
         AvoidCollision();
@@ -124,5 +132,6 @@ public class AccurateShooter : Enemy
         mode = modes.pursuit;
         chargingProjectile.enabled = false;
         rotationSpeed = pursuitRotationSpeed;
+        randomLead = Random.Range(0, maxRandomLead);
     }
 }

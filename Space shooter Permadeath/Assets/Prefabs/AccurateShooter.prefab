@@ -266,7 +266,7 @@ MonoBehaviour:
   attackRange: 7
   cooldown: 2
   strafeRange: 5
-  chargingRotationSpeed: 0.7
+  chargingRotationSpeed: 0.3
   pursuitRotationSpeed: 1.8
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
   projectileSpeed: 5
@@ -274,3 +274,4 @@ MonoBehaviour:
   weapon: {fileID: 8553149229583630408}
   chargingProjectile: {fileID: 0}
   chargeTime: 0.8
+  maxRandomLead: 0.6

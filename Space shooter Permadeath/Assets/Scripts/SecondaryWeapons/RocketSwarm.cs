@@ -25,27 +25,36 @@ public class RocketSwarm : SecondaryWeapons
     IEnumerator LaunchSwarm()
     {
         Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 interceptPos = targetPosition;
+        float timeToReach;
+        float distance;
+
+        for (int i = 0; i < 10; i++)
+        {
+            distance = ((Vector2)transform.position - interceptPos).magnitude;
+            timeToReach = Mathf.Sqrt(distance / (0.5f * acceleration));
+            interceptPos = targetPosition - GetComponent<Rigidbody2D>().velocity * timeToReach;
+        }
+
+        Vector2 targetVector = ((Vector2)transform.position - interceptPos).normalized;
 
 
+
+
+        // Rockets are launched in pairs flying in opposite directions, one to the left and one to the right.
         int rocketPairs = rocketCount / 2;
         float angle = spread / 2;
         float angleIncrement = spread / (rocketPairs-1);
         float velocityIncrement = 3f / (rocketPairs-1);
         float timeBetweenRockets = launchTime / (rocketPairs-1);
         float velocity = 4f;
-  
-
-        //float angle = -spread / 2;
-        //float angleIncrement = spread / (spreadBulletCount - 1);
-
-        // Rockets are launched in pairs flying in opposite directions, one to the left and one to the right
 
         for (int i = 0; i < rocketPairs; i++)
         {
-            Vector2 launchVector = transform.right * velocity;
+            Vector2 launchVector = Vector2.Perpendicular(targetVector) * velocity;
             launchVector = Quaternion.Euler(0, 0, angle) * launchVector;
             LaunchRocket(launchVector, targetPosition);
-            launchVector = -transform.right * velocity;
+            launchVector = -Vector2.Perpendicular(targetVector) * velocity;
             launchVector = Quaternion.Euler(0, 0, -angle) * launchVector;
             LaunchRocket(launchVector, targetPosition);
             velocity -= velocityIncrement;
@@ -58,7 +67,7 @@ public class RocketSwarm : SecondaryWeapons
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + launchVelocity * launchVector;
-        //newProjectile.transform.up = launchVector;
+        newProjectile.transform.up = launchVector;
 
         SwarmRocket rocket = newProjectile.GetComponent<SwarmRocket>();
         rocket.targetPosition = targetPosition;

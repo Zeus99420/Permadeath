@@ -26,9 +26,6 @@ public class SwarmRocket : PlayerProjectile
         Vector2 interceptPos = targetPosition;
         float timeToReach;
         float distance;
-        float engineTime = Time.time + engineDelay;
-
-        yield return new WaitForSeconds(engineDelay/2);
 
         for (int i = 0; i < 10; i++)
         {
@@ -37,29 +34,20 @@ public class SwarmRocket : PlayerProjectile
             interceptPos = targetPosition - GetComponent<Rigidbody2D>().velocity * timeToReach;
         }
 
-        //transform.up = (interceptPos - initialPosition).normalized;
-        //yield return new WaitForSeconds(engineDelay);
-
+        float engineTime = Time.time + engineDelay;
+        yield return new WaitForSeconds(engineDelay/3);
         
         Vector2 targetRotation = (interceptPos - initialPosition).normalized;
 
         while (Time.time < engineTime)
         {
-            Vector3 newRotation = Vector3.RotateTowards(transform.up, targetRotation, 4f*Time.deltaTime, 0f);
+            Vector3 newRotation = Vector3.RotateTowards(transform.up, targetRotation, 16f*Time.deltaTime, 0f);
             transform.up = newRotation;
             yield return null;
         }
 
-        transform.up = (interceptPos - initialPosition).normalized;
+        transform.up = targetRotation;
 
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    distance = ((Vector2)transform.position - interceptPos).magnitude;
-        //    timeToReach = Mathf.Sqrt(distance / (0.5f * acceleration));
-        //    interceptPos = targetPosition - GetComponent<Rigidbody2D>().velocity * timeToReach;
-        //}
-
-        //transform.up = (interceptPos - (Vector2)transform.position).normalized;
         engineRunning = true;
         GetComponent<ParticleSystem>().Play();
     }

@@ -5026,7 +5026,7 @@ MonoBehaviour:
   damage: 14
   rocketCount: 8
   acceleration: 12
-  engineDelay: 0.3
+  engineDelay: 0.4
   launchVelocity: 0.8
   launchTime: 0.1
   spread: 20
