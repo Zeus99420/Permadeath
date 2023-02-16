@@ -1000,36 +1000,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &113710872
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 113710873}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &113710873
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113710872}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8060951, y: -0.22631578, z: -0.1724883}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &142461143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5670,13 +5640,13 @@ MonoBehaviour:
   allEnemyTypes:
   - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     value: 10
-    appears: 1
+    appears: 2
   - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     value: 25
     appears: 2
   - type: {fileID: 8678987557085508623, guid: de60a83d1cb46e24f8e5e5323ebbbb46, type: 3}
     value: 40
-    appears: 1
+    appears: 2
   - type: {fileID: 8848007241133588044, guid: 98b0977be800a9349a715f206246af79, type: 3}
     value: 40
     appears: 3
@@ -5689,6 +5659,9 @@ MonoBehaviour:
   - type: {fileID: 8848007241133588044, guid: 69ff42017bf822f4586ab70d4e04c2d5, type: 3}
     value: 70
     appears: 7
+  - type: {fileID: 4105467039431616991, guid: 68a874cef22b053468344dbf42885c73, type: 3}
+    value: 30
+    appears: 1
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
     value: 30
     appears: 999999
@@ -6725,7 +6698,7 @@ MonoBehaviour:
   price: 80
   description: Your ship flies faster.
   unique: 0
-  increaseAmount: 400
+  increaseAmount: 250
   BiggerEngine: {fileID: 21300000, guid: d7704cce7e330a14bac53cb0aaf163a7, type: 3}
 --- !u!114 &1401891357
 MonoBehaviour:

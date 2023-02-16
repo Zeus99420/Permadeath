@@ -91,12 +91,4 @@ public class Bomber : Enemy
         }
     }
 
-
-    //För Debugging
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(targetPosition, 0.2f);
-    }
-
 }
