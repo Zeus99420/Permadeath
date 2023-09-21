@@ -35,7 +35,7 @@ public class ScoutInvader : Enemy
 
                 GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
                 newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
-                newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
+                newProjectile.GetComponent<EnemyProjectile>().damage = projectileDamage;
 
             }
         }

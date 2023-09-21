@@ -5,29 +5,18 @@ using UnityEngine;
 public class AutoCannon : Enemy
 {
 
-    public float cooldown;
-    float nextShotTime;
-
     [Header("Weapon")]
     public float targetingRotationSpeed;
     public float attackingRotationSpeed;
+    public float cooldown;
+    float nextShotTime;
 
     public GameObject projectile;
     public float projectileSize;
     public float projectileSpeed;
     public int projectileDamage;
 
-
-    //[Header("Ramp Up")]
-    //public float rampUpTime;
-    //public float initialCooldown;
-    //public float finalCooldown;
-    //public float initialProjectileSpeed;
-    //public float finalProjectileSpeed;
-
     public List<Transform> weapons;
-
-    public float salvoDuration;
 
     modes mode;
     public enum modes
@@ -54,7 +43,7 @@ public class AutoCannon : Enemy
             initialPosition.x = -0.1f;
             transform.up = Vector2.right;
         }
-        initialPosition.y = Random.Range(0.3f, 0.7f);
+        initialPosition.y = Random.Range(0.25f, 0.75f);
         transform.position = Camera.main.ViewportToWorldPoint(initialPosition, 0);
 
 
@@ -104,10 +93,10 @@ public class AutoCannon : Enemy
         {
             mode = modes.targeting;
 
-            foreach (Transform weapon in weapons)
-            {
-                weapon.GetComponent<LineRenderer>().enabled = true;
-            }
+            //foreach (Transform weapon in weapons)
+            //{
+            //    weapon.GetComponent<LineRenderer>().enabled = true;
+            //}
         }
 
     }
@@ -116,12 +105,9 @@ public class AutoCannon : Enemy
     {
         LeadTarget(targetingRotationSpeed);
 
-        if (Vector2.Angle(transform.up, direction) < 0.1f)
-        //if ((Vector2)transform.up == direction)
+        if (Vector2.Angle(transform.up, direction) < 10f)
         {
             mode = modes.attacking;
-            //StartCoroutine(RampUp());
-            StartCoroutine(Salvo());
         }
 
         Shield();
@@ -133,7 +119,7 @@ public class AutoCannon : Enemy
 
         if (Time.time > nextShotTime)
         {
-            Fire();
+            StartCoroutine(Fire());
         }
 
         Shield();
@@ -153,41 +139,38 @@ public class AutoCannon : Enemy
     }
 
 
+    public float chargeTime;
+    public float lineAlpha;
 
-    //IEnumerator RampUp()
-    //{
-    //    float rampUp = 0;
-    //    while (rampUp <1)
-    //    {
-    //        rampUp += Time.deltaTime / rampUpTime;
-    //        if (rampUp > 1) rampUp = 1;
-    //        cooldown = Mathf.Lerp(initialCooldown, finalCooldown, rampUp);
-    //        projectileSpeed = Mathf.Lerp(initialProjectileSpeed, finalProjectileSpeed, rampUp);
-    //        yield return null;
-    //    }
-
-    //}
-
-    IEnumerator Salvo()
-    {
-        yield return new WaitForSeconds(salvoDuration);
-        mode = modes.targeting;
-    }
-
-    void Fire()
+    IEnumerator Fire()
     {
         nextShotTime = Time.time + cooldown;
 
-        //Randomly picks one of the two least recently fired weapons to fire from.
-        int r = Random.Range(0, 1);
+        //Randomly picks one of the least recently fired weapons to fire from.
+        int r = Random.Range(0, weapons.Count/2);
         Transform weapon = weapons[r];
         weapons.RemoveAt(r);
         weapons.Add(weapon);
 
-        GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
+        LineRenderer lineRenderer = weapon.GetComponent<LineRenderer>();
+        Gradient c = lineRenderer.colorGradient;
+        GradientAlphaKey[] alphaKeys = c.alphaKeys;
+        lineRenderer.enabled = true;
+
+        for (float t=0;t<1;t += Time.deltaTime/chargeTime)
+        {
+            alphaKeys[0].alpha = t * lineAlpha;
+            c.alphaKeys = alphaKeys;
+            lineRenderer.colorGradient = c;
+            yield return null;
+        }
+
+        GameObject newProjectile = Instantiate(projectile, weapon.position, weapon.rotation, mastermind.stuffContainer);
         newProjectile.transform.localScale *= projectileSize;
-        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
-        newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
+        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * weapon.up;
+        newProjectile.GetComponent<EnemyProjectile>().damage = projectileDamage;
+
+        weapon.GetComponent<LineRenderer>().enabled = false;
     }
     [Header("Shield")]
     public float initialShield;
@@ -201,6 +184,8 @@ public class AutoCannon : Enemy
     public float maxRadius;
     public float minArc;
     public float maxArc;
+    public float minBase;
+    public float maxBase;
 
     void Shield()
     {
@@ -221,6 +206,7 @@ public class AutoCannon : Enemy
             float shieldFill = (float)shieldHealth / shieldMaxHealth;
             float arc = Mathf.Lerp(minArc, maxArc, shieldFill);
             float radius = Mathf.Lerp(minRadius, maxRadius, shieldFill);
+            float shieldBase = Mathf.Lerp(minBase, maxBase, shieldFill);
 
 
             Vector2[] arcPoints = new Vector2[10];
@@ -233,7 +219,7 @@ public class AutoCannon : Enemy
             for (int i = 0; i < segments; i++)
             {
                 arcPoints[i].x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-                arcPoints[i].y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+                arcPoints[i].y = shieldBase + Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
 
                 shieldRenderer.SetPosition(i, arcPoints[i]);
 

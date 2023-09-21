@@ -3216,7 +3216,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ae33bc6e8a0869b45a905c0a9e676499, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.19
+  m_Volume: 0.056
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4641,7 +4641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 0}
-  testingShop: 1
+  testingShop: 0
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}

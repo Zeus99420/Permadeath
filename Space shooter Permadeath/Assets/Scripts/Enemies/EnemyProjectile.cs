@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterProjectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     [HideInInspector] public int damage;
     private void OnBecameInvisible()

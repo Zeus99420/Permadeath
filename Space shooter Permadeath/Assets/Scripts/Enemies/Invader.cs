@@ -30,7 +30,7 @@ public class Invader : Enemy
 
                 GameObject newProjectile = Instantiate(projectile, weapon.position+ transform.up*0.2f, transform.rotation, mastermind.stuffContainer);
                 newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * transform.up;
-                newProjectile.GetComponent<ShooterProjectile>().damage = projectileDamage;
+                newProjectile.GetComponent<EnemyProjectile>().damage = projectileDamage;
 
             }
         }
