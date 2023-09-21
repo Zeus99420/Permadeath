@@ -269,7 +269,7 @@ MonoBehaviour:
   chargingRotationSpeed: 0.3
   pursuitRotationSpeed: 1.8
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
-  projectileSpeed: 5
+  projectileSpeed: 7
   projectileDamage: 25
   weapon: {fileID: 8553149229583630408}
   chargingProjectile: {fileID: 0}

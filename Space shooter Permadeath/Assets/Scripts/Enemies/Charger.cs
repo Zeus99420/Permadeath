@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Charger : Enemy
 {
-    //public float velocityFactor;
+
     Vector2 randomVector;
-    float interceptSpeed;
+    [Header("Pursuit")]
     public float randomVectorMax;
-
     public float pursuitRotationRate;
+    public float targetLead;
 
+    [Header("Charge")]
     public float chargeAcceleration;
     public float chargeRange;
     public float chargeCooldown;
     float chargeReadyTime;
 
+    public float chargePrepareTime;
+    public float chargeRotationRate;
+    public float chargeDuration;
+
     modes mode;
 
+    [Header("Engine VFX")]
     public SpriteRenderer engine;
     public Color engineColor;
     public Color engineColorCharging;
@@ -29,7 +35,6 @@ public class Charger : Enemy
         base.Start();
         StartCoroutine(RandomMovement());
 
-        interceptSpeed = chargeAcceleration / (m_rigidbody.mass * 2.5f);
         engine.color = engineColor;
     }
 
@@ -58,21 +63,24 @@ public class Charger : Enemy
 
         }
     }
+
+
     void Pursuit()
     {
-        //Rör sig mot spelaren
+        //Move towards player
         if (player)
         {
             Vector2 targetPos = player.position;
             float distance = Vector2.Distance(transform.position, targetPos);
             if (distance > chargeRange) distance = chargeRange;
             float timeToReach = distance / 4 + chargePrepareTime;
-            Vector2 interceptPos = targetPos + player.GetComponent<Rigidbody2D>().velocity * timeToReach + randomVector * distance;
+            Vector2 interceptPos = targetPos + targetLead * player.GetComponent<Rigidbody2D>().velocity * timeToReach + randomVector * distance;
 
             distance = Vector2.Distance(interceptPos, transform.position);
             direction = (interceptPos - (Vector2)transform.position).normalized;
 
             transform.up = Vector3.Slerp(transform.up, direction, pursuitRotationRate * Time.deltaTime);
+            direction = transform.up;
 
             if (distance < chargeRange && Time.time > chargeReadyTime && IsInScreen(0.05f)) mode = modes.preparingCharge;
             //transform.Find("DebugTarget").transform.position = interceptPos;
@@ -82,8 +90,7 @@ public class Charger : Enemy
 
     }
 
-    public float chargePrepareTime;
-    public float chargeRotationRate;
+
     float chargeEnergy;
     void PrepareCharge()
     {
@@ -107,7 +114,7 @@ public class Charger : Enemy
         transform.up = Vector3.Slerp(transform.up, direction, chargeRotationRate * Time.deltaTime);
         m_rigidbody.AddForce(transform.up * chargeAcceleration);
     }
-    public float chargeDuration;
+
     IEnumerator ChargeDuration()
     {
         yield return new WaitForSeconds(chargeDuration);

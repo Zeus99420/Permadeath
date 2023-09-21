@@ -10,6 +10,8 @@ public class Enemy : Character
 
     [HideInInspector] public int value;
 
+
+    [Header("General")]
     public float avoidRadius;
     public float avoidForce;
 

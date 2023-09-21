@@ -17,11 +17,17 @@ public class PlayerProjectile : MonoBehaviour
 
     public void StandardHit(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyShield")
         {
-            if (!other.GetComponent<Character>().dead)
+            other.GetComponentInParent<Character>().ShieldDamage(damage);
+            Destroy(gameObject);
+        }
+
+        else if (other.gameObject.tag == "Enemy")
+        {
+            if (!other.GetComponentInParent<Character>().dead)
             {
-                other.GetComponent<Character>().Damage(damage);
+                other.GetComponentInParent<Character>().Damage(damage);
                 Destroy(gameObject);
             }
         }

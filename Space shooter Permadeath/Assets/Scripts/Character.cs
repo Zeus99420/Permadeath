@@ -46,6 +46,10 @@ public class Character : MonoBehaviour
         }
     }
 
+    [HideInInspector] public float shieldHealth = 0;
+    public virtual void ShieldDamage(int damageAmount)
+    { }
+
     public virtual void Heal(int healAmount)
     {
         health += healAmount;

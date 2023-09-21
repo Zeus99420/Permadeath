@@ -2960,7 +2960,7 @@ RectTransform:
   m_GameObject: {fileID: 510502148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 79831481}
   m_RootOrder: 0
@@ -3216,7 +3216,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ae33bc6e8a0869b45a905c0a9e676499, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.19
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5661,6 +5661,9 @@ MonoBehaviour:
     appears: 7
   - type: {fileID: 4105467039431616991, guid: 68a874cef22b053468344dbf42885c73, type: 3}
     value: 30
+    appears: 2
+  - type: {fileID: 4105467039431616991, guid: bd41f8ac366f9ba46ab1287fc6b1ede4, type: 3}
+    value: 140
     appears: 1
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
     value: 30
@@ -7673,6 +7676,7 @@ MonoBehaviour:
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
   dead: 0
+  shieldHealth: 0
   baseAcceleration: 450
   acceleration: 0
   usingEngines: 0

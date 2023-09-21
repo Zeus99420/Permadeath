@@ -55,7 +55,7 @@ public class AccurateShooter : Enemy
         if (player)
         {
             Vector2 targetPos = player.position;
-            distance = Vector2.Distance(transform.position, targetPos);         //((Vector2)transform.position - targetPos).magnitude;
+            distance = Vector2.Distance(transform.position, targetPos);
             if (distance > attackRange) distance = attackRange;
             float timeToReach = distance / projectileSpeed + randomLead;
             Vector2 interceptPos = targetPos + player.GetComponent<Rigidbody2D>().velocity * timeToReach;

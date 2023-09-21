@@ -39,10 +39,15 @@ public class StandardProjectile : PlayerProjectile
 
     public void PiercingHit(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
+        if (other.gameObject.tag == "EnemyShield")
+        {
+            PiercingShield(other);
+        }
+
+        else if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
         {
             alreadyHit.Add(other.gameObject);
-            Character enemy = other.GetComponent<Character>();
+            Character enemy = other.GetComponentInParent<Character>();
             if (!enemy.dead)
             {
                 float newDamage;
@@ -54,5 +59,15 @@ public class StandardProjectile : PlayerProjectile
                 else damage = (int)newDamage;
             }
         }
+    }
+
+    public void PiercingShield(Collider2D other)
+    {
+        Character enemy = other.GetComponentInParent<Character>();
+        int potentialDamage = (int)(damage * (1 + piercingMultiplier));
+        damage = (int)((potentialDamage - enemy.shieldHealth) / (1 + piercingMultiplier));
+        enemy.ShieldDamage(potentialDamage);
+
+        if (damage < 1) Destroy(gameObject);
     }
 }
