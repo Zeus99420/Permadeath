@@ -223,7 +223,8 @@ GameObject:
   - component: {fileID: 7505790673031327342}
   - component: {fileID: -4160980836245495667}
   - component: {fileID: -6196883920436944865}
-  m_Layer: 0
+  - component: {fileID: 2138753550309203037}
+  m_Layer: 10
   m_Name: NuclearBombProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,3 +287,19 @@ MonoBehaviour:
   friendlyDamageMultiplier: 0
   ringColor1: {r: 1, g: 0.41058755, b: 0, a: 0.70980394}
   ringColor2: {r: 1, g: 0.9359112, b: 0, a: 0}
+--- !u!58 &2138753550309203037
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101686643944138255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2

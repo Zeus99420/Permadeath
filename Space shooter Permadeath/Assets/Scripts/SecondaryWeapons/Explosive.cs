@@ -11,8 +11,9 @@ public class Explosive : MonoBehaviour
     public float radius;
     public float friendlyDamageMultiplier;
 
+    protected bool detonated = false;
+    [HideInInspector] public Coroutine countdown;
 
-    // Update is called once per frame
     public virtual IEnumerator Countdown(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -23,6 +24,7 @@ public class Explosive : MonoBehaviour
     public Color ringColor2;
     public IEnumerator Explode()
     {
+        detonated = true;
         transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Instantiate(explosionPrefab, transform.position, transform.rotation);
@@ -48,25 +50,64 @@ public class Explosive : MonoBehaviour
     List<GameObject> alreadyHit = new List<GameObject>();
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
+        if (!detonated)
         {
-            Hit(other.GetComponent<Character>(), damage);
+            StopCoroutine(countdown);
+            StartCoroutine(Explode());
         }
 
-        else if (other.gameObject.tag == "Player" && friendlyDamageMultiplier != 0 && !alreadyHit.Contains(other.gameObject))
+
+        else
         {
-            Hit(other.GetComponent<Character>(), (int)(damage * friendlyDamageMultiplier));
+
+            if (other.gameObject.tag == "EnemyShield" && !alreadyHit.Contains(other.gameObject))
+            {
+                ShieldHit(other.GetComponentInParent<Character>(), (damage));
+                alreadyHit.Add(other.gameObject);
+
+            }
+
+            else if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
+            {
+                alreadyHit.Add(other.gameObject);
+                if (CheckForShield(other.transform) == false)
+                {
+                    Hit(other.GetComponentInParent<Character>(), damage);
+                }
+            }
+
+
+            else if (other.gameObject.tag == "Player" && friendlyDamageMultiplier != 0 && !alreadyHit.Contains(other.gameObject))
+            {
+                Hit(other.GetComponent<Character>(), (int)(damage * friendlyDamageMultiplier));
+            }
         }
+ 
+    }
+
+    bool CheckForShield(Transform other)
+    {
+        Vector2 direction = (other.position - transform.position).normalized;
+        float distance = Vector2.Distance(transform.position, other.position);
+        LayerMask layerMask = LayerMask.GetMask("EnemyShield");
+        if (Physics2D.Raycast(transform.position, direction,distance,layerMask).collider == null) return false;
+        else return true;
     }
 
     void Hit(Character target, int damage)
     {
         alreadyHit.Add(target.gameObject);
-
         if (!target.dead)
         {
             target.Damage(damage);
         }
+    }
+
+    void ShieldHit(Character target, int damage)
+    {
+        alreadyHit.Add(target.gameObject);
+        target.ShieldDamage(damage);
+        Debug.Log("Shield Damage: " + damage);
     }
 
 

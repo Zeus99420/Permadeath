@@ -29,7 +29,11 @@ public class FragMissileProjectile : Explosive
 
     void FixedUpdate()
     {
-        m_rigidbody.velocity += Time.fixedDeltaTime * acceleration * (Vector2)(transform.up);
+        if (!detonated)
+        {
+            m_rigidbody.velocity += Time.fixedDeltaTime * acceleration * (Vector2)(transform.up);
+        }
+
 
     }
 

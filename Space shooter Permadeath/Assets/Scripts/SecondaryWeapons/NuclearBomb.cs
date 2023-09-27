@@ -21,8 +21,6 @@ public class NuclearBomb : SecondaryWeapons
         Vector2 targetVector = mousePos - (Vector2)transform.position;
         if (targetVector.magnitude > 5) targetVector = targetVector.normalized * 5;
         targetVector /= 5;
-        Debug.Log("targetVector: " + targetVector);
-        Debug.Log("targetVector magnitude: "+targetVector.magnitude);
 
 
 
@@ -36,6 +34,6 @@ public class NuclearBomb : SecondaryWeapons
         explosive.radius = radius;
         explosive.friendlyDamageMultiplier = friendlyDamageMultiplier;
 
-        StartCoroutine(explosive.Countdown(delay));
+        explosive.countdown = explosive.StartCoroutine(explosive.Countdown(delay));
     }
 }

@@ -6,7 +6,8 @@ public class TrailingProjectile : EnemyProjectile
 {
     void OnDestroy()
     {
-        GetComponentInChildren<TrailRenderer>().transform.parent = null;
         GetComponentInChildren<TrailRenderer>().autodestruct = true;
+        GetComponentInChildren<TrailRenderer>().transform.parent = null;
+
     }
 }

@@ -47,7 +47,7 @@ public class FragMissile : SecondaryWeapons
         //fragMissileProjectile.shrapnelCount = shrapnelCount;
         //fragMissileProjectile.shrapnelDamage = shrapnelDamage;
         //fragMissileProjectile.shrapnelVelocity = shrapnelVelocity;
-        StartCoroutine(fragMissileProjectile.Countdown(timeToReach));
+        fragMissileProjectile.countdown = fragMissileProjectile.StartCoroutine(fragMissileProjectile.Countdown(timeToReach));
 
     }
 }

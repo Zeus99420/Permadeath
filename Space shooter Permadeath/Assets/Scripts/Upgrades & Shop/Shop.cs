@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class UIelement
+{
+    public RectTransform transform;
+    public Vector2 offset;
+}
+
 public class Shop : MonoBehaviour
 {
 
@@ -15,10 +22,12 @@ public class Shop : MonoBehaviour
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
+    public Text tooltip;
+
     bool secWeaponPicked = false;
     List<Upgrades> upgrades;
 
-    public RectTransform[] children;
+    public UIelement[] UIelements;
     public void Initialize()
     {
         //upgrades.AddRange(GetComponentsInChildren<Upgrades>());
@@ -55,7 +64,7 @@ public class Shop : MonoBehaviour
             randomUpgrade.player = mastermind.player;
             upgrades.RemoveAt(randomNumber);
             GameObject buttonObject = Instantiate(buttonPrefab, transform.Find("ButtonLayout"));
-            buttonObject.transform.Translate(Vector3.right * 3 * t);
+            //buttonObject.transform.Translate(Vector3.right * 1 * t);
             Button button = buttonObject.GetComponent<Button>();
 
             buttons.Add(button);
@@ -64,15 +73,13 @@ public class Shop : MonoBehaviour
 
             button.transform.Find("NameText").GetComponent<Text>().text = randomUpgrade.upgradeName;
             button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
-            button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.GetDescription();
+            //button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.GetDescription();
+            button.GetComponent<ShopButton>().description = randomUpgrade.GetDescription();
+            button.GetComponent<ShopButton>().tooltipWindow = tooltip;
+
 
         }
         transform.Find("PickText").gameObject.SetActive(true);
-
-
-
-
-        //CheckAfford();
     }
 
     public void Exit()
@@ -97,17 +104,6 @@ public class Shop : MonoBehaviour
         transform.Find("PickText").gameObject.SetActive(false);
     }
 
-    public void CheckAfford ()
-    {
-        for (int t=0; t<buttons.Count; t++)
-        {
-            if (mastermind.money >= availableUpgrades[t].price) buttons[t].interactable = true;
-
-            else buttons[t].interactable = false;
-
-        }
-    }
-
     public void BuyButton(Button button,Upgrades upgrade)
     {
         //upgrade.player = mastermind.player;
@@ -120,6 +116,7 @@ public class Shop : MonoBehaviour
         availableUpgrades.RemoveAt(buttons.IndexOf(button));
         buttons.Remove(button);
         Destroy(button.gameObject);
+        tooltip.enabled = false;
 
         ClearUpgrades();
     }
@@ -127,13 +124,10 @@ public class Shop : MonoBehaviour
     public IEnumerator SlideIn()
     {
         float slideInTime = 1.5f;
-        float offset = 4;
-        //RectTransform[] childrensTransforms = GetComponentsInChildren<RectTransform>();
 
-        foreach (RectTransform childTransform in children)
+        foreach (UIelement element in UIelements)
         {
-            childTransform.Translate(Vector2.down * offset);
-
+            element.transform.Translate(element.offset);
         }
 
         float lastTime = 0;
@@ -141,9 +135,9 @@ public class Shop : MonoBehaviour
         {
             if (time > 1) time = 1;
             float deltaTime = time - lastTime;
-            foreach (RectTransform childTransform in children)
+            foreach (UIelement element in UIelements)
             {
-                childTransform.Translate(Vector2.up * deltaTime*offset);
+                element.transform.Translate(-element.offset * deltaTime);
             }
             lastTime = time;
             yield return null;
@@ -153,24 +147,22 @@ public class Shop : MonoBehaviour
     public IEnumerator SlideOut()
     {
         float slideOutTime = 1.5f;
-        float offset = 4;
 
         float lastTime = 0;
         for (float time = 0; time <= 1; time += Time.deltaTime / slideOutTime)
         {
             if (time > 1) time = 1;
             float deltaTime = time - lastTime;
-            foreach (RectTransform childTransform in children)
+            foreach (UIelement element in UIelements)
             {
-                childTransform.Translate(Vector2.down * deltaTime * offset);
+                element.transform.Translate(element.offset * deltaTime);
             }
             lastTime = time;
             yield return null;
         }
-        foreach (RectTransform childTransform in children)
+        foreach (UIelement element in UIelements)
         {
-            childTransform.Translate(Vector2.up * offset);
-
+            element.transform.Translate(-element.offset);
         }
         gameObject.SetActive(false);
     }
