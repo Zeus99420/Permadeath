@@ -123,6 +123,10 @@ public class Enemy : Character
         }
     }
 
+    [HideInInspector] public float shieldHealth = 0;
+    public virtual void ShieldDamage(int damageAmount)
+    { }
+
     public override void Damage(int damageAmount)
     {
         healthBar.gameObject.SetActive(true);

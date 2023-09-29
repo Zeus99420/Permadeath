@@ -110,7 +110,7 @@ public class Charger : Enemy
 
     void Charge()
     {
-        direction = player.position - transform.position;
+        if(player) direction = player.position - transform.position;
         transform.up = Vector3.Slerp(transform.up, direction, chargeRotationRate * Time.deltaTime);
         m_rigidbody.AddForce(transform.up * chargeAcceleration);
     }

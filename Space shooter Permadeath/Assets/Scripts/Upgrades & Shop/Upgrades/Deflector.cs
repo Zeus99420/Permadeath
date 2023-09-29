@@ -12,11 +12,10 @@ public class Deflector : Upgrades
     public override void BuyFirst()
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        playerMovement.haveDeflector = true;
-        playerMovement.maxDeflectorHealth = baseHealth;
-        playerMovement.deflectorRechargeTime = rechargeTime;
+        playerMovement.maxShieldHealth = baseHealth;
+        playerMovement.shieldRecharge = rechargeTime;
 
-        playerMovement.deflectorRenderer.enabled = true;
+        playerMovement.shieldRenderer.enabled = true;
 
         upgradeName = "Upgrade Deflector Shield";
     }
@@ -24,7 +23,7 @@ public class Deflector : Upgrades
     public override void BuyAnother()
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        playerMovement.maxDeflectorHealth += healthIncrease;
+        playerMovement.maxShieldHealth += healthIncrease;
     }
 
     public override string GetDescription()
@@ -39,7 +38,7 @@ public class Deflector : Upgrades
         else
         {
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-            int currentDurability = player.GetComponent<PlayerMovement>().maxDeflectorHealth;
+            int currentDurability = player.GetComponent<PlayerMovement>().maxShieldHealth;
             return ("Increase the durability of your deflector shield." +
             "\n\ndurability: " + currentDurability + " -> " + (currentDurability + healthIncrease)
         );

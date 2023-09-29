@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
         originalColor = spriteRenderer.color;
         if (!healthAlreadySet) health = maxHealth;
 
-        CreateHealthBar(healthBarPrefab);
+        healthBar = CreateHealthBar(healthBarPrefab);
     }
 
     public float GetHealthPercent()
@@ -46,9 +46,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    [HideInInspector] public float shieldHealth = 0;
-    public virtual void ShieldDamage(int damageAmount)
-    { }
+
 
     public virtual void Heal(int healAmount)
     {
@@ -67,19 +65,15 @@ public class Character : MonoBehaviour
 
     //}
 
-    public void CreateHealthBar(GameObject healthBarPrefab)
+    public CoolHealthBar CreateHealthBar(GameObject healthBarPrefab)
     {
         GameObject healthBarObject = Instantiate(healthBarPrefab,mastermind.stuffContainer);
-        healthBar = healthBarObject.GetComponent<CoolHealthBar>();
-        healthBar.character = this;
-        healthBar.transform.position = transform.position + healthBar.offset;
-        //float width = Mathf.Sqrt(maxHealth) / 10f;
-        float width = Mathf.Pow(maxHealth, 0.7f) / 20f;
-        float height = 0.05f + Mathf.Sqrt(maxHealth) * 0.015f;
-        healthBarObject.transform.Find("Image").GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
-        healthBarObject.transform.Find("Background").GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
-        healthBar.MaxHealthPoints = maxHealth;
- 
+        CoolHealthBar newHealthBar = healthBarObject.GetComponent<CoolHealthBar>();
+        newHealthBar.character = this;
+        newHealthBar.transform.position = transform.position + newHealthBar.offset;
+        newHealthBar.MaxHealthPoints = maxHealth;
+        newHealthBar.SetSize();
+        return newHealthBar;
     }
 
     public virtual void PlayExplosion()

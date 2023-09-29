@@ -18,6 +18,7 @@ public class Shop : MonoBehaviour
     public GameObject buttonPrefab;
     public UIScreen RMBInstructions;
     public List<Upgrades> standardUpgrades;
+    public List<Upgrades> gadgets;
     public List<Upgrades> secondaryWeapons;
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
@@ -33,6 +34,7 @@ public class Shop : MonoBehaviour
         //upgrades.AddRange(GetComponentsInChildren<Upgrades>());
         standardUpgrades.AddRange(transform.Find("Upgrades").GetComponents<Upgrades>());
         secondaryWeapons.AddRange(transform.Find("Secondary Weapons").GetComponents<Upgrades>());
+        gadgets.AddRange(transform.Find("Gadgets").GetComponents<Upgrades>());
     }
 
     public void EnterShop()
@@ -47,6 +49,13 @@ public class Shop : MonoBehaviour
             StartCoroutine(RMBInstructions.FadeIn());
             
         }
+
+        else if (mastermind.exp >= mastermind.expRequired)
+        {
+            upgrades = gadgets;
+            transform.Find("PickText").GetComponent<Text>().text = "Pick a new gadget:";
+        }
+
         else
         {
             upgrades = standardUpgrades;
@@ -112,7 +121,8 @@ public class Shop : MonoBehaviour
         upgrade.Buy();
 
         if (!upgrade.unique) upgrades.Add(upgrade);
-        if (upgrades == secondaryWeapons) secWeaponPicked = true;               
+        if (upgrades == secondaryWeapons) secWeaponPicked = true;
+        if (upgrades == gadgets) mastermind.LevelUp();
         availableUpgrades.RemoveAt(buttons.IndexOf(button));
         buttons.Remove(button);
         Destroy(button.gameObject);

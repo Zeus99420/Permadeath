@@ -63,7 +63,7 @@ public class StandardProjectile : PlayerProjectile
 
     public void PiercingShield(Collider2D other)
     {
-        Character enemy = other.GetComponentInParent<Character>();
+        Enemy enemy = other.GetComponentInParent<Enemy>();
         int potentialDamage = (int)(damage * (1 + piercingMultiplier));
         damage = (int)((potentialDamage - enemy.shieldHealth) / (1 + piercingMultiplier));
         enemy.ShieldDamage(potentialDamage);

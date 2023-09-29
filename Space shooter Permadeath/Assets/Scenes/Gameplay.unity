@@ -2182,7 +2182,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2733,11 +2733,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -170.07}
+  m_AnchoredPosition: {x: 0, y: -170.06995}
   m_SizeDelta: {x: 450.98, y: -340.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &456961072
@@ -3133,7 +3133,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517054605}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -3544,7 +3544,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4720,7 +4720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 0}
-  testingShop: 1
+  testingShop: 0
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -4742,8 +4742,8 @@ MonoBehaviour:
   money: 0
   score: 0
   exp: 0
-  expRequired: 120
-  expScaling: 1.65
+  expRequired: 150
+  expScaling: 3
   expBarBackground: {fileID: 821289471}
   expBarFill: {fileID: 1473092159}
   expBarBackgroundColor: {r: 0.19607843, g: 0.50980395, b: 0.50980395, a: 1}
@@ -4953,7 +4953,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5072,13 +5072,13 @@ MonoBehaviour:
   readyColor: {r: 0.99215686, g: 1, b: 0, a: 1}
   chargingColor: {r: 0.54901963, g: 0.5568628, b: 0.34509805, a: 1}
   projectile: {fileID: 9101686643944138255, guid: e6772cd3db3a4d541839837d33c49461, type: 3}
-  damage: 14
-  rocketCount: 8
+  damage: 18
+  rocketCount: 10
   acceleration: 12
   engineDelay: 0.4
-  launchVelocity: 0.8
+  launchVelocity: 1.1
   launchTime: 0.1
-  spread: 20
+  spread: 60
 --- !u!1 &902840332
 GameObject:
   m_ObjectHideFlags: 0
@@ -5716,7 +5716,7 @@ RectTransform:
   m_Children:
   - {fileID: 713142402}
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5795,7 +5795,7 @@ MonoBehaviour:
   allEnemyTypes:
   - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     value: 10
-    appears: 2
+    appears: 1
   - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     value: 25
     appears: 2
@@ -5819,7 +5819,7 @@ MonoBehaviour:
     appears: 2
   - type: {fileID: 4105467039431616991, guid: bd41f8ac366f9ba46ab1287fc6b1ede4, type: 3}
     value: 140
-    appears: 1
+    appears: 5
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
     value: 30
     appears: 999999
@@ -5941,9 +5941,9 @@ MonoBehaviour:
     shopAfter: 0
   enemyPool: []
   baseBudget: 45
-  budgetExponent: 1.1
+  budgetExponent: 1.06
   baseSpawnRate: 6
-  spawnRateIncrease: 4
+  spawnRateIncrease: 3
   spawnRate: 0
 --- !u!4 &1101592342
 Transform:
@@ -6733,16 +6733,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401891353}
-  - component: {fileID: 1401891357}
   - component: {fileID: 1401891356}
-  - component: {fileID: 1401891355}
   - component: {fileID: 1401891352}
-  - component: {fileID: 1401891358}
-  - component: {fileID: 1401891359}
-  - component: {fileID: 1401891360}
-  - component: {fileID: 1401891361}
-  - component: {fileID: 1401891362}
   - component: {fileID: 1401891354}
+  - component: {fileID: 1401891355}
+  - component: {fileID: 1401891357}
+  - component: {fileID: 1401891358}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: Untagged
@@ -6763,11 +6759,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Faster Gun
+  upgradeName: Rate of Fire
   price: 150
   description: Increases your attack speed.
   unique: 0
-  increaseAmount: 1
+  increaseAmount: 0.5
   BiggerGun: {fileID: 21300000, guid: dc4843fa9a50a304a8c70da8926c35fd, type: 3}
 --- !u!224 &1401891353
 RectTransform:
@@ -6797,18 +6793,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401891351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910326c16f3828c418e4fc04b4c94f77, type: 3}
+  m_Script: {fileID: 11500000, guid: 1806c3d8a681df246b8d918d0029995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Focus Fire
-  price: 150
+  upgradeName: Gun Damage
+  price: 0
   description: 
-  unique: 1
-  rateOfFireMultiplier: 1.8
-  freeRotationRate: 20
-  lockedRotationRate: 0.2
-  recoveryTime: 1.5
+  unique: 0
+  increaseAmount: 3
 --- !u!114 &1401891355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6818,27 +6811,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401891351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61897bd2a81b8a1489a253ca7ff56741, type: 3}
+  m_Script: {fileID: 11500000, guid: 15d83a340f9978344bb6f27e4df1ef20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Railgun
-  price: 50
-  description: 'Your projectiles can pierce and hit multiple enemies. Damage is halved
-    after each hit.
-
-    Projectiles fly faster.
-
-    Increases damage.
-
-    Reduces
-    attack speed.'
-  unique: 1
-  projectileSpeedIncrease: 13
-  rateOfFireMultiplier: 0.6
-  damageMultiplier: 2.2
-  projectileSize: 1.2
-  piercingMultiplier: 0.8
+  upgradeName: Projectile Velocity
+  price: 0
+  description: 
+  unique: 0
+  increaseAmount: 4
 --- !u!114 &1401891356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6856,7 +6837,7 @@ MonoBehaviour:
   price: 80
   description: Your ship flies faster.
   unique: 0
-  increaseAmount: 250
+  increaseAmount: 150
   BiggerEngine: {fileID: 21300000, guid: d7704cce7e330a14bac53cb0aaf163a7, type: 3}
 --- !u!114 &1401891357
 MonoBehaviour:
@@ -6867,24 +6848,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401891351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84350f433e22824eaa8201238e280af, type: 3}
+  m_Script: {fileID: 11500000, guid: a6d3dfb135558ca49bef44eedcb7d824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Shotgun
-  price: 150
-  description: 'You fire multiple smaller projectiles in an arc.
-
-    Reduces rate
-    of fire.'
+  upgradeName: Shield Health
+  price: 0
+  description: 
   unique: 0
-  baseBulletCount: 6
-  bulletCountIncrease: 3
-  baseSpread: 10
-  spreadIncrease: 3
-  damageMultiplier: 0.5
-  rateOfFireMultiplier: 0.6
-  projectileSize: 0.5
+  increaseAmount: 20
 --- !u!114 &1401891358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6894,83 +6866,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401891351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0f7937428386940940959f1fd37e41, type: 3}
+  m_Script: {fileID: 11500000, guid: c9d9dd7eec43977459aeb8bdf96539be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Rapid Fire
-  price: 150
-  description: 'You can fire a rapid burst of several shots.
-
-    Reharges when you
-    arent shooting.'
-  unique: 1
-  baseFireRateMultiplier: 3
-  fireRateMultiplierIncrease: 0.5
-  baseMaxEnergy: 0.7
-  maxEnergyIncrease: 1
---- !u!114 &1401891359
+  upgradeName: Shield Recharge
+  price: 0
+  description: 
+  unique: 0
+  increaseAmount: 2
+--- !u!1 &1460213835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1460213836}
+  - component: {fileID: 1460213843}
+  - component: {fileID: 1460213842}
+  - component: {fileID: 1460213841}
+  - component: {fileID: 1460213840}
+  - component: {fileID: 1460213839}
+  - component: {fileID: 1460213838}
+  - component: {fileID: 1460213837}
+  m_Layer: 5
+  m_Name: Gadgets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1460213836
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460213835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1748672120}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1460213837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401891351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9785a64737859c841a6fdee52ed65d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  upgradeName: Power Diverter
-  price: 150
-  description: 'Increases damage by up to 50% when you aren''t using engines.
-
-
-    Increases
-    movement speed by up to 50% when you aren''t shooting.'
-  unique: 1
-  multiplierMaxBase: 1.5
-  multiplierMaxIncrease: 1.5
-  ChargeTime: 1
-  UnchargeTime: 1.5
-  movementMultiplierMax: 1.5
-  movementChargeTime: 1
-  movementUnchargeTime: 1
---- !u!114 &1401891360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401891351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6582100bf3694e40ab9170a74cc39cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  upgradeName: Cannon
-  price: 200
-  description: 'Your bullets are slow and big but deal more damage.
-
-    Rate of
-    fire is reduced.'
-  unique: 1
-  projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
-  projectileSpeed: 1.5
-  CanonWeapon: {fileID: 21300000, guid: 7728964d553d39f4cba2877dc6e50a98, type: 3}
-  damageMultiplier: 3.5
-  rateOfFireMultiplier: 0.4
-  projectileSize: 5
-  projectileSprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
---- !u!114 &1401891361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401891351}
+  m_GameObject: {fileID: 1460213835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0254ce156999a0e49af196c035aa427e, type: 3}
@@ -6992,29 +6945,156 @@ MonoBehaviour:
   colorDamaged: {r: 1, g: 0.54901963, b: 0, a: 1}
   readySize: {x: 0.5, y: 0.5}
   activeSize: {x: 0.6, y: 0.6}
---- !u!114 &1401891362
+--- !u!114 &1460213838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401891351}
+  m_GameObject: {fileID: 1460213835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc03b8e5bfc96ca4896fd5e89374ab4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 910326c16f3828c418e4fc04b4c94f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Deflector Shield
-  price: 100
-  description: 'Protects you from a small amount of damage.
+  upgradeName: Focus Fire
+  price: 150
+  description: 
+  unique: 1
+  rateOfFireMultiplier: 1.8
+  freeRotationRate: 20
+  lockedRotationRate: 0.2
+  recoveryTime: 1.5
+--- !u!114 &1460213839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460213835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6582100bf3694e40ab9170a74cc39cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Cannon
+  price: 200
+  description: 'Your bullets are slow and big but deal more damage.
 
-    Recharges over a
-    few seconds'
+    Rate of
+    fire is reduced.'
+  unique: 1
+  projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
+  projectileSpeed: 0.75
+  CanonWeapon: {fileID: 21300000, guid: 7728964d553d39f4cba2877dc6e50a98, type: 3}
+  damageMultiplier: 3
+  rateOfFireMultiplier: 0.5
+  projectileSpeedMultiplier: 0.8
+  projectileSize: 3.5
+  projectileSprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+--- !u!114 &1460213840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460213835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9785a64737859c841a6fdee52ed65d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Power Diverter
+  price: 150
+  description: 'Increases damage by up to 50% when you aren''t using engines.
+
+
+    Increases
+    movement speed by up to 50% when you aren''t shooting.'
+  unique: 1
+  multiplierMaxBase: 1.5
+  multiplierMaxIncrease: 1.5
+  ChargeTime: 1
+  UnchargeTime: 1.5
+  movementMultiplierMax: 1.5
+  movementChargeTime: 1
+  movementUnchargeTime: 1
+--- !u!114 &1460213841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460213835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0f7937428386940940959f1fd37e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Rapid Fire
+  price: 150
+  description: 'You can fire a rapid burst of several shots.
+
+    Reharges when you
+    arent shooting.'
+  unique: 1
+  baseFireRateMultiplier: 3
+  fireRateMultiplierIncrease: 0.5
+  baseMaxEnergy: 0.7
+  maxEnergyIncrease: 1
+--- !u!114 &1460213842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460213835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61897bd2a81b8a1489a253ca7ff56741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Railgun
+  price: 50
+  description: 
+  unique: 1
+  projectileSpeedMultiplier: 2
+  rateOfFireMultiplier: 0.75
+  damageMultiplier: 1.8
+  projectileSize: 1.2
+  piercingMultiplier: 0.8
+--- !u!114 &1460213843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460213835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84350f433e22824eaa8201238e280af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Shotgun
+  price: 150
+  description: 'You fire multiple smaller projectiles in an arc.
+
+    Reduces rate
+    of fire.'
   unique: 0
-  baseHealth: 30
-  healthIncrease: 30
-  rechargeTime: 6
+  baseBulletCount: 6
+  bulletCountIncrease: 3
+  baseSpread: 10
+  spreadIncrease: 3
+  damageMultiplier: 0.5
+  rateOfFireMultiplier: 0.6
+  projectileSize: 0.5
 --- !u!1 &1473092157
 GameObject:
   m_ObjectHideFlags: 0
@@ -7831,8 +7911,7 @@ MonoBehaviour:
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
   dead: 0
-  shieldHealth: 0
-  baseAcceleration: 450
+  baseAcceleration: 350
   acceleration: 0
   usingEngines: 0
   accelerationMultiplier: 1
@@ -7846,10 +7925,13 @@ MonoBehaviour:
   barrierActiveSize: {x: 0, y: 0}
   barrierReadySize: {x: 0, y: 0}
   barrierRenderer: {fileID: 1152177311}
-  haveDeflector: 0
-  maxDeflectorHealth: 0
-  deflectorRechargeTime: 0
-  deflectorRenderer: {fileID: 517054607}
+  maxShieldHealth: 20
+  shieldRecharge: 2
+  shieldRenderer: {fileID: 517054607}
+  shieldColor: {r: 0, g: 0.6901961, b: 1, a: 1}
+  shieldBarPrefab: {fileID: 4561686646443037966, guid: 8b4866161d9a19c40929cb6fcd47cacd, type: 3}
+  shieldHealth: 0
+  shieldBar: {fileID: 0}
   trailEnabled: 0
   sharperMovement: 1
   sharpMoveSpeed: 1.8
@@ -8087,21 +8169,23 @@ MonoBehaviour:
   mastermind: {fileID: 856224839}
   ammoIndicator: {fileID: 1666883344}
   rateOfFireMultiplier: 1
-  rateOfFire: 3
+  rateOfFire: 2
   readyToFire: 0
   weapon: {fileID: 397213641}
   shotaudio: {fileID: 1653898512}
   Crosshair: {fileID: 1356923712}
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
-  projectileSpeed: 7
+  projectileSprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
+  projectileSpeed: 5
+  projectileSpeedMultiplier: 1
   baseDamage: 10
+  damageMultiplier: 1
   fireMode: FireStandardProjectile
   methodSequence: []
   enabledSequence: 
   projectileSize: 1
   spreadBulletCount: 2
   spread: 0
-  spreadDamageMultiplier: 0
   rapidFireEnergy: 0
   rapidFireEnergyMax: 0
   rapidFireMultiplier: 1
@@ -8114,8 +8198,6 @@ MonoBehaviour:
   movementMultiplierMax: 0
   movementChargeTime: 0
   movementUnchargeTime: 0
-  bigBulletSprite: {fileID: 0}
-  canonDamageMultiplier: 0
   piercing: 0
   piercingMultiplier: 0
 --- !u!96 &1653898514
@@ -8704,7 +8786,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Next Upgrade:'
+  m_Text: 'Next Gadget:'
 --- !u!222 &1734324498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8732,7 +8814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1748672117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8806,6 +8888,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1401891353}
+  - {fileID: 1460213836}
   - {fileID: 902765022}
   - {fileID: 456961071}
   - {fileID: 9091034501602691128}
@@ -8836,6 +8919,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 7083952019581559464, guid: 6ac396f1e83b6f144add8824e860f3c4, type: 3}
   RMBInstructions: {fileID: 1208896793}
   standardUpgrades: []
+  gadgets: []
   secondaryWeapons: []
   buttons: []
   availableUpgrades: []
@@ -10444,7 +10528,7 @@ RectTransform:
   - {fileID: 9091034499522964063}
   - {fileID: 1493508966}
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}

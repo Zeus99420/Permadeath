@@ -29,14 +29,16 @@ public class PlayerMovement : Character
     [HideInInspector] public Vector2 barrierReadySize;
     public SpriteRenderer barrierRenderer;
 
-    //Deflector
-    [HideInInspector] public bool haveDeflector;
-    float  deflectorHealth;
-    float deflectorDamagedTime;
-    [HideInInspector] public int maxDeflectorHealth;
-    [HideInInspector] public float deflectorRechargeTime;
-    public SpriteRenderer deflectorRenderer;
-    Color deflectorColor;
+    [Header("Shield")]
+    public int maxShieldHealth;
+    public float shieldRecharge;
+    public SpriteRenderer shieldRenderer;
+    public Color shieldColor;
+    public GameObject shieldBarPrefab;
+    [HideInInspector] public float shieldHealth;
+    float shieldDamagedTime;
+    [HideInInspector] public CoolHealthBar shieldBar;
+
 
 
 
@@ -54,7 +56,11 @@ public class PlayerMovement : Character
 
 
         if (barrierBought) ReadyBarrier();
-        deflectorColor = deflectorRenderer.color;
+        shieldHealth = maxShieldHealth;
+        shieldColor = shieldRenderer.color;
+        shieldBar = CreateHealthBar(shieldBarPrefab);
+        shieldBar.MaxHealthPoints = maxShieldHealth;
+        shieldBar.SetSize();
 
         m_rigidbody = GetComponent<Rigidbody2D>();
 
@@ -85,7 +91,7 @@ public class PlayerMovement : Character
             pos.y = Mathf.Clamp01(pos.y);
             gameObject.transform.position = Camera.main.ViewportToWorldPoint(pos);
 
-            if (haveDeflector) DeflectorUpdate();
+            ShieldUpdate();
         }
 
 
@@ -129,7 +135,7 @@ public class PlayerMovement : Character
     public override void Damage(int damageAmount)
     {
         if (barrierActive) BarrierDamage(damageAmount);
-        else if (haveDeflector && deflectorHealth > 0) DeflectorDamage(damageAmount);
+        else if (shieldHealth > 0) ShieldDamage(damageAmount);
         else if (barrierReady) ActivateBarrier(damageAmount);
         else
         {
@@ -235,36 +241,43 @@ public class PlayerMovement : Character
 
     }
 
-    public void DeflectorDamage(int damageAmount)
+    public void ShieldDamage(int damageAmount)
     {
-        if (damageAmount > deflectorHealth)
+        if (damageAmount > shieldHealth)
         {
-            damageAmount -= (int)deflectorHealth;
-            deflectorHealth = 0;
+            damageAmount -= (int)shieldHealth;
+            shieldBar.Health = 0;
+            shieldBar.Damages += shieldHealth;
+            shieldHealth = 0;
+
             Damage(damageAmount);
         }
 
         else
         {
-            deflectorHealth -= damageAmount;
+            shieldHealth -= damageAmount;
+            shieldBar.Damages += damageAmount;
         }
+        
+        
     }
 
-    public void DeflectorUpdate()
+    public void ShieldUpdate()
     {
-        deflectorHealth += Time.deltaTime * maxDeflectorHealth /deflectorRechargeTime;
-        if (deflectorHealth > maxDeflectorHealth) deflectorHealth = maxDeflectorHealth;
+        shieldHealth += Time.deltaTime * shieldRecharge;
+        if (shieldHealth > maxShieldHealth) shieldHealth = maxShieldHealth;
+        shieldBar.Health = shieldHealth;
 
         //Sköldens blir mindre genomskinlig när den får mer liv. När den absorberar skada blir den tillfälligt röd
-        //if (Time.time > deflectorDamagedTime + 0.08f)
+        //if (Time.time > shieldDamagedTime + 0.08f)
         //{
-            Color color = deflectorColor;
-            color.a = deflectorHealth / maxDeflectorHealth;
-            deflectorRenderer.color = color;
+            Color color = shieldColor;
+            color.a = shieldHealth / maxShieldHealth;
+            shieldRenderer.color = color;
         //}
-        //else deflectorRenderer.color = Color.red;
+        //else shieldRenderer.color = Color.red;
 
-        deflectorRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
+        shieldRenderer.transform.Rotate(0f, 0f, Time.deltaTime * 40f);
     }
 
     [Header("Wind Shield (inte klar)")]

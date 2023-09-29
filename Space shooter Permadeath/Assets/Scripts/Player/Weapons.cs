@@ -8,7 +8,7 @@ public class Weapons : MonoBehaviour
 {
     public Mastermind mastermind;
     public GameObject ammoIndicator;
-    public float rateOfFireMultiplier;
+    [HideInInspector] public float rateOfFireMultiplier=1;
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
     [HideInInspector] public bool readyToFire;
@@ -16,8 +16,11 @@ public class Weapons : MonoBehaviour
     public AudioSource shotaudio;
     public Image Crosshair;
     public GameObject projectile;
+    public Sprite projectileSprite;
     public float projectileSpeed;
-    public int baseDamage;
+    [HideInInspector] public float projectileSpeedMultiplier=1;
+    public float baseDamage;
+    [HideInInspector] public float damageMultiplier=1;
     int projectileDamage;
 
 
@@ -57,7 +60,6 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float projectileSize;
     [HideInInspector] public int spreadBulletCount;
     [HideInInspector] public float spread;
-    [HideInInspector] public float spreadDamageMultiplier;
 
     [HideInInspector] public float rapidFireEnergy;
     [HideInInspector] public float rapidFireEnergyMax;
@@ -72,9 +74,6 @@ public class Weapons : MonoBehaviour
     [HideInInspector] public float movementMultiplierMax;
     [HideInInspector] public float movementChargeTime;
     [HideInInspector] public float movementUnchargeTime;
-
-    [HideInInspector] public Sprite bigBulletSprite;
-    [HideInInspector] public float canonDamageMultiplier;
 
     [HideInInspector] public bool piercing;
     [HideInInspector] public float piercingMultiplier;
@@ -92,7 +91,7 @@ public class Weapons : MonoBehaviour
     {
         if(!mastermind.gamePaused)
         {
-            projectileDamage = baseDamage;
+            projectileDamage = (int)baseDamage;
             continueSequence = true;
             sequenceStep = 0;
             while (continueSequence && sequenceStep < methodSequence.Count)
@@ -147,6 +146,7 @@ public class Weapons : MonoBehaviour
         newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * fireVector;
         newProjectile.GetComponent<PlayerProjectile>().damage = projectileDamage;
         newProjectile.transform.localScale *= projectileSize;
+        newProjectile.GetComponent<SpriteRenderer>().sprite = projectileSprite;
     }
 
 
@@ -220,26 +220,11 @@ public class Weapons : MonoBehaviour
         Vector2 fireVector = transform.up;
         fireVector = Quaternion.Euler(0, 0, angle) * fireVector;
 
-        projectileDamage = (int)(projectileDamage * spreadDamageMultiplier);
         for (int t = 0; t < spreadBulletCount; t++)
         {
             SendMessage(fireMode, fireVector);
             fireVector = Quaternion.Euler(0, 0, angleIncrement) * fireVector;
         }
-    }
-
-    public void FireBigSlowBullet(Vector2 fireVector)
-    {
-        //float fireElapsedTime = 0;
-        //float fireDelay = 0.02f;
-    GameObject newProjectile = Instantiate(projectile, weapon.position, transform.rotation, mastermind.stuffContainer);
-        newProjectile.GetComponent<PlayerProjectile>().weapons = this;
-        newProjectile.GetComponent<SpriteRenderer>().sprite = bigBulletSprite;
-        newProjectile.transform.up = fireVector;
-        newProjectile.GetComponent<Rigidbody2D>().velocity = projectileSpeed * 0.7f * fireVector;
-        newProjectile.GetComponent<PlayerProjectile>().damage = (int)(projectileDamage * canonDamageMultiplier);
-        newProjectile.transform.localScale *= projectileSize;
-
     }
 }
 

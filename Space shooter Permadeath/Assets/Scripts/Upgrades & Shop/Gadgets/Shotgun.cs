@@ -22,7 +22,8 @@ public class Shotgun : Upgrades
         weapons.enabledSequence[index] = false;
         weapons.spreadBulletCount = baseBulletCount;
         weapons.spread = baseSpread;
-        weapons.spreadDamageMultiplier = damageMultiplier;
+        weapons.baseDamage = (weapons.baseDamage*damageMultiplier);
+        weapons.damageMultiplier *= damageMultiplier;
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
         weapons.projectileSize *= projectileSize;

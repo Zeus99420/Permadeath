@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class ExpPickup : Pickup
 {
-    public int expAmount;
+    int expAmount;
+    public int baseExp;
+    public float expFraction;
+
+    protected override void Start()
+    {
+        base.Start();
+        expAmount = baseExp + (int)(mastermind.expRequired * expFraction);
+
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
 

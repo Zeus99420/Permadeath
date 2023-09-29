@@ -62,7 +62,7 @@ public class Explosive : MonoBehaviour
 
             if (other.gameObject.tag == "EnemyShield" && !alreadyHit.Contains(other.gameObject))
             {
-                ShieldHit(other.GetComponentInParent<Character>(), (damage));
+                ShieldHit(other.GetComponentInParent<Enemy>(), (damage));
                 alreadyHit.Add(other.gameObject);
 
             }
@@ -103,7 +103,7 @@ public class Explosive : MonoBehaviour
         }
     }
 
-    void ShieldHit(Character target, int damage)
+    void ShieldHit(Enemy target, int damage)
     {
         alreadyHit.Add(target.gameObject);
         target.ShieldDamage(damage);

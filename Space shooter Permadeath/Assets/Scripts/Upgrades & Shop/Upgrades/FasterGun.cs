@@ -18,7 +18,7 @@ public class FasterGun : Upgrades
     {
         float currentRateofFire = player.GetComponent<Weapons>().rateOfFire;
         float increase = increaseAmount * player.GetComponent<Weapons>().rateOfFireMultiplier;
-        return ("Increases your attack speed." +
+        return ("Increases the rate of fire of your gun." +
             "\n\nRate of Fire : " + currentRateofFire + " -> " + (currentRateofFire + increase + " shots per second")
             );
     }

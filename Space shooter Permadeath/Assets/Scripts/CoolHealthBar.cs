@@ -61,11 +61,18 @@ public class CoolHealthBar : MonoBehaviour
     {
         imageRectTransform = image.GetComponent<RectTransform>();
         image.material = Instantiate(image.material); // Clone material
+    }
 
+    public void SetSize()
+    {
+        float width = Mathf.Pow(maxHealthPoints, 0.7f) / 20f;
+        float height = 0.05f + Mathf.Sqrt(maxHealthPoints) * 0.015f;
+        transform.Find("Image").GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
+        transform.Find("Background").GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
         image.material.SetVector("_ImageSize", new Vector4(imageRectTransform.rect.size.x, imageRectTransform.rect.size.y, 0, 0));
 
         MaxHealthPoints = MaxHealthPoints; // Force the call to the setter in order to update the material
-        currentHealthPoints = MaxHealthPoints; // Force the call to the setter in order to update the material
+        currentHealthPoints = currentHealthPoints; // Force the call to the setter in order to update the material
     }
 
     protected void Update()

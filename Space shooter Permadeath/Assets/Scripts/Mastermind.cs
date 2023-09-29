@@ -77,7 +77,11 @@ public class Mastermind : MonoBehaviour
         shop.Initialize();
         CheckpointSave();
 
-        if (testingShop) { /*UpdateMoney(1000)*/; EnterShop(); }
+        if (testingShop)
+        {
+            UpdateExp(expRequired);
+            EnterShop();
+        }
         else StartCoroutine(instructions.FadeIn());
 
         if (permadeath) deathScreen = permadeathScreen;
@@ -181,23 +185,26 @@ public class Mastermind : MonoBehaviour
         //Startar en ny våg ifall alla fiender är förstörda
         if (GMState == GameMastermindState.Gameplay && enemiesRemaining == 0)
         {
+            EnterShop();
             //if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length)
             //{
             //    SetGameMastermindState(GameMastermindState.GameWon);
             //}
 
-            /*else*/ if (exp > expRequired /*waveSpawner.currentWave.shopAfter*/)
-            {
-                LevelUp();
-                player.SendMessage("LevelComplete");
-                EnterShop();
-            }
+            /*else*/
 
-            else
-            {
-                if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length-1) CheckpointSave();
-                waveSpawner.NewWave();
-            }
+            //if (exp > expRequired)
+            //{
+            //    LevelUp();
+            //    player.SendMessage("LevelComplete");
+            //    EnterShop();
+            //}
+
+            //else
+            //{
+            //    if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length-1) CheckpointSave();
+            //    waveSpawner.NewWave();
+            //}
 
 
         }
@@ -218,14 +225,14 @@ public class Mastermind : MonoBehaviour
         if (exp>=expRequired)
         {
             expBarFill.fillAmount = (exp-expRequired) / (expRequired * expScaling);
-            moneyText.text = "Upgrade ready!";
+            moneyText.text = "Gadget ready!";
             moneyText.color = Color.yellow;
             expBarBackground.color = LevelUpBackgroundColor;
             expBarFill.color = LevelUpColor;
         }
         else
         {
-            moneyText.text = "Next Upgrade:";
+            moneyText.text = "Next Gadget:";
             moneyText.color = Color.green;
             expBarBackground.color = expBarBackgroundColor;
             expBarFill.color = expBarColor;

@@ -695,9 +695,9 @@ MonoBehaviour:
   - {fileID: 4114348729383675105}
   chargeTime: 1.7
   lineAlpha: 0.7
-  initialShield: 100
-  shieldMaxHealth: 160
-  shieldRegen: 8
+  initialShield: 160
+  shieldMaxHealth: 240
+  shieldRegen: 12
   shieldRenderer: {fileID: 5527558280405812911}
   shieldCollider: {fileID: 8576820564098279250}
   minRadius: 3.5

@@ -136,4 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mastermind: {fileID: 0}
   speed: 0.8
-  expAmount: 100
+  baseExp: 60
+  expFraction: 0.2

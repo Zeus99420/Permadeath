@@ -9,6 +9,7 @@ public class BigBullet : Upgrades
     public Sprite CanonWeapon;
     public float damageMultiplier;
     public float rateOfFireMultiplier;
+    public float projectileSpeedMultiplier;
     public float projectileSize;
     public Sprite projectileSprite;
 
@@ -16,23 +17,24 @@ public class BigBullet : Upgrades
     {
         Weapons weapons = player.GetComponent<Weapons>();
         weapons.weapon.GetComponent<SpriteRenderer>().sprite = CanonWeapon;
-        //PlayerProjectile playerprojectile = weapons.projectile.GetComponent<PlayerProjectile>();
-        //playerprojectile.GetComponent<SpriteRenderer>().sprite = Circle;
-        weapons.bigBulletSprite = projectileSprite;
-        weapons.fireMode = "FireBigSlowBullet";
+        weapons.projectileSprite = projectileSprite;
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
         weapons.projectileSize *= projectileSize;
-        weapons.canonDamageMultiplier = damageMultiplier;
+        weapons.damageMultiplier *= damageMultiplier;
+        weapons.baseDamage *= damageMultiplier;
+        weapons.projectileSpeed *= projectileSpeedMultiplier;
+        weapons.projectileSpeedMultiplier *= projectileSpeedMultiplier;
         weapons.piercing = true;
     }
 
     public override string GetDescription()
     {
-        return ("Your projectiles are bigger, slower and deal more damage." +
+        return ("Your gun fires larger, slower projectiles that deal more damage." +
             " If an enemy is killed the projectile keeps flying with any leftover damage " +
             "\n\nDamage: x" + damageMultiplier +
-            "\nRate of Fire: x" + rateOfFireMultiplier
+            "\nRate of Fire: x" + rateOfFireMultiplier +
+            "\nProjectile Velocity: x" + projectileSpeed
             );
     }
 

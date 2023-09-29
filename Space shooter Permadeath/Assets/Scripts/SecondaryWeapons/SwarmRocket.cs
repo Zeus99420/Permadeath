@@ -35,13 +35,13 @@ public class SwarmRocket : PlayerProjectile
         }
 
         float engineTime = Time.time + engineDelay;
-        yield return new WaitForSeconds(engineDelay/3);
+        yield return new WaitForSeconds(engineDelay/4);
         
         Vector2 targetRotation = (interceptPos - initialPosition).normalized;
 
         while (Time.time < engineTime)
         {
-            Vector3 newRotation = Vector3.RotateTowards(transform.up, targetRotation, 16f*Time.deltaTime, 0f);
+            Vector3 newRotation = Vector3.RotateTowards(transform.up, targetRotation, 10f*Time.deltaTime, 0f);
             transform.up = newRotation;
             yield return null;
         }

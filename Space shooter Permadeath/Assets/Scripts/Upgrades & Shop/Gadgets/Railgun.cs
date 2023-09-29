@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Railgun : Upgrades
 {
-    public float projectileSpeedIncrease;
+    public float projectileSpeedMultiplier;
     public float rateOfFireMultiplier;
     public float damageMultiplier;
     public float projectileSize;
@@ -14,8 +14,10 @@ public class Railgun : Upgrades
     public override void Buy()
     {
         Weapons weapons = player.GetComponent<Weapons>();
-        weapons.projectileSpeed += projectileSpeedIncrease;
-        weapons.baseDamage = (int)(weapons.baseDamage*damageMultiplier);
+        weapons.projectileSpeed *= projectileSpeedMultiplier;
+        weapons.projectileSpeedMultiplier *= projectileSpeedMultiplier;
+        weapons.baseDamage = (weapons.baseDamage*damageMultiplier);
+        weapons.damageMultiplier *= damageMultiplier;
         weapons.rateOfFire *= rateOfFireMultiplier;
         weapons.rateOfFireMultiplier *= rateOfFireMultiplier;
         LineRenderer lineRenderer = player.GetComponent<LineRenderer>();
@@ -30,7 +32,8 @@ public class Railgun : Upgrades
     {
         return ("Your projectiles fly faster and can pierce and hit multiple enemies. Damage is reduced after each hit." +
             "\n\nDamage: x" + damageMultiplier +
-            "\nRate of Fire: x" + rateOfFireMultiplier
+            "\nRate of Fire: x" + rateOfFireMultiplier +
+            "\nProjectile Velocity: x" + projectileSpeedMultiplier
             );
     }
 }
