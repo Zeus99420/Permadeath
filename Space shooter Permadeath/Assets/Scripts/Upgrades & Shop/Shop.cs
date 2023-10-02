@@ -20,6 +20,7 @@ public class Shop : MonoBehaviour
     public List<Upgrades> standardUpgrades;
     public List<Upgrades> gadgets;
     public List<Upgrades> secondaryWeapons;
+    public List<Upgrades> lockedUpgrades;
     public List<Button> buttons;
     public List<Upgrades> availableUpgrades;
 
@@ -35,6 +36,7 @@ public class Shop : MonoBehaviour
         standardUpgrades.AddRange(transform.Find("Upgrades").GetComponents<Upgrades>());
         secondaryWeapons.AddRange(transform.Find("Secondary Weapons").GetComponents<Upgrades>());
         gadgets.AddRange(transform.Find("Gadgets").GetComponents<Upgrades>());
+        lockedUpgrades.AddRange(transform.Find("Locked Upgrades").GetComponents<Upgrades>());
     }
 
     public void EnterShop()
@@ -81,8 +83,6 @@ public class Shop : MonoBehaviour
             button.onClick.AddListener(delegate { BuyButton(button, randomUpgrade); });
 
             button.transform.Find("NameText").GetComponent<Text>().text = randomUpgrade.upgradeName;
-            button.transform.Find("PriceText").GetComponent<Text>().text = randomUpgrade.price.ToString() + ":-";
-            //button.transform.Find("Tooltip/Description").GetComponent<Text>().text = randomUpgrade.GetDescription();
             button.GetComponent<ShopButton>().description = randomUpgrade.GetDescription();
             button.GetComponent<ShopButton>().tooltipWindow = tooltip;
 
@@ -127,6 +127,30 @@ public class Shop : MonoBehaviour
         buttons.Remove(button);
         Destroy(button.gameObject);
         tooltip.enabled = false;
+
+        foreach (Upgrades unlocks in upgrade.Unlocks)
+        {
+            int index = lockedUpgrades.IndexOf(unlocks);
+            if (index !=-1)
+            {
+                string baseType = unlocks.GetType().BaseType.ToString();
+                Debug.Log(baseType);
+                switch (baseType)
+                {
+                    case "Gadgets":
+                        gadgets.Add(lockedUpgrades[index]);
+                        break;
+                    case "SecondaryWeaponsUpgrade":
+                        secondaryWeapons.Add(lockedUpgrades[index]);
+                        break;
+                    default:
+                        standardUpgrades.Add(lockedUpgrades[index]);
+                        break;
+                }
+                lockedUpgrades.RemoveAt(index);
+            }
+               
+        }
 
         ClearUpgrades();
     }

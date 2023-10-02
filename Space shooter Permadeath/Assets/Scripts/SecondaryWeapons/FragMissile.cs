@@ -41,8 +41,8 @@ public class FragMissile : SecondaryWeapons
         fragMissileProjectile.targetPosition = targetPos;
 
         fragMissileProjectile.explosionDuration = explosionDuration;
-        fragMissileProjectile.maxDamage = maxDamage;
-        fragMissileProjectile.radius = radius;
+        fragMissileProjectile.maxDamage = (int)(maxDamage * damageMultiplier);
+        fragMissileProjectile.radius = radius * radiusMultiplier;
 
         //fragMissileProjectile.shrapnelCount = shrapnelCount;
         //fragMissileProjectile.shrapnelDamage = shrapnelDamage;

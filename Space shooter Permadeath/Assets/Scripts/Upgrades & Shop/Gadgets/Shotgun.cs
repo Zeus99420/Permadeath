@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : Upgrades
+public class Shotgun : Gadgets
 {
     public int baseBulletCount;
     public int bulletCountIncrease;

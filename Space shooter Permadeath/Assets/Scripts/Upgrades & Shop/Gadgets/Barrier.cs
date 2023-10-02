@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrier : Upgrades
+public class Barrier : Gadgets
 {
     public int maxHealth;
     public float duration;

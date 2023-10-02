@@ -15,7 +15,7 @@ public class KineticRocketsUpgrade : SecondaryWeaponsUpgrade
 
         rockets.projectile = projectile;
         rockets.projectileAcceleration = projectileAcceleration;
-        rockets.damageMultiplier = damageMultiplier;
+        rockets.damage = damageMultiplier;
         return rockets;
     }
 }

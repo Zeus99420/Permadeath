@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Railgun : Upgrades
+public class Railgun : Gadgets
 {
     public float projectileSpeedMultiplier;
     public float rateOfFireMultiplier;

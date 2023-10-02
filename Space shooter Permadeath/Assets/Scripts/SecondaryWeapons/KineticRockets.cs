@@ -8,13 +8,13 @@ public class KineticRockets : SecondaryWeapons
     public GameObject projectile;
 
     public float projectileAcceleration;
-    public float damageMultiplier;
+    public float damage;
 
     public override void UseWeapon()
     {
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
         newProjectile.GetComponent<KineticRocketProjectile>().acceleration = projectileAcceleration;
-        newProjectile.GetComponent<KineticRocketProjectile>().damageMultiplier = damageMultiplier;
+        newProjectile.GetComponent<KineticRocketProjectile>().damageMultiplier = damage * damageMultiplier;
     }
 
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RapidFire : Upgrades
+public class RapidFire : Gadgets
 {
     public float baseFireRateMultiplier;
     public float fireRateMultiplierIncrease;

@@ -2182,7 +2182,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2733,7 +2733,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3544,7 +3544,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4720,7 +4720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 0}
-  testingShop: 0
+  testingShop: 1
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -4974,11 +4974,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Missile
-  price: 0
   description: Fire a missile which flies to the targeted location and explodes,
     dealing damage in an area. Enemies take more damage the closer they are to the
     center of the explosion.
   unique: 0
+  Unlocks:
+  - {fileID: 1153071665}
+  - {fileID: 1153071666}
+  - {fileID: 1153071668}
+  - {fileID: 1153071667}
+  Excludes: []
   rechargeTime: 7
   maxCharges: 2
   rateOfFire: 0.7
@@ -5004,10 +5009,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Kinetic Rockets
-  price: 0
   description: Fire a rocket which accelerates as it flies. It deals more damage
     the faster it is moving.
   unique: 1
+  Unlocks:
+  - {fileID: 1153071665}
+  - {fileID: 1153071668}
+  - {fileID: 1153071667}
+  Excludes: []
   rechargeTime: 2.7
   maxCharges: 5
   rateOfFire: 5
@@ -5031,9 +5040,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Nuclear Bomb
-  price: 0
   description: Big Nuke!
   unique: 0
+  Unlocks:
+  - {fileID: 1153071665}
+  - {fileID: 1153071666}
+  - {fileID: 1153071668}
+  - {fileID: 1153071667}
+  Excludes: []
   rechargeTime: 10
   maxCharges: 1
   rateOfFire: 1
@@ -5061,10 +5075,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Rocket Swarm
-  price: 0
   description: Launch several smaller rockets. The rockets spread around you, then
     converge on the targeted position
   unique: 0
+  Unlocks:
+  - {fileID: 1153071665}
+  - {fileID: 1153071668}
+  - {fileID: 1153071667}
+  Excludes: []
   rechargeTime: 6
   maxCharges: 2
   rateOfFire: 1
@@ -5716,7 +5734,7 @@ RectTransform:
   m_Children:
   - {fileID: 713142402}
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6187,6 +6205,122 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1153071663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153071664}
+  - component: {fileID: 1153071665}
+  - component: {fileID: 1153071666}
+  - component: {fileID: 1153071668}
+  - component: {fileID: 1153071667}
+  m_Layer: 5
+  m_Name: Locked Upgrades
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1153071664
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153071663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1748672120}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1153071665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153071663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf6b349f7aaad24db54385d1f5d25a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Ordinance Damage
+  description: 
+  unique: 0
+  Unlocks: []
+  Excludes: []
+  increaseAmount: 0.5
+--- !u!114 &1153071666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153071663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f156a1ac4929a84b95fc9a6a2cfdcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Ordinance Radius
+  description: 
+  unique: 0
+  Unlocks: []
+  Excludes: []
+  increaseAmount: 0.5
+--- !u!114 &1153071667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153071663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9ac524c2ea938418b63319b0da7aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Ordinance Salvo
+  description: 
+  unique: 0
+  Unlocks: []
+  Excludes: []
+  maxChargesIncrease: 0.5
+  rateOfFireIncrease: 0.5
+--- !u!114 &1153071668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153071663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735f33bbc0ac43049a28bbe9f2bfec8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  upgradeName: Ordinance Recharge
+  description: 
+  unique: 0
+  Unlocks: []
+  Excludes: []
+  increaseAmount: 0.7
 --- !u!1 &1190984397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6760,9 +6894,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Rate of Fire
-  price: 150
   description: Increases your attack speed.
   unique: 0
+  Unlocks: []
+  Excludes: []
   increaseAmount: 0.5
   BiggerGun: {fileID: 21300000, guid: dc4843fa9a50a304a8c70da8926c35fd, type: 3}
 --- !u!224 &1401891353
@@ -6798,9 +6933,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Gun Damage
-  price: 0
   description: 
   unique: 0
+  Unlocks: []
+  Excludes: []
   increaseAmount: 3
 --- !u!114 &1401891355
 MonoBehaviour:
@@ -6816,9 +6952,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Projectile Velocity
-  price: 0
   description: 
   unique: 0
+  Unlocks: []
+  Excludes: []
   increaseAmount: 4
 --- !u!114 &1401891356
 MonoBehaviour:
@@ -6834,9 +6971,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Engine
-  price: 80
   description: Your ship flies faster.
   unique: 0
+  Unlocks: []
+  Excludes: []
   increaseAmount: 150
   BiggerEngine: {fileID: 21300000, guid: d7704cce7e330a14bac53cb0aaf163a7, type: 3}
 --- !u!114 &1401891357
@@ -6853,9 +6991,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Shield Health
-  price: 0
   description: 
   unique: 0
+  Unlocks: []
+  Excludes: []
   increaseAmount: 20
 --- !u!114 &1401891358
 MonoBehaviour:
@@ -6871,9 +7010,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Shield Recharge
-  price: 0
   description: 
   unique: 0
+  Unlocks: []
+  Excludes: []
   increaseAmount: 2
 --- !u!1 &1460213835
 GameObject:
@@ -6931,12 +7071,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Barrier
-  price: 150
   description: 'A powerful shield activates when you get hit, protecting you for
     a short time.
 
     Long cooldown.'
   unique: 1
+  Unlocks: []
+  Excludes: []
   maxHealth: 200
   duration: 4
   cooldown: 20
@@ -6959,9 +7100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Focus Fire
-  price: 150
   description: 
   unique: 1
+  Unlocks: []
+  Excludes: []
   rateOfFireMultiplier: 1.8
   freeRotationRate: 20
   lockedRotationRate: 0.2
@@ -6980,12 +7122,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Cannon
-  price: 200
   description: 'Your bullets are slow and big but deal more damage.
 
     Rate of
     fire is reduced.'
   unique: 1
+  Unlocks: []
+  Excludes: []
   projectile: {fileID: 9101686643944138255, guid: 8249863bb0db01e4c925fe54980266f0, type: 3}
   projectileSpeed: 0.75
   CanonWeapon: {fileID: 21300000, guid: 7728964d553d39f4cba2877dc6e50a98, type: 3}
@@ -7008,13 +7151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Power Diverter
-  price: 150
   description: 'Increases damage by up to 50% when you aren''t using engines.
 
 
     Increases
     movement speed by up to 50% when you aren''t shooting.'
   unique: 1
+  Unlocks: []
+  Excludes: []
   multiplierMaxBase: 1.5
   multiplierMaxIncrease: 1.5
   ChargeTime: 1
@@ -7036,12 +7180,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Rapid Fire
-  price: 150
   description: 'You can fire a rapid burst of several shots.
 
     Reharges when you
     arent shooting.'
   unique: 1
+  Unlocks: []
+  Excludes: []
   baseFireRateMultiplier: 3
   fireRateMultiplierIncrease: 0.5
   baseMaxEnergy: 0.7
@@ -7060,9 +7205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Railgun
-  price: 50
   description: 
   unique: 1
+  Unlocks: []
+  Excludes: []
   projectileSpeedMultiplier: 2
   rateOfFireMultiplier: 0.75
   damageMultiplier: 1.8
@@ -7082,12 +7228,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   upgradeName: Shotgun
-  price: 150
   description: 'You fire multiple smaller projectiles in an arc.
 
     Reduces rate
     of fire.'
   unique: 0
+  Unlocks: []
+  Excludes: []
   baseBulletCount: 6
   bulletCountIncrease: 3
   baseSpread: 10
@@ -8890,6 +9037,7 @@ RectTransform:
   - {fileID: 1401891353}
   - {fileID: 1460213836}
   - {fileID: 902765022}
+  - {fileID: 1153071664}
   - {fileID: 456961071}
   - {fileID: 9091034501602691128}
   - {fileID: 270539410}
@@ -8921,6 +9069,7 @@ MonoBehaviour:
   standardUpgrades: []
   gadgets: []
   secondaryWeapons: []
+  lockedUpgrades: []
   buttons: []
   availableUpgrades: []
   tooltip: {fileID: 713142404}
@@ -10528,7 +10677,7 @@ RectTransform:
   - {fileID: 9091034499522964063}
   - {fileID: 1493508966}
   m_Father: {fileID: 1748672120}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}

@@ -30,8 +30,8 @@ public class NuclearBomb : SecondaryWeapons
         newProjectile.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity + launchVelocity * targetVector;
         Explosive explosive = newProjectile.GetComponent<Explosive>();
         explosive.explosionDuration = explosionDuration;
-        explosive.maxDamage = maxDamage;
-        explosive.radius = radius;
+        explosive.maxDamage = (int)(maxDamage * damageMultiplier);
+        explosive.radius = radius * radiusMultiplier;
         explosive.friendlyDamageMultiplier = friendlyDamageMultiplier;
 
         explosive.countdown = explosive.StartCoroutine(explosive.Countdown(delay));

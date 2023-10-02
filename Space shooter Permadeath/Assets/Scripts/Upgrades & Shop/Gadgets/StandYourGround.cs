@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandYourGround : Upgrades
+public class StandYourGround : Gadgets
 {
     public float multiplierMaxBase;
     public float multiplierMaxIncrease;

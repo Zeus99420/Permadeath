@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FocusFire : Upgrades
+public class FocusFire : Gadgets
 {
     public float rateOfFireMultiplier;
 

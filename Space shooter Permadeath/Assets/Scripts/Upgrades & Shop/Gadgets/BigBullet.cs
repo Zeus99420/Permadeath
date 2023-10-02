@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigBullet : Upgrades
+public class BigBullet : Gadgets
 {
     public GameObject projectile;
     public float projectileSpeed;

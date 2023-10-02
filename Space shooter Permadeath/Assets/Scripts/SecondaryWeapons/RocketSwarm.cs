@@ -72,7 +72,7 @@ public class RocketSwarm : SecondaryWeapons
         SwarmRocket rocket = newProjectile.GetComponent<SwarmRocket>();
         rocket.targetPosition = targetPosition;
         rocket.acceleration = acceleration;
-        rocket.damage = damage;
+        rocket.damage = (int)(damage * damageMultiplier);
         rocket.engineDelay = engineDelay;
     }
 }

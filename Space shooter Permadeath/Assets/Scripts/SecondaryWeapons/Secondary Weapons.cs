@@ -14,6 +14,13 @@ public class SecondaryWeapons : MonoBehaviour
     public float rateOfFire; //Antal skott spelaren kan avfyra per sekund
     float nextShotTime = 0f; // Tiden när spelaren kan skjuta nästa skott
 
+    //MULTIPLIERS
+    public float damageMultiplier = 1;
+    public float radiusMultiplier = 1;
+    public float rechargeRate = 1;
+    public float rateOfFireMultiplier = 1;
+    public float maxChargeMultiplier = 1;
+
 
     [Header("CHARGE INDICATOR")]
     //The indicator displays the when the weapon is recharging or ready to use
@@ -22,11 +29,12 @@ public class SecondaryWeapons : MonoBehaviour
     public Color readyColor;
     public Color chargingColor;
     public List<Image> AmmoImages = new List<Image>();
+    protected Weapons weapons;
 
 
     void Start()
     {
-        Weapons weapons = GetComponent<Weapons>();
+        weapons = GetComponent<Weapons>();
         AmmoIndicator = weapons.ammoIndicator;
         mastermind = weapons.mastermind;
         InitializeAmmoIndicator();
@@ -36,12 +44,12 @@ public class SecondaryWeapons : MonoBehaviour
     {
         if (!mastermind.gamePaused)
         {
-            charges += Time.deltaTime * 1 / rechargeTime;
-            charges = Mathf.Clamp(charges, 0, maxCharges);
+            charges += Time.deltaTime * rechargeRate / rechargeTime;
+            charges = Mathf.Clamp(charges, 0, maxCharges * maxChargeMultiplier);
 
             if (Input.GetMouseButton(1) && Time.time > nextShotTime && charges >= 1)
             {
-                nextShotTime = Time.time + 1 / rateOfFire;    // Sätter en tidpunkt när spelaren kan avfyra igen
+                nextShotTime = Time.time + 1 / rateOfFire * rateOfFireMultiplier;    // Sätter en tidpunkt när spelaren kan avfyra igen
                 charges -= 1;
                 UseWeapon();
             }

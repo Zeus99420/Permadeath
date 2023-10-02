@@ -6,9 +6,11 @@ public class Upgrades : MonoBehaviour
 {
     [HideInInspector] public GameObject player;
     public string upgradeName;
-    public int price;
     [TextArea] public string description;
     public bool unique;
+
+    public List<Upgrades> Unlocks;
+    public List<Upgrades> Excludes;
 
     protected bool firstTimeBuying = true;
     public virtual void Buy()
