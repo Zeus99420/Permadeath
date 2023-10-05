@@ -10,7 +10,8 @@ public class OrdinanceSalvo : Upgrades
     {
         SecondaryWeapons ordinance = player.GetComponent<SecondaryWeapons>();
         ordinance.maxChargeMultiplier += maxChargesIncrease;
-        ordinance.rateOfFire += rateOfFireIncrease;
+        ordinance.rateOfFireMultiplier += rateOfFireIncrease;
+        ordinance.InitializeAmmoIndicator();
     }
 
 

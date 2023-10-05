@@ -79,7 +79,7 @@ public class Charger : Enemy
             distance = Vector2.Distance(interceptPos, transform.position);
             direction = (interceptPos - (Vector2)transform.position).normalized;
 
-            transform.up = Vector3.Slerp(transform.up, direction, pursuitRotationRate * Time.deltaTime);
+            transform.up = Vector3.Slerp(transform.up, direction, pursuitRotationRate * Time.fixedDeltaTime);
             direction = transform.up;
 
             if (distance < chargeRange && Time.time > chargeReadyTime && IsInScreen(0.05f)) mode = modes.preparingCharge;

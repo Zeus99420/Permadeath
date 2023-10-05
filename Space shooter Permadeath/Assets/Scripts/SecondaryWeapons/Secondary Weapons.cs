@@ -24,11 +24,12 @@ public class SecondaryWeapons : MonoBehaviour
 
     [Header("CHARGE INDICATOR")]
     //The indicator displays the when the weapon is recharging or ready to use
-    public GameObject AmmoIndicator;
+    public Transform AmmoIndicator;
     public GameObject AmmoImagePrefab;
     public Color readyColor;
     public Color chargingColor;
-    public List<Image> AmmoImages = new List<Image>();
+    public List<Image> ammoImages = new List<Image>();
+    public List<Image> cooldownImages = new List<Image>();
     protected Weapons weapons;
 
 
@@ -49,7 +50,7 @@ public class SecondaryWeapons : MonoBehaviour
 
             if (Input.GetMouseButton(1) && Time.time > nextShotTime && charges >= 1)
             {
-                nextShotTime = Time.time + 1 / rateOfFire * rateOfFireMultiplier;    // Sätter en tidpunkt när spelaren kan avfyra igen
+                nextShotTime = Time.time + 1 / (rateOfFire * rateOfFireMultiplier);    // Sätter en tidpunkt när spelaren kan avfyra igen
                 charges -= 1;
                 UseWeapon();
             }
@@ -69,22 +70,33 @@ public class SecondaryWeapons : MonoBehaviour
     public void InitializeAmmoIndicator()
     {
         //Creates a number of game objects with images to display the current number of charges
+        ClearAmmoIndicator();
+
         float ammoImageSpace = 0.12f;
-        float offset = -ammoImageSpace * (maxCharges - 1) / 2f;
-        for (int i = 0; i < maxCharges; i++)
+        float offset = -ammoImageSpace * ((maxCharges * maxChargeMultiplier) - 1) / 2f;
+        for (int i = 0; i < maxCharges*maxChargeMultiplier; i++)
         {
-            GameObject newAmmoImage = Instantiate(AmmoImagePrefab, AmmoIndicator.transform);
+            GameObject newAmmoImage = Instantiate(AmmoImagePrefab, AmmoIndicator);
             newAmmoImage.transform.position += new Vector3(offset, 0f, 0f);
             offset += ammoImageSpace;
             Image image = newAmmoImage.transform.Find("Image").GetComponent<Image>();
-            AmmoImages.Add(image);
+            ammoImages.Add(image);
+            Image cooldownImage = newAmmoImage.transform.Find("Cooldown Image").GetComponent<Image>();
+            cooldownImages.Add(cooldownImage);
         }
     }
 
     public void UpdateAmmoIndicator()
     {
+        foreach (Image CDimage in cooldownImages)
+        {
+
+            CDimage.fillAmount = (nextShotTime - Time.time) * (rateOfFire * rateOfFireMultiplier);
+        }
+
+
         int i = 0;
-        foreach (Image image in AmmoImages)
+        foreach (Image image in ammoImages)
         {
             if (charges >= i + 1)
             {
@@ -98,5 +110,12 @@ public class SecondaryWeapons : MonoBehaviour
             }
             i++;
         }
+    }
+
+    public void ClearAmmoIndicator()
+    {
+        foreach (Transform transform in AmmoIndicator) Destroy(transform.gameObject);
+        ammoImages.Clear();
+        cooldownImages.Clear();
     }
 }

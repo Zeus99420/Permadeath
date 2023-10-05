@@ -28,7 +28,6 @@ public class AutoCannon : Enemy
     public override void Start()
     {
         base.Start();
-        shieldHealth = initialShield;
 
 
         //Checks which side of the screen the player is on and moves to enter from the opposite side
@@ -173,9 +172,7 @@ public class AutoCannon : Enemy
         weapon.GetComponent<LineRenderer>().enabled = false;
     }
     [Header("Shield")]
-    public float initialShield;
-    public float shieldMaxHealth;
-    public float shieldRegen;
+    public AreaShield shield;
     public LineRenderer shieldRenderer;
     public EdgeCollider2D shieldCollider;
 
@@ -189,63 +186,15 @@ public class AutoCannon : Enemy
 
     void Shield()
     {
-        shieldHealth += shieldRegen * Time.deltaTime;
-        if (shieldHealth > shieldMaxHealth) shieldHealth = shieldMaxHealth;
+        shield.ShieldUpdate();
 
-        if (shieldHealth <= 0)
-        {
-            shieldCollider.enabled = false;
-            shieldRenderer.enabled = false;        
-        }
+        float shieldFill = shield.health / shield.maxHealth;
+        float arc = Mathf.Lerp(minArc, maxArc, shieldFill);
+        float radius = Mathf.Lerp(minRadius, maxRadius, shieldFill);
+        float shieldBase = Mathf.Lerp(minBase, maxBase, shieldFill);
 
-        else
-        {
-            shieldCollider.enabled = true;
-            shieldRenderer.enabled = true;
-
-            float shieldFill = (float)shieldHealth / shieldMaxHealth;
-            float arc = Mathf.Lerp(minArc, maxArc, shieldFill);
-            float radius = Mathf.Lerp(minRadius, maxRadius, shieldFill);
-            float shieldBase = Mathf.Lerp(minBase, maxBase, shieldFill);
-
-
-            Vector2[] arcPoints = new Vector2[10];
-            float startAngle = -arc / 2;
-            float endAngle = arc / 2;
-            int segments = 10;
-
-            float angle = startAngle;
-            float arcLength = endAngle - startAngle;
-            for (int i = 0; i < segments; i++)
-            {
-                arcPoints[i].x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-                arcPoints[i].y = shieldBase + Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
-
-                shieldRenderer.SetPosition(i, arcPoints[i]);
-
-                angle += (arcLength / segments);
-            }
-
-            shieldCollider.points = arcPoints;
-
-
-
-
-            //Sköldens blir mindre genomskinlig när den får mer liv.
-            //float shieldAlpha = shieldHealth / shieldMaxHealth * 0.6f;
-            //Gradient gradient = new Gradient();
-            //gradient.SetKeys(
-            //    new GradientColorKey[] { new GradientColorKey(Color.red, 0.0f), new GradientColorKey(Color.red, 1.0f) },
-            //    new GradientAlphaKey[] { new GradientAlphaKey(shieldAlpha, 0.0f), new GradientAlphaKey(shieldAlpha, 1.0f) }
-            //);
-            //shieldRenderer.colorGradient = gradient;
-        }
-
-
+        shield.SetPosition(shieldBase, arc, radius);
     }
 
-    public override void ShieldDamage(int damageAmount)
-    {
-        shieldHealth -= damageAmount;
-    }
+
 }

@@ -26,7 +26,7 @@ public class Enemy : Character
 
     public override void Start()
     {
-        maxHealth = (int)(maxHealth*Random.Range(0.7f, 1.3f));
+        maxHealth = (int)(maxHealth * Random.Range(0.7f, 1.3f));
         base.Start();
 
         healthBar.gameObject.SetActive(false);
@@ -37,7 +37,7 @@ public class Enemy : Character
     {
         //Kollar om fienden är en bit inom skärmen. Används t ex så att spelaren inte ska bli skjuten av en fiende som inte syns.
         Vector2 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
-         if (0+margin < viewportPosition.x && viewportPosition.x < 1-margin && 0+margin < viewportPosition.y && viewportPosition.y < 1-margin)
+        if (0 + margin < viewportPosition.x && viewportPosition.x < 1 - margin && 0 + margin < viewportPosition.y && viewportPosition.y < 1 - margin)
         {
             return true;
         }
@@ -54,14 +54,14 @@ public class Enemy : Character
         {
             //if (collider.gameObject != gameObject)
             //{
-                Vector2 avoidDirection = ((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
-                float distanceFactor = 1-Vector2.Distance((Vector2)collider.transform.position, (Vector2)transform.position)/avoidRadius;
-                //float avoidDistance = Vector2.Distance((Vector2)collider.transform.position, (Vector2)transform.position);
-                if (distanceFactor>0)
-                {
-                    collider.attachedRigidbody.AddForce(avoidDirection * avoidForce *distanceFactor);
+            Vector2 avoidDirection = ((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
+            float distanceFactor = 1 - Vector2.Distance((Vector2)collider.transform.position, (Vector2)transform.position) / avoidRadius;
+            //float avoidDistance = Vector2.Distance((Vector2)collider.transform.position, (Vector2)transform.position);
+            if (distanceFactor > 0)
+            {
+                collider.attachedRigidbody.AddForce(avoidDirection * avoidForce * distanceFactor);
 
-                }
+            }
             //}
         }
     }
@@ -80,7 +80,7 @@ public class Enemy : Character
                 if (avoidDistance < 1.5)
                 {
                     if (avoidDistance < 0) avoidDistance = 0;
-                    float distanceFactor = (1.5f-avoidDistance) /1.5f;
+                    float distanceFactor = (1.5f - avoidDistance) / 1.5f;
                     float force = 0.7f * avoidForce * distanceFactor;
                     if (force > acceleration) force = acceleration;
                     //Vector2 avoidDirection = -colliderDistance.normal;
@@ -115,7 +115,7 @@ public class Enemy : Character
                     float force = 0.6f * collider.GetComponent<Enemy>().avoidForce * distanceFactor;
                     //Vector2 avoidDirection = colliderDistance.normal;
                     Vector2 avoidDirection = -((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
-                    Vector2 moveVector = (direction * acceleration + avoidDirection * force)/acceleration;
+                    Vector2 moveVector = (direction * acceleration + avoidDirection * force) / acceleration;
                     if (moveVector.magnitude > 1) moveVector.Normalize();
                     direction = moveVector;
                 }
@@ -123,15 +123,17 @@ public class Enemy : Character
         }
     }
 
-    [HideInInspector] public float shieldHealth = 0;
-    public virtual void ShieldDamage(int damageAmount)
-    { }
-
     public override void Damage(int damageAmount)
     {
         healthBar.gameObject.SetActive(true);
         base.Damage(damageAmount);
         StartCoroutine(Flicker(Color.white));
+    }
+
+    [HideInInspector] public float shieldHealth = 0;
+    public virtual void ShieldDamage(int damageAmount)
+    {
+        GetComponent<AreaShield>().Damage(damageAmount);
     }
 
     public override void Die()
@@ -159,11 +161,26 @@ public class Enemy : Character
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerMovement>().Damage(collisionDamage);
-            Damage(collisionSelfDamage);
+            if (collision.otherCollider.gameObject.tag == "EnemyShield")
+            {
+                GetComponent<AreaShield>().Collision(collision.gameObject);
+            }
+
+            else
+            {
+                collision.gameObject.GetComponent<PlayerMovement>().Damage(collisionDamage);
+                Damage(collisionSelfDamage);
+            }
+
+
         }
 
 
+    }
+
+    protected virtual void ShieldCollision()
+    {
+        Debug.Log("Shield Collision");
     }
 
 

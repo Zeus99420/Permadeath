@@ -10,6 +10,7 @@ public class Mastermind : MonoBehaviour
     public MastermindsMaster master;    
 
     public bool testingShop;
+    public bool testingGadget;
     public bool permadeath;
     public GameObject player;
     public GameObject camera;
@@ -77,11 +78,8 @@ public class Mastermind : MonoBehaviour
         shop.Initialize();
         CheckpointSave();
 
-        if (testingShop)
-        {
-            UpdateExp(expRequired);
-            EnterShop();
-        }
+        if (testingGadget) UpdateExp(expRequired);
+        if (testingShop) EnterShop();
         else StartCoroutine(instructions.FadeIn());
 
         if (permadeath) deathScreen = permadeathScreen;
@@ -186,27 +184,6 @@ public class Mastermind : MonoBehaviour
         if (GMState == GameMastermindState.Gameplay && enemiesRemaining == 0)
         {
             EnterShop();
-            //if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length)
-            //{
-            //    SetGameMastermindState(GameMastermindState.GameWon);
-            //}
-
-            /*else*/
-
-            //if (exp > expRequired)
-            //{
-            //    LevelUp();
-            //    player.SendMessage("LevelComplete");
-            //    EnterShop();
-            //}
-
-            //else
-            //{
-            //    if (waveSpawner.nextWaveNumber == waveSpawner.waves.Length-1) CheckpointSave();
-            //    waveSpawner.NewWave();
-            //}
-
-
         }
     }
 

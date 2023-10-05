@@ -14,7 +14,7 @@ public class OrdinanceRecharge : Upgrades
 
     public override string GetDescription()
     {
-        float currentAmount = player.GetComponent<SecondaryWeapons>().damageMultiplier;
+        float currentAmount = player.GetComponent<SecondaryWeapons>().rechargeRate;
         return ("Your ordinance recharges faster." +
             "\n\nRecharge Rate: " + currentAmount * 100 + "% -> " + (currentAmount + increaseAmount) * 100 + "%"
             );

@@ -4721,6 +4721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   master: {fileID: 0}
   testingShop: 1
+  testingGadget: 0
   permadeath: 0
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
@@ -5050,7 +5051,7 @@ MonoBehaviour:
   Excludes: []
   rechargeTime: 10
   maxCharges: 1
-  rateOfFire: 1
+  rateOfFire: 0.25
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: cd86e2dbb0e99b14e935d8ab4daa95ea, type: 3}
   readyColor: {r: 0.3882353, g: 1, b: 0, a: 1}
   chargingColor: {r: 0.28235295, g: 0.5372549, b: 0.25882354, a: 1}
@@ -5085,7 +5086,7 @@ MonoBehaviour:
   Excludes: []
   rechargeTime: 6
   maxCharges: 2
-  rateOfFire: 1
+  rateOfFire: 0.5
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
   readyColor: {r: 0.99215686, g: 1, b: 0, a: 1}
   chargingColor: {r: 0.54901963, g: 0.5568628, b: 0.34509805, a: 1}
@@ -5813,7 +5814,7 @@ MonoBehaviour:
   allEnemyTypes:
   - type: {fileID: 7082147934971064498, guid: 6d89a3068f7b4dc498f8d399a916b44d, type: 3}
     value: 10
-    appears: 1
+    appears: 2
   - type: {fileID: 8678987557085508623, guid: 2bb731f27f0d5f949bb1b5b4ee283ae3, type: 3}
     value: 25
     appears: 2
@@ -5837,7 +5838,10 @@ MonoBehaviour:
     appears: 2
   - type: {fileID: 4105467039431616991, guid: bd41f8ac366f9ba46ab1287fc6b1ede4, type: 3}
     value: 140
-    appears: 5
+    appears: 1
+  - type: {fileID: 4105467039431616991, guid: 74d945e29d295f3408517f8864b51bb7, type: 3}
+    value: 80
+    appears: 1
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
     value: 30
     appears: 999999
@@ -8031,7 +8035,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 100
   m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: fbf78a306718d2a43a43938d2b099c5c, type: 2}
   m_Interpolate: 0
@@ -8314,7 +8318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mastermind: {fileID: 856224839}
-  ammoIndicator: {fileID: 1666883344}
+  ammoIndicator: {fileID: 1666883345}
   rateOfFireMultiplier: 1
   rateOfFire: 2
   readyToFire: 0

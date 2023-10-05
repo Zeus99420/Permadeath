@@ -153,6 +153,7 @@ public class PlayerMovement : Character
         mastermind.SetGameMastermindState(global::Mastermind.GameMastermindState.GameOver);
         PlayExplosion();
         Destroy(healthBar.gameObject);
+        Destroy(shieldBar.gameObject);
         Destroy(gameObject);
     }
 
@@ -245,12 +246,14 @@ public class PlayerMovement : Character
     {
         if (damageAmount > shieldHealth)
         {
-            damageAmount -= (int)shieldHealth;
+            
+            //damageAmount -= (int)shieldHealth;
             shieldBar.Health = 0;
             shieldBar.Damages += shieldHealth;
-            shieldHealth = 0;
+            shieldHealth -= damageAmount;
+            //shieldHealth = 0;
 
-            Damage(damageAmount);
+            //Damage(damageAmount);
         }
 
         else

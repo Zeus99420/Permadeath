@@ -148,7 +148,7 @@ EdgeCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -533,8 +533,9 @@ GameObject:
   - component: {fileID: 4105467039431616962}
   - component: {fileID: 4105467039431616963}
   - component: {fileID: 4105467039431616961}
-  - component: {fileID: 3752532389386529021}
   - component: {fileID: 2163300457113996247}
+  - component: {fileID: 8374543625984747869}
+  - component: {fileID: 1647493288847350347}
   m_Layer: 7
   m_Name: Autocannon
   m_TagString: Enemy
@@ -635,22 +636,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &3752532389386529021
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105467039431616991}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 2.4, y: 1.2}
-  m_Direction: 1
 --- !u!114 &2163300457113996247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,7 +656,6 @@ MonoBehaviour:
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
   healthAlreadySet: 0
   dead: 0
-  shieldHealth: 50
   player: {fileID: 0}
   value: 0
   avoidRadius: 3
@@ -679,6 +663,7 @@ MonoBehaviour:
   acceleration: 400
   collisionDamage: 50
   collisionSelfDamage: 30
+  shieldHealth: 50
   targetingRotationSpeed: 0.25
   attackingRotationSpeed: 0.08
   cooldown: 0.8
@@ -695,9 +680,7 @@ MonoBehaviour:
   - {fileID: 4114348729383675105}
   chargeTime: 1.7
   lineAlpha: 0.7
-  initialShield: 160
-  shieldMaxHealth: 240
-  shieldRegen: 12
+  shield: {fileID: 8374543625984747869}
   shieldRenderer: {fileID: 5527558280405812911}
   shieldCollider: {fileID: 8576820564098279250}
   minRadius: 3.5
@@ -706,6 +689,52 @@ MonoBehaviour:
   maxArc: 60
   minBase: -2
   maxBase: -4
+--- !u!114 &8374543625984747869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105467039431616991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2d197610e9e0f47b8582f79b203a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 300
+  maxHealth: 500
+  regen: 20
+  health: 0
+  collisionSelfDamage: 100
+  collisionDamageMax: 70
+  shieldRenderer: {fileID: 5527558280405812911}
+  shieldCollider: {fileID: 8576820564098279250}
+--- !u!61 &1647493288847350347
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105467039431616991}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04003787, y: 0.39866447}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.52900374, y: 0.5}
+    oldSize: {x: 2.63, y: 1.46}
+    newSize: {x: 10, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8326712, y: 2.228335}
+  m_EdgeRadius: 0
 --- !u!1 &4276961519548502394
 GameObject:
   m_ObjectHideFlags: 0

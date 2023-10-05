@@ -37,12 +37,11 @@ public class FragMissileProjectile : Explosive
 
     }
 
-    //public IEnumerator Countdown(float delay)
-    //{
-    //    yield return new WaitForSeconds(delay);
-    //    //Explode();
-    //    StartCoroutine(Explode());
-    //}
+    public override void OnExplosion()
+    {
+        base.OnExplosion();
+        GetComponent<ParticleSystem>().Stop();
+    }
 
 
     //NOT USED

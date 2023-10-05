@@ -24,6 +24,7 @@ public class Explosive : MonoBehaviour
     public Color ringColor2;
     public IEnumerator Explode()
     {
+        OnExplosion();
         detonated = true;
         transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -46,8 +47,19 @@ public class Explosive : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public virtual void OnExplosion() { }
+
 
     List<GameObject> alreadyHit = new List<GameObject>();
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!detonated)
+        {
+            StopCoroutine(countdown);
+            StartCoroutine(Explode());
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!detonated)
@@ -107,7 +119,6 @@ public class Explosive : MonoBehaviour
     {
         alreadyHit.Add(target.gameObject);
         target.ShieldDamage(damage);
-        Debug.Log("Shield Damage: " + damage);
     }
 
 
