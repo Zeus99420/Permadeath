@@ -120,10 +120,12 @@ public class Mastermind : MonoBehaviour
                 StartCoroutine(instructions.FadeOut());
                 waveSpawner.enabled = true;
                 waveSpawner.Invoke("NewWave", 0f);
+                player.SendMessage("LevelComplete");
                 break;
             case GameMastermindState.Shop:
                 shop.gameObject.SetActive(true);
                 shop.EnterShop();
+                player.SendMessage("LevelComplete");
                 break;
             case GameMastermindState.GameOver:
                 camera.GetComponent<AudioSource>().Stop();

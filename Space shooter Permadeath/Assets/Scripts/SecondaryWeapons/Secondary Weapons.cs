@@ -62,6 +62,21 @@ public class SecondaryWeapons : MonoBehaviour
     public virtual void UseWeapon()
     { }
 
+    public virtual void LevelComplete()
+    {
+        StartCoroutine(QuickRecharge());
+    }
+
+    public IEnumerator QuickRecharge()
+    {
+        yield return new WaitForSeconds(0.5f);
+        for (float t = 0; t < 1.5; t += Time.deltaTime)
+        {
+            charges += maxCharges * maxChargeMultiplier * 0.7f * Time.deltaTime;
+            yield return null;
+        }
+    }
+
 
 
 

@@ -8,7 +8,6 @@ public class AccurateShooter : Enemy
 
 
 
-    float distance;
 
     public float attackRange;
     public float cooldown;

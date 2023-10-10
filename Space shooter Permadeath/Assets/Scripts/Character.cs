@@ -29,10 +29,6 @@ public class Character : MonoBehaviour
         healthBar = CreateHealthBar(healthBarPrefab);
     }
 
-    public float GetHealthPercent()
-    {
-        return ((float)health / (float)maxHealth);
-    }
     public virtual void Damage(int damageAmount)
     {
         health -= damageAmount;
@@ -56,14 +52,6 @@ public class Character : MonoBehaviour
     }
 
     public virtual void Die() { }
-
-    //public void SetupHealthbar(GameObject healthBarPrefab)
-    //{
-    //    GameObject healthBarObject = Instantiate(healthBarPrefab, new Vector3(0, 0), Quaternion.identity);
-    //    healthBar = healthBarObject.GetComponent<HealthBar>();
-    //    healthBar.character = this;
-
-    //}
 
     public CoolHealthBar CreateHealthBar(GameObject healthBarPrefab)
     {
@@ -89,5 +77,7 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(0.08f);
         spriteRenderer.color = originalColor;
     }
+
+
 
 }

@@ -320,13 +320,13 @@ MonoBehaviour:
   dead: 0
   player: {fileID: 0}
   value: 0
-  avoidRadius: 1.2
-  avoidForce: 35
+  avoidForce: 40
   acceleration: 120
   collisionDamage: 60
   collisionSelfDamage: 50
+  shieldHealth: 0
   randomVectorMax: 0.8
-  pursuitRotationRate: 3
+  pursuitRotationRate: 1.5
   targetLead: 0.6
   chargeAcceleration: 1000
   chargeRange: 6

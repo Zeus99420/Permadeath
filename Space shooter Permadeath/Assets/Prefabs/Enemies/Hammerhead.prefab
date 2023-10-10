@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4105467039431616991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 0.7, y: 1.4, z: 1}
   m_Children:
   - {fileID: 6608713598256716924}
   m_Father: {fileID: 0}
@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
+  m_Mass: 50
   m_LinearDrag: 2
   m_AngularDrag: 1.5
   m_GravityScale: 1
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1708664198165738968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,22 +130,27 @@ MonoBehaviour:
   dead: 0
   player: {fileID: 0}
   value: 0
-  avoidRadius: 2
-  avoidForce: 50
-  acceleration: 140
+  avoidForce: 150
+  acceleration: 120
   collisionDamage: 30
   collisionSelfDamage: 30
   shieldHealth: 0
-  rotationSpeed: 60
+  rotationSpeed: 2
   angle: 0
   leftRight: 0
-  shieldRadius: 6.7
+  predictionSpeed: 8
+  predictionDistance: 7
+  shieldRadius: 6
   shieldArc: 35
-  shieldBase: -6.1
+  shieldBase: -5.1
   shieldAlphaMin: 0.25
   shieldAlphaMax: 0.8
-  shieldRenderer: {fileID: 3436310324705463601}
   shield: {fileID: 1807112463857401253}
+  minAcceleration: 200
+  maxAcceleration: 330
+  minRotationSpeed: 0.5
+  maxRotationSpeed: 0.7
+  turningPower: 1
 --- !u!60 &-2293733273652789531
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -159,10 +164,10 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.8}
+    pivot: {x: 0.5, y: 0.6185881}
     oldSize: {x: 0.96, y: 0.78}
     newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5

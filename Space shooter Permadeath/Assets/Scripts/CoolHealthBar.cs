@@ -31,8 +31,8 @@ public class CoolHealthBar : MonoBehaviour
             currentHealthPoints = Mathf.Clamp(value, 0, MaxHealthPoints);
             image.material.SetFloat("_Percent", currentHealthPoints / MaxHealthPoints);
 
-            if (currentHealthPoints < Mathf.Epsilon)
-                Damages = 0;
+            //if (currentHealthPoints < Mathf.Epsilon)
+            //    Damages = 0;
         }
     }
 

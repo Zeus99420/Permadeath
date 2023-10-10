@@ -162,7 +162,20 @@ public class PlayerMovement : Character
     //Dessa funktioner används ifall man köpt vissa uppgraderingar.
     public void LevelComplete()
     {
+        Debug.Log("Level Complete");
         if (barrierBought) Invoke("ReadyBarrier",1.5f);
+        StartCoroutine(QuickRecharge());
+    }
+
+    public IEnumerator QuickRecharge()
+    {
+        yield return new WaitForSeconds(0.5f);
+        for (float t=0;t<1.5; t += Time.deltaTime)
+        {
+            if (shieldHealth < 0) shieldHealth = 0;
+            shieldHealth += maxShieldHealth * Time.deltaTime * 0.7f;
+            yield return null;
+        }
     }
     public void ReadyBarrier()
     {
@@ -248,9 +261,10 @@ public class PlayerMovement : Character
         {
             
             //damageAmount -= (int)shieldHealth;
-            shieldBar.Health = 0;
             shieldBar.Damages += shieldHealth;
+            shieldBar.Health = 0;
             shieldHealth -= damageAmount;
+            StartCoroutine(Flicker(Color.blue));
             //shieldHealth = 0;
 
             //Damage(damageAmount);
@@ -260,6 +274,7 @@ public class PlayerMovement : Character
         {
             shieldHealth -= damageAmount;
             shieldBar.Damages += damageAmount;
+            shieldBar.Health = shieldHealth;
         }
         
         
