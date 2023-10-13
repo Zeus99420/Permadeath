@@ -19,7 +19,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyShield")
         {
-            other.GetComponentInParent<Enemy>().ShieldDamage(damage);
+            other.GetComponentInParent<Enemy>().ShieldDamage(other, damage);
             Destroy(gameObject);
         }
 

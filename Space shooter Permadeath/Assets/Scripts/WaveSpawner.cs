@@ -158,7 +158,7 @@ public class WaveSpawner : MonoBehaviour
         //Lägger slumpmässigt till fraktskepp med pickups till enemypool. Högre budget -> Fler fraktskepp, men inte linjärt.
         for (int t = 0; t < Mathf.Sqrt(waveBudget); t++)
         {
-            if (Random.value < (1f / 15f))
+            if (Random.value < (1f / 20f))
             {
                 int randomIndex = Random.Range(0, enemyPool.Count);
                 enemyPool.Insert(randomIndex, freighterPrefab);

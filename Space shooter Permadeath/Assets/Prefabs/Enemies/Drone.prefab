@@ -144,8 +144,8 @@ MonoBehaviour:
   dead: 0
   player: {fileID: 0}
   value: 0
-  avoidRadius: 1.2
-  avoidForce: 30
+  avoidForce: 20
   acceleration: 60
   collisionDamage: 80
   collisionSelfDamage: 50
+  shieldHealth: 0

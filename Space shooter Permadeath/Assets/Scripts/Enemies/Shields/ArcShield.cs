@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaShield : MonoBehaviour
+public class ArcShield : AreaShield
 {
-    public float initialHealth;
     public float maxHealth;
+    public float initialHealth;
     public float regen;
-    /*[HideInInspector] */public float health = 0;
 
-    public int collisionSelfDamage;
-    public int collisionDamageMax;
-
-    public LineRenderer shieldRenderer;
     public EdgeCollider2D shieldCollider;
 
-    private void Start()
+    private void Start() 
     {
         health = initialHealth;
     }
@@ -39,14 +34,12 @@ public class AreaShield : MonoBehaviour
         }
     }
 
-    public virtual void Damage(int damageAmount)
+    public override void Damage(Collider2D collider, int damageAmount)
     {
         health -= damageAmount;
     }
 
-
-
-    public virtual void Collision(GameObject other)
+    public override void Collision(Collider2D collider, GameObject other)
     {
         PlayerMovement player = other.GetComponent<PlayerMovement>();
         if (health >= collisionSelfDamage)
@@ -60,7 +53,7 @@ public class AreaShield : MonoBehaviour
             player.Damage(collisionDamage);
         }
 
-        Damage(collisionSelfDamage);
+        Damage(collider, collisionSelfDamage);
     }
 
 

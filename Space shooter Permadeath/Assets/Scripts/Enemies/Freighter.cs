@@ -11,6 +11,9 @@ public class Freighter : Enemy
     
     Transform pickupTransform;
 
+    Vector2 moveDirection;
+    public float turnRate;
+
     public override void Start()
     {
         base.Start();
@@ -27,15 +30,18 @@ public class Freighter : Enemy
         targetPosition.x = Random.Range(0.2f, 0.8f);
         targetPosition.y = Random.Range(0.2f, 0.8f);
         targetPosition = Camera.main.ViewportToWorldPoint(targetPosition);
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-        transform.up = direction;
+        moveDirection = (targetPosition - (Vector2)transform.position).normalized;
+        transform.up = moveDirection;
     }
 
     public void FixedUpdate()
     {
+        direction = moveDirection;
         AvoidCollision();
+        //transform.up = Vector3.Slerp(transform.up, direction, turnRate * Time.fixedDeltaTime);
+        transform.up = Vector3.RotateTowards(transform.up, direction, turnRate * Time.fixedDeltaTime, 1f);
+
         m_rigidbody.AddForce(transform.up * acceleration);
-        //pickupTransform.rotation = Quaternion.Euler(0.0f, 0.0f, gameObject.transform.rotation.z * -1.0f);
     }
 
     public override void Die()

@@ -228,12 +228,13 @@ MonoBehaviour:
   dead: 0
   player: {fileID: 0}
   value: 0
-  avoidRadius: 4
   avoidForce: 300
   acceleration: 630
   collisionDamage: 100
   collisionSelfDamage: 35
+  shieldHealth: 0
   flyByDistance: 6
+  turnRate: 0.4
   projectile: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
   projectileDamage: 60
   projectileSpeed: 2.5

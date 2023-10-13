@@ -320,7 +320,7 @@ MonoBehaviour:
   dead: 0
   player: {fileID: 0}
   value: 0
-  avoidForce: 40
+  avoidForce: 80
   acceleration: 120
   collisionDamage: 60
   collisionSelfDamage: 50

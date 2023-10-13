@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomber : Enemy
 {
     public float flyByDistance;
+    public float turnRate;
 
     public GameObject projectile;
     public int projectileDamage;
@@ -15,13 +16,13 @@ public class Bomber : Enemy
 
     float nextShotTime;
 
-    bool leftOrRight;
+    float leftRight;
     bool approaching;
 
 
     
-    Vector2 bombDirection;
     Vector2 targetPosition;
+    Vector2 runDirection;
 
 
     public override void Start()
@@ -33,10 +34,8 @@ public class Bomber : Enemy
    void Approach()
     {
         approaching = true;
-        //En position, antingen till höger eller vänster om spelaren väljs
-        //Fienden flyger genom punkten, dvs förbi spelaren, och släpper bomber
-        if (Random.value < 0.5) leftOrRight = true;
-        else  leftOrRight = false;
+        if (Random.value < 0.5) leftRight = -1;
+        else  leftRight = 1;
 
     }
 
@@ -47,31 +46,29 @@ public class Bomber : Enemy
             if (approaching)
             {
                 Vector2 playerDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
-                if (leftOrRight)
-                {
-                    targetPosition = (Vector2)player.position + Vector2.Perpendicular(playerDirection) * flyByDistance;
-                    targetPosition -= playerDirection * flyByDistance;
-                    direction = (targetPosition - (Vector2)transform.position).normalized;
-                    bombDirection = -Vector2.Perpendicular(direction);
-                    
-                }
 
-                else
+                targetPosition = (Vector2)player.position + leftRight * Vector2.Perpendicular(playerDirection) * flyByDistance;
+                targetPosition -= playerDirection * flyByDistance;
+                direction = (targetPosition - (Vector2)transform.position).normalized;
+                    
+                //transform.up = direction;
+                if (IsInScreen(0.1f))
                 {
-                    targetPosition = (Vector2)player.position - Vector2.Perpendicular(playerDirection) * flyByDistance;
-                    targetPosition -= playerDirection * flyByDistance;
-                    direction = (targetPosition - (Vector2)transform.position).normalized;
-                    bombDirection = Vector2.Perpendicular(direction);
+                    approaching = false;
+                    runDirection = direction;
                 }
-                transform.up = direction;
-                if (IsInScreen(0.1f)) { approaching = false; }
             }
 
-            else if (!IsInScreen(-0.1f)) Approach();
+            else
+            {
+                direction = runDirection;
+                if (!IsInScreen(-0.1f)) Approach();
+            }
         }
 
-        direction = transform.up;
+        //direction = transform.up;
         AvoidCollision();
+        transform.up = Vector3.Slerp(transform.up, direction, turnRate * Time.fixedDeltaTime);
         m_rigidbody.AddForce(direction * acceleration);
     }
 
@@ -81,6 +78,7 @@ public class Bomber : Enemy
         {
             nextShotTime = Time.time + Random.Range(minCooldown, maxCooldown);
 
+            Vector2 bombDirection = transform.right * leftRight; 
             GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation, mastermind.stuffContainer);
             Rigidbody2D projectileRigidbody = newProjectile.GetComponent<Rigidbody2D>();
             Vector2 randomVector = new Vector2(Random.Range(-projectileSpread, projectileSpread),

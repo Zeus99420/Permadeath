@@ -50,6 +50,7 @@ public class Enemy : Character
         Collider2D[] avoidColliders;
         avoidColliders = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Enemy"));
 
+        Vector2 moveVector = direction;
         foreach (Collider2D collider in avoidColliders)
         {
             if (collider != GetComponent<Collider2D>())
@@ -57,18 +58,21 @@ public class Enemy : Character
                 ColliderDistance2D colliderDistance = GetComponent<Collider2D>().Distance(collider);
                 float avoidDistance = colliderDistance.distance;
 
-                if (avoidDistance < 1.5)
+                if (avoidDistance < 2)
                 {
                     if (avoidDistance < 0.1f) avoidDistance = 0.1f;
                     float distanceFactor = 1 / avoidDistance;
                     float force = 0.6f * collider.GetComponent<Enemy>().avoidForce * distanceFactor;
                     Vector2 avoidDirection = -((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
-                    Vector2 moveVector = (direction * acceleration + avoidDirection * force) / acceleration;
-                    if (moveVector.magnitude > 1) moveVector.Normalize();
-                    direction = moveVector;
+                    moveVector += (avoidDirection * force) / acceleration;
+
                 }
             }
         }
+
+        //if (moveVector.magnitude > 1) moveVector.Normalize();
+        float magnitude = Mathf.Clamp(moveVector.magnitude, 0.3f, 1f);
+        direction = moveVector.normalized * magnitude;
     }
 
     public override void Damage(int damageAmount)
@@ -79,9 +83,9 @@ public class Enemy : Character
     }
 
     [HideInInspector] public float shieldHealth = 0;
-    public virtual void ShieldDamage(int damageAmount)
+    public virtual void ShieldDamage(Collider2D collider, int damageAmount)
     {
-        GetComponent<AreaShield>().Damage(damageAmount);
+        GetComponent<AreaShield>().Damage(collider, damageAmount);
     }
 
     public override void Die()
@@ -111,7 +115,7 @@ public class Enemy : Character
         {
             if (collision.otherCollider.gameObject.tag == "EnemyShield")
             {
-                GetComponent<AreaShield>().Collision(collision.gameObject);
+                GetComponent<AreaShield>().Collision(collision.otherCollider, collision.gameObject);
             }
 
             else

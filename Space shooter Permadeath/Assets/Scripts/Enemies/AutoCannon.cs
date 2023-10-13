@@ -32,7 +32,7 @@ public class AutoCannon : Enemy
 
         //Checks which side of the screen the player is on and moves to enter from the opposite side
         Vector2 initialPosition;
-        if (Camera.main.WorldToViewportPoint(player.position).x < 0.5f)
+        if (Camera.main.WorldToViewportPoint(player.position).x + Random.Range(-0.5f,0.5f) < 0.5f)
         {
             initialPosition.x = 1.1f;
             transform.up = Vector2.left;
@@ -172,7 +172,7 @@ public class AutoCannon : Enemy
         weapon.GetComponent<LineRenderer>().enabled = false;
     }
     [Header("Shield")]
-    public AreaShield shield;
+    public ArcShield shield;
     public LineRenderer shieldRenderer;
     public EdgeCollider2D shieldCollider;
 

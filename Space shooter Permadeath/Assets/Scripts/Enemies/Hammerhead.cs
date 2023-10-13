@@ -22,7 +22,7 @@ public class Hammerhead : Enemy
     public float shieldAlphaMin;
     public float shieldAlphaMax;
 
-    public AreaShield shield;
+    public ArcShield shield;
 
     public override void Start()
     {

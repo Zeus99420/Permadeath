@@ -67,7 +67,7 @@ public class StandardProjectile : PlayerProjectile
 
         int potentialDamage = (int)(damage * (1 + piercingMultiplier));
         damage = (int)((potentialDamage - shield.health) / (1 + piercingMultiplier));
-        shield.Damage(potentialDamage);
+        shield.Damage(other,potentialDamage);
 
         if (damage < 1) Destroy(gameObject);
     }
