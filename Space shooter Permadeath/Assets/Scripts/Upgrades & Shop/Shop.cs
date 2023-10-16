@@ -134,7 +134,6 @@ public class Shop : MonoBehaviour
             if (index !=-1)
             {
                 string baseType = unlocks.GetType().BaseType.ToString();
-                Debug.Log(baseType);
                 switch (baseType)
                 {
                     case "Gadgets":
