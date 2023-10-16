@@ -7,9 +7,7 @@ public class AreaShield : MonoBehaviour
     public int collisionSelfDamage;
     public int collisionDamageMax;
 
-    [HideInInspector] public float health;
-
-    public LineRenderer shieldRenderer;
+    public virtual float GetHealth(Collider2D collider) { return 0f; }
 
     public virtual void Damage(Collider2D collider, int damageAmount)
     {

@@ -66,7 +66,7 @@ public class StandardProjectile : PlayerProjectile
         AreaShield shield = other.GetComponentInParent<AreaShield>();
 
         int potentialDamage = (int)(damage * (1 + piercingMultiplier));
-        damage = (int)((potentialDamage - shield.health) / (1 + piercingMultiplier));
+        damage = (int)((potentialDamage - shield.GetHealth(other)) / (1 + piercingMultiplier));
         shield.Damage(other,potentialDamage);
 
         if (damage < 1) Destroy(gameObject);

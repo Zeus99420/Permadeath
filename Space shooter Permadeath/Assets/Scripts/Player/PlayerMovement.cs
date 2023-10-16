@@ -13,6 +13,8 @@ public class PlayerMovement : Character
     [HideInInspector] public bool usingEngines;
     public float accelerationMultiplier;
 
+    public List<Vector2> positionRecord;
+
     //BARRIER
     [HideInInspector] public int maxBarrierHealth;
     [HideInInspector] public float barrierDuration;
@@ -105,31 +107,35 @@ public class PlayerMovement : Character
     public float glideDrag;
     void FixedUpdate()
     {
-        acceleration = baseAcceleration*accelerationMultiplier;
-        usingEngines = false;
-        Vector2 direction = Vector2.zero;
-        if (Input.GetKey("w")) { direction += Vector2.up; usingEngines = true; }
-        if (Input.GetKey("s")) { direction += Vector2.down; ; usingEngines = true; }        
-        if (Input.GetKey("a")) { direction += Vector2.left; ; usingEngines = true; }
-        if (Input.GetKey("d")) { direction += Vector2.right; ; usingEngines = true; }
-        direction.Normalize();
-
-        if (sharperMovement)
+        if (!mastermind.gamePaused)
         {
-            if (usingEngines)
+            acceleration = baseAcceleration * accelerationMultiplier;
+            usingEngines = false;
+            Vector2 direction = Vector2.zero;
+            if (Input.GetKey("w")) { direction += Vector2.up; usingEngines = true; }
+            if (Input.GetKey("s")) { direction += Vector2.down; ; usingEngines = true; }
+            if (Input.GetKey("a")) { direction += Vector2.left; ; usingEngines = true; }
+            if (Input.GetKey("d")) { direction += Vector2.right; ; usingEngines = true; }
+            direction.Normalize();
+
+            if (sharperMovement)
             {
-                acceleration *= sharpMoveSpeed;
-                m_rigidbody.drag = baseDrag * sharpMoveDrag;
+                if (usingEngines)
+                {
+                    acceleration *= sharpMoveSpeed;
+                    m_rigidbody.drag = baseDrag * sharpMoveDrag;
+                }
+                else
+                {
+                    m_rigidbody.drag = baseDrag * glideDrag;
+                }
             }
-            else
-            {
-                m_rigidbody.drag = baseDrag * glideDrag;
-            }
+
+            m_rigidbody.AddForce(direction * acceleration);
+
+            positionRecord.Add(transform.position);
+            if (positionRecord.Count > 60) positionRecord.RemoveAt(0);
         }
-
-
-
-        m_rigidbody.AddForce(direction * acceleration);
     }
 
     public override void Damage(int damageAmount)

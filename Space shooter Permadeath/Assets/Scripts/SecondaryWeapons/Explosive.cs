@@ -14,6 +14,8 @@ public class Explosive : MonoBehaviour
     protected bool detonated = false;
     [HideInInspector] public Coroutine countdown;
 
+    List<Character> alreadyHit = new List<Character>();
+
     public virtual IEnumerator Countdown(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -50,7 +52,7 @@ public class Explosive : MonoBehaviour
     public virtual void OnExplosion() { }
 
 
-    List<GameObject> alreadyHit = new List<GameObject>();
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -71,27 +73,28 @@ public class Explosive : MonoBehaviour
 
         else
         {
+            Character target = other.GetComponentInParent<Character>();
 
-            if (other.gameObject.tag == "EnemyShield" && !alreadyHit.Contains(other.gameObject))
+            if (other.gameObject.tag == "EnemyShield" && !alreadyHit.Contains(target))
             {
                 ShieldHit(other, damage);
-                alreadyHit.Add(other.gameObject);
+                alreadyHit.Add(target);
 
             }
 
-            else if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
+            else if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(target))
             {
-                alreadyHit.Add(other.gameObject);
+                alreadyHit.Add(target);
                 if (CheckForShield(other.transform) == false)
                 {
-                    Hit(other.GetComponentInParent<Character>(), damage);
+                    Hit(target, damage);
                 }
             }
 
 
-            else if (other.gameObject.tag == "Player" && friendlyDamageMultiplier != 0 && !alreadyHit.Contains(other.gameObject))
+            else if (other.gameObject.tag == "Player" && friendlyDamageMultiplier != 0 && !alreadyHit.Contains(target))
             {
-                Hit(other.GetComponent<Character>(), (int)(damage * friendlyDamageMultiplier));
+                Hit(target, (int)(damage * friendlyDamageMultiplier));
             }
         }
  
@@ -108,7 +111,7 @@ public class Explosive : MonoBehaviour
 
     void Hit(Character target, int damage)
     {
-        alreadyHit.Add(target.gameObject);
+        alreadyHit.Add(target);
         if (!target.dead)
         {
             target.Damage(damage);
@@ -119,7 +122,7 @@ public class Explosive : MonoBehaviour
     void ShieldHit(Collider2D collider, int damage)
     {
         Enemy target = collider.GetComponentInParent<Enemy>();
-        alreadyHit.Add(target.gameObject);
+        alreadyHit.Add(target);
         target.ShieldDamage(collider, damage);
     }
 

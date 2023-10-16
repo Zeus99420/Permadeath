@@ -6,9 +6,11 @@ public class ArcShield : AreaShield
 {
     public float maxHealth;
     public float initialHealth;
+    [HideInInspector] public float health;
     public float regen;
 
     public EdgeCollider2D shieldCollider;
+    public LineRenderer shieldRenderer;
 
     private void Start() 
     {
@@ -54,6 +56,11 @@ public class ArcShield : AreaShield
         }
 
         Damage(collider, collisionSelfDamage);
+    }
+
+    public override float GetHealth(Collider2D collider)
+    {
+        return health;
     }
 
 

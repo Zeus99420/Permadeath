@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Wave
+[System.Serializable] public class Wave
 {
     public string waveName;
     public float budget;
@@ -13,8 +12,8 @@ public class Wave
     public bool shopAfter;
 }
 
-[System.Serializable]
-public class EnemyTypes
+
+[System.Serializable] public class EnemyTypes
 {
     public GameObject type;
     public int value;
@@ -103,7 +102,7 @@ public class WaveSpawner : MonoBehaviour
         //Lägger slumpmässigt till fraktskepp med pickups till enemypool. Högre budget -> Fler fraktskepp, men inte linjärt.
         for (int t = 0; t < Mathf.Sqrt(currentWave.budget); t++)
         {
-            int randomIndex = Random.Range(0, enemyPool.Count+1);
+            int randomIndex = Random.Range(0, enemyPool.Count+2);
             if (Random.value < (1f / 15f))
             {
                 enemyPool.Insert(randomIndex, freighterPrefab);

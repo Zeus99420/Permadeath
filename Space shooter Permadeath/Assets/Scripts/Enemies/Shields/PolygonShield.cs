@@ -45,23 +45,50 @@ public class PolygonShield : AreaShield
         segmentHealth[c] -= damageAmount;
     }
 
+    public override void Collision(Collider2D collider, GameObject other)
+    {
+        EdgeCollider2D edgeCollider = (EdgeCollider2D)collider;
+        int c = segmentColliders.IndexOf(edgeCollider);
+        Debug.Log("Collision with segment " + c);
 
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if (segmentHealth[c] >= collisionSelfDamage)
+        {
+            player.Damage(collisionDamageMax);
+        }
+
+        else
+        {
+            int collisionDamage = (int)(collisionDamageMax * (segmentHealth[c] / collisionSelfDamage));
+            player.Damage(collisionDamage);
+        }
+
+        Damage(collider, collisionSelfDamage);
+    }
+
+    public override float GetHealth(Collider2D collider)
+    {
+        EdgeCollider2D edgeCollider = (EdgeCollider2D)collider;
+        int s = segmentColliders.IndexOf(edgeCollider);
+        return segmentHealth[s];
+    }
 
     public void shieldDistribution()
     {
         //Each shield segment shares a portion of it's health to neighboring segments
         for(int i=0;i < sides; i++)
         {
-            float shareAmount = segmentHealth[i] * distributionRate * Time.deltaTime;
-            segmentHealth[(sides + i - 1) % sides] += shareAmount;
-            segmentHealth[(i + 1) % sides] += shareAmount;
-            segmentHealth[i] -= shareAmount * 2;
-
             if (segmentHealth[i] > 0)
             {
                 segmentRenderers[i].enabled = true;
                 segmentColliders[i].enabled = true;
+
+                float shareAmount = segmentHealth[i] * distributionRate * Time.deltaTime;
+                segmentHealth[(sides + i - 1) % sides] += shareAmount;
+                segmentHealth[(i + 1) % sides] += shareAmount;
+                segmentHealth[i] -= shareAmount * 2;
             }
+
 
             else
             {
@@ -87,7 +114,6 @@ public class PolygonShield : AreaShield
 
     private void PolygonPosition()
     {
-        shieldRenderer.positionCount = sides;
         Vector3[] points = new Vector3[sides];
         float TAU = 2 * Mathf.PI;
 
@@ -129,8 +155,6 @@ public class PolygonShield : AreaShield
             segmentRenderers[a].colorGradient = gradient;
         }
     }
-
-
 
     public void SetSegmentWidth()
     {
