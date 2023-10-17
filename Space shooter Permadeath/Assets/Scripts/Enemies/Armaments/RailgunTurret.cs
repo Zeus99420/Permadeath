@@ -4,16 +4,15 @@ using UnityEngine;
 
 [System.Serializable] public class RailGunStats
 {
-    public float projectileSpeed;
-    public float projectileSize;
-     public int damage;
-    public float rotationSpeed;
+    public int damage;
     public float chargeTime;
     public float cooldown;
+    public float projectileSpeed;
+    public float projectileSize;
+    public float rotationSpeed;
 
     public float randomLead;
     public float randomOffset;
-
 }
 
 public class RailgunTurret : EnemyArmament
@@ -28,7 +27,7 @@ public class RailgunTurret : EnemyArmament
     Vector2 offset;
 
     [HideInInspector] public bool firing;
-    [HideInInspector] public bool ready=true;
+    [HideInInspector] public bool ready = true;
 
     public LineRenderer lineRenderer;
 
@@ -45,17 +44,26 @@ public class RailgunTurret : EnemyArmament
 
     void Track()
     {
-        LeadTarget(stats.projectileSpeed,offset,default, stats.chargeTime +extraLead);
+        LeadTarget(stats.projectileSpeed, offset, default, stats.chargeTime + extraLead);
         transform.up = Vector3.Slerp(transform.up, interceptDirection, stats.rotationSpeed * Time.deltaTime);
     }
 
     void SetRandom()
     {
-        extraLead = Random.Range(stats.randomLead/2f, stats.randomLead);
+        extraLead = Random.Range(stats.randomLead / 2f, stats.randomLead);
         offset.x = Random.Range(-stats.randomOffset, stats.randomOffset);
         offset.y = Random.Range(-stats.randomOffset, stats.randomOffset);
     }
 
+    public bool TryFire()
+    {
+        if (ready && IsInScreen(0))
+        {
+            StartCoroutine(Fire());
+            return true;
+        }
+        else return false;
+    }
     public IEnumerator Fire()
     {
         firing = true;

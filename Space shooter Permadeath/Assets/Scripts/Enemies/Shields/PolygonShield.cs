@@ -17,6 +17,7 @@ public class PolygonShield : AreaShield
     public float segmentMaxHealth;
     public float segmentInitialHealth;
     public float distributionRate;
+    public float restoreAmount;
 
     [Header("Appearance")]
     public float alphaMin;
@@ -95,6 +96,15 @@ public class PolygonShield : AreaShield
                 segmentRenderers[i].enabled = false;
                 segmentColliders[i].enabled = false;
             }
+        }
+    }
+
+    public void Restore()
+    {
+        for (int i = 0; i < sides; i++)
+        {
+            segmentHealth[i] += restoreAmount;
+            if (segmentHealth[i] > segmentMaxHealth) segmentHealth[i] = segmentMaxHealth;
         }
     }
 
