@@ -16,6 +16,10 @@ using UnityEngine;
     public float maxTraverse;
     public float rotationSpeed;
 
+    public int burstMin;
+    public int burstMax;
+    public float burstCooldown;
+
     //public float randomLead;
     //public float randomOffset;
 }
@@ -42,8 +46,10 @@ public class PDC : EnemyArmament
     float traverse;
     float relativeAngle;
     bool inSight;
+    public bool autoFire;
+    bool burstReady = true;
 
-    private void Update()
+    void Update()
     {
         Track();
 
@@ -51,8 +57,14 @@ public class PDC : EnemyArmament
         else
         {
             heat -= Time.deltaTime / s.heatRecovery;
+
+
+            if (/*nextShotTime < Time.time*/ IsInScreen(0) && burstReady &&
+                ((autoFire && heat < 0) ||
+                (interceptDistance < s.attackRange && inSight)))
+                StartCoroutine(BurstFire());
+
             if (heat < 0) heat = 0;
-            if (nextShotTime < Time.time && IsInScreen(0) && interceptDistance < s.attackRange && inSight) Fire();
             foreach (SpriteRenderer sprite in gunRenderers) sprite.color = Color.Lerp(normal, heated, heat);
             turretRenderer.color = Color.Lerp(normal, heated, heat);
         }
@@ -67,13 +79,26 @@ public class PDC : EnemyArmament
         targetAngle = Mathf.Clamp(targetAngle, -s.maxTraverse, s.maxTraverse);
         traverse = Mathf.Lerp(traverse, targetAngle, s.rotationSpeed * Time.deltaTime);
         turret.localRotation = Quaternion.Euler(0, 0, traverse);
+    }
 
-        //relativeAngle = Vector2.Angle(turret.up, interceptDirection);
+
+
+    IEnumerator BurstFire()
+    {
+        burstReady = false;
+        int burstSize = Random.Range(s.burstMin, s.burstMax);
+        for (int b=0;b<burstSize && !overheated;b++)
+        {
+            Fire();
+            yield return new WaitForSeconds(1f / s.rateOfFire);
+        }
+        yield return new WaitForSeconds(s.burstCooldown);
+        burstReady = true;
     }
 
     void Fire()
     {
-        nextShotTime = Time.time + 1f / s.rateOfFire;
+        //nextShotTime = Time.time + 1f / s.rateOfFire;
         heat += s.heatPerShot;
         if (heat > 1) overheated = true;
         nextGun = (nextGun + 1) % 2;

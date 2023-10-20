@@ -42,7 +42,6 @@ public class PolygonShield : AreaShield
     {
         EdgeCollider2D edgeCollider = (EdgeCollider2D)collider;
         int c = segmentColliders.IndexOf(edgeCollider);
-        Debug.Log("Hit Segment " + c);
         segmentHealth[c] -= damageAmount;
     }
 
@@ -133,8 +132,6 @@ public class PolygonShield : AreaShield
             points[currentPoint].x = Mathf.Cos(currentRadian) * radius;
             points[currentPoint].y = Mathf.Sin(currentRadian) * radius;
         }
-        //shieldRenderer.SetPositions(points);
-        //shieldRenderer.loop = true;
 
         for (int i = 0; i < sides; i++)
         {
@@ -176,5 +173,8 @@ public class PolygonShield : AreaShield
         }
     }
 
-
+    public void Rotate(float rotationSpeed)
+    {
+        shieldTransform.Rotate(0, 0, rotationSpeed * Time.fixedDeltaTime);
+    }
 }

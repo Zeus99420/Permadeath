@@ -69,7 +69,7 @@ public class Bomber : Enemy
         //direction = transform.up;
         AvoidCollision();
         transform.up = Vector3.Slerp(transform.up, direction, turnRate * Time.fixedDeltaTime);
-        m_rigidbody.AddForce(direction * acceleration);
+        m_rigidbody.AddForce(transform.up * acceleration);
     }
 
     private void Update()

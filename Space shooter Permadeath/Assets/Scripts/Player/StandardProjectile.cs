@@ -31,32 +31,36 @@ public class StandardProjectile : PlayerProjectile
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (piercing) PiercingHit(other);
-        else StandardHit(other);
+
+            if (piercing) PiercingHit(other);
+            else StandardHit(other);
     }
 
 
 
     public void PiercingHit(Collider2D other)
     {
-        if (other.gameObject.tag == "EnemyShield")
+        if(canHit)
         {
-            PiercingShield(other);
-        }
-
-        else if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
-        {
-            alreadyHit.Add(other.gameObject);
-            Character enemy = other.GetComponentInParent<Character>();
-            if (!enemy.dead)
+            if (other.gameObject.tag == "EnemyShield")
             {
-                float newDamage;
-                if (damage < enemy.health) newDamage = damage * piercingMultiplier;
-                else newDamage = damage - enemy.health * (1f - piercingMultiplier);
-                enemy.Damage(damage);
+                PiercingShield(other);
+            }
 
-                if (newDamage < 1) Destroy(gameObject);
-                else damage = (int)newDamage;
+            else if (other.gameObject.tag == "Enemy" && !alreadyHit.Contains(other.gameObject))
+            {
+                alreadyHit.Add(other.gameObject);
+                Character enemy = other.GetComponentInParent<Character>();
+                if (!enemy.dead)
+                {
+                    float newDamage;
+                    if (damage < enemy.health) newDamage = damage * piercingMultiplier;
+                    else newDamage = damage - enemy.health * (1f - piercingMultiplier);
+                    enemy.Damage(damage);
+
+                    if (newDamage < 1) Remove();
+                    else damage = (int)newDamage;
+                }
             }
         }
     }
@@ -69,6 +73,7 @@ public class StandardProjectile : PlayerProjectile
         damage = (int)((potentialDamage - shield.GetHealth(other)) / (1 + piercingMultiplier));
         shield.Damage(other,potentialDamage);
 
-        if (damage < 1) Destroy(gameObject);
+        if (damage < 1) { Remove(); }
+        
     }
 }

@@ -20,28 +20,34 @@ public class Enemy : Character
     public int collisionDamage;
     public int collisionSelfDamage;
 
+    protected bool randomHealth = true;
+
 
 
 
     public override void Start()
     {
-        maxHealth = (int)(maxHealth * Random.Range(0.7f, 1.3f));
+        if (randomHealth) maxHealth = (int)(maxHealth * Random.Range(0.7f, 1.3f));
         base.Start();
 
         healthBar.gameObject.SetActive(false);
 
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
+
     public bool IsInScreen(float margin)
     {
+        return IsInScreen(margin, transform.position);
+    }
+    public bool IsInScreen(float margin, Vector2 position)
+    {
         //Kollar om fienden är en bit inom skärmen. Används t ex så att spelaren inte ska bli skjuten av en fiende som inte syns.
-        Vector2 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+        Vector2 viewportPosition = Camera.main.WorldToViewportPoint(position);
         if (0 + margin < viewportPosition.x && viewportPosition.x < 1 - margin && 0 + margin < viewportPosition.y && viewportPosition.y < 1 - margin)
         {
             return true;
         }
         else return false;
-
     }
 
 
@@ -62,7 +68,7 @@ public class Enemy : Character
                 {
                     if (avoidDistance < 0.1f) avoidDistance = 0.1f;
                     float distanceFactor = 1 / avoidDistance;
-                    float force = 0.6f * collider.GetComponent<Enemy>().avoidForce * distanceFactor;
+                    float force = 0.6f * collider.GetComponentInParent<Enemy>().avoidForce * distanceFactor;
                     Vector2 avoidDirection = -((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
                     moveVector += (avoidDirection * force) / acceleration;
 

@@ -7,10 +7,21 @@ public class EnemyArmament : MonoBehaviour
     [HideInInspector] public Transform player;
     [HideInInspector] public Mastermind mastermind;
     protected List<Vector2> playerPositions;
+    protected List<Vector2> positionRecord = new List<Vector2>();
     // Start is called before the first frame update
+
+    void FixedUpdate()
+    {
+        positionRecord.Add(transform.position);
+        if (positionRecord.Count > 50) positionRecord.RemoveAt(0);
+    }
     public virtual void Initialize()
     {
         playerPositions = player.GetComponent<PlayerMovement>().positionRecord;
+        for (int i=0; i<25; i++)
+        {
+            positionRecord.Add(transform.position);
+        }
     }
 
     protected Vector2 interceptPosition;
@@ -26,9 +37,9 @@ public class EnemyArmament : MonoBehaviour
         if (distance > maxDistance) distance = maxDistance;
         float timeToReach = distance / reachVelocity + extraLeadTime;
 
-        Vector2 playerMovement = ((Vector2)player.position - playerPositions[30])*2;
+        Vector2 movement = ((Vector2)player.position - playerPositions[24])*2 + positionRecord[24] - (Vector2)transform.position;
 
-        interceptPosition = targetPos + (playerMovement + offset) * timeToReach;
+        interceptPosition = targetPos + (movement + offset) * timeToReach;
         interceptDistance = Vector2.Distance(interceptPosition, transform.position);
         interceptDirection = (interceptPosition - (Vector2)transform.position).normalized;
     }

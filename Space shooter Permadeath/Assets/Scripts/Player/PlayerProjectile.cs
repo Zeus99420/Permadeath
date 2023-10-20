@@ -8,36 +8,46 @@ public class PlayerProjectile : MonoBehaviour
     public int damage;
     [HideInInspector] public Weapons weapons;
     protected bool destroyWhenInvisible = true;
+    protected bool destroyed;
 
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-       StandardHit(other);
+        StandardHit(other);
     }
 
-
+    protected bool canHit=true;
     public void StandardHit(Collider2D other)
     {
-        if (other.gameObject.tag == "EnemyShield")
+        if(canHit)
         {
-            other.GetComponentInParent<Enemy>().ShieldDamage(other, damage);
-            Destroy(gameObject);
-        }
-
-        else if (other.gameObject.tag == "Enemy")
-        {
-            if (!other.GetComponentInParent<Character>().dead)
+            if (other.gameObject.tag == "EnemyShield")
             {
-                other.GetComponentInParent<Character>().Damage(damage);
-                Destroy(gameObject);
+                other.GetComponentInParent<Enemy>().ShieldDamage(other, damage);
+                Remove();
+            }
+
+            else if (other.gameObject.tag == "Enemy")
+            {
+                if (!other.GetComponentInParent<Character>().dead)
+                {
+                    other.GetComponentInParent<Character>().Damage(damage);
+                    Remove();
+                }
             }
         }
+
     }
 
     void OnBecameInvisible()
     {
         if (destroyWhenInvisible) Destroy(gameObject);
     }
-
+    
+    protected void Remove()
+    {
+        canHit = false;
+        Destroy(gameObject);
+    }
     public bool IsInScreen(float margin)
     {
         //Kollar om fienden är en bit inom skärmen. Används t ex så att spelaren inte ska bli skjuten av en fiende som inte syns.

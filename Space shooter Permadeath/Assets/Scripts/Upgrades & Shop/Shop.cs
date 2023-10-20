@@ -27,7 +27,7 @@ public class Shop : MonoBehaviour
     public Text tooltip;
 
     bool secWeaponPicked = false;
-    List<Upgrades> upgrades;
+    public List<Upgrades> upgrades;
 
     public UIelement[] UIelements;
     public void Initialize()
@@ -67,9 +67,6 @@ public class Shop : MonoBehaviour
 
         for (int t = 0; t < 3; t++)
         {
-
-
-
             int randomNumber = Random.Range(0, upgrades.Count);
             Upgrades randomUpgrade = upgrades[randomNumber];
             randomUpgrade.player = mastermind.player;

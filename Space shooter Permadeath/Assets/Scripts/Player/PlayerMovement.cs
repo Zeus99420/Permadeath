@@ -134,7 +134,7 @@ public class PlayerMovement : Character
             m_rigidbody.AddForce(direction * acceleration);
 
             positionRecord.Add(transform.position);
-            if (positionRecord.Count > 60) positionRecord.RemoveAt(0);
+            if (positionRecord.Count > 50) positionRecord.RemoveAt(0);
         }
     }
 

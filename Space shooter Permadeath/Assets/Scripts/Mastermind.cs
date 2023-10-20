@@ -9,8 +9,13 @@ public class Mastermind : MonoBehaviour
 {
     public MastermindsMaster master;    
 
-    public bool testingShop;
-    public bool testingGadget;
+    [Header("Cheating")]
+    public bool shopAtStart;
+    public int shopTimes;
+    public int startingGadgets;
+    public int startWave;
+
+    [Space]
     public bool permadeath;
     public GameObject player;
     public GameObject camera;
@@ -78,8 +83,8 @@ public class Mastermind : MonoBehaviour
         shop.Initialize();
         CheckpointSave();
 
-        if (testingGadget) UpdateExp(expRequired);
-        if (testingShop) EnterShop();
+        waveSpawner.nextWaveNumber = startWave - 1;
+        if (shopAtStart) ShopAtStart();
         else StartCoroutine(instructions.FadeIn());
 
         if (permadeath) deathScreen = permadeathScreen;
@@ -162,14 +167,34 @@ public class Mastermind : MonoBehaviour
 
     public void ExitShop()
     {
-        shop.Exit();
-        CheckpointSave();
 
 
-        GMState = GameMastermindState.Gameplay;
-        UpdateGameMastermindState();
+        if (shopAtStart) ShopAtStart();
+        else
+        {
+            shop.Exit();
+            CheckpointSave();
 
-        //waveSpawner.NewWave();
+            GMState = GameMastermindState.Gameplay;
+            UpdateGameMastermindState();
+
+            //waveSpawner.NewWave();
+        }
+
+    }
+
+    void ShopAtStart()
+    {
+        shopTimes--;
+        if (shopTimes < 1) shopAtStart = false;
+        if (exp < expRequired && startingGadgets > 0)
+        {
+            exp += expRequired;
+            startingGadgets--;
+        }
+
+        if (shop.upgrades == shop.secondaryWeapons) StartCoroutine(shop.RMBInstructions.FadeOut());
+        EnterShop();
     }
 
     public void ChangeToOpeningState()
@@ -187,6 +212,11 @@ public class Mastermind : MonoBehaviour
         {
             EnterShop();
         }
+    }
+
+    public void BossKilled()
+    {
+        waveSpawner.bossFight = false;
     }
 
     public void UpdateMoney(int changeAmount)
@@ -223,6 +253,13 @@ public class Mastermind : MonoBehaviour
         exp -= expRequired;
         expRequired = (int)(expRequired * expScaling);
         UpdateExp(0);
+
+        PlayerMovement playerM = player.GetComponent<PlayerMovement>();
+        playerM.maxHealth += 10;
+        playerM.health += 10;
+        playerM.healthBar.MaxHealthPoints += 10;
+        playerM.healthBar.SetSize();
+
     }
 
     public void UpdateScore(int changeAmount)

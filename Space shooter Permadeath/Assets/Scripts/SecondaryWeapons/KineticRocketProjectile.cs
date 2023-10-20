@@ -24,8 +24,8 @@ public class KineticRocketProjectile : PlayerProjectile
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        damage = (int)(m_rigidbody.velocity.magnitude * damageMultiplier);
-        StandardHit(other);
+            damage = (int)(m_rigidbody.velocity.magnitude * damageMultiplier);
+            StandardHit(other);
     }
 }
 

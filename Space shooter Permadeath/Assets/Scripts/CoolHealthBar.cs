@@ -23,6 +23,8 @@ public class CoolHealthBar : MonoBehaviour
 
     public Character character;
     public Vector3 offset;
+
+    public bool fixedPosition;
     public float Health
     {
         get { return currentHealthPoints; }
@@ -77,7 +79,7 @@ public class CoolHealthBar : MonoBehaviour
 
     protected void Update()
     {
-        transform.position = character.transform.position + offset; ;
+        if (!fixedPosition) transform.position = character.transform.position + offset; ;
 
         if (Damages > 0)
         {
