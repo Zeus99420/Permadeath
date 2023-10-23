@@ -70,11 +70,11 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Percent: 100
+    - _Percent: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Steps: 10
+    - _Steps: 70
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
@@ -82,5 +82,5 @@ Material:
     - _Color: {r: 1, g: 0, b: 0.011558533, a: 1}
     - _DamagesColor: {r: 1, g: 0.9591302, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ImageSize: {r: 1, g: 0.2, b: 0, a: 0}
+    - _ImageSize: {r: 15, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []

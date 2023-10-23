@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoutInvader : Enemy
+public class ScoutInvader : StandardEnemy
 {
     public GameObject projectile;
     float distanceToPlayer;

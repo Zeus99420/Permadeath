@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : Enemy
+public class Shooter : StandardEnemy
 {
     //En fiende som försöker närma sig spelaren och skjuta den med projektiler
 

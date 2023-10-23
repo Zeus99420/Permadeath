@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoCannon : Enemy
+public class AutoCannon : StandardEnemy
 {
 
     [Header("Weapon")]

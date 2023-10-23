@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Drone : Enemy
+public class Drone : StandardEnemy
 {
     //Den simplaste fienden, Flyger helt enkelt rakt mot spelaren och försöker krocka med den
 

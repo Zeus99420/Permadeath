@@ -13,17 +13,23 @@ public class PolygonShield : AreaShield
     public List<EdgeCollider2D> segmentColliders;
     public List<LineRenderer> segmentRenderers;
     public float[] segmentHealth;
+    public float[] lastDamageTime;
 
     public float segmentMaxHealth;
     public float segmentInitialHealth;
     public float distributionRate;
     public float restoreAmount;
 
+
+
     [Header("Appearance")]
     public float alphaMin;
     public float alphaMax;
     public float widthMin;
     public float widthMax;
+    public Color normalColor;
+    public Color damagedColor;
+    public Color brokenColor;
 
     void Start()
     {
@@ -34,7 +40,7 @@ public class PolygonShield : AreaShield
     private void Update()
     {
         shieldDistribution();
-        SetSegnmentAlphas();
+        SegmentApperance();
         SetSegmentWidth();
     }
 
@@ -43,6 +49,7 @@ public class PolygonShield : AreaShield
         EdgeCollider2D edgeCollider = (EdgeCollider2D)collider;
         int c = segmentColliders.IndexOf(edgeCollider);
         segmentHealth[c] -= damageAmount;
+        lastDamageTime[c] = Time.time;
     }
 
     public override void Collision(Collider2D collider, GameObject other)
@@ -92,7 +99,7 @@ public class PolygonShield : AreaShield
 
             else
             {
-                segmentRenderers[i].enabled = false;
+                //segmentRenderers[i].enabled = false;
                 segmentColliders[i].enabled = false;
             }
         }
@@ -110,6 +117,7 @@ public class PolygonShield : AreaShield
     public void CreateSegments()
     {
         segmentHealth = new float[sides];
+        lastDamageTime = new float[sides];
         for (int n=0; n < sides; n++)
         {
             GameObject segment = Instantiate(segmentPrefab, shieldTransform);
@@ -117,6 +125,7 @@ public class PolygonShield : AreaShield
             segmentRenderers.Add(segment.GetComponent<LineRenderer>());
 
             segmentHealth[n] = segmentInitialHealth;
+            lastDamageTime[n] = 0;
         }
 
     }
@@ -146,6 +155,46 @@ public class PolygonShield : AreaShield
 
     }
 
+
+
+    public void SegmentApperance()
+    {
+        float alpha, healthFraction; Color color;
+
+        for (int a = 0; a < sides; a++)
+        {
+            healthFraction = segmentHealth[a] / segmentMaxHealth;
+
+            if (healthFraction < 0)
+            {
+                color = brokenColor;
+                alpha = Mathf.Lerp(0.4f, 0, (Time.time - lastDamageTime[a]) / 0.15f);
+            }
+
+            else
+            {
+                if (Time.time < lastDamageTime[a] + 0.05f)
+                {
+                    color = damagedColor;
+                    alpha = 0.9f;
+                }
+
+                else
+                {
+                    color = normalColor;
+                    alpha = Mathf.Lerp(alphaMin, alphaMax, healthFraction);
+                }
+            }
+
+            Gradient gradient = new Gradient();
+            gradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(color, 0.0f), new GradientColorKey(color, 1.0f) },
+                new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+                );
+            segmentRenderers[a].colorGradient = gradient;
+
+        }
+    }
 
 
     public void SetSegnmentAlphas()

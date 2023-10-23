@@ -11,6 +11,15 @@ public class ArcShield : AreaShield
 
     public EdgeCollider2D shieldCollider;
     public LineRenderer shieldRenderer;
+    float lastDamageTime;
+    public Color normalColor;
+    public Color damagedColor;
+    public Color brokenColor;
+    public float alphaMin;
+    public float alphaMax;
+
+    Gradient gradient = new Gradient();
+
 
     private void Start() 
     {
@@ -21,24 +30,23 @@ public class ArcShield : AreaShield
     {
         health += regen * Time.deltaTime;
         if (health > maxHealth) health = maxHealth;
+        SetAppearance();
 
         if (health <= 0)
         {
             shieldCollider.enabled = false;
-            shieldRenderer.enabled = false;
         }
 
         else
         {
             shieldCollider.enabled = true;
-            shieldRenderer.enabled = true;
-
         }
     }
 
     public override void Damage(Collider2D collider, int damageAmount)
     {
         health -= damageAmount;
+        lastDamageTime = Time.time;
     }
 
     public override void Collision(Collider2D collider, GameObject other)
@@ -89,19 +97,42 @@ public class ArcShield : AreaShield
         shieldCollider.points = arcPoints;
     }
 
-    public void SetAlpha(float alphaMin, float alphaMax)
+    public void SetAppearance()
     {
-        if (health > 0)
+        shieldRenderer.enabled = true;
+        float alpha=0;
+        Color color;
+
+        if (health < 0)
         {
-            Gradient gradient = new Gradient();
-            float alpha = Mathf.Lerp(alphaMin, alphaMax, health / maxHealth);
-            gradient.SetKeys(
-                shieldRenderer.colorGradient.colorKeys,
-                new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
-                );
-            shieldRenderer.colorGradient = gradient;
+            color = brokenColor;
+            alpha = Mathf.Lerp(0.4f, 0, (Time.time - lastDamageTime) / 0.15f);
         }
+
+        else
+        {
+            if (Time.time < lastDamageTime + 0.05f)
+            {
+                color = damagedColor;
+                alpha = 0.9f;
+            }
+
+            else
+            {
+                color = normalColor;
+                alpha = Mathf.Lerp(alphaMin, alphaMax, health / maxHealth);
+            }
+        }
+
+
+        gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(color,0.0f), new GradientColorKey(color,1.0f)},
+            new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+            );
+        shieldRenderer.colorGradient = gradient;
     }
+
+
 
 
 }

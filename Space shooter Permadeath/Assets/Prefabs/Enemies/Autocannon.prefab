@@ -700,14 +700,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d197610e9e0f47b8582f79b203a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 300
-  maxHealth: 500
-  regen: 20
-  health: 0
   collisionSelfDamage: 100
   collisionDamageMax: 70
-  shieldRenderer: {fileID: 5527558280405812911}
+  maxHealth: 500
+  initialHealth: 300
+  health: 0
+  regen: 20
   shieldCollider: {fileID: 8576820564098279250}
+  shieldRenderer: {fileID: 5527558280405812911}
+  normalColor: {r: 0.99607843, g: 0.29803923, b: 1, a: 1}
+  damagedColor: {r: 0.90588236, g: 0.34117648, b: 0.16470589, a: 1}
+  brokenColor: {r: 1, g: 0, b: 0, a: 1}
+  alphaMin: 0.6
+  alphaMax: 0.6
 --- !u!61 &1647493288847350347
 BoxCollider2D:
   m_ObjectHideFlags: 0

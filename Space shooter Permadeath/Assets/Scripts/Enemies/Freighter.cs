@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Freighter : Enemy
+public class Freighter : StandardEnemy
 {
 
     public GameObject pickup;

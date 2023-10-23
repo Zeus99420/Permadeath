@@ -10,8 +10,6 @@ public class EnemyBomb : Character
     public override void Start ()
     {
         base.Start();
-
-        healthBar.gameObject.SetActive(false);
     }
     private void OnBecameInvisible()
     {

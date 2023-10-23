@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8281729996618122872}
   - component: {fileID: 3022233905407263297}
   m_Layer: 7
-  m_Name: Boss
+  m_Name: BattleStation
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mastermind: {fileID: 0}
   healthBarPrefab: {fileID: 4561686646443037966, guid: 51182a4bc7ee66641861cba8a7464faa, type: 3}
-  maxHealth: 10000
+  maxHealth: 7000
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
@@ -113,7 +113,7 @@ MonoBehaviour:
   collisionDamage: 50
   collisionSelfDamage: 100
   shieldHealth: 0
-  tempAcceleration: 100000
+  tempAcceleration: 150000
   body: {fileID: 4095369912456204093}
   scalingValues:
   - name: rgVolleyRate
@@ -133,13 +133,13 @@ MonoBehaviour:
     maxedAt: 0.5
   - name: shieldRotation
     minValue: 3
-    maxValue: 20
+    maxValue: 16
     startsAt: 1
     maxedAt: 0.4
   - name: bodyRotation
     minValue: 0
-    maxValue: 4
-    startsAt: 0.6
+    maxValue: 3
+    startsAt: 1
     maxedAt: 0.2
   - name: bombRate
     minValue: 0
@@ -159,19 +159,19 @@ MonoBehaviour:
   rgVolleyWait: 0.12
   pdcAutoFireThreshold: 0.3
   pdcStats:
-    damage: 10
-    rateOfFire: 10
-    heatPerShot: 0.07
-    heatRecovery: 14
-    overheatRecovery: 20
+    damage: 17
+    rateOfFire: 7
+    heatPerShot: 0.045
+    heatRecovery: 35
+    overheatRecovery: 50
     attackRange: 10
-    projectileSpeed: 3
+    projectileSpeed: 3.5
     projectileSize: 0.6
     maxTraverse: 40
     rotationSpeed: 2
-    burstMin: 3
-    burstMax: 6
-    burstCooldown: 1
+    burstMin: 4
+    burstMax: 8
+    burstCooldown: 0.6
   bomb: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
   bombVelocityMin: 1
   bombVelocityMax: 3
@@ -197,6 +197,7 @@ MonoBehaviour:
   segmentColliders: []
   segmentRenderers: []
   segmentHealth: []
+  lastDamageTime: []
   segmentMaxHealth: 400
   segmentInitialHealth: 400
   distributionRate: 0.01
@@ -205,6 +206,9 @@ MonoBehaviour:
   alphaMax: 0.7
   widthMin: 0.05
   widthMax: 0.2
+  normalColor: {r: 0.99607843, g: 0.29803923, b: 1, a: 1}
+  damagedColor: {r: 0.90588236, g: 0.34117648, b: 0.16470589, a: 1}
+  brokenColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8510511236079150423
 GameObject:
   m_ObjectHideFlags: 0

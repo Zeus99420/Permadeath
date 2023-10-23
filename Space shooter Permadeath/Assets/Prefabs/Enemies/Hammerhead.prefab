@@ -144,7 +144,7 @@ MonoBehaviour:
   shieldArc: 35
   shieldBase: -5.1
   shieldAlphaMin: 0.25
-  shieldAlphaMax: 0.8
+  shieldAlphaMax: 0.7
   shield: {fileID: 1807112463857401253}
   minAcceleration: 200
   maxAcceleration: 330
@@ -198,14 +198,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d197610e9e0f47b8582f79b203a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 30
-  maxHealth: 80
-  regen: 6
-  health: 0
   collisionSelfDamage: 50
   collisionDamageMax: 50
-  shieldRenderer: {fileID: 3436310324705463601}
+  maxHealth: 80
+  initialHealth: 30
+  health: 0
+  regen: 6
   shieldCollider: {fileID: 6861238073953609034}
+  shieldRenderer: {fileID: 3436310324705463601}
+  normalColor: {r: 0.99607843, g: 0.29803923, b: 1, a: 1}
+  damagedColor: {r: 0.9056604, g: 0.34165984, b: 0.16575289, a: 1}
+  brokenColor: {r: 1, g: 0, b: 0, a: 1}
+  alphaMin: 0.15
+  alphaMax: 0.6
 --- !u!1 &8093580084228428867
 GameObject:
   m_ObjectHideFlags: 0

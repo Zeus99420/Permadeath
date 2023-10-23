@@ -35,6 +35,7 @@ public class WaveSpawner : MonoBehaviour
 
     public List<int> bossLevels;
     public GameObject boss;
+    public CoolHealthBar bossHealthbar;
     GameObject nextEnemy;
     [HideInInspector] public bool bossFight;
 
@@ -145,13 +146,14 @@ public class WaveSpawner : MonoBehaviour
         return spawnPosition;
     }
 
-    void SpawnEnemy(GameObject enemy, float spawnMargin)
+    GameObject SpawnEnemy(GameObject enemy, float spawnMargin)
     {
         GameObject newEnemy = Instantiate(enemy, Camera.main.ViewportToWorldPoint(GetSpawnPosition(spawnMargin), 0),
             Quaternion.identity, mastermind.enemiesContainer);
         newEnemy.GetComponent<Enemy>().player = mastermind.player.transform;
         newEnemy.GetComponent<Enemy>().mastermind = mastermind;
         newEnemy.GetComponent<Enemy>().value = enemyValues[enemy];
+        return newEnemy;
     }
 
 
@@ -160,7 +162,8 @@ public class WaveSpawner : MonoBehaviour
     void InitiateBossFight()
     {
         bossFight = true;
-        SpawnEnemy(boss, 0.25f);
+        GameObject newBoss = SpawnEnemy(boss, 0.2f);
+        newBoss.GetComponent<BossEnemy>().healthBar = bossHealthbar;
         /*nextEnemy = */GetNextEnemy();
     }
 

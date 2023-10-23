@@ -11,7 +11,7 @@ using UnityEngine;
     public float startsAt;
     public float maxedAt;
 }
-public class Boss : Enemy
+public class BattleStation : BossEnemy
 {
     Vector2 moveDirection;
     float damageTaken;
@@ -53,7 +53,6 @@ public class Boss : Enemy
 
     public override void Start()
     {
-        randomHealth = false;
         base.Start();
         SetDirection();
         InitializeWeapons();
@@ -64,8 +63,8 @@ public class Boss : Enemy
     {
         m_rigidbody.AddForce(moveDirection * acceleration);
 
-        if (!outside && !IsInScreen(-0.21f)) Outside();
-        else if (outside && IsInScreen(-0.09f)) Inside();
+        if (!outside && !IsInScreen(-0.23f)) Outside();
+        else if (outside && IsInScreen(-0.15f)) Inside();
 
         if (rgVolleyReady && Random.value < rgVolleyRate * Time.fixedDeltaTime) StartCoroutine(RailgunVolley());
         if (rgFreeFire && Random.value < rgFreeFireRate * Time.fixedDeltaTime) RailGunFire();

@@ -25,21 +25,24 @@ public class Character : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         if (!healthAlreadySet) health = maxHealth;
-
-        healthBar = CreateHealthBar(healthBarPrefab);
     }
 
     public virtual void Damage(int damageAmount)
     {
         health -= damageAmount;
-        healthBar.Health = health;
-        healthBar.Damages += damageAmount;
         if (health <= 0 && !dead)
         {
             dead = true;
             Die();
             health = 0;
         }
+
+        if (healthBar)
+        {
+            healthBar.Health = health;
+            healthBar.Damages += damageAmount;
+        }
+
     }
 
 
@@ -58,7 +61,7 @@ public class Character : MonoBehaviour
         GameObject healthBarObject = Instantiate(healthBarPrefab,mastermind.stuffContainer);
         CoolHealthBar newHealthBar = healthBarObject.GetComponent<CoolHealthBar>();
         newHealthBar.character = this;
-        //newHealthBar.transform.position = transform.position + newHealthBar.offset;
+        newHealthBar.transform.position = transform.position + newHealthBar.offset;
         newHealthBar.MaxHealthPoints = maxHealth;
         newHealthBar.SetSize();
         return newHealthBar;

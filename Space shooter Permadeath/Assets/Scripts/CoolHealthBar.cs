@@ -84,6 +84,7 @@ public class CoolHealthBar : MonoBehaviour
         if (Damages > 0)
         {
             Damages -= damagesDecreaseRate * Time.deltaTime;
+            Damages -= Damages * 0.1f * Time.deltaTime;
         }
 
     }

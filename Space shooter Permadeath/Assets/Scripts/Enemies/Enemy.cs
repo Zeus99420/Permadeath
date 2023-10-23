@@ -20,18 +20,12 @@ public class Enemy : Character
     public int collisionDamage;
     public int collisionSelfDamage;
 
-    protected bool randomHealth = true;
-
 
 
 
     public override void Start()
     {
-        if (randomHealth) maxHealth = (int)(maxHealth * Random.Range(0.7f, 1.3f));
         base.Start();
-
-        healthBar.gameObject.SetActive(false);
-
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -70,7 +64,7 @@ public class Enemy : Character
                     float distanceFactor = 1 / avoidDistance;
                     float force = 0.6f * collider.GetComponentInParent<Enemy>().avoidForce * distanceFactor;
                     Vector2 avoidDirection = -((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
-                    moveVector += (avoidDirection * force) / acceleration;
+                    moveVector += (avoidDirection * force*0.5f) / acceleration;
 
                 }
             }

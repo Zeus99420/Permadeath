@@ -51,6 +51,7 @@ public class PlayerMovement : Character
     public override void Start()
     {
         base.Start();
+        healthBar = CreateHealthBar(healthBarPrefab);
         //Character start-metod gör att spelarens health = maxHealth. 
         //healthAlreadySet = true;
         //healthAlreadySet=true gör att kopior av spelaren som skapas för checkpoints behåller sin dåvarande health.

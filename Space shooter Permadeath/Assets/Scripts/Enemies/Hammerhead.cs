@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Hammerhead : Enemy
+public class Hammerhead : StandardEnemy
 {
     Vector2 lastAngle;
     public float rotationSpeed;
@@ -33,7 +33,6 @@ public class Hammerhead : Enemy
     {
         Movement();
         shield.ShieldUpdate();
-        shield.SetAlpha(shieldAlphaMin, shieldAlphaMax);
     }
 
     [Header("Turning")]
