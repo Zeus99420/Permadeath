@@ -269,6 +269,7 @@ public class PlayerMovement : Character
             
             //damageAmount -= (int)shieldHealth;
             shieldBar.Damages += shieldHealth;
+            shieldBar.lastDamageTime = Time.time;
             shieldBar.Health = 0;
             shieldHealth -= damageAmount;
             StartCoroutine(Flicker(Color.blue));
@@ -281,6 +282,7 @@ public class PlayerMovement : Character
         {
             shieldHealth -= damageAmount;
             shieldBar.Damages += damageAmount;
+            shieldBar.lastDamageTime = Time.time;
             shieldBar.Health = shieldHealth;
         }
         

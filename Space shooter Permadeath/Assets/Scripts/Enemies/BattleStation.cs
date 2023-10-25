@@ -44,11 +44,20 @@ public class BattleStation : BossEnemy
     List<PDC> pdcs = new List<PDC>();
 
     [Header("Bombs")]
-    float bombRate;
+    public int bombDamage;
+    public int bombVolleyMin;
+    float bombVolleyAvg;
+    public float bombsCooldownMin;
+    public float bombsCooldownMax;
+    public float bombRate;
     public GameObject bomb;
     public float bombVelocityMin;
     public float bombVelocityMax;
-    public int bombDamage;
+    public float bombVelocityPerpendicular;
+    bool bombsEnabled;
+    bool bombsReady = true;
+
+
 
 
     public override void Start()
@@ -63,12 +72,12 @@ public class BattleStation : BossEnemy
     {
         m_rigidbody.AddForce(moveDirection * acceleration);
 
-        if (!outside && !IsInScreen(-0.23f)) Outside();
-        else if (outside && IsInScreen(-0.15f)) Inside();
+        if (!outside && !IsInScreen(-0.27f)) Outside();
+        else if (outside && IsInScreen(-0.14f)) Inside();
 
         if (rgVolleyReady && Random.value < rgVolleyRate * Time.fixedDeltaTime) StartCoroutine(RailgunVolley());
         if (rgFreeFire && Random.value < rgFreeFireRate * Time.fixedDeltaTime) RailGunFire();
-        if (Random.value < bombRate * Time.fixedDeltaTime) ReleaseBomb();
+        if (bombsEnabled && bombsReady && IsInScreen(0.2f)) StartCoroutine(BombVolley()); 
 
         shield.Rotate(shieldRotation * shieldDirection);
         body.Rotate(0f, 0f, bodyDirection * bodyRotation * Time.fixedDeltaTime);
@@ -132,18 +141,51 @@ public class BattleStation : BossEnemy
         }
     }
 
-    void ReleaseBomb()
+
+
+
+    IEnumerator BombVolley()
+    {
+        bombsReady = false;
+        float volleySize = Random.Range(bombVolleyAvg*0.7f, bombVolleyAvg*1.3f);
+        int bombsReleased = 0;
+
+        while ( bombsReleased < volleySize) 
+        {
+            if (ReleaseBomb())
+            {
+                bombsReleased++;
+                yield return new WaitForSeconds(1 / bombRate);
+            }
+            else
+            {
+                //If the enemy fails to launch a bomb, the volleysize is slightly reduced and a small delay added.
+                volleySize -= 0.25f;
+                yield return new WaitForSeconds(0.25f / bombRate);
+            }
+        }
+        yield return new WaitForSeconds(Random.Range(bombsCooldownMin, bombsCooldownMax));
+        bombsReady = true;
+    }
+
+    bool ReleaseBomb()
     {
         Vector2 bombDirection = Random.insideUnitCircle.normalized;
-        Vector2 bombPosition = (Vector2)transform.position + bombDirection * 1.5f;
-        if (IsInScreen(0f,bombPosition))
+        //Check whether a position a distance forward in the bombdirection is inside the screen.
+        //No bomb will be released if it would just exit the screen right away.
+        Vector2 checkPosition = (Vector2)transform.position + bombDirection * 6f;
+        if (IsInScreen(0f, checkPosition))
         {
+            Vector2 bombPosition = (Vector2)transform.position + bombDirection * 1.7f;
             GameObject newBomb = Instantiate(bomb, bombPosition, transform.rotation, mastermind.stuffContainer);
             Rigidbody2D bombRigidbody = newBomb.GetComponent<Rigidbody2D>();
-            bombRigidbody.velocity = m_rigidbody.velocity + Random.Range(bombVelocityMin,bombVelocityMax) * bombDirection;
+            bombRigidbody.velocity = m_rigidbody.velocity *0.6f + Random.Range(bombVelocityMin, bombVelocityMax) * bombDirection
+                + Vector2.Perpendicular(bombDirection) * Random.Range(-bombVelocityPerpendicular, bombVelocityPerpendicular);
             newBomb.GetComponent<EnemyBomb>().damage = bombDamage;
             newBomb.GetComponent<EnemyBomb>().mastermind = mastermind;
+            return true;
         }
+        else return false;
 
     }
 
@@ -201,10 +243,11 @@ public class BattleStation : BossEnemy
 
         rgVolleyRate = Scale("rgVolleyRate", healthFraction);
         rgFreeFireRate = Scale("rgFreeFireRate", healthFraction);
-        bombRate = Scale("bombRate", healthFraction);
+        bombVolleyAvg = Scale("bombVolleyAvg", healthFraction);
         shieldRotation = Scale("shieldRotation", healthFraction);
         bodyRotation = Scale("bodyRotation", healthFraction);
 
+        if (!bombsEnabled && healthFraction < valuesDictionary["bombVolleyAvg"].startsAt) bombsEnabled = true;
         if (!PdcAutoFire && healthFraction < pdcAutoFireThreshold) PdcAutoFire = true;
     }
 

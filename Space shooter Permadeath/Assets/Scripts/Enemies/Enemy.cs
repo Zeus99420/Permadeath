@@ -29,7 +29,7 @@ public class Enemy : Character
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public bool IsInScreen(float margin)
+    public bool IsInScreen(float margin=0f)
     {
         return IsInScreen(margin, transform.position);
     }
@@ -64,7 +64,7 @@ public class Enemy : Character
                     float distanceFactor = 1 / avoidDistance;
                     float force = 0.6f * collider.GetComponentInParent<Enemy>().avoidForce * distanceFactor;
                     Vector2 avoidDirection = -((Vector2)collider.transform.position - (Vector2)transform.position).normalized;
-                    moveVector += (avoidDirection * force*0.5f) / acceleration;
+                    moveVector += (avoidDirection * force*0.8f) / acceleration;
 
                 }
             }

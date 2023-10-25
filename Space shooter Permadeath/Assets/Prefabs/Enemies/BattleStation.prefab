@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mastermind: {fileID: 0}
   healthBarPrefab: {fileID: 4561686646443037966, guid: 51182a4bc7ee66641861cba8a7464faa, type: 3}
-  maxHealth: 7000
+  maxHealth: 6000
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
@@ -113,7 +113,7 @@ MonoBehaviour:
   collisionDamage: 50
   collisionSelfDamage: 100
   shieldHealth: 0
-  tempAcceleration: 150000
+  tempAcceleration: 80000
   body: {fileID: 4095369912456204093}
   scalingValues:
   - name: rgVolleyRate
@@ -131,6 +131,11 @@ MonoBehaviour:
     maxValue: 6
     startsAt: 1
     maxedAt: 0.5
+  - name: bombVolleyAvg
+    minValue: 8
+    maxValue: 30
+    startsAt: 0.5
+    maxedAt: 0.1
   - name: shieldRotation
     minValue: 3
     maxValue: 16
@@ -141,11 +146,6 @@ MonoBehaviour:
     maxValue: 3
     startsAt: 1
     maxedAt: 0.2
-  - name: bombRate
-    minValue: 0
-    maxValue: 4
-    startsAt: 0.5
-    maxedAt: 0
   shield: {fileID: 3022233905407263297}
   railgunStats:
     damage: 40
@@ -159,23 +159,28 @@ MonoBehaviour:
   rgVolleyWait: 0.12
   pdcAutoFireThreshold: 0.3
   pdcStats:
-    damage: 17
-    rateOfFire: 7
-    heatPerShot: 0.045
+    damage: 15
+    rateOfFire: 10
+    heatPerShot: 0.055
     heatRecovery: 35
     overheatRecovery: 50
-    attackRange: 10
+    attackRange: 8
     projectileSpeed: 3.5
     projectileSize: 0.6
     maxTraverse: 40
     rotationSpeed: 2
     burstMin: 4
-    burstMax: 8
-    burstCooldown: 0.6
-  bomb: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
-  bombVelocityMin: 1
-  bombVelocityMax: 3
+    burstMax: 7
+    burstCooldown: 0.7
   bombDamage: 40
+  bombVolleyMin: 30
+  bombsCooldownMin: 15
+  bombsCooldownMax: 20
+  bombRate: 4
+  bomb: {fileID: 1395485566443106641, guid: e66c08ff6ff38674eb2c366d8d851a64, type: 3}
+  bombVelocityMin: 0.5
+  bombVelocityMax: 3
+  bombVelocityPerpendicular: 2
 --- !u!114 &3022233905407263297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +206,8 @@ MonoBehaviour:
   segmentMaxHealth: 400
   segmentInitialHealth: 400
   distributionRate: 0.01
-  restoreAmount: 100
+  restoreAmount: 20
+  restoreMissing: 0.25
   alphaMin: 0.2
   alphaMax: 0.7
   widthMin: 0.05

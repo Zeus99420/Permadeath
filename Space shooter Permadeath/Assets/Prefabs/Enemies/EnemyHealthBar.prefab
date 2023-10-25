@@ -192,9 +192,12 @@ MonoBehaviour:
   image: {fileID: 4561686647488034476}
   maxHealthPoints: 100
   healthBarStepsLength: 10
-  damagesDecreaseRate: 20
+  damagesDecreaseRate: 50
+  damageDelay: 1
+  lastDamageTime: 0
   character: {fileID: 0}
   offset: {x: 0, y: -0.5, z: 0}
+  fixedPosition: 0
 --- !u!1 &4561686647488034477
 GameObject:
   m_ObjectHideFlags: 0

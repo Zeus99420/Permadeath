@@ -41,6 +41,7 @@ public class Character : MonoBehaviour
         {
             healthBar.Health = health;
             healthBar.Damages += damageAmount;
+            healthBar.lastDamageTime = Time.time;
         }
 
     }

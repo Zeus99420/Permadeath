@@ -72,7 +72,7 @@ public class PDC : EnemyArmament
 
     void Track()
     {
-        LeadTarget(s.projectileSpeed, s.attackRange);
+        LeadTarget(s.projectileSpeed, s.attackRange,default,0.2f);
         float targetAngle = Vector2.SignedAngle(transform.up, interceptDirection);
         if (Mathf.Abs(targetAngle) < s.maxTraverse) inSight = true;
         else inSight = false;

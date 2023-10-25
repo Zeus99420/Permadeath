@@ -19,7 +19,7 @@ public class PolygonShield : AreaShield
     public float segmentInitialHealth;
     public float distributionRate;
     public float restoreAmount;
-
+    public float restoreMissing;
 
 
     [Header("Appearance")]
@@ -111,6 +111,12 @@ public class PolygonShield : AreaShield
         {
             segmentHealth[i] += restoreAmount;
             if (segmentHealth[i] > segmentMaxHealth) segmentHealth[i] = segmentMaxHealth;
+            else
+            {
+                Debug.Log("Segment " + i + ": " + restoreAmount + (segmentMaxHealth - segmentHealth[i]) * restoreMissing + " health restored");
+                segmentHealth[i] += (segmentMaxHealth - segmentHealth[i]) * restoreMissing;
+            }
+
         }
     }
 

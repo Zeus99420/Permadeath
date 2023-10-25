@@ -105,8 +105,8 @@ SpriteRenderer:
   m_SortingLayerID: -536760163
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9321255596c3fb340a8d61560230bd05, type: 3}
-  m_Color: {r: 0.67790085, g: 0.07756319, b: 0.7830189, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d6aeb6724a9fb814a890e13744069ce4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,11 +138,11 @@ MonoBehaviour:
   dead: 0
   player: {fileID: 0}
   value: 0
-  avoidRadius: 2
   avoidForce: 180
-  acceleration: 300
+  acceleration: 250
   collisionDamage: 50
   collisionSelfDamage: 25
+  shieldHealth: 0
   projectile: {fileID: 7284685829261298607, guid: 6d18bf37e50d79648a9ce786d42ddb73, type: 3}
   attackRange: 5
   cooldown: 4

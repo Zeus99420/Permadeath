@@ -44,7 +44,7 @@ public class RailgunTurret : EnemyArmament
 
     void Track()
     {
-        LeadTarget(stats.projectileSpeed, offset, default, stats.chargeTime + extraLead);
+        LeadTarget(stats.projectileSpeed, offset, default, stats.chargeTime + extraLead,0.8f);
         transform.up = Vector3.Slerp(transform.up, interceptDirection, stats.rotationSpeed * Time.deltaTime);
     }
 

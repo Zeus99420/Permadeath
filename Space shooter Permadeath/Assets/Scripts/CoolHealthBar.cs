@@ -21,6 +21,10 @@ public class CoolHealthBar : MonoBehaviour
 
     private float damages;
 
+    [SerializeField]
+    private float damageDelay = 1f;
+    [HideInInspector] public float lastDamageTime;
+
     public Character character;
     public Vector3 offset;
 
@@ -45,6 +49,7 @@ public class CoolHealthBar : MonoBehaviour
         {
             damages = Mathf.Clamp(value, 0, MaxHealthPoints);
             image.material.SetFloat("_DamagesPercent", damages / MaxHealthPoints);
+
         }
     }
 
@@ -81,10 +86,10 @@ public class CoolHealthBar : MonoBehaviour
     {
         if (!fixedPosition) transform.position = character.transform.position + offset; ;
 
-        if (Damages > 0)
+        if (Damages > 0 && Time.time > lastDamageTime+damageDelay)
         {
             Damages -= damagesDecreaseRate * Time.deltaTime;
-            Damages -= Damages * 0.1f * Time.deltaTime;
+            //Damages -= Damages * 0.1f * Time.deltaTime;
         }
 
     }

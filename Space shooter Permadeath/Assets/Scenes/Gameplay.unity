@@ -4988,16 +4988,16 @@ MonoBehaviour:
   - {fileID: 1153071668}
   - {fileID: 1153071667}
   Excludes: []
-  rechargeTime: 7
+  rechargeTime: 9
   maxCharges: 2
   rateOfFire: 0.7
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: a4202cadee0a1614b898470817e1895b, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
   chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
   projectile: {fileID: 9101686643944138255, guid: 9f546bd436b2c0e41bd3fac67ac1f8b7, type: 3}
-  acceleration: 10
-  maxDamage: 60
-  radius: 2
+  acceleration: 8
+  maxDamage: 50
+  radius: 2.4
   explosionDuration: 0.2
 --- !u!114 &902765024
 MonoBehaviour:
@@ -5021,15 +5021,15 @@ MonoBehaviour:
   - {fileID: 1153071668}
   - {fileID: 1153071667}
   Excludes: []
-  rechargeTime: 2.7
-  maxCharges: 5
-  rateOfFire: 5
+  rechargeTime: 4
+  maxCharges: 4
+  rateOfFire: 3
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
   readyColor: {r: 1, g: 1, b: 1, a: 0.627451}
   chargingColor: {r: 0.6039216, g: 0.6, b: 0.6, a: 0.627451}
   projectile: {fileID: 9101686643944138255, guid: 7725c5846c25a0a42b814882e23e1d92, type: 3}
   projectileAcceleration: 65
-  damageMultiplier: 3
+  damageMultiplier: 2
 --- !u!114 &902765025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5043,7 +5043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  upgradeName: Nuclear Bomb
+  upgradeName: Time Bomb
   description: Big Nuke!
   unique: 0
   Unlocks:
@@ -5059,12 +5059,12 @@ MonoBehaviour:
   readyColor: {r: 0.3882353, g: 1, b: 0, a: 1}
   chargingColor: {r: 0.28235295, g: 0.5372549, b: 0.25882354, a: 1}
   projectile: {fileID: 9101686643944138255, guid: 6fd3aac0b21e12f439a1b020a46abde0, type: 3}
-  maxDamage: 120
+  maxDamage: 80
   friendlyDamageMultiplier: 0.4
-  delay: 1.5
-  radius: 3.6
-  explosionDuration: 0.3
-  launchVelocity: 1.5
+  delay: 1.2
+  radius: 3
+  explosionDuration: 0.2
+  launchVelocity: 2
 --- !u!114 &902765026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5087,19 +5087,19 @@ MonoBehaviour:
   - {fileID: 1153071668}
   - {fileID: 1153071667}
   Excludes: []
-  rechargeTime: 6
+  rechargeTime: 10
   maxCharges: 2
   rateOfFire: 0.5
   AmmoImagePrefab: {fileID: 8197607764957443689, guid: b34f5ec4210934b43bad51cf6fc805f0, type: 3}
   readyColor: {r: 0.99215686, g: 1, b: 0, a: 1}
   chargingColor: {r: 0.54901963, g: 0.5568628, b: 0.34509805, a: 1}
   projectile: {fileID: 9101686643944138255, guid: e6772cd3db3a4d541839837d33c49461, type: 3}
-  damage: 18
-  rocketCount: 10
+  damage: 15
+  rocketCount: 8
   acceleration: 12
   engineDelay: 0.4
-  launchVelocity: 1.1
-  launchTime: 0.1
+  launchVelocity: 0.9
+  launchTime: 0.15
   spread: 60
 --- !u!1 &902840332
 GameObject:
@@ -5332,6 +5332,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 616785250}
     m_Modifications:
+    - target: {fileID: 4561686646443037962, guid: 51182a4bc7ee66641861cba8a7464faa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561686646443037962, guid: 51182a4bc7ee66641861cba8a7464faa, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -326755763
+      objectReference: {fileID: 0}
     - target: {fileID: 4561686646443037963, guid: 51182a4bc7ee66641861cba8a7464faa, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -5983,7 +5991,7 @@ MonoBehaviour:
   budgetExponent: 1.06
   baseSpawnRate: 6
   spawnRateIncrease: 3
-  bossLevels: 0a000000
+  bossLevels: 000000000a000000
   boss: {fileID: 4105467039431616991, guid: a7293b8a65c63794d9b59ef850940ee2, type: 3}
   bossHealthbar: {fileID: 1002502349}
   bossFight: 0
@@ -6252,7 +6260,7 @@ MonoBehaviour:
   unique: 0
   Unlocks: []
   Excludes: []
-  increaseAmount: 0.5
+  increaseAmount: 0.4
 --- !u!114 &1153071666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6271,7 +6279,7 @@ MonoBehaviour:
   unique: 0
   Unlocks: []
   Excludes: []
-  increaseAmount: 0.5
+  increaseAmount: 0.6
 --- !u!114 &1153071667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6290,7 +6298,7 @@ MonoBehaviour:
   unique: 0
   Unlocks: []
   Excludes: []
-  maxChargesIncrease: 0.5
+  maxChargesIncrease: 1
   rateOfFireIncrease: 0.5
 --- !u!114 &1153071668
 MonoBehaviour:
@@ -6310,7 +6318,7 @@ MonoBehaviour:
   unique: 0
   Unlocks: []
   Excludes: []
-  increaseAmount: 0.7
+  increaseAmount: 0.6
 --- !u!1 &1190984397
 GameObject:
   m_ObjectHideFlags: 0
