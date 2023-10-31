@@ -702,8 +702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionSelfDamage: 100
   collisionDamageMax: 70
-  maxHealth: 500
-  initialHealth: 300
+  maxHealth: 600
+  initialHealth: 500
   health: 0
   regen: 20
   shieldCollider: {fileID: 8576820564098279250}

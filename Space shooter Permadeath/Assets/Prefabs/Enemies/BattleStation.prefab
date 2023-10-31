@@ -100,10 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mastermind: {fileID: 0}
   healthBarPrefab: {fileID: 4561686646443037966, guid: 51182a4bc7ee66641861cba8a7464faa, type: 3}
-  maxHealth: 6000
+  maxHealth: 4000
   health: 0
   healthBar: {fileID: 0}
-  Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
+  Explosion: {fileID: 8531252983996980510, guid: 611b635f028db8b41b5fc9797e3288a0, type: 3}
   healthAlreadySet: 0
   dead: 0
   player: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionSelfDamage: 100
   collisionDamageMax: 50
-  sides: 20
+  sides: 16
   radius: 0.58
   segmentPrefab: {fileID: 6328856967534676555, guid: def275efde7e7824b8139db31a6ced5d, type: 3}
   shieldTransform: {fileID: 2276780162900238729}

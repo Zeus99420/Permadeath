@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mastermind: {fileID: 0}
   healthBarPrefab: {fileID: 4561686646443037966, guid: d8549251dabd82b40870a5f500e73319, type: 3}
-  maxHealth: 40
+  maxHealth: 30
   health: 0
   healthBar: {fileID: 0}
   Explosion: {fileID: 8531252983996980510, guid: 81569a1e4933a5140b9c0130daf78d85, type: 3}
@@ -147,9 +147,9 @@ MonoBehaviour:
   shieldAlphaMax: 0.7
   shield: {fileID: 1807112463857401253}
   minAcceleration: 200
-  maxAcceleration: 330
-  minRotationSpeed: 0.5
-  maxRotationSpeed: 0.7
+  maxAcceleration: 350
+  minRotationSpeed: 0.45
+  maxRotationSpeed: 0.45
   turningPower: 1
 --- !u!60 &-2293733273652789531
 PolygonCollider2D:

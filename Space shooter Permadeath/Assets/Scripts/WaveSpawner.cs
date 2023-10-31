@@ -60,7 +60,7 @@ public class WaveSpawner : MonoBehaviour
         if (bossLevels.Contains(nextWaveNumber))
         {
             InitiateBossFight();
-            spawnRate = (baseSpawnRate + spawnRateIncrease * nextWaveNumber)*0.1f;
+            spawnRate = (baseSpawnRate + spawnRateIncrease * nextWaveNumber)*0.01f;
 
             waveText.text = "BOSSFIGHT";
         }
@@ -167,11 +167,16 @@ public class WaveSpawner : MonoBehaviour
         /*nextEnemy = */GetNextEnemy();
     }
 
+    float spawnBudget;
+
     void BossFightUpdate()
     {
-        if (Random.value * enemyValues[nextEnemy] < Time.deltaTime * spawnRate)
+        spawnBudget += Time.deltaTime * spawnRate;
+        Debug.Log("Spawnbudget: " + spawnBudget + ", spawnChance: " + Mathf.Pow(1.1f, spawnBudget /20));
+        if (Random.value * enemyValues[nextEnemy] < Time.deltaTime * spawnRate * Mathf.Pow(1.1f,spawnBudget/20))
         {
             SpawnEnemy(nextEnemy, 0.1f);
+            spawnBudget -= enemyValues[nextEnemy];
             mastermind.CountEnemies();
             /*nextEnemy =*/ GetNextEnemy();
         }

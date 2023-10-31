@@ -191,8 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 4561686647488034476}
   maxHealthPoints: 10000
-  healthBarStepsLength: 400
+  healthBarStepsLength: 250
   damagesDecreaseRate: 200
+  damageDelay: 1.5
   lastDamageTime: 0
   character: {fileID: 0}
   offset: {x: 0, y: -0.5, z: 0}

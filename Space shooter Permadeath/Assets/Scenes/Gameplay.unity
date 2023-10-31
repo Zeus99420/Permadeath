@@ -3216,7 +3216,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ae33bc6e8a0869b45a905c0a9e676499, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.056
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4721,11 +4721,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 0}
-  shopAtStart: 1
-  shopTimes: 9
-  startingGadgets: 2
-  startWave: 10
-  permadeath: 0
+  shopAtStart: 0
+  shopTimes: 0
+  startingGadgets: 0
+  startWave: 1
+  permadeath: 1
   player: {fileID: 1653898505}
   camera: {fileID: 519420028}
   permadeathScreen: {fileID: 69773241}
@@ -5976,7 +5976,7 @@ MonoBehaviour:
     appears: 7
   - type: {fileID: 4105467039431616991, guid: a7293b8a65c63794d9b59ef850940ee2, type: 3}
     value: 1000
-    appears: 11
+    appears: 999
   - type: {fileID: 9058780368718266020, guid: 3c273b1be58fbf842914d17383c29f10, type: 3}
     value: 30
     appears: 999999
